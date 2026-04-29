@@ -46,7 +46,7 @@ function HumansPage() {
         </div>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {tab === "team" && team.map((m) => <PersonCard key={m.id} name={m.name} sub={m.role} location={`${m.city}, ${m.state}`} />)}
+          {tab === "team" && team.map((m) => <PersonCard key={m.id} name={m.name} sub={m.role ?? ""} location={`${m.city}, ${m.state}`} />)}
           {tab === "speakers" && speakers.map((m) => <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} />)}
           {tab === "mentors" && mentors.map((m) => <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} />)}
           {tab === "contributors" && contributors.map((m) => <PersonCard key={m.id} name={m.name} sub="" location={`${m.city}, ${m.state}`} />)}

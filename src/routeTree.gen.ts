@@ -10,18 +10,39 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as JoinRouteImport } from './routes/join'
+import { Route as InitiativesRouteImport } from './routes/initiatives'
 import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as HumansRouteImport } from './routes/humans'
+import { Route as EventsRouteImport } from './routes/events'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ResourcesVideosRouteImport } from './routes/resources.videos'
 import { Route as ResourcesScholarshipsRouteImport } from './routes/resources.scholarships'
+import { Route as ResourcesRoadmapsRouteImport } from './routes/resources.roadmaps'
 import { Route as ResourcesPeopleRouteImport } from './routes/resources.people'
+import { Route as ResourcesInterviewPrepRouteImport } from './routes/resources.interview-prep'
 import { Route as ResourcesHackathonsRouteImport } from './routes/resources.hackathons'
+import { Route as ResourcesCoursesRouteImport } from './routes/resources.courses'
+import { Route as ResourcesCommunitiesRouteImport } from './routes/resources.communities'
+import { Route as ResourcesCertificationsRouteImport } from './routes/resources.certifications'
+import { Route as ResourcesBooksRouteImport } from './routes/resources.books'
+import { Route as ResourcesArticlesRouteImport } from './routes/resources.articles'
+import { Route as InitiativesSlugRouteImport } from './routes/initiatives.$slug'
+import { Route as EventsUpcomingRouteImport } from './routes/events.upcoming'
+import { Route as EventsPastRouteImport } from './routes/events.past'
+import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
 
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JoinRoute = JoinRouteImport.update({
@@ -29,9 +50,24 @@ const JoinRoute = JoinRouteImport.update({
   path: '/join',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InitiativesRoute = InitiativesRouteImport.update({
+  id: '/initiatives',
+  path: '/initiatives',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ImpactRoute = ImpactRouteImport.update({
   id: '/impact',
   path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HumansRoute = HumansRouteImport.update({
+  id: '/humans',
+  path: '/humans',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -49,9 +85,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesVideosRoute = ResourcesVideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => ResourcesRoute,
+} as any)
 const ResourcesScholarshipsRoute = ResourcesScholarshipsRouteImport.update({
   id: '/scholarships',
   path: '/scholarships',
+  getParentRoute: () => ResourcesRoute,
+} as any)
+const ResourcesRoadmapsRoute = ResourcesRoadmapsRouteImport.update({
+  id: '/roadmaps',
+  path: '/roadmaps',
   getParentRoute: () => ResourcesRoute,
 } as any)
 const ResourcesPeopleRoute = ResourcesPeopleRouteImport.update({
@@ -59,45 +105,143 @@ const ResourcesPeopleRoute = ResourcesPeopleRouteImport.update({
   path: '/people',
   getParentRoute: () => ResourcesRoute,
 } as any)
+const ResourcesInterviewPrepRoute = ResourcesInterviewPrepRouteImport.update({
+  id: '/interview-prep',
+  path: '/interview-prep',
+  getParentRoute: () => ResourcesRoute,
+} as any)
 const ResourcesHackathonsRoute = ResourcesHackathonsRouteImport.update({
   id: '/hackathons',
   path: '/hackathons',
   getParentRoute: () => ResourcesRoute,
+} as any)
+const ResourcesCoursesRoute = ResourcesCoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => ResourcesRoute,
+} as any)
+const ResourcesCommunitiesRoute = ResourcesCommunitiesRouteImport.update({
+  id: '/communities',
+  path: '/communities',
+  getParentRoute: () => ResourcesRoute,
+} as any)
+const ResourcesCertificationsRoute = ResourcesCertificationsRouteImport.update({
+  id: '/certifications',
+  path: '/certifications',
+  getParentRoute: () => ResourcesRoute,
+} as any)
+const ResourcesBooksRoute = ResourcesBooksRouteImport.update({
+  id: '/books',
+  path: '/books',
+  getParentRoute: () => ResourcesRoute,
+} as any)
+const ResourcesArticlesRoute = ResourcesArticlesRouteImport.update({
+  id: '/articles',
+  path: '/articles',
+  getParentRoute: () => ResourcesRoute,
+} as any)
+const InitiativesSlugRoute = InitiativesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => InitiativesRoute,
+} as any)
+const EventsUpcomingRoute = EventsUpcomingRouteImport.update({
+  id: '/upcoming',
+  path: '/upcoming',
+  getParentRoute: () => EventsRoute,
+} as any)
+const EventsPastRoute = EventsPastRouteImport.update({
+  id: '/past',
+  path: '/past',
+  getParentRoute: () => EventsRoute,
+} as any)
+const EventsEventIdRoute = EventsEventIdRouteImport.update({
+  id: '/$eventId',
+  path: '/$eventId',
+  getParentRoute: () => EventsRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/events': typeof EventsRouteWithChildren
+  '/humans': typeof HumansRoute
   '/impact': typeof ImpactRoute
+  '/initiatives': typeof InitiativesRouteWithChildren
   '/join': typeof JoinRoute
+  '/partners': typeof PartnersRoute
   '/resources': typeof ResourcesRouteWithChildren
+  '/events/$eventId': typeof EventsEventIdRoute
+  '/events/past': typeof EventsPastRoute
+  '/events/upcoming': typeof EventsUpcomingRoute
+  '/initiatives/$slug': typeof InitiativesSlugRoute
+  '/resources/articles': typeof ResourcesArticlesRoute
+  '/resources/books': typeof ResourcesBooksRoute
+  '/resources/certifications': typeof ResourcesCertificationsRoute
+  '/resources/communities': typeof ResourcesCommunitiesRoute
+  '/resources/courses': typeof ResourcesCoursesRoute
   '/resources/hackathons': typeof ResourcesHackathonsRoute
+  '/resources/interview-prep': typeof ResourcesInterviewPrepRoute
   '/resources/people': typeof ResourcesPeopleRoute
+  '/resources/roadmaps': typeof ResourcesRoadmapsRoute
   '/resources/scholarships': typeof ResourcesScholarshipsRoute
+  '/resources/videos': typeof ResourcesVideosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/events': typeof EventsRouteWithChildren
+  '/humans': typeof HumansRoute
   '/impact': typeof ImpactRoute
+  '/initiatives': typeof InitiativesRouteWithChildren
   '/join': typeof JoinRoute
+  '/partners': typeof PartnersRoute
   '/resources': typeof ResourcesRouteWithChildren
+  '/events/$eventId': typeof EventsEventIdRoute
+  '/events/past': typeof EventsPastRoute
+  '/events/upcoming': typeof EventsUpcomingRoute
+  '/initiatives/$slug': typeof InitiativesSlugRoute
+  '/resources/articles': typeof ResourcesArticlesRoute
+  '/resources/books': typeof ResourcesBooksRoute
+  '/resources/certifications': typeof ResourcesCertificationsRoute
+  '/resources/communities': typeof ResourcesCommunitiesRoute
+  '/resources/courses': typeof ResourcesCoursesRoute
   '/resources/hackathons': typeof ResourcesHackathonsRoute
+  '/resources/interview-prep': typeof ResourcesInterviewPrepRoute
   '/resources/people': typeof ResourcesPeopleRoute
+  '/resources/roadmaps': typeof ResourcesRoadmapsRoute
   '/resources/scholarships': typeof ResourcesScholarshipsRoute
+  '/resources/videos': typeof ResourcesVideosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/events': typeof EventsRouteWithChildren
+  '/humans': typeof HumansRoute
   '/impact': typeof ImpactRoute
+  '/initiatives': typeof InitiativesRouteWithChildren
   '/join': typeof JoinRoute
+  '/partners': typeof PartnersRoute
   '/resources': typeof ResourcesRouteWithChildren
+  '/events/$eventId': typeof EventsEventIdRoute
+  '/events/past': typeof EventsPastRoute
+  '/events/upcoming': typeof EventsUpcomingRoute
+  '/initiatives/$slug': typeof InitiativesSlugRoute
+  '/resources/articles': typeof ResourcesArticlesRoute
+  '/resources/books': typeof ResourcesBooksRoute
+  '/resources/certifications': typeof ResourcesCertificationsRoute
+  '/resources/communities': typeof ResourcesCommunitiesRoute
+  '/resources/courses': typeof ResourcesCoursesRoute
   '/resources/hackathons': typeof ResourcesHackathonsRoute
+  '/resources/interview-prep': typeof ResourcesInterviewPrepRoute
   '/resources/people': typeof ResourcesPeopleRoute
+  '/resources/roadmaps': typeof ResourcesRoadmapsRoute
   '/resources/scholarships': typeof ResourcesScholarshipsRoute
+  '/resources/videos': typeof ResourcesVideosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -105,42 +249,94 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/events'
+    | '/humans'
     | '/impact'
+    | '/initiatives'
     | '/join'
+    | '/partners'
     | '/resources'
+    | '/events/$eventId'
+    | '/events/past'
+    | '/events/upcoming'
+    | '/initiatives/$slug'
+    | '/resources/articles'
+    | '/resources/books'
+    | '/resources/certifications'
+    | '/resources/communities'
+    | '/resources/courses'
     | '/resources/hackathons'
+    | '/resources/interview-prep'
     | '/resources/people'
+    | '/resources/roadmaps'
     | '/resources/scholarships'
+    | '/resources/videos'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
+    | '/events'
+    | '/humans'
     | '/impact'
+    | '/initiatives'
     | '/join'
+    | '/partners'
     | '/resources'
+    | '/events/$eventId'
+    | '/events/past'
+    | '/events/upcoming'
+    | '/initiatives/$slug'
+    | '/resources/articles'
+    | '/resources/books'
+    | '/resources/certifications'
+    | '/resources/communities'
+    | '/resources/courses'
     | '/resources/hackathons'
+    | '/resources/interview-prep'
     | '/resources/people'
+    | '/resources/roadmaps'
     | '/resources/scholarships'
+    | '/resources/videos'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
+    | '/events'
+    | '/humans'
     | '/impact'
+    | '/initiatives'
     | '/join'
+    | '/partners'
     | '/resources'
+    | '/events/$eventId'
+    | '/events/past'
+    | '/events/upcoming'
+    | '/initiatives/$slug'
+    | '/resources/articles'
+    | '/resources/books'
+    | '/resources/certifications'
+    | '/resources/communities'
+    | '/resources/courses'
     | '/resources/hackathons'
+    | '/resources/interview-prep'
     | '/resources/people'
+    | '/resources/roadmaps'
     | '/resources/scholarships'
+    | '/resources/videos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  EventsRoute: typeof EventsRouteWithChildren
+  HumansRoute: typeof HumansRoute
   ImpactRoute: typeof ImpactRoute
+  InitiativesRoute: typeof InitiativesRouteWithChildren
   JoinRoute: typeof JoinRoute
+  PartnersRoute: typeof PartnersRoute
   ResourcesRoute: typeof ResourcesRouteWithChildren
 }
 
@@ -153,6 +349,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/join': {
       id: '/join'
       path: '/join'
@@ -160,11 +363,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JoinRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/initiatives': {
+      id: '/initiatives'
+      path: '/initiatives'
+      fullPath: '/initiatives'
+      preLoaderRoute: typeof InitiativesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/impact': {
       id: '/impact'
       path: '/impact'
       fullPath: '/impact'
       preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/humans': {
+      id: '/humans'
+      path: '/humans'
+      fullPath: '/humans'
+      preLoaderRoute: typeof HumansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -188,11 +412,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/videos': {
+      id: '/resources/videos'
+      path: '/videos'
+      fullPath: '/resources/videos'
+      preLoaderRoute: typeof ResourcesVideosRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
     '/resources/scholarships': {
       id: '/resources/scholarships'
       path: '/scholarships'
       fullPath: '/resources/scholarships'
       preLoaderRoute: typeof ResourcesScholarshipsRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/roadmaps': {
+      id: '/resources/roadmaps'
+      path: '/roadmaps'
+      fullPath: '/resources/roadmaps'
+      preLoaderRoute: typeof ResourcesRoadmapsRouteImport
       parentRoute: typeof ResourcesRoute
     }
     '/resources/people': {
@@ -202,6 +440,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesPeopleRouteImport
       parentRoute: typeof ResourcesRoute
     }
+    '/resources/interview-prep': {
+      id: '/resources/interview-prep'
+      path: '/interview-prep'
+      fullPath: '/resources/interview-prep'
+      preLoaderRoute: typeof ResourcesInterviewPrepRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
     '/resources/hackathons': {
       id: '/resources/hackathons'
       path: '/hackathons'
@@ -209,19 +454,125 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesHackathonsRouteImport
       parentRoute: typeof ResourcesRoute
     }
+    '/resources/courses': {
+      id: '/resources/courses'
+      path: '/courses'
+      fullPath: '/resources/courses'
+      preLoaderRoute: typeof ResourcesCoursesRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/communities': {
+      id: '/resources/communities'
+      path: '/communities'
+      fullPath: '/resources/communities'
+      preLoaderRoute: typeof ResourcesCommunitiesRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/certifications': {
+      id: '/resources/certifications'
+      path: '/certifications'
+      fullPath: '/resources/certifications'
+      preLoaderRoute: typeof ResourcesCertificationsRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/books': {
+      id: '/resources/books'
+      path: '/books'
+      fullPath: '/resources/books'
+      preLoaderRoute: typeof ResourcesBooksRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/resources/articles': {
+      id: '/resources/articles'
+      path: '/articles'
+      fullPath: '/resources/articles'
+      preLoaderRoute: typeof ResourcesArticlesRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/initiatives/$slug': {
+      id: '/initiatives/$slug'
+      path: '/$slug'
+      fullPath: '/initiatives/$slug'
+      preLoaderRoute: typeof InitiativesSlugRouteImport
+      parentRoute: typeof InitiativesRoute
+    }
+    '/events/upcoming': {
+      id: '/events/upcoming'
+      path: '/upcoming'
+      fullPath: '/events/upcoming'
+      preLoaderRoute: typeof EventsUpcomingRouteImport
+      parentRoute: typeof EventsRoute
+    }
+    '/events/past': {
+      id: '/events/past'
+      path: '/past'
+      fullPath: '/events/past'
+      preLoaderRoute: typeof EventsPastRouteImport
+      parentRoute: typeof EventsRoute
+    }
+    '/events/$eventId': {
+      id: '/events/$eventId'
+      path: '/$eventId'
+      fullPath: '/events/$eventId'
+      preLoaderRoute: typeof EventsEventIdRouteImport
+      parentRoute: typeof EventsRoute
+    }
   }
 }
 
+interface EventsRouteChildren {
+  EventsEventIdRoute: typeof EventsEventIdRoute
+  EventsPastRoute: typeof EventsPastRoute
+  EventsUpcomingRoute: typeof EventsUpcomingRoute
+}
+
+const EventsRouteChildren: EventsRouteChildren = {
+  EventsEventIdRoute: EventsEventIdRoute,
+  EventsPastRoute: EventsPastRoute,
+  EventsUpcomingRoute: EventsUpcomingRoute,
+}
+
+const EventsRouteWithChildren =
+  EventsRoute._addFileChildren(EventsRouteChildren)
+
+interface InitiativesRouteChildren {
+  InitiativesSlugRoute: typeof InitiativesSlugRoute
+}
+
+const InitiativesRouteChildren: InitiativesRouteChildren = {
+  InitiativesSlugRoute: InitiativesSlugRoute,
+}
+
+const InitiativesRouteWithChildren = InitiativesRoute._addFileChildren(
+  InitiativesRouteChildren,
+)
+
 interface ResourcesRouteChildren {
+  ResourcesArticlesRoute: typeof ResourcesArticlesRoute
+  ResourcesBooksRoute: typeof ResourcesBooksRoute
+  ResourcesCertificationsRoute: typeof ResourcesCertificationsRoute
+  ResourcesCommunitiesRoute: typeof ResourcesCommunitiesRoute
+  ResourcesCoursesRoute: typeof ResourcesCoursesRoute
   ResourcesHackathonsRoute: typeof ResourcesHackathonsRoute
+  ResourcesInterviewPrepRoute: typeof ResourcesInterviewPrepRoute
   ResourcesPeopleRoute: typeof ResourcesPeopleRoute
+  ResourcesRoadmapsRoute: typeof ResourcesRoadmapsRoute
   ResourcesScholarshipsRoute: typeof ResourcesScholarshipsRoute
+  ResourcesVideosRoute: typeof ResourcesVideosRoute
 }
 
 const ResourcesRouteChildren: ResourcesRouteChildren = {
+  ResourcesArticlesRoute: ResourcesArticlesRoute,
+  ResourcesBooksRoute: ResourcesBooksRoute,
+  ResourcesCertificationsRoute: ResourcesCertificationsRoute,
+  ResourcesCommunitiesRoute: ResourcesCommunitiesRoute,
+  ResourcesCoursesRoute: ResourcesCoursesRoute,
   ResourcesHackathonsRoute: ResourcesHackathonsRoute,
+  ResourcesInterviewPrepRoute: ResourcesInterviewPrepRoute,
   ResourcesPeopleRoute: ResourcesPeopleRoute,
+  ResourcesRoadmapsRoute: ResourcesRoadmapsRoute,
   ResourcesScholarshipsRoute: ResourcesScholarshipsRoute,
+  ResourcesVideosRoute: ResourcesVideosRoute,
 }
 
 const ResourcesRouteWithChildren = ResourcesRoute._addFileChildren(
@@ -232,8 +583,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  EventsRoute: EventsRouteWithChildren,
+  HumansRoute: HumansRoute,
   ImpactRoute: ImpactRoute,
+  InitiativesRoute: InitiativesRouteWithChildren,
   JoinRoute: JoinRoute,
+  PartnersRoute: PartnersRoute,
   ResourcesRoute: ResourcesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
