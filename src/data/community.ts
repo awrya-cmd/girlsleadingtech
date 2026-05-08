@@ -161,6 +161,15 @@ export const peopleToFollow: PersonToFollow[] = [
   { id: "pf1", name: "Andrew Ng", domain: "AI / ML", linkedin: "https://www.linkedin.com/in/andrewyng/", summary: "Co-founder of Coursera and DeepLearning.AI. One of the most influential voices in modern AI." },
   { id: "pf2", name: "Naval Ravikant", domain: "Finance & Business", twitter: "https://x.com/naval", summary: "AngelList founder. Sharp essays on wealth, leverage and the long game." },
   { id: "pf3", name: "Sam Altman", domain: "AI / Startups", twitter: "https://x.com/sama", summary: "CEO of OpenAI. Pragmatic takes on building startups and the future of AI." },
+  { id: "pf4", name: "Reshma Saujani", domain: "Women in Tech", linkedin: "https://www.linkedin.com/in/reshmasaujani/", summary: "Founder of Girls Who Code. Author and tireless advocate for girls in STEM." },
+  { id: "pf5", name: "Cassidy Williams", domain: "Frontend / DevRel", twitter: "https://x.com/cassidoo", summary: "Engineer, educator and one of the warmest voices in frontend." },
+  { id: "pf6", name: "Kelsey Hightower", domain: "DevOps / Cloud", twitter: "https://x.com/kelseyhightower", summary: "Kubernetes legend. Generous teacher of distributed systems." },
+  { id: "pf7", name: "Lex Fridman", domain: "AI / Podcasts", twitter: "https://x.com/lexfridman", summary: "MIT researcher and podcaster exploring AI, science and life." },
+  { id: "pf8", name: "Lenny Rachitsky", domain: "Product", linkedin: "https://www.linkedin.com/in/lennyrachitsky/", summary: "Ex-Airbnb PM running the most-read product newsletter on the internet." },
+  { id: "pf9", name: "Fei-Fei Li", domain: "AI / ML", linkedin: "https://www.linkedin.com/in/fei-fei-li-4541247/", summary: "Stanford AI lab co-director. Pioneer of computer vision and ImageNet." },
+  { id: "pf10", name: "Tracy Chou", domain: "Engineering / Founders", twitter: "https://x.com/triketora", summary: "Founder of Block Party. Vocal advocate for diversity in tech." },
+  { id: "pf11", name: "Sahil Lavingia", domain: "Indie Founders", twitter: "https://x.com/shl", summary: "Founder of Gumroad. Honest writing on indie founding and creative work." },
+  { id: "pf12", name: "Anthony Fu", domain: "Open Source", twitter: "https://x.com/antfu7", summary: "Vue/Vite/UnoCSS core team. Prolific open-source maintainer." },
 ];
 
 export const placeholderResources: Record<string, Resource[]> = {

@@ -1,7 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ComingSoonResource } from "@/components/site/ComingSoonResource";
+import { ResourceList } from "@/components/site/ResourceList";
+import { articles } from "@/data/resources";
 
 export const Route = createFileRoute("/resources/articles")({
-  head: () => ({ meta: [{ title: "Articles — Girls Leading Tech" }, { name: "description", content: "Curated articles for women in tech." }] }),
-  component: () => <ComingSoonResource category="Articles" title="Reading worth your time." description="Curated essays, deep dives and tutorials from across the web." />,
+  head: () => ({ meta: [{ title: "Articles — Girls Leading Tech" }, { name: "description", content: "Curated articles, essays and newsletters for women in tech." }] }),
+  component: () => (
+    <ResourceList
+      category="Articles"
+      title="Reading worth your time."
+      description="Hand-picked essays, newsletters and deep dives from the sharpest minds in tech."
+      items={articles}
+    />
+  ),
 });

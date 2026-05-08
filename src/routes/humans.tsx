@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { GlassCard } from "@/components/site/GlassCard";
 import { team, mentors, speakers, contributors } from "@/data/community";
 import { cn } from "@/lib/utils";
-import { Linkedin, MapPin } from "lucide-react";
+import { Linkedin, MapPin, Building2 } from "lucide-react";
 
 export const Route = createFileRoute("/humans")({
   head: () => ({ meta: [{ title: "Humans — Girls Leading Tech" }, { name: "description", content: "The team, mentors, speakers and contributors behind Girls Leading Tech." }] }),
@@ -29,8 +29,8 @@ function HumansPage() {
         title="The faces behind the magic."
         description="Builders, mentors, speakers and contributors who make GLT what it is."
       />
-      <section className="container mx-auto max-w-6xl px-6 pb-20">
-        <div className="glass mx-auto flex w-fit flex-wrap justify-center gap-1 rounded-full p-1.5">
+      <section className="container mx-auto max-w-6xl px-6 pb-24">
+        <div className="glass-strong mx-auto flex w-fit flex-wrap justify-center gap-1 rounded-full p-1.5 shadow-soft">
           {tabs.map((t) => (
             <button
               key={t.id}
@@ -46,29 +46,56 @@ function HumansPage() {
         </div>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {tab === "team" && team.map((m) => <PersonCard key={m.id} name={m.name} sub={m.role ?? ""} location={`${m.city}, ${m.state}`} />)}
-          {tab === "speakers" && speakers.map((m) => <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} />)}
-          {tab === "mentors" && mentors.map((m) => <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} />)}
-          {tab === "contributors" && contributors.map((m) => <PersonCard key={m.id} name={m.name} sub="" location={`${m.city}, ${m.state}`} />)}
+          {tab === "team" &&
+            team.map((m, i) => (
+              <PersonCard key={m.id} name={m.name} sub={m.role} location={`${m.city}, ${m.state}`} kind="location" delay={i} />
+            ))}
+          {tab === "speakers" &&
+            speakers.map((m, i) => (
+              <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} kind="company" delay={i} />
+            ))}
+          {tab === "mentors" &&
+            mentors.map((m, i) => (
+              <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} kind="company" delay={i} />
+            ))}
+          {tab === "contributors" &&
+            contributors.map((m, i) => (
+              <PersonCard key={m.id} name={m.name} location={`${m.city}, ${m.state}`} kind="location" delay={i} />
+            ))}
         </div>
       </section>
     </>
   );
 }
 
-function PersonCard({ name, sub, location }: { name: string; sub: string; location: string }) {
+function PersonCard({
+  name,
+  sub,
+  location,
+  kind,
+  delay = 0,
+}: {
+  name: string;
+  sub?: string;
+  location?: string;
+  kind: "location" | "company";
+  delay?: number;
+}) {
+  const Icon = kind === "company" ? Building2 : MapPin;
   return (
-    <GlassCard glow className="p-6 text-center">
-      <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full gradient-primary text-2xl font-medium text-white shadow-glow">
+    <GlassCard glow className="group p-6 text-center animate-fade-up" style={{ animationDelay: `${(delay % 12) * 0.05}s` }}>
+      <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full gradient-primary text-2xl font-medium text-white shadow-glow transition group-hover:scale-110">
         {name.charAt(0)}
       </div>
       <h3 className="mt-4 font-display text-lg">{name}</h3>
       {sub && <p className="text-xs font-semibold uppercase tracking-widest text-primary">{sub}</p>}
-      <p className="mt-1 inline-flex items-center gap-1 text-xs text-muted-foreground">
-        <MapPin className="h-3 w-3" /> {location}
-      </p>
+      {location && (
+        <p className="mt-2 inline-flex items-center gap-1 text-xs text-muted-foreground">
+          <Icon className="h-3 w-3" /> {location}
+        </p>
+      )}
       <div className="mt-4 flex justify-center">
-        <button className="flex h-8 w-8 items-center justify-center rounded-full glass hover:scale-110 transition">
+        <button className="flex h-8 w-8 items-center justify-center rounded-full glass transition hover:scale-110 hover:bg-primary/10" aria-label={`${name} on LinkedIn`}>
           <Linkedin className="h-3.5 w-3.5" />
         </button>
       </div>

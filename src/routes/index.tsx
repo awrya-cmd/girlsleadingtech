@@ -8,6 +8,8 @@ import { ArrowRight, Heart, Users, Sparkle } from "lucide-react";
 import { stats } from "@/data/stats";
 import { initiatives } from "@/data/initiatives";
 import { speakers, testimonials, partners } from "@/data/community";
+import { colleges } from "@/data/colleges";
+import heroBg from "@/assets/hero-bg.jpg";
 import community1 from "@/assets/community-1.jpg";
 import community2 from "@/assets/community-2.jpg";
 import community3 from "@/assets/community-3.jpg";
@@ -37,6 +39,15 @@ function HomePage() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
+        <div
+          className="absolute inset-0 -z-10 bg-cover bg-center opacity-90"
+          style={{ backgroundImage: `url(${heroBg})` }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 -z-10 bg-gradient-to-b from-background/30 via-background/50 to-background"
+          aria-hidden
+        />
         <GradientMesh />
         <Sparkles />
         <div className="container mx-auto max-w-6xl px-6 text-center">
@@ -232,6 +243,33 @@ function HomePage() {
                 </div>
               </GlassCard>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* COLLEGES REACHED */}
+      <section className="relative py-20">
+        <div className="container mx-auto max-w-6xl px-6">
+          <SectionHeading
+            eyebrow="Reach"
+            title="1000+ campuses, one community."
+            description="A glimpse at the colleges where GLT members lead clubs, hackathons and chapters across India."
+          />
+          <div className="mt-14 flex flex-wrap justify-center gap-2">
+            {colleges.slice(0, 36).map((c, i) => (
+              <span
+                key={c}
+                className="rounded-full glass px-4 py-2 text-xs font-medium text-foreground/80 shadow-soft animate-fade-up"
+                style={{ animationDelay: `${(i % 18) * 0.04}s` }}
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link to="/impact" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+              See all colleges <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
           </div>
         </div>
       </section>

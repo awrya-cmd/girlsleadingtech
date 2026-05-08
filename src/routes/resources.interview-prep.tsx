@@ -1,7 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ComingSoonResource } from "@/components/site/ComingSoonResource";
+import { ResourceList } from "@/components/site/ResourceList";
+import { interviewPrep } from "@/data/resources";
 
 export const Route = createFileRoute("/resources/interview-prep")({
-  head: () => ({ meta: [{ title: "Interview Prep — Girls Leading Tech" }] }),
-  component: () => <ComingSoonResource category="Interview Prep" title="Walk in. Own it." description="DSA, system design and behavioural prep — without the noise." />,
+  head: () => ({ meta: [{ title: "Interview Prep — Girls Leading Tech" }, { name: "description", content: "Everything you need to ace your next tech interview." }] }),
+  component: () => (
+    <ResourceList
+      category="Interview Prep"
+      title="Ace the interview."
+      description="DSA, system design, behavioural and mock interview platforms — your prep stack in one page."
+      items={interviewPrep}
+    />
+  ),
 });
