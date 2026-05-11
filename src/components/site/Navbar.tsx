@@ -56,8 +56,6 @@ export function Navbar() {
           scrolled ? "glass-strong shadow-soft" : "glass",
         )}
       >
-        <Link to="/" aria-label="Home" className="hidden h-2 w-2" />
-
 
         <nav className="hidden items-center gap-1 lg:flex">
           {mainLinks.slice(0, 3).map((l) => (
