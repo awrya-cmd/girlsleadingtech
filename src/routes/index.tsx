@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "motion/react";
 import { GlassCard } from "@/components/site/GlassCard";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { StatCounter } from "@/components/site/StatCounter";
 import { Marquee } from "@/components/site/Marquee";
 import { ArrowRight, Heart, Users, Sparkle, Star, Flower2 } from "lucide-react";
 import { stats } from "@/data/stats";
@@ -57,32 +57,34 @@ function HomePage() {
         <Flower2 className="absolute left-[8%] bottom-32 h-7 w-7 text-[oklch(0.65_0.22_15)] animate-float" />
         <Sparkle className="absolute right-[10%] bottom-40 h-6 w-6 text-[oklch(0.6_0.22_330)] animate-float" style={{ animationDelay: "2s" }} />
 
-        <div className="container relative mx-auto max-w-6xl px-6 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full glass-strong px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary shadow-soft animate-fade-up">
-            <Sparkle className="h-3.5 w-3.5" /> A community of 4000+ women in tech
-          </span>
-
-          <h1
-            className="mt-8 font-serif text-[3.25rem] font-normal leading-[0.95] tracking-tight md:text-[6rem] lg:text-[7.5rem] animate-fade-up"
-            style={{ animationDelay: "0.1s" }}
+        <div className="container relative mx-auto max-w-7xl px-6 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            className="font-serif whitespace-nowrap text-[clamp(2.5rem,11vw,9rem)] font-normal leading-[1.15] tracking-tight pb-2"
           >
-            <span className="block text-foreground/90">Girls</span>
-            <span className="block italic text-gradient-sunset">Leading</span>
-            <span className="block text-foreground/90">Tech</span>
-          </h1>
+            <span className="text-foreground/90">Girls </span>
+            <span className="italic text-gradient-sunset">Leading </span>
+            <span className="text-foreground/90">Tech</span>
+          </motion.h1>
 
-          <p
-            className="mx-auto mt-7 max-w-2xl text-base text-muted-foreground md:text-lg animate-fade-up"
-            style={{ animationDelay: "0.2s" }}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="mx-auto mt-7 max-w-2xl text-base text-muted-foreground md:text-lg"
           >
             Mentorship, scholarships, hackathons and a sisterhood of builders —
             everything a woman in tech needs to learn, ship and shine, all in
             one beautiful place.
-          </p>
+          </motion.p>
 
-          <div
-            className="mt-10 flex flex-wrap items-center justify-center gap-4 animate-fade-up"
-            style={{ animationDelay: "0.3s" }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
             <Link
               to="/join"
@@ -97,10 +99,15 @@ function HomePage() {
             >
               Explore resources
             </Link>
-          </div>
+          </motion.div>
 
           {/* mini stats strip */}
-          <div className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4 animate-fade-up" style={{ animationDelay: "0.4s" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4"
+          >
             {stats.map((s) => (
               <div key={s.label} className="rounded-2xl glass px-4 py-4 text-center shadow-soft">
                 <div className="font-serif text-2xl text-gradient">
@@ -109,7 +116,7 @@ function HomePage() {
                 <div className="mt-1 text-[10px] uppercase tracking-widest text-muted-foreground">{s.label}</div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
