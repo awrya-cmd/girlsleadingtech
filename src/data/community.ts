@@ -1,4 +1,5 @@
 import type { Speaker, Event, TeamMember, Mentor, Partner, Testimonial, PersonToFollow, Resource } from "./types";
+import { realEvents } from "./events-real";
 
 export const speakers: Speaker[] = [
   { id: "1", name: "Aarushi Sharma", designation: "Senior SDE", company: "Microsoft" },
@@ -11,7 +12,7 @@ export const speakers: Speaker[] = [
   { id: "8", name: "Ishita Roy", designation: "Security Engineer", company: "Cloudflare" },
 ];
 
-export const events: Event[] = [
+export const events: Event[] = realEvents.length ? realEvents : [
   {
     id: "evt-001",
     title: "Breaking into Big Tech — Mock Interview Workshop",
