@@ -8,7 +8,14 @@ export const Route = createFileRoute("/events/upcoming")({
 });
 
 function UpcomingEvents() {
-  const list = events.filter((e) => e.status === "upcoming");
+  const list = events.filter((e) => e.status === "upcoming").sort((a,b) => +new Date(a.date) - +new Date(b.date));
+  if (list.length === 0) {
+    return (
+      <section className="container mx-auto max-w-3xl px-6 py-20 text-center">
+        <p className="text-muted-foreground">No upcoming events scheduled — check back soon, or peek at <Link to="/events/past" className="text-primary underline">past sessions</Link>.</p>
+      </section>
+    );
+  }
   return (
     <section className="container mx-auto max-w-6xl px-6 py-14 pb-20">
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

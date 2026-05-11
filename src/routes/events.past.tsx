@@ -8,7 +8,7 @@ export const Route = createFileRoute("/events/past")({
 });
 
 function PastEvents() {
-  const list = events.filter((e) => e.status === "past");
+  const list = events.filter((e) => e.status === "past").sort((a,b) => +new Date(b.date) - +new Date(a.date));
   return (
     <section className="container mx-auto max-w-6xl px-6 py-14 pb-20">
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
