@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const galleryImages = [community1, community2, community3, community4, community1, community2];
+const galleryImages = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9];
 
 const initiativeStyles: Record<string, { grad: string; ring: string; chip: string; emoji: string }> = {
   pink:     { grad: "from-rose-400 via-pink-500 to-fuchsia-500",   ring: "ring-rose-300/50",     chip: "bg-rose-100 text-rose-700",         emoji: "🌸" },
