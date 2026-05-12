@@ -18,11 +18,11 @@ export function PageHeader({
             {eyebrow}
           </span>
         )}
-        <h1 className="mt-6 text-5xl font-medium leading-tight md:text-7xl">
-          <span className="text-gradient">{title}</span>
+        <h1 className="mt-6 font-serif text-5xl font-normal leading-[1.05] tracking-tight md:text-7xl">
+          <span className="text-gradient-sunset">{title}</span>
         </h1>
         {description && (
-          <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
             {description}
           </p>
         )}
