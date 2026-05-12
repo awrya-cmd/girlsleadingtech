@@ -241,40 +241,56 @@ function HomePage() {
         </div>
       </section>
 
-      {/* SPEAKERS */}
+      {/* SPEAKERS — featured static grid */}
       <section className="relative py-20">
         <div className="container mx-auto max-w-6xl px-6">
           <SectionHeading
             eyebrow="Speakers"
             title="Voices who've graced our stages."
-            description="Engineers, founders and leaders from the companies you dream of joining."
+            description="A glimpse of the engineers, founders and leaders who've shared their stories with us."
           />
-        </div>
-        <div className="mt-12">
-          <Marquee>
-            {speakers.map((s) => {
-              const Wrap: any = s.linkedin ? "a" : "div";
-              const props = s.linkedin
-                ? { href: s.linkedin, target: "_blank", rel: "noopener noreferrer" }
-                : {};
-              return (
-                <Wrap
-                  key={s.id}
-                  {...props}
-                  className="block w-72 shrink-0 rounded-3xl glass p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-glow"
-                >
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full gradient-primary text-xl font-medium text-white shadow-glow">
-                    {s.name.charAt(0)}
+          <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+            {speakers
+              .filter((s) => ["s99","s100","s102","s19","s20","s18","s17","s45","s50","s46","s96","s97"].includes(s.id))
+              .map((s, idx) => {
+                const card = (
+                  <div className="relative h-full overflow-hidden rounded-3xl bg-white/85 p-6 backdrop-blur-xl ring-1 ring-primary/10 shadow-soft transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-glow">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl gradient-primary text-lg font-semibold text-white shadow-glow">
+                      {s.name.split(" ").map((p) => p[0]).slice(0, 2).join("")}
+                    </div>
+                    <h4 className="mt-4 font-display text-lg leading-tight">{s.name}</h4>
+                    <p className="mt-1 text-[11px] font-semibold uppercase tracking-widest text-primary">
+                      {s.designation}
+                    </p>
+                    {s.company && <p className="text-sm text-muted-foreground">{s.company}</p>}
                   </div>
-                  <h4 className="mt-4 font-display text-lg">{s.name}</h4>
-                  <p className="text-xs font-medium uppercase tracking-widest text-primary">
-                    {s.designation}
-                  </p>
-                  {s.company && <p className="text-sm text-muted-foreground">{s.company}</p>}
-                </Wrap>
-              );
-            })}
-          </Marquee>
+                );
+                return s.linkedin ? (
+                  <a
+                    key={s.id}
+                    href={s.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block animate-fade-up"
+                    style={{ animationDelay: `${idx * 0.05}s` }}
+                  >
+                    {card}
+                  </a>
+                ) : (
+                  <div key={s.id} className="group block animate-fade-up" style={{ animationDelay: `${idx * 0.05}s` }}>
+                    {card}
+                  </div>
+                );
+              })}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              to="/humans"
+              className="inline-flex items-center gap-2 rounded-full gradient-primary px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:scale-105"
+            >
+              See more speakers <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
