@@ -13,7 +13,6 @@ import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as InitiativesRouteImport } from './routes/initiatives'
-import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as HumansRouteImport } from './routes/humans'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -57,11 +56,6 @@ const JoinRoute = JoinRouteImport.update({
 const InitiativesRoute = InitiativesRouteImport.update({
   id: '/initiatives',
   path: '/initiatives',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ImpactRoute = ImpactRouteImport.update({
-  id: '/impact',
-  path: '/impact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HumansRoute = HumansRouteImport.update({
@@ -191,7 +185,6 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/events': typeof EventsRouteWithChildren
   '/humans': typeof HumansRoute
-  '/impact': typeof ImpactRoute
   '/initiatives': typeof InitiativesRouteWithChildren
   '/join': typeof JoinRoute
   '/partners': typeof PartnersRoute
@@ -222,7 +215,6 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/events': typeof EventsRouteWithChildren
   '/humans': typeof HumansRoute
-  '/impact': typeof ImpactRoute
   '/initiatives': typeof InitiativesRouteWithChildren
   '/join': typeof JoinRoute
   '/partners': typeof PartnersRoute
@@ -253,7 +245,6 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/events': typeof EventsRouteWithChildren
   '/humans': typeof HumansRoute
-  '/impact': typeof ImpactRoute
   '/initiatives': typeof InitiativesRouteWithChildren
   '/join': typeof JoinRoute
   '/partners': typeof PartnersRoute
@@ -286,7 +277,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/events'
     | '/humans'
-    | '/impact'
     | '/initiatives'
     | '/join'
     | '/partners'
@@ -317,7 +307,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/events'
     | '/humans'
-    | '/impact'
     | '/initiatives'
     | '/join'
     | '/partners'
@@ -347,7 +336,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/events'
     | '/humans'
-    | '/impact'
     | '/initiatives'
     | '/join'
     | '/partners'
@@ -379,7 +367,6 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRouteWithChildren
   HumansRoute: typeof HumansRoute
-  ImpactRoute: typeof ImpactRoute
   InitiativesRoute: typeof InitiativesRouteWithChildren
   JoinRoute: typeof JoinRoute
   PartnersRoute: typeof PartnersRoute
@@ -414,13 +401,6 @@ declare module '@tanstack/react-router' {
       path: '/initiatives'
       fullPath: '/initiatives'
       preLoaderRoute: typeof InitiativesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/impact': {
-      id: '/impact'
-      path: '/impact'
-      fullPath: '/impact'
-      preLoaderRoute: typeof ImpactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/humans': {
@@ -667,7 +647,6 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   EventsRoute: EventsRouteWithChildren,
   HumansRoute: HumansRoute,
-  ImpactRoute: ImpactRoute,
   InitiativesRoute: InitiativesRouteWithChildren,
   JoinRoute: JoinRoute,
   PartnersRoute: PartnersRoute,
