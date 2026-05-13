@@ -6,24 +6,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 import { stats } from "@/data/stats";
 import { testimonials } from "@/data/community";
 import { colleges } from "@/data/colleges";
-import { ArrowRight, Trophy, Calendar, Users2, Globe2 } from "lucide-react";
-
-export const Route = createFileRoute("/impact")({
-  head: () => ({
-    meta: [
-      { title: "Impact — Girls Leading Tech" },
-      { name: "description", content: "4000+ women, 1000+ colleges, 23+ states. The numbers, stories and reach behind Girls Leading Tech." },
-    ],
-  }),
-  component: ImpactPage,
-});
-
-const highlights = [
-  { icon: Trophy, label: "Hackathons hosted", value: "30+" },
-  { icon: Calendar, label: "Sessions delivered", value: "150+" },
-  { icon: Users2, label: "Mentor hours", value: "5,000+" },
-  { icon: Globe2, label: "Countries reached", value: "12" },
-];
+import { ArrowRight } from "lucide-react";
 
 function ImpactPage() {
   return (
