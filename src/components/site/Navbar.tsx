@@ -52,8 +52,8 @@ export function Navbar() {
     >
       <div
         className={cn(
-          "mx-auto flex w-auto items-center gap-2 rounded-full px-3 py-2 transition-all duration-300",
-          scrolled ? "glass-strong shadow-soft" : "glass",
+          "mx-auto flex w-auto items-center gap-2 rounded-full px-3 py-2 transition-all duration-500",
+          scrolled ? "glass-strong shadow-editorial" : "glass",
         )}
       >
 
@@ -62,25 +62,25 @@ export function Navbar() {
             <Link
               key={l.to}
               to={l.to}
-              activeProps={{ className: "text-primary" }}
+              activeProps={{ className: "text-foreground bg-foreground/5" }}
               activeOptions={{ exact: l.to === "/" }}
-              className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition hover:bg-white/60 hover:text-primary"
+              className="rounded-full px-4 py-2 text-[13px] font-medium tracking-tight text-foreground/65 transition-colors hover:text-foreground"
             >
               {l.label}
             </Link>
           ))}
 
           <div className="group relative">
-            <button className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition hover:bg-white/60 hover:text-primary">
+            <button className="flex items-center gap-1 rounded-full px-4 py-2 text-[13px] font-medium tracking-tight text-foreground/65 transition-colors hover:text-foreground">
               Resources <ChevronDown className="h-3.5 w-3.5 transition group-hover:rotate-180" />
             </button>
-            <div className="invisible absolute left-1/2 top-full mt-2 w-[640px] -translate-x-1/2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
-              <div className="glass-strong grid grid-cols-2 gap-1 rounded-3xl p-3 shadow-glow">
+            <div className="invisible absolute left-1/2 top-full mt-3 w-[640px] -translate-x-1/2 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
+              <div className="paper grid grid-cols-2 gap-1 rounded-2xl p-3">
                 {resourceLinks.map((r) => (
                   <Link
                     key={r.to}
                     to={r.to}
-                    className="rounded-2xl px-4 py-3 transition hover:bg-primary/10"
+                    className="rounded-xl px-4 py-3 transition hover:bg-foreground/5"
                   >
                     <div className="text-sm font-semibold text-foreground">{r.label}</div>
                     <div className="text-xs text-muted-foreground">{r.desc}</div>
@@ -94,24 +94,25 @@ export function Navbar() {
             <Link
               key={l.to}
               to={l.to}
-              activeProps={{ className: "text-primary" }}
-              className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition hover:bg-white/60 hover:text-primary"
+              activeProps={{ className: "text-foreground bg-foreground/5" }}
+              className="rounded-full px-4 py-2 text-[13px] font-medium tracking-tight text-foreground/65 transition-colors hover:text-foreground"
             >
               {l.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center gap-1 lg:flex">
+          <span className="mx-2 h-4 w-px bg-foreground/10" />
           <a
             href="mailto:girlsleadingtech@gmail.com"
-            className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary"
+            className="rounded-full px-4 py-2 text-[13px] font-medium tracking-tight text-foreground/65 transition-colors hover:text-foreground"
           >
             Contact
           </a>
           <Link
             to="/join"
-            className="rounded-full gradient-primary px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:scale-105"
+            className="rounded-full bg-foreground px-5 py-2.5 text-[13px] font-semibold text-background transition hover:bg-primary"
           >
             Join Us
           </Link>
