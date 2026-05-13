@@ -186,67 +186,73 @@
 @layer utilities {
   .glass {
     background-color: var(--glass);
-    backdrop-filter: blur(18px) saturate(140%);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
     border: 1px solid var(--glass-border);
   }
 
   .glass-strong {
-    background-color: oklch(1 0 0 / 0.75);
-    backdrop-filter: blur(24px) saturate(160%);
-    -webkit-backdrop-filter: blur(24px) saturate(160%);
-    border: 1px solid oklch(1 0 0 / 0.7);
+    background-color: oklch(1 0 0 / 0.78);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid oklch(0.18 0.04 340 / 0.06);
   }
 
-  .gradient-hero {
-    background-image: var(--gradient-hero);
+  /* Editorial paper card — hairline border, refined shadow */
+  .paper {
+    background-color: oklch(1 0 0 / 0.95);
+    border: 1px solid oklch(0.18 0.04 340 / 0.07);
+    box-shadow: var(--shadow-editorial);
   }
 
-  .gradient-primary {
-    background-image: var(--gradient-primary);
-  }
-
-  .gradient-sunset {
-    background-image: var(--gradient-sunset);
-  }
-
-  .gradient-soft {
-    background-image: var(--gradient-soft);
-  }
+  .gradient-hero { background-image: var(--gradient-hero); }
+  .gradient-primary { background-image: var(--gradient-primary); }
+  .gradient-sunset { background-image: var(--gradient-sunset); }
+  .gradient-soft { background-image: var(--gradient-soft); }
+  .gradient-ink { background-image: var(--gradient-ink); }
 
   .font-serif { font-family: var(--font-serif); }
 
   .text-gradient {
-    background-image: linear-gradient(120deg, oklch(0.7 0.22 25), oklch(0.6 0.25 0) 45%, oklch(0.5 0.22 320));
+    background-image: linear-gradient(120deg, oklch(0.6 0.16 30), oklch(0.32 0.08 340));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
   .text-gradient-sunset {
-    background-image: linear-gradient(120deg, oklch(0.78 0.18 60), oklch(0.65 0.24 15) 50%, oklch(0.5 0.22 320));
+    background-image: linear-gradient(120deg, oklch(0.62 0.17 35), oklch(0.36 0.1 340));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  .ink-accent {
+    color: oklch(0.55 0.16 30);
+    font-style: italic;
+    font-weight: 300;
   }
 
   .shadow-soft { box-shadow: var(--shadow-soft); }
   .shadow-glow { box-shadow: var(--shadow-glow); }
   .shadow-lavender { box-shadow: var(--shadow-lavender); }
   .shadow-coral { box-shadow: var(--shadow-coral); }
+  .shadow-editorial { box-shadow: var(--shadow-editorial); }
+
+  .hairline { background-color: oklch(0.18 0.04 340 / 0.08); }
 
   .bg-mesh {
     background:
-      radial-gradient(circle at 12% 18%, oklch(0.85 0.16 25 / 0.55), transparent 45%),
-      radial-gradient(circle at 88% 12%, oklch(0.82 0.16 350 / 0.55), transparent 45%),
-      radial-gradient(circle at 78% 88%, oklch(0.85 0.14 60 / 0.55), transparent 45%),
-      radial-gradient(circle at 18% 92%, oklch(0.78 0.16 320 / 0.5), transparent 45%),
+      radial-gradient(circle at 12% 18%, oklch(0.92 0.07 30 / 0.55), transparent 45%),
+      radial-gradient(circle at 88% 12%, oklch(0.9 0.06 350 / 0.5), transparent 45%),
+      radial-gradient(circle at 78% 88%, oklch(0.93 0.07 70 / 0.55), transparent 45%),
+      radial-gradient(circle at 18% 92%, oklch(0.88 0.05 340 / 0.45), transparent 45%),
       var(--background);
   }
 
   .bg-grain {
-    background-image: radial-gradient(oklch(0.5 0.1 340 / 0.06) 1px, transparent 1px);
-    background-size: 4px 4px;
+    background-image: radial-gradient(oklch(0.18 0.04 340 / 0.05) 1px, transparent 1px);
+    background-size: 6px 6px;
   }
 
   @keyframes spin-slow {
