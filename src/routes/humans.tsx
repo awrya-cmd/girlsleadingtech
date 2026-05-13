@@ -52,11 +52,11 @@ function HumansPage() {
             ))}
           {tab === "speakers" &&
             speakers.map((m, i) => (
-              <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} kind="company" delay={i} />
+              <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} kind="company" delay={i} linkedin={(m as { linkedin?: string }).linkedin} />
             ))}
           {tab === "mentors" &&
             mentors.map((m, i) => (
-              <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} kind="company" delay={i} />
+              <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} kind="company" delay={i} linkedin={(m as { linkedin?: string }).linkedin} />
             ))}
           {tab === "contributors" &&
             contributors.map((m, i) => (
@@ -74,12 +74,14 @@ function PersonCard({
   location,
   kind,
   delay = 0,
+  linkedin,
 }: {
   name: string;
   sub?: string;
   location?: string;
   kind: "location" | "company";
   delay?: number;
+  linkedin?: string;
 }) {
   const Icon = kind === "company" ? Building2 : MapPin;
   return (
@@ -94,11 +96,19 @@ function PersonCard({
           <Icon className="h-3 w-3" /> {location}
         </p>
       )}
-      <div className="mt-4 flex justify-center">
-        <button className="flex h-8 w-8 items-center justify-center rounded-full glass transition hover:scale-110 hover:bg-primary/10" aria-label={`${name} on LinkedIn`}>
-          <Linkedin className="h-3.5 w-3.5" />
-        </button>
-      </div>
+      {linkedin && (
+        <div className="mt-4 flex justify-center">
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${name} on LinkedIn`}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0A66C2] text-white transition hover:scale-110 shadow-soft"
+          >
+            <Linkedin className="h-4 w-4" />
+          </a>
+        </div>
+      )}
     </GlassCard>
   );
 }

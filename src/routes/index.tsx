@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { GlassCard } from "@/components/site/GlassCard";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Marquee } from "@/components/site/Marquee";
-import { ArrowRight, Heart, Users, Sparkle, Star, Flower2 } from "lucide-react";
+import { ArrowRight, Heart, Users, Sparkle, Star, Flower2, Linkedin } from "lucide-react";
 import { stats } from "@/data/stats";
 import { initiatives } from "@/data/initiatives";
 import { speakers, testimonials } from "@/data/community";
@@ -249,39 +249,41 @@ function HomePage() {
             title="Voices who've graced our stages."
             description="A glimpse of the engineers, founders and leaders who've shared their stories with us."
           />
-          <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
             {speakers
               .filter((s) => ["s99","s100","s102","s19","s20","s18","s17","s45","s50","s46","s96","s97"].includes(s.id))
-              .map((s, idx) => {
-                const card = (
-                  <div className="relative h-full overflow-hidden rounded-3xl bg-white/85 p-6 backdrop-blur-xl ring-1 ring-primary/10 shadow-soft transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-glow">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl gradient-primary text-lg font-semibold text-white shadow-glow">
+              .map((s, idx) => (
+                <div
+                  key={s.id}
+                  className="group relative animate-fade-up"
+                  style={{ animationDelay: `${idx * 0.05}s` }}
+                >
+                  {/* gradient halo */}
+                  <div className="pointer-events-none absolute -inset-[2px] rounded-[2.25rem] bg-gradient-to-br from-rose-400 via-pink-500 to-fuchsia-500 opacity-40 blur-md transition-all duration-500 group-hover:opacity-90" />
+                  <div className="relative flex h-full flex-col items-center overflow-hidden rounded-[2.1rem] bg-white/90 px-5 pt-8 pb-6 text-center backdrop-blur-xl ring-1 ring-primary/10 shadow-soft transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-glow">
+                    <div className="pointer-events-none absolute -top-10 left-1/2 h-32 w-32 -translate-x-1/2 rounded-full bg-gradient-to-br from-rose-300/50 to-fuchsia-300/40 blur-2xl" />
+                    <div className="relative flex h-20 w-20 items-center justify-center rounded-full gradient-primary text-2xl font-semibold text-white shadow-glow ring-4 ring-white/70">
                       {s.name.split(" ").map((p) => p[0]).slice(0, 2).join("")}
                     </div>
-                    <h4 className="mt-4 font-display text-lg leading-tight">{s.name}</h4>
-                    <p className="mt-1 text-[11px] font-semibold uppercase tracking-widest text-primary">
+                    <h4 className="relative mt-5 font-display text-lg leading-tight">{s.name}</h4>
+                    <p className="relative mt-1 text-[10px] font-bold uppercase tracking-widest text-primary">
                       {s.designation}
                     </p>
-                    {s.company && <p className="text-sm text-muted-foreground">{s.company}</p>}
+                    {s.company && <p className="relative text-xs text-muted-foreground">{s.company}</p>}
+                    {s.linkedin && (
+                      <a
+                        href={s.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${s.name} on LinkedIn`}
+                        className="relative mt-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#0A66C2] text-white shadow-soft transition hover:scale-110 hover:shadow-glow"
+                      >
+                        <Linkedin className="h-4 w-4" />
+                      </a>
+                    )}
                   </div>
-                );
-                return s.linkedin ? (
-                  <a
-                    key={s.id}
-                    href={s.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block animate-fade-up"
-                    style={{ animationDelay: `${idx * 0.05}s` }}
-                  >
-                    {card}
-                  </a>
-                ) : (
-                  <div key={s.id} className="group block animate-fade-up" style={{ animationDelay: `${idx * 0.05}s` }}>
-                    {card}
-                  </div>
-                );
-              })}
+                </div>
+              ))}
           </div>
           <div className="mt-10 text-center">
             <Link

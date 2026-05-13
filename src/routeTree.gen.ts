@@ -19,6 +19,7 @@ import { Route as EventsRouteImport } from './routes/events'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as ResourcesVideosRouteImport } from './routes/resources.videos'
 import { Route as ResourcesToolsRouteImport } from './routes/resources.tools'
 import { Route as ResourcesScholarshipsRouteImport } from './routes/resources.scholarships'
@@ -87,6 +88,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ResourcesRoute,
 } as any)
 const ResourcesVideosRoute = ResourcesVideosRouteImport.update({
   id: '/videos',
@@ -208,6 +214,7 @@ export interface FileRoutesByFullPath {
   '/resources/scholarships': typeof ResourcesScholarshipsRoute
   '/resources/tools': typeof ResourcesToolsRoute
   '/resources/videos': typeof ResourcesVideosRoute
+  '/resources/': typeof ResourcesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -219,7 +226,6 @@ export interface FileRoutesByTo {
   '/initiatives': typeof InitiativesRouteWithChildren
   '/join': typeof JoinRoute
   '/partners': typeof PartnersRoute
-  '/resources': typeof ResourcesRouteWithChildren
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/past': typeof EventsPastRoute
   '/events/upcoming': typeof EventsUpcomingRoute
@@ -238,6 +244,7 @@ export interface FileRoutesByTo {
   '/resources/scholarships': typeof ResourcesScholarshipsRoute
   '/resources/tools': typeof ResourcesToolsRoute
   '/resources/videos': typeof ResourcesVideosRoute
+  '/resources': typeof ResourcesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -269,6 +276,7 @@ export interface FileRoutesById {
   '/resources/scholarships': typeof ResourcesScholarshipsRoute
   '/resources/tools': typeof ResourcesToolsRoute
   '/resources/videos': typeof ResourcesVideosRoute
+  '/resources/': typeof ResourcesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -301,6 +309,7 @@ export interface FileRouteTypes {
     | '/resources/scholarships'
     | '/resources/tools'
     | '/resources/videos'
+    | '/resources/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -312,7 +321,6 @@ export interface FileRouteTypes {
     | '/initiatives'
     | '/join'
     | '/partners'
-    | '/resources'
     | '/events/$eventId'
     | '/events/past'
     | '/events/upcoming'
@@ -331,6 +339,7 @@ export interface FileRouteTypes {
     | '/resources/scholarships'
     | '/resources/tools'
     | '/resources/videos'
+    | '/resources'
   id:
     | '__root__'
     | '/'
@@ -361,6 +370,7 @@ export interface FileRouteTypes {
     | '/resources/scholarships'
     | '/resources/tools'
     | '/resources/videos'
+    | '/resources/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -447,6 +457,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/resources/': {
+      id: '/resources/'
+      path: '/'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof ResourcesRoute
     }
     '/resources/videos': {
       id: '/resources/videos'
@@ -619,6 +636,7 @@ interface ResourcesRouteChildren {
   ResourcesScholarshipsRoute: typeof ResourcesScholarshipsRoute
   ResourcesToolsRoute: typeof ResourcesToolsRoute
   ResourcesVideosRoute: typeof ResourcesVideosRoute
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
 }
 
 const ResourcesRouteChildren: ResourcesRouteChildren = {
@@ -636,6 +654,7 @@ const ResourcesRouteChildren: ResourcesRouteChildren = {
   ResourcesScholarshipsRoute: ResourcesScholarshipsRoute,
   ResourcesToolsRoute: ResourcesToolsRoute,
   ResourcesVideosRoute: ResourcesVideosRoute,
+  ResourcesIndexRoute: ResourcesIndexRoute,
 }
 
 const ResourcesRouteWithChildren = ResourcesRoute._addFileChildren(
