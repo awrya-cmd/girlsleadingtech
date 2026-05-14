@@ -9,12 +9,11 @@ export function GradientMesh({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="absolute inset-0 bg-grain opacity-40" />
-      <div className="absolute -top-40 -left-40 h-[28rem] w-[28rem] rounded-full bg-[oklch(0.9_0.07_30/0.45)] blur-[120px]" />
-      <div
-        className="absolute top-1/3 -right-40 h-[26rem] w-[26rem] rounded-full bg-[oklch(0.88_0.06_340/0.4)] blur-[120px]"
-      />
-      <div className="absolute bottom-0 left-1/3 h-[22rem] w-[22rem] rounded-full bg-[oklch(0.93_0.07_70/0.4)] blur-[120px]" />
+      <div className="absolute inset-0 bg-grain opacity-30" />
+      <div className="absolute -top-40 -left-40 h-[34rem] w-[34rem] rounded-full bg-[oklch(0.86_0.13_25/0.7)] blur-[110px] animate-blob" />
+      <div className="absolute top-1/4 -right-40 h-[32rem] w-[32rem] rounded-full bg-[oklch(0.82_0.12_340/0.65)] blur-[110px] animate-blob" style={{ animationDelay: "3s" }} />
+      <div className="absolute bottom-[-8rem] left-1/4 h-[30rem] w-[30rem] rounded-full bg-[oklch(0.88_0.13_70/0.7)] blur-[110px] animate-blob" style={{ animationDelay: "6s" }} />
+      <div className="absolute bottom-1/3 right-1/4 h-[24rem] w-[24rem] rounded-full bg-[oklch(0.84_0.1_310/0.5)] blur-[120px] animate-blob" style={{ animationDelay: "9s" }} />
     </div>
   );
 }
