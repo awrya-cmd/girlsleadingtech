@@ -253,40 +253,15 @@ function HomePage() {
             {speakers
               .filter((s) => ["s99","s100","s102","s19","s20","s18","s17","s45","s50","s46","s96","s97"].includes(s.id))
               .map((s, idx) => (
-                <div
+                <SpeakerCard
                   key={s.id}
-                  className="group relative animate-fade-up"
-                  style={{ animationDelay: `${idx * 0.05}s` }}
-                >
-                  {/* gradient halo */}
-                  <div className="pointer-events-none absolute -inset-[2px] rounded-[2.25rem] bg-gradient-to-br from-rose-400 via-pink-500 to-fuchsia-500 opacity-40 blur-md transition-all duration-500 group-hover:opacity-90" />
-                  <div className="relative flex h-full flex-col items-center overflow-hidden rounded-[2.1rem] bg-white/90 px-5 pt-8 pb-6 text-center backdrop-blur-xl ring-1 ring-primary/10 shadow-soft transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-glow">
-                    <div className="pointer-events-none absolute -top-10 left-1/2 h-32 w-32 -translate-x-1/2 rounded-full bg-gradient-to-br from-rose-300/50 to-fuchsia-300/40 blur-2xl" />
-                    <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full gradient-primary text-2xl font-semibold text-white shadow-glow ring-4 ring-white/70">
-                      {s.image ? (
-                        <img src={s.image} alt={s.name} loading="lazy" className="h-full w-full object-cover" />
-                      ) : (
-                        s.name.split(" ").map((p) => p[0]).slice(0, 2).join("")
-                      )}
-                    </div>
-                    <h4 className="relative mt-5 font-display text-lg leading-tight">{s.name}</h4>
-                    <p className="relative mt-1 text-[10px] font-bold uppercase tracking-widest text-primary">
-                      {s.designation}
-                    </p>
-                    {s.company && <p className="relative text-xs text-muted-foreground">{s.company}</p>}
-                    {s.linkedin && (
-                      <a
-                        href={s.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${s.name} on LinkedIn`}
-                        className="relative mt-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#0A66C2] text-white shadow-soft transition hover:scale-110 hover:shadow-glow"
-                      >
-                        <Linkedin className="h-4 w-4" />
-                      </a>
-                    )}
-                  </div>
-                </div>
+                  name={s.name}
+                  designation={s.designation}
+                  company={s.company}
+                  image={s.image}
+                  linkedin={s.linkedin}
+                  delay={idx}
+                />
               ))}
           </div>
           <div className="mt-10 text-center">
