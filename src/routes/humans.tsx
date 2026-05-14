@@ -52,7 +52,7 @@ function HumansPage() {
             ))}
           {tab === "speakers" &&
             speakers.map((m, i) => (
-              <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} kind="company" delay={i} linkedin={(m as { linkedin?: string }).linkedin} />
+              <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} kind="company" delay={i} linkedin={m.linkedin} image={m.image} />
             ))}
           {tab === "mentors" &&
             mentors.map((m, i) => (
