@@ -262,8 +262,12 @@ function HomePage() {
                   <div className="pointer-events-none absolute -inset-[2px] rounded-[2.25rem] bg-gradient-to-br from-rose-400 via-pink-500 to-fuchsia-500 opacity-40 blur-md transition-all duration-500 group-hover:opacity-90" />
                   <div className="relative flex h-full flex-col items-center overflow-hidden rounded-[2.1rem] bg-white/90 px-5 pt-8 pb-6 text-center backdrop-blur-xl ring-1 ring-primary/10 shadow-soft transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-glow">
                     <div className="pointer-events-none absolute -top-10 left-1/2 h-32 w-32 -translate-x-1/2 rounded-full bg-gradient-to-br from-rose-300/50 to-fuchsia-300/40 blur-2xl" />
-                    <div className="relative flex h-20 w-20 items-center justify-center rounded-full gradient-primary text-2xl font-semibold text-white shadow-glow ring-4 ring-white/70">
-                      {s.name.split(" ").map((p) => p[0]).slice(0, 2).join("")}
+                    <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full gradient-primary text-2xl font-semibold text-white shadow-glow ring-4 ring-white/70">
+                      {s.image ? (
+                        <img src={s.image} alt={s.name} loading="lazy" className="h-full w-full object-cover" />
+                      ) : (
+                        s.name.split(" ").map((p) => p[0]).slice(0, 2).join("")
+                      )}
                     </div>
                     <h4 className="relative mt-5 font-display text-lg leading-tight">{s.name}</h4>
                     <p className="relative mt-1 text-[10px] font-bold uppercase tracking-widest text-primary">
