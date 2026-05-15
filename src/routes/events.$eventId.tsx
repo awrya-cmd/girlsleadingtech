@@ -97,6 +97,7 @@ function EventDetail() {
             {event.status === "upcoming" ? "Register" : "Watch recording"} <ExternalLink className="h-4 w-4" />
           </a>
         )}
+        </div>
       </GlassCard>
     </section>
   );
