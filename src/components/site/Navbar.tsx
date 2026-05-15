@@ -46,14 +46,14 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 flex justify-center transition-all duration-300",
+        "fixed inset-x-0 top-0 z-50 flex justify-end px-4 lg:justify-center lg:px-0 transition-all duration-300",
         scrolled ? "py-2" : "py-4",
       )}
     >
       <div
         className={cn(
-          "mx-auto flex w-auto items-center gap-2 rounded-full px-3 py-2 transition-all duration-300",
-          scrolled ? "glass-strong shadow-soft" : "glass",
+          "flex w-auto items-center gap-2 rounded-full px-3 py-2 transition-all duration-300 glass-strong",
+          scrolled && "shadow-soft",
         )}
       >
 
