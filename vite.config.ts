@@ -11,6 +11,8 @@ export default defineConfig({
     tanstackStart: {
         server: {
             preset: "vercel", // Tells Nitro to build for Vercel Serverless Functions
-        }
+        },
+        spa: {} // Enable SPA mode to generate a static HTML shell for Vercel
     }
 });
+
