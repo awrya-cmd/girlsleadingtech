@@ -1,5 +1,5 @@
 // AUTO-GENERATED partner data
-const logos = import.meta.glob("@/assets/partners/*.webp", { eager: true, query: "?url", import: "default" }) as Record<string, string>;
+const logos = import.meta.glob("../assets/partners/*.webp", { eager: true, query: "?url", import: "default" }) as Record<string, string>;
 
 function getLogo(type: string, slug: string): string | undefined {
   const key = Object.keys(logos).find((k) => k.endsWith(`/${type}-${slug}.webp`));
