@@ -32,7 +32,7 @@ export const initiatives: Initiative[] = [
     name: "Code at Christmas",
     tagline: "Build, give, celebrate — open-source, the Christmas way.",
     description:
-      "An annual seasonal hackathon bringing the GLT family together to build delightful open-source projects and gift them to the community.",
+      "An annual seasonal hackathon uniting the GLT family to build open-source projects and gift them to the community.",
     url: "https://codeatchristmas.girlsleadingtech.com/",
     color: "rose",
   },

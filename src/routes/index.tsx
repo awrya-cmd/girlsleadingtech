@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import { motion } from "motion/react";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import { GlassCard } from "@/components/site/GlassCard";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Marquee } from "@/components/site/Marquee";
@@ -13,6 +13,10 @@ import { communityPartners, industryPartners, ecosystemPartners } from "@/data/p
 import { useState } from "react";
 import { colleges } from "@/data/colleges";
 import testimonialCard from "@/assets/testimonial-card.png"
+import LborderCard from "@/components/ui/LborderCard";
+import { InitiativesScrapbook } from "./initiatives";
+import pixelBtn from "@/assets/pixel-button.png"
+import presenting from "@/assets/characters/main-mascot/presenting.png"
 
 
 import gallery1 from "@/assets/gallery-1.webp";
@@ -207,7 +211,7 @@ function TestimonialPixelBackground() {
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full -z-10" />;
 }
 
-// testimonials 
+{/* testimonial carousel */} 
 function TestimonialsCarousel() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -376,52 +380,85 @@ function TestimonialsCarousel() {
     </section>
   );
 }
+
+{/* grid bg */}
+function GridBackground() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      
+      {/* LEFT GLOW (unchanged) */}
+      <div
+        className="absolute left-[-12%] top-[-10%] h-[120%] w-[35vw] blur-3xl opacity-80"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,120,180,0.28), transparent 75%)",
+        }}
+      />
+
+      {/* RIGHT GLOW (unchanged) */}
+      <div
+        className="absolute right-[-12%] top-[-10%] h-[120%] w-[35vw] blur-3xl opacity-80"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(240,120,255,0.24), transparent 75%)",
+        }}
+      />
+
+      {/* CENTER CREAM GLOW (unchanged) */}
+      <div
+        className="absolute left-1/2 top-1/2 h-[30rem] w-[50rem] -translate-x-1/2 -translate-y-1/2 blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,240,190,0.28), transparent 72%)",
+        }}
+      />
+
+      {/* GRID LAYER (added on top but subtle so it doesn't kill glow) */}
+      <div
+        className="absolute inset-0 opacity-60"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(72, 38, 96, 0.13) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(160, 100, 200, 0.13) 1px, transparent 1px)
+          `,
+          backgroundSize: "22px 22px",
+        }}
+      />
+    </div>
+  );
+}
+
+
 // -------- HOME PAGE --------
 function HomePage() {
+  const initiativesSectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: initiativesScrollYProgress } = useScroll({
+    target: initiativesSectionRef,
+    offset: ["start start", "end end"],
+  });
+  
+  const [animateBar, setAnimateBar] = useState(false);
+
+  useMotionValueEvent(initiativesScrollYProgress, "change", (latest) => {
+    if (latest > 0.01 && !animateBar) {
+      setAnimateBar(true);
+    }
+  });
+
+  useEffect(() => {
+    if (initiativesScrollYProgress.get() > 0.01) {
+      setAnimateBar(true);
+    }
+  }, [initiativesScrollYProgress]);
+
   return (
     <>
       <Hero />
 
       {/* PICTURES SECTION */}
-      <section className="relative overflow-hidden pt-8 pb-24 bg-[#fdf9f5]">
-
-        {/* CENTER CREAM / YELLOW GLOW */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            background:
-              "radial-gradient(circle at center, rgba(255,236,179,0.38) 0%, rgba(255,248,220,0.18) 35%, transparent 70%)",
-          }}
-        />
-
-        {/* LEFT PINK EDGE */}
-        <div
-          className="
-            pointer-events-none
-            absolute left-0 top-0
-            h-full w-[22vw]
-            z-0
-          "
-          style={{
-            background:
-              "linear-gradient(to right, rgba(255,120,180,0.22), rgba(255,180,220,0.10), transparent)",
-          }}
-        />
-
-        {/* RIGHT PINK EDGE */}
-        <div
-          className="
-            pointer-events-none
-            absolute right-0 top-0
-            h-full w-[22vw]
-            z-0
-          "
-          style={{
-            background:
-              "linear-gradient(to left, rgba(245,130,255,0.20), rgba(255,190,230,0.08), transparent)",
-          }}
-        />
-
+      <section className="relative py-18 pb-0 overflow-hidden">
+        <GridBackground />
+        
         
         {/* HEADING */}
         <div className="relative z-10 mb-12 flex flex-col items-center text-center pt-0">
@@ -441,107 +478,221 @@ function HomePage() {
 
       </section>
 
-    
       {/* ABOUT / VISION / MISSION */}
-      <section className="relative py-20">
-        <div className="container mx-auto max-w-6xl px-6">
-          <SectionHeading
-            eyebrow="About us"
-            title="Built for women in tech."
-            description="Girls Leading Tech is a movement for every girl who's ever wondered if she belongs in this room. Spoiler: she leads it."
-          />
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
-            <GlassCard glow className="p-8 md:p-10">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl gradient-primary shadow-soft">
-                <Heart className="h-5 w-5 text-white" />
-              </div>
-              <h3 className="font-display text-2xl">Our Vision</h3>
-              <p className="mt-3 text-muted-foreground">
-                A world where every girl who dreams in code, design or data has a
-                community, a mentor and a runway to lead. No gatekeeping. Just
-                glow-ups.
-              </p>
-            </GlassCard>
-            <GlassCard glow className="p-8 md:p-10">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl gradient-sunset shadow-soft">
-                <Users className="h-5 w-5 text-white" />
-              </div>
-              <h3 className="font-display text-2xl">Our Mission</h3>
-              <p className="mt-3 text-muted-foreground">
-                To equip 100,000 women in tech across India with the resources,
-                mentorship and confidence to ship the products and lead the teams
-                of tomorrow.
-              </p>
-            </GlassCard>
+<section className="relative py-24 overflow-hidden">
+  <GridBackground />
+
+  <div className="relative container mx-auto max-w-6xl px-6">
+
+    {/* Heading */}
+    <div className="mb-12 text-center">
+
+      <p
+        className="text-xs md:text-lg uppercase tracking-[0.3em] text-[#d955a4] font-bold"
+        style={{
+          fontFamily: "'Montserrat', sans-serif",
+        }}
+      >
+        ABOUT US
+      </p>
+
+      <h2 className="font-sans text-4xl mt-4 md:text-5xl font-bold text-foreground leading-tight">
+        Built for{" "}
+        <span
+          className="mx-2 italic font-medium text-[#5b2b4a]"
+          style={{
+            fontFamily: "'Playfair Display', serif",
+          }}
+        >
+          women
+        </span>{" "}
+        in tech.
+      </h2>
+    </div>
+
+    {/* Cards */}
+    <div className="grid gap-6 md:grid-cols-2">
+
+      {/* VISION */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          x: -70,
+          y: -80,
+          rotate: -3,
+          scale: 0.92,
+        }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          y: 0,
+          rotate: 0,
+          scale: 1,
+        }}
+    
+        viewport={{
+          once: true,
+          amount: 0.6,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 90,
+          damping: 18,
+          delay: 0.1,
+        }}
+      >
+        <LborderCard>
+
+          <h3
+            className="text-2xl font-bold text-[#d955a4]"
+            style={{
+              fontFamily: "'Press Start 2P', monospace",
+            }}
+          >
+            Our Vision
+          </h3>
+
+          <p className="mt-4 font-sans text-black leading-relaxed">
+            A world where every girl who dreams in code, design or data
+            has a community, a mentor and a runway to lead.
+            No gatekeeping. Just glow-ups.
+          </p>
+
+        </LborderCard>
+      </motion.div>
+
+      {/* MISSION */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          x: 70,
+          y: 80,
+          rotate: 3,
+          scale: 0.92,
+        }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          y: 0,
+          rotate: 0,
+          scale: 1,
+        }}
+ 
+      
+        viewport={{
+          once: true,
+          amount: 0.6,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 90,
+          damping: 18,
+          delay: 0.2,
+        }}
+      >
+        <LborderCard>
+
+          <h3
+            className="text-2xl font-bold text-[#d955a4]"
+            style={{
+              fontFamily: "'Press Start 2P', monospace",
+            }}
+          >
+            Our Mission
+          </h3>
+
+          <p className="mt-4 font-sans text-black leading-relaxed">
+            To equip 100,000 women in tech across India with the
+            resources, mentorship and confidence to ship the products
+            and lead the teams of tomorrow.
+          </p>
+
+              </LborderCard>
+            </motion.div>
+
           </div>
         </div>
       </section>
 
-      {/* INITIATIVES — bolder, animated, creative cards */}
-      <section className="relative py-20">
-        <div className="container mx-auto max-w-7xl px-6">
-          <SectionHeading
-            eyebrow="Initiatives"
-            title="Programs powering the movement."
-            description="From flagship summits to year-round fellowships, every initiative is designed to push you forward."
-          />
-          <div className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-            {initiatives.slice(0, 6).map((i, idx) => {
-              const s = initiativeStyles[i.color] ?? initiativeStyles.pink;
-              return (
-                <Link
-                  key={i.slug}
-                  to="/initiatives/$slug"
-                  params={{ slug: i.slug }}
-                  className="group relative block animate-fade-up"
-                  style={{ animationDelay: `${idx * 0.07}s` }}
-                >
-                  {/* gradient halo */}
-                  <div className={`pointer-events-none absolute -inset-[2px] rounded-[2rem] bg-gradient-to-br ${s.grad} opacity-60 blur-md transition-all duration-500 group-hover:opacity-100 group-hover:blur-lg`} />
 
-                  <div className={`relative h-full overflow-hidden rounded-[1.85rem] bg-white/85 p-7 backdrop-blur-xl ring-1 ${s.ring} shadow-soft transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-soft`}>
-                    {/* decorative blob */}
-                    <div className={`pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br ${s.grad} opacity-30 blur-2xl transition-transform duration-700 group-hover:scale-125`} />
-                    {/* big rotating emoji */}
-                    <div className="pointer-events-none absolute -right-2 -top-2 select-none text-7xl opacity-20 transition-all duration-700 group-hover:rotate-12 group-hover:opacity-40">
-                      {s.emoji}
-                    </div>
+      {/* INITIATIVES — scrapbook stacked cards */}
+      <section ref={initiativesSectionRef} className="relative w-full md:min-h-[280vh] py-16 md:py-24 overflow-visible">
+        <style>{`@import url('https://fonts.cdnfonts.com/css/satoshi');`}</style>
+        <div className="relative md:sticky md:top-[10vh] md:h-[76vh] w-full container mx-auto max-w-7xl px-6 flex flex-col justify-start gap-2 md:gap-3">
+          <div className="relative w-full overflow-visible select-none py-0 md:py-1">
+            <div className="relative inline-block overflow-visible pl-2 md:pl-4 mb-4 md:mb-6">
+              {/* Animated Pink Bar */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={animateBar ? { scaleX: 1 } : { scaleX: 0 }}
+                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                style={{ originX: 0 }}
+                className="
+                  absolute
+                  left-[-2rem] md:left-[-4rem]
+                  right-[-1rem] md:right-[-2rem]
+                  top-1/2 -translate-y-1/2
+                  h-[110%]
+                  bg-[#d955a4]/85
+                  z-0
+                "
+              />
 
-                    <div className="relative">
-                      <span className={`inline-block rounded-full ${s.chip} px-3 py-1 text-[10px] font-bold uppercase tracking-widest`}>
-                        Program {String(idx + 1).padStart(2, "0")}
-                      </span>
-                      <h3 className="mt-5 font-serif text-3xl leading-tight">{i.name}</h3>
-                      <p className={`mt-2 text-sm font-semibold bg-gradient-to-r ${s.grad} bg-clip-text text-transparent`}>
-                        {i.tagline}
-                      </p>
-                      <p className="mt-4 text-sm text-muted-foreground line-clamp-3">
-                        {i.description}
-                      </p>
+              {/* Heading */}
+              <motion.h2
+                initial={{ x: -60, opacity: 0 }}
+                animate={animateBar ? { x: 0, opacity: 1 } : { x: -60, opacity: 0 }}
+                transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+                className="relative z-10 font-sans text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-[0.15em] text-gray-900 dark:text-white leading-none"
+              >
+                INITIATIVES
+              </motion.h2>
 
-                      <div className="mt-6 flex items-center justify-between">
-                        <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground">
-                          Explore
-                          <span className={`inline-block rounded-full bg-gradient-to-br ${s.grad} p-1.5 text-white shadow-soft transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-[-12deg]`}>
-                            <ArrowRight className="h-3.5 w-3.5" />
-                          </span>
-                        </span>
-                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">GLT</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+            </div>
           </div>
 
-          <div className="mt-10 text-center">
-            <Link to="/initiatives" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
-              See all initiatives <ArrowRight className="h-3.5 w-3.5" />
+          <InitiativesScrapbook scrollProgress={initiativesScrollYProgress} />
+
+          {/* SEE ALL INITIATIVES BUTTON */}
+          <div className="relative z-[100] mt-1 md:mt-2 flex justify-center items-center w-full px-4">
+            <Link
+              to="/initiatives"
+              className="relative inline-block z-[100] transition-transform duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <img
+                src={pixelBtn}
+                alt="See All Initiatives"
+                className="
+                  w-[140px]
+                  sm:w-[160px]
+                  md:w-[180px]
+                  lg:w-[200px]
+                  h-auto
+                  object-contain
+                "
+              />
+
+              <span
+                className="
+                  absolute inset-0
+                  flex items-center justify-center
+                  text-black text-center font-bold
+                  pointer-events-none
+                "
+                style={{
+                  fontFamily: "'Press Start 2P', monospace",
+                  fontSize: "clamp(0.7rem, 1.0vw, 1.1rem)",
+                  letterSpacing: "0.08em",
+                  lineHeight: "1.0",
+                }}
+              >
+                See All <br className="sm:hidden" />
+                Initiatives →
+              </span>
             </Link>
           </div>
-        </div>
-      </section>
+            </div>
+          </section>
 
       {/* SPEAKERS — featured static grid */}
       <section className="relative py-20">
@@ -625,7 +776,7 @@ function HomePage() {
             <Marquee key={group.label} reverse={gi % 2 === 1}>
               {group.list.map((p) => {
                 const inner = (
-                  <div className="flex h-24 w-44 shrink-0 items-center justify-center rounded-2xl glass p-4 shadow-soft transition hover:-translate-y-1 hover:shadow-soft">
+                  <div className="flex h-24 w-44 shrink-0 items-center justify-center    glass p-4 shadow-soft transition hover:-translate-y-1 hover:shadow-soft">
                     {p.logo ? (
                       <img src={p.logo} alt={p.name} loading="lazy" className="max-h-14 max-w-[80%] object-contain" />
                     ) : (
