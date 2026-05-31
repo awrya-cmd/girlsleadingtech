@@ -17,6 +17,7 @@ import LborderCard from "@/components/ui/LborderCard";
 import { InitiativesScrapbook } from "./initiatives";
 import pixelBtn from "@/assets/pixel-button.png"
 import presenting from "@/assets/characters/main-mascot/presenting.png"
+import { TestimonialsGrid } from "@/components/home/TestimonialsGrid"
 
 
 import gallery1 from "@/assets/gallery-1.webp";
@@ -29,6 +30,7 @@ import gallery7 from "@/assets/gallery-7.webp";
 import gallery8 from "@/assets/gallery-8.webp";
 import gallery9 from "@/assets/gallery-9.webp";
 import Hero from "@/components/home/hero";
+import SpeakersShowcase from "@/components/home/SpeakersShowcase";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -211,175 +213,6 @@ function TestimonialPixelBackground() {
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full -z-10" />;
 }
 
-{/* testimonial carousel */} 
-function TestimonialsCarousel() {
-  const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [key, setKey] = useState(0);
-
-  const next = () => {
-    setDirection(1);
-    setIndex((prev) => (prev + 1) % testimonials.length);
-    setKey((k) => k + 1);
-  };
-
-  const prev = () => {
-    setDirection(-1);
-    setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    setKey((k) => k + 1);
-  };
-
-  const t = testimonials[index];
-
-  return (
-    <section className="relative py-10 md:py-14">
-      <TestimonialPixelBackground />
-      <div className="container mx-auto max-w-5xl px-6">
-
-        {/* HEADING */}
-        <div className="text-center mb-4">
-          <p
-            className="uppercase tracking-[0.35em] font-black font-bold"
-            style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "clamp(0.85rem, 1.4vw, 1.1rem)" }}
-          >
-            Stories
-          </p>
-        </div>
-
-        {/* CARD */}
-        <div className="flex justify-center overflow-hidden">
-          <motion.div
-            key={key}
-            initial={{
-              opacity: 0,
-              rotate: direction === 1 ? 18 : -18,
-              x: direction === 1 ? 320 : -320,
-              y: -60,
-              scale: 0.85,
-            }}
-            animate={{ opacity: 1, rotate: 0, x: 0, y: 0, scale: 1 }}
-            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              width: "clamp(280px, 48vw, 480px)",
-              borderRadius: 14,
-              overflow: "hidden",
-              boxShadow: "0 8px 32px rgba(217,85,164,0.13), 0 2px 8px rgba(0,0,0,0.07)",
-              border: "1.5px solid #000000",
-            }}
-          >
-            {/* YELLOW BAR */}
-            <div
-              style={{
-                background: "#ffed95",
-                height: "clamp(28px, 5vw, 38px)",
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-                paddingLeft: "clamp(14px, 4%, 22px)",
-                gap: 7,
-              }}
-            >
-              {/* three dots for fun */}
-              {["#FF8FAB", "#d955a4", "#f0b158"].map((c, i) => (
-                <span
-                  key={i}
-                  style={{
-                    width: 10, height: 10,
-                    borderRadius: "50%",
-                    background: c,
-                    display: "inline-block",
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* PINK BODY */}
-            <div
-              style={{
-                background: "#ffc8e3",
-                padding: "clamp(1.2rem, 6%, 2rem) clamp(1.2rem, 6%, 2rem)",
-                display: "flex",
-                flexDirection: "column",
-                gap: "clamp(0.8rem, 3%, 1.2rem)",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "'Press Start 2P', monospace",
-                  fontWeight: 600,
-                  fontSize: "clamp(0.82rem, 2vw, 1.05rem)",
-                  lineHeight: 1.55,
-                  color: "#1a1a1a",
-                  margin: 0,
-                }}
-              >
-                &ldquo;{t.quote}&rdquo;
-              </p>
-
-              {/* divider */}
-              <div style={{ width: 36, height: 2, background: "#d955a4", borderRadius: 2 }} />
-
-              <div>
-                <p
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontWeight: 700,
-                    fontSize: "clamp(0.75rem, 1.6vw, 0.92rem)",
-                    color: "#1a1a1a",
-                    margin: 0,
-                  }}
-                >
-                  {t.name}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontSize: "clamp(0.65rem, 1.3vw, 0.78rem)",
-                    color: "rgb(0, 0, 0)",
-                    margin: "3px 0 0",
-                    fontWeight: 400,
-                  }}
-                >
-                  {t.role}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* ARROWS */}
-        <div className="mt-6 flex justify-center gap-5">
-          {[{ fn: prev, label: "←" }, { fn: next, label: "→" }].map(({ fn, label }) => (
-            <button
-              key={label}
-              onClick={fn}
-              style={{
-                height: 44, width: 44,
-                background: "#fff",
-                border: "1.5px solid #e879c0",
-                borderRadius: 6,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "1rem",
-                cursor: "pointer",
-                transition: "transform 0.15s",
-                boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.07)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-              onMouseDown={(e) => (e.currentTarget.style.transform = "scale(0.95)")}
-              onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1.07)")}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
-}
 
 {/* grid bg */}
 function GridBackground() {
@@ -618,7 +451,7 @@ function HomePage() {
       {/* INITIATIVES — scrapbook stacked cards */}
       <section ref={initiativesSectionRef} className="relative w-full md:min-h-[280vh] py-16 md:py-24 overflow-visible">
         <style>{`@import url('https://fonts.cdnfonts.com/css/satoshi');`}</style>
-        <div className="relative md:sticky md:top-[10vh] md:h-[76vh] w-full container mx-auto max-w-7xl px-6 flex flex-col justify-start gap-2 md:gap-3">
+        <div className="relative md:sticky md:top-[10vh] md:h-fit w-full container mx-auto max-w-7xl px-6 flex flex-col justify-start gap-2 md:gap-3">
           <div className="relative w-full overflow-visible select-none py-0 md:py-1">
             <div className="relative inline-block overflow-visible pl-2 md:pl-4 mb-4 md:mb-6">
               {/* Animated Pink Bar */}
@@ -651,10 +484,12 @@ function HomePage() {
             </div>
           </div>
 
+      
           <InitiativesScrapbook scrollProgress={initiativesScrollYProgress} />
+  
 
           {/* SEE ALL INITIATIVES BUTTON */}
-          <div className="relative z-[100] mt-1 md:mt-2 flex justify-center items-center w-full px-4">
+          <div className="relative z-[100] mt-6 md:mt-2 flex justify-center items-center w-full px-4">
             <Link
               to="/initiatives"
               className="relative inline-block z-[100] transition-transform duration-200 hover:scale-105 active:scale-95 cursor-pointer"
@@ -695,41 +530,12 @@ function HomePage() {
           </section>
 
       {/* SPEAKERS — featured static grid */}
-      <section className="relative py-20">
-        <div className="container mx-auto max-w-6xl px-6">
-          <SectionHeading
-            eyebrow="Speakers"
-            title="Voices who've graced our stages."
-            description="A glimpse of the engineers, founders and leaders who've shared their stories with us."
-          />
-          <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
-            {speakers
-              .filter((s) => ["s99","s100","s102","s19","s20","s18","s17","s45","s50","s46","s96","s97"].includes(s.id))
-              .map((s, idx) => (
-                <SpeakerCard
-                  key={s.id}
-                  name={s.name}
-                  designation={s.designation}
-                  company={s.company}
-                  image={s.image}
-                  linkedin={s.linkedin}
-                  delay={idx}
-                />
-              ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link
-              to="/humans"
-              className="inline-flex items-center gap-2 rounded-full gradient-primary px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:scale-105"
-            >
-              See more speakers <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+     <div className="mt-6 md:mt-10">
+          <SpeakersShowcase />
         </div>
-      </section>
-
+            
       {/* TESTIMONIALS */}
-      <TestimonialsCarousel />
+      <TestimonialsGrid />
 
       {/* COLLEGES REACHED */}
       <section className="relative py-20">
