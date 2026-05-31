@@ -67,7 +67,9 @@ export function BookCarousel({ items }: { items: Resource[] }) {
       {items.map((book, idx) => (
         <div 
           key={book.id} 
-          ref={(el) => (booksRef.current[idx] = el as HTMLDivElement)}
+          ref={(el) => {
+            booksRef.current[idx] = el as HTMLDivElement;
+          }}
           className="relative group h-full flex flex-col will-change-transform"
           style={{ transformStyle: "preserve-3d" }}
         >
