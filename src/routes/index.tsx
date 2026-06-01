@@ -18,6 +18,11 @@ import LborderCard from "@/components/ui/LborderCard";
 import { InitiativesScrapbook } from "./initiatives";
 import pixelBtn from "@/assets/pixel-button.png"
 import presenting from "@/assets/characters/main-mascot/presenting.png"
+import { TestimonialsGrid } from "@/components/home/TestimonialsGrid"
+import { PartnersSection } from "@/components/home/PartnersSection"
+import OurStory from "@/components/home/OurStory";
+import VerticalMarquee from "@/components/home/VerticalMarquee";
+import joinUs from "@/assets/characters/main-mascot/join-us.png"
 
 
 import gallery1 from "@/assets/gallery-1.webp";
@@ -30,6 +35,8 @@ import gallery7 from "@/assets/gallery-7.webp";
 import gallery8 from "@/assets/gallery-8.webp";
 import gallery9 from "@/assets/gallery-9.webp";
 import Hero from "@/components/home/hero";
+import SpeakersShowcase from "@/components/home/SpeakersShowcase";
+import CollegesReachedSection from "@/components/home/CollegesReachedSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -212,175 +219,6 @@ function TestimonialPixelBackground() {
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full -z-10" />;
 }
 
-{/* testimonial carousel */} 
-function TestimonialsCarousel() {
-  const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [key, setKey] = useState(0);
-
-  const next = () => {
-    setDirection(1);
-    setIndex((prev) => (prev + 1) % testimonials.length);
-    setKey((k) => k + 1);
-  };
-
-  const prev = () => {
-    setDirection(-1);
-    setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    setKey((k) => k + 1);
-  };
-
-  const t = testimonials[index];
-
-  return (
-    <section className="relative py-10 md:py-14">
-      <TestimonialPixelBackground />
-      <div className="container mx-auto max-w-5xl px-6">
-
-        {/* HEADING */}
-        <div className="text-center mb-4">
-          <p
-            className="uppercase tracking-[0.35em] font-black font-bold"
-            style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "clamp(0.85rem, 1.4vw, 1.1rem)" }}
-          >
-            Stories
-          </p>
-        </div>
-
-        {/* CARD */}
-        <div className="flex justify-center overflow-hidden">
-          <motion.div
-            key={key}
-            initial={{
-              opacity: 0,
-              rotate: direction === 1 ? 18 : -18,
-              x: direction === 1 ? 320 : -320,
-              y: -60,
-              scale: 0.85,
-            }}
-            animate={{ opacity: 1, rotate: 0, x: 0, y: 0, scale: 1 }}
-            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              width: "clamp(280px, 48vw, 480px)",
-              borderRadius: 14,
-              overflow: "hidden",
-              boxShadow: "0 8px 32px rgba(217,85,164,0.13), 0 2px 8px rgba(0,0,0,0.07)",
-              border: "1.5px solid #000000",
-            }}
-          >
-            {/* YELLOW BAR */}
-            <div
-              style={{
-                background: "#ffed95",
-                height: "clamp(28px, 5vw, 38px)",
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-                paddingLeft: "clamp(14px, 4%, 22px)",
-                gap: 7,
-              }}
-            >
-              {/* three dots for fun */}
-              {["#FF8FAB", "#d955a4", "#f0b158"].map((c, i) => (
-                <span
-                  key={i}
-                  style={{
-                    width: 10, height: 10,
-                    borderRadius: "50%",
-                    background: c,
-                    display: "inline-block",
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* PINK BODY */}
-            <div
-              style={{
-                background: "#ffc8e3",
-                padding: "clamp(1.2rem, 6%, 2rem) clamp(1.2rem, 6%, 2rem)",
-                display: "flex",
-                flexDirection: "column",
-                gap: "clamp(0.8rem, 3%, 1.2rem)",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "'Press Start 2P', monospace",
-                  fontWeight: 600,
-                  fontSize: "clamp(0.82rem, 2vw, 1.05rem)",
-                  lineHeight: 1.55,
-                  color: "#1a1a1a",
-                  margin: 0,
-                }}
-              >
-                &ldquo;{t.quote}&rdquo;
-              </p>
-
-              {/* divider */}
-              <div style={{ width: 36, height: 2, background: "#d955a4", borderRadius: 2 }} />
-
-              <div>
-                <p
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontWeight: 700,
-                    fontSize: "clamp(0.75rem, 1.6vw, 0.92rem)",
-                    color: "#1a1a1a",
-                    margin: 0,
-                  }}
-                >
-                  {t.name}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontSize: "clamp(0.65rem, 1.3vw, 0.78rem)",
-                    color: "rgb(0, 0, 0)",
-                    margin: "3px 0 0",
-                    fontWeight: 400,
-                  }}
-                >
-                  {t.role}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* ARROWS */}
-        <div className="mt-6 flex justify-center gap-5">
-          {[{ fn: prev, label: "←" }, { fn: next, label: "→" }].map(({ fn, label }) => (
-            <button
-              key={label}
-              onClick={fn}
-              style={{
-                height: 44, width: 44,
-                background: "#fff",
-                border: "1.5px solid #e879c0",
-                borderRadius: 6,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "1rem",
-                cursor: "pointer",
-                transition: "transform 0.15s",
-                boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.07)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-              onMouseDown={(e) => (e.currentTarget.style.transform = "scale(0.95)")}
-              onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1.07)")}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
-}
 
 {/* grid bg */}
 function GridBackground() {
@@ -456,62 +294,16 @@ function HomePage() {
     <>
       <Hero />
 
-      {/* PICTURES SECTION */}
-      <section className="relative py-18 pb-0 overflow-hidden">
-        <GridBackground />
-        
-        
-        {/* HEADING */}
-        <div className="relative z-10 mb-12 flex flex-col items-center text-center pt-0">
-
-          <p className="text-xs md:text-lg uppercase tracking-[0.3em] text-[#d955a4] font-bold"
-          style={{ fontFamily: "'Montserrat', 'sans serif'"}}
-          >
-            COMMUNITY MOMENTS
-          </p>
-
-        </div>
-
-        {/* MARQUEE */}
-        <div className="relative z-10">
-          <AutoCarousel images={galleryImages} />
-        </div>
-
-      </section>
-
       {/* ABOUT / VISION / MISSION */}
-<section className="relative py-24 overflow-hidden">
-  <GridBackground />
+      <section className="relative py-24 overflow-hidden">
+        <GridBackground />
 
-  <div className="relative container mx-auto max-w-6xl px-6">
+        {/* OUR STORY JOURNEY */}
+        <OurStory />
 
-    {/* Heading */}
-    <div className="mb-12 text-center">
+        <div className="relative container mx-auto max-w-6xl px-6">
 
-      <p
-        className="text-xs md:text-lg uppercase tracking-[0.3em] text-[#d955a4] font-bold"
-        style={{
-          fontFamily: "'Montserrat', sans-serif",
-        }}
-      >
-        ABOUT US
-      </p>
-
-      <h2 className="font-sans text-4xl mt-4 md:text-5xl font-bold text-foreground leading-tight">
-        Built for{" "}
-        <span
-          className="mx-2 italic font-medium text-[#5b2b4a]"
-          style={{
-            fontFamily: "'Playfair Display', serif",
-          }}
-        >
-          women
-        </span>{" "}
-        in tech.
-      </h2>
-    </div>
-
-    {/* Cards */}
+          {/* Cards */}
     <div className="grid gap-6 md:grid-cols-2">
 
       {/* VISION */}
@@ -615,11 +407,66 @@ function HomePage() {
         </div>
       </section>
 
+      {/* PICTURES SECTION */}
+      <section className="relative py-20 overflow-hidden">
+        <GridBackground />
+        
+        <div className="relative z-10 container mx-auto max-w-7xl px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[35%_1fr] gap-10 lg:gap-16 items-center">
+            
+            {/* TEXT COLUMN */}
+            <div className="flex flex-col justify-center text-left">
+              <p
+                className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#d955a4] font-bold"
+                style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                }}
+              >
+                COMMUNITY MOMENTS
+              </p>
+
+              <h2 className="font-sans text-4xl xl:text-5xl font-bold text-foreground leading-tight mt-4">
+                Celebrating every{" "}
+                <span
+                  className="mx-2 italic font-medium text-[#5b2b4a]"
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                  }}
+                >
+                  step
+                </span>{" "}
+                forward.
+              </h2>
+
+              <p className="mt-4 font-sans text-muted-foreground text-sm leading-relaxed test-center">
+                A glimpse at the colleges where GLT members lead chapters and hackathons.
+              </p>
+            </div>
+
+            {/* MARQUEES CONTAINER */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-[400px] md:h-[550px] overflow-hidden relative">
+              {/* Fade masks */}
+              <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+              
+              {/* Marquee 1 (Upwards) */}
+              <div className="h-full overflow-hidden">
+                <VerticalMarquee images={galleryImages} direction="up" speed={1.2} />
+              </div>
+              
+              {/* Marquee 2 (Downwards) - hidden on mobile, visible on tablet and desktop */}
+              <div className="h-full overflow-hidden hidden md:block">
+                <VerticalMarquee images={galleryImages} direction="down" speed={0.8} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* INITIATIVES — scrapbook stacked cards */}
       <section ref={initiativesSectionRef} className="relative w-full md:min-h-[280vh] py-16 md:py-24 overflow-visible">
         <style>{`@import url('https://fonts.cdnfonts.com/css/satoshi');`}</style>
-        <div className="relative md:sticky md:top-[10vh] md:h-[76vh] w-full container mx-auto max-w-7xl px-6 flex flex-col justify-start gap-2 md:gap-3">
+        <div className="relative md:sticky md:top-[10vh] md:h-fit w-full container mx-auto max-w-7xl px-6 flex flex-col justify-start gap-2 md:gap-3">
           <div className="relative w-full overflow-visible select-none py-0 md:py-1">
             <div className="relative inline-block overflow-visible pl-2 md:pl-4 mb-4 md:mb-6">
               {/* Animated Pink Bar */}
@@ -652,10 +499,12 @@ function HomePage() {
             </div>
           </div>
 
+      
           <InitiativesScrapbook scrollProgress={initiativesScrollYProgress} />
+  
 
           {/* SEE ALL INITIATIVES BUTTON */}
-          <div className="relative z-[100] mt-1 md:mt-2 flex justify-center items-center w-full px-4">
+          <div className="relative z-[100] mt-6 md:mt-2 flex justify-center items-center w-full px-4">
             <Link
               to="/initiatives"
               className="relative inline-block z-[100] transition-transform duration-200 hover:scale-105 active:scale-95 cursor-pointer"
@@ -696,137 +545,121 @@ function HomePage() {
           </section>
 
       {/* SPEAKERS — featured static grid */}
-      <section className="relative py-20">
-        <div className="container mx-auto max-w-6xl px-6">
-          <SectionHeading
-            eyebrow="Speakers"
-            title="Voices who've graced our stages."
-            description="A glimpse of the engineers, founders and leaders who've shared their stories with us."
-          />
-          <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
-            {speakers
-              .filter((s) => ["s99","s100","s102","s19","s20","s18","s17","s45","s50","s46","s96","s97"].includes(s.id))
-              .map((s, idx) => (
-                <SpeakerCard
-                  key={s.id}
-                  name={s.name}
-                  designation={s.designation}
-                  company={s.company}
-                  image={s.image}
-                  linkedin={s.linkedin}
-                  delay={idx}
-                />
-              ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link
-              to="/humans"
-              className="inline-flex items-center gap-2 rounded-full gradient-primary px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:scale-105"
-            >
-              See more speakers <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <TestimonialsCarousel />
+     <div className="my-10 md:my-16 lg:my-24">
+          <SpeakersShowcase />
+      </div>
+        
 
       {/* COLLEGES REACHED */}
-      <section className="relative py-20">
-        <div className="container mx-auto max-w-6xl px-6">
-          <SectionHeading
-            eyebrow="Reach"
-            title="1000+ campuses, one community."
-            description="A glimpse at the colleges where GLT members lead clubs, hackathons and chapters across India."
-          />
-          <div className="mt-14 flex flex-wrap justify-center gap-2">
-            {colleges.slice(0, 36).map((c, i) => (
-              <span
-                key={c}
-                className="rounded-full glass px-4 py-2 text-xs font-medium text-foreground/80 shadow-soft animate-fade-up"
-                style={{ animationDelay: `${(i % 18) * 0.04}s` }}
-              >
-                {c}
-              </span>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Link to="/impact" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
-              See all colleges <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CollegesReachedSection />
+
+         {/* TESTIMONIALS */}
+      <TestimonialsGrid />
 
       {/* PARTNERS — smooth marquee */}
-      <section className="relative py-20">
-        <div className="container mx-auto max-w-6xl px-6">
-          <SectionHeading
-            eyebrow="Partners"
-            title="The companies cheering us on."
-            description="Ecosystem, industry and community partners amplifying the movement."
-          />
-        </div>
-        <div className="mt-14 space-y-6">
-          {[
-            { label: "Ecosystem", list: ecosystemPartners },
-            { label: "Industry", list: industryPartners },
-            { label: "Community", list: communityPartners },
-          ].map((group, gi) => (
-            <Marquee key={group.label} reverse={gi % 2 === 1}>
-              {group.list.map((p) => {
-                const inner = (
-                  <div className="flex h-24 w-44 shrink-0 items-center justify-center    glass p-4 shadow-soft transition hover:-translate-y-1 hover:shadow-soft">
-                    {p.logo ? (
-                      <img src={p.logo} alt={p.name} loading="lazy" className="max-h-14 max-w-[80%] object-contain" />
-                    ) : (
-                      <span className="text-center text-xs font-display text-foreground/70">{p.name}</span>
-                    )}
-                  </div>
-                );
-                return p.website ? (
-                  <a key={p.id} href={p.website} target="_blank" rel="noopener noreferrer" title={p.name}>
-                    {inner}
-                  </a>
-                ) : (
-                  <div key={p.id} title={p.name}>{inner}</div>
-                );
-              })}
-            </Marquee>
-          ))}
-        </div>
-        <div className="container mx-auto mt-10 max-w-6xl px-6 text-center">
-          <Link to="/partners" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
-            See all partners <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
-      </section>
+        <PartnersSection
+        ecosystemPartners={ecosystemPartners}
+        industryPartners={industryPartners}
+        communityPartners={communityPartners}
+      />
 
       {/* FAQ */}
       <FAQ />
 
       {/* CTA */}
-      <section className="relative py-24">
-        <div className="container mx-auto max-w-5xl px-6">
-          <div className="relative overflow-hidden rounded-[2.5rem] gradient-sunset p-12 text-center shadow-soft md:p-16">
-            <div className="pointer-events-none absolute -left-10 -top-10 h-48 w-48 rounded-full bg-white/20 blur-2xl animate-blob" />
-            <div className="pointer-events-none absolute -right-10 -bottom-10 h-48 w-48 rounded-full bg-white/20 blur-2xl animate-blob" style={{ animationDelay: "3s" }} />
-            <h2 className="relative font-serif text-4xl text-white md:text-6xl">
-              Your seat at the table is waiting.
-            </h2>
-            <p className="relative mx-auto mt-4 max-w-xl text-white/90">
-              Become part of a community that builds, learns and lifts each other up.
-            </p>
-            <Link
-              to="/join"
-              className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-primary shadow-soft transition hover:scale-105"
+      <section className="relative py-10 md:py-14 bg-[#d955a4] overflow-hidden">
+
+  {/* Background Glow */}
+  <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+  <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
+
+  <div className="container mx-auto max-w-6xl px-6 relative z-10">
+
+    {/* Cream Card */}
+    <div className="relative bg-[#FFF8EF] rounded-[24px] md:rounded-[28px] shadow-xl overflow-visible">
+
+      <div className="flex flex-col md:flex-row items-center md:items-stretch">
+
+        {/* Content */}
+        <div className="flex-1 px-8 py-10 md:px-14 md:py-14">
+
+          {/* Label */}
+          <p
+            className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#d955a4] mb-5 font-bold"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            JOIN THE MOVEMENT
+          </p>
+
+          {/* Heading */}
+          <h2
+            className="text-3xl md:text-5xl font-black text-gray-900 leading-tight"
+            style={{ fontFamily: "'Satoshi', sans-serif" }}
+          >
+            Be the change.
+          </h2>
+
+          {/* Subheading */}
+          <p
+            className="mt-4 max-w-xl text-gray-600 text-base md:text-lg leading-relaxed"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            Your story could inspire thousands of girls to take their first
+            step into technology.
+          </p>
+
+          {/* Button */}
+          <div className="mt-12 flex gap-8">
+          <Link
+            to="/join"
+            className="relative inline-block active:scale-95 transition-transform duration-100"
+          >
+            <img
+              src={pixelBtn}
+              alt="Join Community Button"
+              className="w-[190px] h-auto"
+            />
+
+            {/* overlay text */}
+            <span
+              className="absolute inset-0 flex items-center justify-center text-black font-bold"
+              style={{
+                fontFamily: "'Press Start 2P', monospace",
+                fontSize: "clamp(0.75rem, 1.2vw, 1.2rem)",
+                letterSpacing: "0.08em",
+              }}
             >
-              Join Girls Leading Tech <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+              Join Community →
+            </span>
+          </Link>
         </div>
-      </section>
-    </>
+        </div>
+
+        {/* Empty spacer for mascot overlap */}
+        <div className="hidden md:block w-[240px] lg:w-[320px]" />
+      </div>
+
+      {/* Mascot Desktop */}
+      <div className="hidden md:block absolute right-[-30px] bottom-[-10px] w-[280px] lg:w-[360px] z-20">
+        <img
+          src={joinUs}
+          alt="Mascot"
+          className="w-full h-auto object-contain"
+        />
+      </div>
+
+      {/* Mascot Mobile */}
+      <div className="md:hidden flex justify-center px-6 pb-8">
+        <img
+          src={joinUs}
+          alt="Mascot"
+          className="w-52 h-auto object-contain"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+</>
   );
 }

@@ -6,7 +6,7 @@ import { Link } from "@tanstack/react-router";
 import { stats } from "@/data/stats";
 import mascot from "@/assets/characters/main-mascot/idle.png";
 import pixelBtn from "@/assets/pixel-button.png";
-import CharacterStack from "@/components/characters/CharacterStack";
+
 
 
 // colors
@@ -38,7 +38,7 @@ function SideGlow() {
         className="
           pointer-events-none
           absolute left-[-12%] top-[-10%]
-          h-[120%] w-[35vw]
+          h-[120%] w-[50vw] md:w-[35vw]
           blur-3xl
           opacity-90
         "
@@ -68,7 +68,10 @@ function SideGlow() {
         className="
           pointer-events-none
           absolute left-1/2 top-1/2
-          h-[32rem] w-[50rem]
+          h-[18rem]
+          w-[90vw]
+          md:h-[28rem]
+          md:w-[50rem]
           -translate-x-1/2 -translate-y-1/2
           blur-3xl
         "
@@ -89,7 +92,7 @@ function HeroText() {
       
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');`}</style>
 
-      <div className="relative flex items-end justify-end w-full pr-20 md:pr-32">
+      <div className="relative flex items-end justify-center w-full max-w-[1200px]">
         <motion.div
           className="flex"
           animate={{ y: [0, 0, 0] }}
@@ -98,7 +101,8 @@ function HeroText() {
           {letters.map((l, i) => (
             <span
               key={i}
-              className="text-[clamp(12rem,15vw,100rem)] font-black tracking-wider"
+              className="text-[clamp(5rem,22vw,12rem)]
+                          sm:text-[clamp(6rem,18vw,12rem)] font-black tracking-wider"
               style={{
                 color: PINK,
                 letterSpacing: "+0.12em",
@@ -115,10 +119,19 @@ function HeroText() {
         <motion.img
           src={mascot}
           alt="mascot"
-          className="absolute w-[180px] md:w-[220px]"
-          style={{
-            left: "72%",
-            top: "20%",
+          className="absolute
+              w-[90px]
+              sm:w-[100px]
+              md:w-[180px]
+              lg:w-[220px]
+              right-[-10%]
+              md:right-[-12%]
+              lg:right-[-30%]
+              top-[15%]
+                  
+            "
+            style={{
+
             filter: 
             "drop-shadow(0 12px 18px rgba(151, 148, 152, 0.84)) drop-shadow(0 0 22px rgba(255,120,210,0.35))",
           }}
@@ -139,9 +152,9 @@ function SubText() {
   
     <style>{`@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');`}</style>
 
-    <div className="-mt-8 md:-mt-10 -translate-x-18 md:-translate-x-25">
+    <div className="-mt-4 md:-mt-8">
       <span
-        className="text-[clamp(1rem,3vw,2.5rem)] font-bold tracking-[0.55em]"
+        className="text-[clamp(0.9rem,3vw,2.5rem)] font-bold tracking-[0.3em] md:tracking-[0.55em]"
         style={{
           color: "#20182f",
           letterSpacing: "+0.40em",
@@ -242,7 +255,16 @@ function InteractivePixelBackground() {
 export default function Hero() {
   return (
     <>
-    <section className="relative isolate flex min-h-[95vh] flex-col items-center justify-center overflow-hidden">
+    <section className="relative isolate
+    min-h-[65vh]
+    md:min-h-[75vh]
+    lg:min-h-screen
+    flex flex-col items-center
+    justify-start lg:justify-center
+    pt-20 sm:pt-24 md:pt-28 lg:pt-0
+    pb-10 md:pb-12
+    overflow-hidden
+    px-4 sm:px-6">
 
 
       <InteractivePixelBackground />
@@ -286,7 +308,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 flex flex-col items-center">
+      <div className="relative z-10 flex flex-col items-center max-w-[1400]px">
         {/* HERO TEXT */}
         <HeroText />
 
@@ -294,7 +316,10 @@ export default function Hero() {
         <SubText />
 
         {/* buttons */}
-        <div className="mt-12 flex gap-8 -ml-15">
+        <div className="mt-8 flex flex-col flex flex-row
+            flex-wrap
+            justify-center
+            gap-4 md:gap-6">
           <Link
             to="/join"
             className="relative inline-block active:scale-95 transition-transform duration-100"
@@ -303,7 +328,10 @@ export default function Hero() {
             <img
               src={pixelBtn}
               alt="Join Community Button"
-              className="w-[190px] h-auto"
+              className="w-[140px]
+              sm:w-[180px]
+              md:w-[210px]
+              h-auto h-auto"
             />
 
           {/* overlay text */}
@@ -328,7 +356,10 @@ export default function Hero() {
             <img
               src={pixelBtn}
               alt="Join Community Button"
-              className="w-[190px] h-auto"
+              className="w-[140px]
+              sm:w-[180px]
+              md:w-[210px]
+              h-auto h-auto"
             />
 
           {/* overlay text */}
@@ -340,14 +371,14 @@ export default function Hero() {
             letterSpacing: "0.08em",
            }}
            >
-            Explore Resources 
+            Resources →
           </span>
           </Link>
 
         </div>
 
         {/* stats */}
-        <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center -ml-15">
+        <div className="mt-8 md:mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center w-full max-w-4xl">
           {stats.map((s) => (
             <div key={s.label}>
               <div className="text-2xl text-black font-black">
@@ -361,7 +392,7 @@ export default function Hero() {
         </div>
       </div>
     </section>
-    <CharacterStack />
+    
     </>
   );
 }

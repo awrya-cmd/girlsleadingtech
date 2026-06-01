@@ -403,7 +403,7 @@ export function InitiativesScrapbook({ scrollProgress }: { scrollProgress?: Moti
                   to="/initiatives/$slug"
                   params={{ slug: initiative.slug }}
                   className={`
-                    mt-5 inline-flex items-center gap-1.5
+                    mt-4 inline-flex items-center gap-1.5
                     rounded-full ${s.cta}
                     px-4 py-2 text-xs font-bold text-white
                     self-start transition hover:scale-105
