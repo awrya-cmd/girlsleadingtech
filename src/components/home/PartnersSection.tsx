@@ -83,7 +83,7 @@ export function PartnersSection({
       </div>
 
       {/* PIXEL BUTTON (ONLY CHANGE) */}
-      <div className="relative z-[100] mt-12 flex justify-center w-full px-4">
+      <div className="relative mt-12 flex justify-center w-full px-4">
         <Link
           to="/partners"
           className="relative inline-block transition-transform duration-200 hover:scale-105 active:scale-95"

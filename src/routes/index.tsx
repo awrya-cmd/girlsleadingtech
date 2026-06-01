@@ -20,6 +20,9 @@ import presenting from "@/assets/characters/main-mascot/presenting.png"
 import { TestimonialsGrid } from "@/components/home/TestimonialsGrid"
 import { PartnersSection } from "@/components/home/PartnersSection"
 import OurStory from "@/components/home/OurStory";
+import VerticalMarquee from "@/components/home/VerticalMarquee";
+import joinUs from "@/assets/characters/main-mascot/join-us.png"
+
 
 import gallery1 from "@/assets/gallery-1.webp";
 import gallery2 from "@/assets/gallery-2.webp";
@@ -290,29 +293,6 @@ function HomePage() {
     <>
       <Hero />
 
-      {/* PICTURES SECTION */}
-      <section className="relative py-18 pb-0 overflow-hidden">
-        <GridBackground />
-        
-        
-        {/* HEADING */}
-        <div className="relative z-10 mb-12 flex flex-col items-center text-center pt-0">
-
-          <p className="text-xs md:text-lg uppercase tracking-[0.3em] text-[#d955a4] font-bold"
-          style={{ fontFamily: "'Montserrat', 'sans serif'"}}
-          >
-            COMMUNITY MOMENTS
-          </p>
-
-        </div>
-
-        {/* MARQUEE */}
-        <div className="relative z-10">
-          <AutoCarousel images={galleryImages} />
-        </div>
-
-      </section>
-
       {/* ABOUT / VISION / MISSION */}
       <section className="relative py-24 overflow-hidden">
         <GridBackground />
@@ -426,6 +406,61 @@ function HomePage() {
         </div>
       </section>
 
+      {/* PICTURES SECTION */}
+      <section className="relative py-20 overflow-hidden">
+        <GridBackground />
+        
+        <div className="relative z-10 container mx-auto max-w-7xl px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[35%_1fr] gap-10 lg:gap-16 items-center">
+            
+            {/* TEXT COLUMN */}
+            <div className="flex flex-col justify-center text-left">
+              <p
+                className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#d955a4] font-bold"
+                style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                }}
+              >
+                COMMUNITY MOMENTS
+              </p>
+
+              <h2 className="font-sans text-4xl xl:text-5xl font-bold text-foreground leading-tight mt-4">
+                Celebrating every{" "}
+                <span
+                  className="mx-2 italic font-medium text-[#5b2b4a]"
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                  }}
+                >
+                  step
+                </span>{" "}
+                forward.
+              </h2>
+
+              <p className="mt-4 font-sans text-muted-foreground text-sm leading-relaxed test-center">
+                A glimpse at the colleges where GLT members lead chapters and hackathons.
+              </p>
+            </div>
+
+            {/* MARQUEES CONTAINER */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-[400px] md:h-[550px] overflow-hidden relative">
+              {/* Fade masks */}
+              <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+              
+              {/* Marquee 1 (Upwards) */}
+              <div className="h-full overflow-hidden">
+                <VerticalMarquee images={galleryImages} direction="up" speed={1.2} />
+              </div>
+              
+              {/* Marquee 2 (Downwards) - hidden on mobile, visible on tablet and desktop */}
+              <div className="h-full overflow-hidden hidden md:block">
+                <VerticalMarquee images={galleryImages} direction="down" speed={0.8} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* INITIATIVES — scrapbook stacked cards */}
       <section ref={initiativesSectionRef} className="relative w-full md:min-h-[280vh] py-16 md:py-24 overflow-visible">
@@ -527,26 +562,99 @@ function HomePage() {
       />
 
       {/* CTA */}
-      <section className="relative py-24">
-        <div className="container mx-auto max-w-5xl px-6">
-          <div className="relative overflow-hidden rounded-[2.5rem] gradient-sunset p-12 text-center shadow-soft md:p-16">
-            <div className="pointer-events-none absolute -left-10 -top-10 h-48 w-48 rounded-full bg-white/20 blur-2xl animate-blob" />
-            <div className="pointer-events-none absolute -right-10 -bottom-10 h-48 w-48 rounded-full bg-white/20 blur-2xl animate-blob" style={{ animationDelay: "3s" }} />
-            <h2 className="relative font-serif text-4xl text-white md:text-6xl">
-              Your seat at the table is waiting.
-            </h2>
-            <p className="relative mx-auto mt-4 max-w-xl text-white/90">
-              Become part of a community that builds, learns and lifts each other up.
-            </p>
-            <Link
-              to="/join"
-              className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-primary shadow-soft transition hover:scale-105"
+      <section className="relative py-10 md:py-14 bg-[#d955a4] overflow-hidden">
+
+  {/* Background Glow */}
+  <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+  <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
+
+  <div className="container mx-auto max-w-6xl px-6 relative z-10">
+
+    {/* Cream Card */}
+    <div className="relative bg-[#FFF8EF] rounded-[24px] md:rounded-[28px] shadow-xl overflow-visible">
+
+      <div className="flex flex-col md:flex-row items-center md:items-stretch">
+
+        {/* Content */}
+        <div className="flex-1 px-8 py-10 md:px-14 md:py-14">
+
+          {/* Label */}
+          <p
+            className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#d955a4] mb-5 font-bold"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            JOIN THE MOVEMENT
+          </p>
+
+          {/* Heading */}
+          <h2
+            className="text-3xl md:text-5xl font-black text-gray-900 leading-tight"
+            style={{ fontFamily: "'Satoshi', sans-serif" }}
+          >
+            Be the change.
+          </h2>
+
+          {/* Subheading */}
+          <p
+            className="mt-4 max-w-xl text-gray-600 text-base md:text-lg leading-relaxed"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            Your story could inspire thousands of girls to take their first
+            step into technology.
+          </p>
+
+          {/* Button */}
+          <div className="mt-12 flex gap-8">
+          <Link
+            to="/join"
+            className="relative inline-block active:scale-95 transition-transform duration-100"
+          >
+            <img
+              src={pixelBtn}
+              alt="Join Community Button"
+              className="w-[190px] h-auto"
+            />
+
+            {/* overlay text */}
+            <span
+              className="absolute inset-0 flex items-center justify-center text-black font-bold"
+              style={{
+                fontFamily: "'Press Start 2P', monospace",
+                fontSize: "clamp(0.75rem, 1.2vw, 1.2rem)",
+                letterSpacing: "0.08em",
+              }}
             >
-              Join Girls Leading Tech <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+              Join Community →
+            </span>
+          </Link>
         </div>
-      </section>
-    </>
+        </div>
+
+        {/* Empty spacer for mascot overlap */}
+        <div className="hidden md:block w-[240px] lg:w-[320px]" />
+      </div>
+
+      {/* Mascot Desktop */}
+      <div className="hidden md:block absolute right-[-30px] bottom-[-10px] w-[280px] lg:w-[360px] z-20">
+        <img
+          src={joinUs}
+          alt="Mascot"
+          className="w-full h-auto object-contain"
+        />
+      </div>
+
+      {/* Mascot Mobile */}
+      <div className="md:hidden flex justify-center px-6 pb-8">
+        <img
+          src={joinUs}
+          alt="Mascot"
+          className="w-52 h-auto object-contain"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+</>
   );
 }

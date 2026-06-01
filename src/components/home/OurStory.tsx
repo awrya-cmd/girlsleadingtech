@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from "motion/react";
 import { Sparkles, Compass, Star } from "lucide-react";
-import ourStoryImg from "@/assets/our-story.png";
+import ourStoryImg from "@/assets/characters/main-mascot/join-us.png";
 import pixelStarImg from "@/assets/pixelstar.png";
 
 // A hook to handle responsive path re-calculations on window resizing
