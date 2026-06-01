@@ -19,6 +19,7 @@ import pixelBtn from "@/assets/pixel-button.png"
 import presenting from "@/assets/characters/main-mascot/presenting.png"
 import { TestimonialsGrid } from "@/components/home/TestimonialsGrid"
 import { PartnersSection } from "@/components/home/PartnersSection"
+import OurStory from "@/components/home/OurStory";
 
 import gallery1 from "@/assets/gallery-1.webp";
 import gallery2 from "@/assets/gallery-2.webp";
@@ -313,38 +314,15 @@ function HomePage() {
       </section>
 
       {/* ABOUT / VISION / MISSION */}
-<section className="relative py-24 overflow-hidden">
-  <GridBackground />
+      <section className="relative py-24 overflow-hidden">
+        <GridBackground />
 
-  <div className="relative container mx-auto max-w-6xl px-6">
+        {/* OUR STORY JOURNEY */}
+        <OurStory />
 
-    {/* Heading */}
-    <div className="mb-12 text-center">
+        <div className="relative container mx-auto max-w-6xl px-6">
 
-      <p
-        className="text-xs md:text-lg uppercase tracking-[0.3em] text-[#d955a4] font-bold"
-        style={{
-          fontFamily: "'Montserrat', sans-serif",
-        }}
-      >
-        ABOUT US
-      </p>
-
-      <h2 className="font-sans text-4xl mt-4 md:text-5xl font-bold text-foreground leading-tight">
-        Built for{" "}
-        <span
-          className="mx-2 italic font-medium text-[#5b2b4a]"
-          style={{
-            fontFamily: "'Playfair Display', serif",
-          }}
-        >
-          women
-        </span>{" "}
-        in tech.
-      </h2>
-    </div>
-
-    {/* Cards */}
+          {/* Cards */}
     <div className="grid gap-6 md:grid-cols-2">
 
       {/* VISION */}
