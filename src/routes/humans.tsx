@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { PageHeader } from "@/components/site/PageHeader";
 import { GlassCard } from "@/components/site/GlassCard";
-import { team, mentors, speakers, contributors } from "@/data/community";
+import { team, mentors, speakers, contributors, volunteers } from "@/data/community";
 import { cn } from "@/lib/utils";
 import { Linkedin, MapPin, Building2, Search, X } from "lucide-react";
 import { SpeakerCard } from "@/components/site/SpeakerCard";
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/humans")({
   component: HumansPage,
 });
 
-type Tab = "team" | "speakers" | "mentors" | "contributors";
+type Tab = "team" | "speakers" | "mentors" | "contributors" | "volunteers";
 
 function matches(q: string, ...fields: (string | undefined)[]) {
   if (!q) return true;
@@ -30,6 +30,7 @@ function HumansPage() {
     { id: "speakers", label: "Speakers", count: speakers.length },
     { id: "mentors", label: "Mentors", count: mentors.length },
     { id: "contributors", label: "Contributors", count: contributors.length },
+    { id: "volunteers", label: "Volunteers", count: volunteers.length },
   ];
 
   // Build company list for current tab (speakers + mentors)
@@ -60,6 +61,10 @@ function HumansPage() {
   );
   const filteredContribs = useMemo(
     () => contributors.filter((c) => matches(query, c.name, c.city, c.state)),
+    [query],
+  );
+  const filteredVolunteers = useMemo(
+    () => volunteers.filter((v) => matches(query, v.name, v.city, v.state)),
     [query],
   );
 
@@ -125,7 +130,16 @@ function HumansPage() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {tab === "team" &&
             filteredTeam.map((m, i) => (
-              <PersonCard key={m.id} name={m.name} sub={m.role} location={`${m.city}, ${m.state}`} kind="location" delay={i} />
+              <PersonCard
+                key={m.id}
+                name={m.name}
+                sub={m.role}
+                location={m.city && m.state ? `${m.city}, ${m.state}` : m.city || m.state}
+                kind="location"
+                delay={i}
+                linkedin={m.linkedin}
+                image={m.image}
+              />
             ))}
           {tab === "speakers" &&
             filteredSpeakers.map((m, i) => (
@@ -145,7 +159,27 @@ function HumansPage() {
             ))}
           {tab === "contributors" &&
             filteredContribs.map((m, i) => (
-              <PersonCard key={m.id} name={m.name} location={`${m.city}, ${m.state}`} kind="location" delay={i} />
+              <PersonCard
+                key={m.id}
+                name={m.name}
+                location={m.city && m.state ? `${m.city}, ${m.state}` : m.city || m.state}
+                kind="location"
+                delay={i}
+                linkedin={m.linkedin}
+                image={m.image}
+              />
+            ))}
+          {tab === "volunteers" &&
+            filteredVolunteers.map((m, i) => (
+              <PersonCard
+                key={m.id}
+                name={m.name}
+                location={m.city && m.state ? `${m.city}, ${m.state}` : m.city || m.state}
+                kind="location"
+                delay={i}
+                linkedin={m.linkedin}
+                image={m.image}
+              />
             ))}
         </div>
 
@@ -153,7 +187,8 @@ function HumansPage() {
         {((tab === "team" && filteredTeam.length === 0) ||
           (tab === "speakers" && filteredSpeakers.length === 0) ||
           (tab === "mentors" && filteredMentors.length === 0) ||
-          (tab === "contributors" && filteredContribs.length === 0)) && (
+          (tab === "contributors" && filteredContribs.length === 0) ||
+          (tab === "volunteers" && filteredVolunteers.length === 0)) && (
           <p className="mt-12 text-center text-sm text-muted-foreground">
             No matches. Try a different search.
           </p>

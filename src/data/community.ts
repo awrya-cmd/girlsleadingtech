@@ -287,16 +287,22 @@ export const events: Event[] = realEvents.length ? realEvents : [
 export const getEvent = (id: string) => events.find((e) => e.id === id);
 
 export const team: TeamMember[] = [
-  { id: "t1", name: "Manik", role: "Operations", city: "Delhi", state: "DL" },
-  { id: "t2", name: "Laxmi", role: "Events", city: "Bangalore", state: "KA" },
-  { id: "t3", name: "Priyanka", role: "Resources", city: "Mumbai", state: "MH" },
-  { id: "t4", name: "Meghali", role: "Outreach", city: "Pune", state: "MH" },
-  { id: "t5", name: "Rwitama", role: "Speakers", city: "Kolkata", state: "WB" },
-  { id: "t6", name: "Keshvi", role: "Research", city: "Ahmedabad", state: "GJ" },
-  { id: "t7", name: "Priyesi", role: "Community", city: "Hyderabad", state: "TS" },
-  { id: "t8", name: "Mudita", role: "Partnerships", city: "Chennai", state: "TN" },
-  { id: "t9", name: "Suhani", role: "Design", city: "Jaipur", state: "RJ" },
-  { id: "t10", name: "Riya", role: "Design", city: "Lucknow", state: "UP" },
+  { id: "t1", name: "Manik", role: "Partnerships & Sponsorships", city: "Ambala City", state: "Haryana", linkedin: "https://www.linkedin.com/in/mrmanik/" },
+  { id: "t2", name: "Vaishnavi Iyer", role: "Resource", city: "Bangalore", state: "Karnataka", linkedin: "https://www.linkedin.com/in/vaishnaviiyerms" },
+  { id: "t3", name: "Vijay Laxmi", role: "Speaker Outreaching", city: "Delhi", linkedin: "https://www.linkedin.com/in/laxmi-vijay/" },
+  { id: "t4", name: "Ananya Agarwal", role: "Design", city: "Mumbai", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/ananya-agarwal-861317290/" },
+  { id: "t5", name: "Mahi Awasthi", role: "Content Creation", city: "Derabassi", state: "Punjab", linkedin: "https://www.linkedin.com/in/mahiawasthi/" },
+  { id: "t6", name: "Yashika garg", role: "Social Media & PR", city: "Abohar", state: "Punjab", linkedin: "https://www.linkedin.com/in/yashika-garg-37baa2290" },
+  { id: "t7", name: "Aditi Madhukar", role: "Discord ", city: "New Delhi", linkedin: "https://www.linkedin.com/in/aditimadhukar/" },
+  { id: "t8", name: "Bagavati Narayanan", role: "Content Writing", city: "Chennai", state: "Tamil Nadu", linkedin: "https://www.linkedin.com/in/bagavati-narayanan-98484b292/" },
+  { id: "t9", name: "Kavyal Vegad", role: "Online Events", city: "Mumbai", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/" },
+  { id: "t10", name: "Simran Nagekar", role: "Discord ", city: "Bangalore", state: "Karnataka", linkedin: "https://www.linkedin.com/in/simransn" },
+  { id: "t11", name: "Ishita Soni", role: "Design", city: "Jaipur", state: "Rajasthan", linkedin: "https://www.linkedin.com/in/ishita-soni-work" },
+  { id: "t12", name: "Sayoni Das", role: "Editing", city: "Howrah West Bengal", linkedin: "https://www.linkedin.com/in/sayoni-das-aa3571279" },
+  { id: "t13", name: "Khushpreet kaur", role: "Editing", city: "Bathinda punjab", linkedin: "https://www.linkedin.com/in/khushpreet-kaur-123436336?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { id: "t14", name: "Sanwedana Lokhande", role: "Content Writing", city: "Nagpur", state: "maharashtra", linkedin: "https://www.linkedin.com/in/sanwedana-lokhande-35332a33a/" },
+  { id: "t15", name: "Adyasha Das", role: "Tech", city: "Bhubaneswar", state: "Odisha", linkedin: "https://www.linkedin.com/in/adyashadas04/" },
+  { id: "t16", name: "Diya K Bhat", role: "Social Media & PR", city: "Bangalore", state: "Karnataka", linkedin: "https://www.linkedin.com/in/diya-k-bhat-75b450257" },
 ];
 
 export const mentors: Mentor[] = [
@@ -315,6 +321,28 @@ export const contributors: TeamMember[] = [
   { id: "c4", name: "Tanvi Shah", city: "Surat", state: "GJ" },
   { id: "c5", name: "Kriti Bansal", city: "Delhi", state: "DL" },
   { id: "c6", name: "Ria Menon", city: "Kochi", state: "KL" },
+  { id: "c7", name: "Aakanksha Singh", city: "Navi MUmbai", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/aakanksha-singh1/" },
+  { id: "c8", name: "Kashika Gupta", city: "Indore", state: "Madhya Pradesh", linkedin: "https://www.linkedin.com/in/kashikagupta/" },
+];
+
+export const volunteers: TeamMember[] = [
+  { id: "v1", name: "Aarushi Chottani", city: "Pune", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/aarushi-chottani-80b861322" },
+  { id: "v2", name: "Alina Abreeq", city: "Hyderabad", state: "Telangana", linkedin: "https://www.linkedin.com/in/alina-abreeq" },
+  { id: "v3", name: "Ankita kuntal", city: "Srinagar", linkedin: "https://www.linkedin.com/in/ankita-kuntal?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { id: "v4", name: "Archana gupta", city: "New delhi", state: "delhi", linkedin: "https://www.linkedin.com/in/archana-gupta2006" },
+  { id: "v5", name: "Avya giri", city: "Delhi", linkedin: "https://www.linkedin.com/in/avya-giri-919842320?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { id: "v6", name: "Charmi Reddy P", city: "Hyderabad", state: "Telangana", linkedin: "https://www.linkedin.com/in/charmi-reddy-p-b2aaa2294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { id: "v7", name: "Dakshata", city: "Delhi" },
+  { id: "v8", name: "Dhairya Kanabar", city: "Surendranagar", state: "Gujarat", linkedin: "https://www.linkedin.com/in/dhairya-kanabar-411990294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" },
+  { id: "v9", name: "Gungun goel", city: "Meerut", state: "Uttar pradesh", linkedin: "https://www.linkedin.com/in/gungun-goyal-05154426a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { id: "v10", name: "Kashish Mahendra Sonawane", city: "Nashik", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/kashish-sonawane-41923a326" },
+  { id: "v11", name: "Lakshya S", city: "Chennai", state: "TamilNadu", linkedin: "https://www.linkedin.com/in/lakshya-sasikumar-7bb659342/" },
+  { id: "v12", name: "Mahak", city: "Delhi", state: "Delhi", linkedin: "https://linktr.ee/document_diaries_with_mahak" },
+  { id: "v13", name: "Pathan sama khan", city: "Hyderabad", state: "telangana", linkedin: "https://www.linkedin.com/in/sama-khan-628959281?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" },
+  { id: "v14", name: "Ragini Pandey", city: "Ghaziabad", state: "Uttar Pradesh", linkedin: "https://www.linkedin.com/in/ragini-pandey-594564261" },
+  { id: "v15", name: "Simran parween", city: "Noida", state: "Uttar Pradesh", linkedin: "https://www.linkedin.com/in/simran-parween-9529b6277?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { id: "v16", name: "Swagita Parida", city: "Patiala", state: "Punjab", linkedin: "https://www.linkedin.com/in/swagita-parida-876b54303?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { id: "v17", name: "Vanshika Chauhan", city: "Ghaziabad", state: "Uttar Pradesh", linkedin: "https://www.linkedin.com/in/vanshika-chauhan-1ba100279." },
 ];
 
 export const partners: Partner[] = [
