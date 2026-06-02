@@ -155,7 +155,16 @@ function HumansPage() {
             ))}
           {tab === "mentors" &&
             filteredMentors.map((m, i) => (
-              <PersonCard key={m.id} name={m.name} sub={m.designation} location={m.company} kind="company" delay={i} linkedin={(m as { linkedin?: string }).linkedin} />
+              <PersonCard
+                key={m.id}
+                name={m.name}
+                sub={m.designation}
+                location={m.company}
+                kind="company"
+                delay={i}
+                linkedin={m.linkedin}
+                image={m.image}
+              />
             ))}
           {tab === "contributors" &&
             filteredContribs.map((m, i) => (
@@ -216,35 +225,65 @@ function PersonCard({
   image?: string;
 }) {
   const Icon = kind === "company" ? Building2 : MapPin;
+  const initials = name
+    .split(" ")
+    .map((p) => p[0])
+    .slice(0, 2)
+    .join("");
+
   return (
-    <GlassCard className="group p-6 text-center animate-fade-up" style={{ animationDelay: `${(delay % 12) * 0.05}s` }}>
-      <div className="mx-auto flex h-20 w-20 items-center justify-center overflow-hidden rounded-full gradient-primary text-2xl font-medium text-white shadow-soft transition group-hover:scale-110">
+    <article
+      className="group relative animate-fade-up overflow-hidden rounded-3xl bg-card ring-1 ring-border/60 shadow-soft transition-all duration-700 hover:-translate-y-2 hover:shadow-lavender"
+      style={{ animationDelay: `${(delay % 12) * 0.05}s` }}
+    >
+      {/* Portrait */}
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-gradient-to-br from-muted via-pink-soft/10 to-lavender/10">
         {image ? (
-          <img src={image} alt={name} loading="lazy" className="h-full w-full object-cover" />
+          <img
+            src={image}
+            alt={name}
+            loading="lazy"
+            className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 group-hover:rotate-1"
+          />
         ) : (
-          name.charAt(0)
+          <div className="flex h-full w-full items-center justify-center font-display text-6xl text-primary/40">
+            {initials}
+          </div>
+        )}
+
+        {/* Gradient veil at bottom for legibility on hover */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/35 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+        {/* Social pills — top right */}
+        {linkedin && (
+          <div className="absolute right-3 top-3">
+            <a
+              href={linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${name} on LinkedIn`}
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[#0A66C2] backdrop-blur-md ring-1 ring-white/70 transition hover:bg-[#0A66C2] hover:text-white"
+            >
+              <Linkedin className="h-3.5 w-3.5" />
+            </a>
+          </div>
         )}
       </div>
-      <h3 className="mt-4 font-display text-lg">{name}</h3>
-      {sub && <p className="text-xs font-semibold uppercase tracking-widest text-primary">{sub}</p>}
-      {location && (
-        <p className="mt-2 inline-flex items-center gap-1 text-xs text-muted-foreground">
-          <Icon className="h-3 w-3" /> {location}
-        </p>
-      )}
-      {linkedin && (
-        <div className="mt-4 flex justify-center">
-          <a
-            href={linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${name} on LinkedIn`}
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0A66C2] text-white transition hover:scale-110 shadow-soft"
-          >
-            <Linkedin className="h-4 w-4" />
-          </a>
-        </div>
-      )}
-    </GlassCard>
+
+      {/* Caption */}
+      <div className="relative px-5 pb-5 pt-4 bg-card/80 backdrop-blur-md">
+        <h3 className="font-display text-lg leading-tight tracking-tight">{name}</h3>
+        {sub && (
+          <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
+            {sub}
+          </p>
+        )}
+        {location && (
+          <p className="mt-1.5 inline-flex items-center gap-1 text-[11px] text-muted-foreground line-clamp-1">
+            <Icon className="h-3.5 w-3.5 shrink-0" /> {location}
+          </p>
+        )}
+      </div>
+    </article>
   );
 }

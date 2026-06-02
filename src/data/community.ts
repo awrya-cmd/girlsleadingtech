@@ -103,6 +103,41 @@ import spk_yashaswini_vismaya from "@/assets/speakers/yashaswini-vismaya.webp";
 import spk_yashika_kukkar from "@/assets/speakers/yashika-kukkar.webp";
 import spk_yog_disha from "@/assets/speakers/yog-disha.webp";
 
+
+import img_contrib_aakanksha_singh from "@/assets/contributors/aakanksha-singh.jpg";
+import img_contrib_aarushi_chottani from "@/assets/contributors/aarushi-chottani.png";
+import img_contrib_alina_abreeq from "@/assets/contributors/alina-abreeq.png";
+import img_contrib_ankita_kuntal from "@/assets/contributors/ankita-kuntal.jpg";
+import img_contrib_archana_gupta from "@/assets/contributors/archana-gupta.jpg";
+import img_contrib_avya_giri from "@/assets/contributors/avya-giri.jpg";
+import img_contrib_charmi_reddy_p from "@/assets/contributors/charmi-reddy-p.jpg";
+import img_contrib_dhairya_kanabar from "@/assets/contributors/dhairya-kanabar.jpeg";
+import img_contrib_gungun_goel from "@/assets/contributors/gungun-goel.jpg";
+import img_contrib_kashika_gupta from "@/assets/contributors/kashika-gupta.jpg";
+import img_contrib_kashish_mahendra_sonawane from "@/assets/contributors/kashish-mahendra-sonawane.jpeg";
+import img_contrib_lakshya_s from "@/assets/contributors/lakshya-s.jpg";
+import img_contrib_mahak from "@/assets/contributors/mahak.jpg";
+import img_contrib_pathan_sama_khan from "@/assets/contributors/pathan-sama-khan.JPG";
+import img_contrib_ragini_pandey from "@/assets/contributors/ragini-pandey.jpg";
+import img_contrib_simran_parween from "@/assets/contributors/simran-parween.jpg";
+import img_contrib_swagita_parida from "@/assets/contributors/swagita-parida.jpg";
+import img_contrib_vanshika_chauhan from "@/assets/contributors/vanshika-chauhan.jpg";
+import img_team_aditi_madhukar from "@/assets/team/aditi-madhukar.jpeg";
+import img_team_adyasha_das from "@/assets/contributors/adyasha-das.jpg";
+import img_team_ananya_agarwal from "@/assets/team/ananya-agarwal.jpg";
+import img_team_bagavati_narayanan from "@/assets/team/bagavati-narayanan.jpg";
+import img_team_diya_k_bhat from "@/assets/contributors/diya-k-bhat.jpg";
+import img_team_ishita_soni from "@/assets/team/ishita-soni.jpg";
+import img_team_kavyal_vegad from "@/assets/team/kavyal-vegad.jpg";
+import img_team_khushpreet_kaur from "@/assets/team/khushpreet-kaur.jpg";
+import img_team_mahi_awasthi from "@/assets/team/mahi-awasthi.png";
+import img_team_manik from "@/assets/team/manik.jpg";
+import img_team_sanwedana_lokhande from "@/assets/team/sanwedana-lokhande.jpg";
+import img_team_sayoni_das from "@/assets/team/sayoni-das.jpg";
+import img_team_simran_nagekar from "@/assets/team/simran-nagekar.jpg";
+import img_team_vaishnavi_iyer from "@/assets/team/vaishnavi-iyer.jpg";
+import img_team_vijay_laxmi from "@/assets/team/vijay-laxmi.jpg";
+import img_team_yashika_garg from "@/assets/team/yashika-garg.jpg";
 export const speakers: Speaker[] = [
   { id: "s1", name: "Kavya Choudhary", designation: "Scholars'2024", company: "WE by Google TalentSprint", linkedin: "https://www.linkedin.com/in/ridhy-arora-097784258/", image: spk_kavya },
   { id: "s2", name: "Jigisha Arora", designation: "STEP Intern", company: "Google", linkedin: "https://www.linkedin.com/in/jigisha-arora-212ab5256/", image: spk_jigisha_arora },
@@ -287,22 +322,22 @@ export const events: Event[] = realEvents.length ? realEvents : [
 export const getEvent = (id: string) => events.find((e) => e.id === id);
 
 export const team: TeamMember[] = [
-  { id: "t1", name: "Manik", role: "Partnerships & Sponsorships", city: "Ambala City", state: "Haryana", linkedin: "https://www.linkedin.com/in/mrmanik/" },
-  { id: "t2", name: "Vaishnavi Iyer", role: "Resource", city: "Bangalore", state: "Karnataka", linkedin: "https://www.linkedin.com/in/vaishnaviiyerms" },
-  { id: "t3", name: "Vijay Laxmi", role: "Speaker Outreaching", city: "Delhi", linkedin: "https://www.linkedin.com/in/laxmi-vijay/" },
-  { id: "t4", name: "Ananya Agarwal", role: "Design", city: "Mumbai", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/ananya-agarwal-861317290/" },
-  { id: "t5", name: "Mahi Awasthi", role: "Content Creation", city: "Derabassi", state: "Punjab", linkedin: "https://www.linkedin.com/in/mahiawasthi/" },
-  { id: "t6", name: "Yashika garg", role: "Social Media & PR", city: "Abohar", state: "Punjab", linkedin: "https://www.linkedin.com/in/yashika-garg-37baa2290" },
-  { id: "t7", name: "Aditi Madhukar", role: "Discord ", city: "New Delhi", linkedin: "https://www.linkedin.com/in/aditimadhukar/" },
-  { id: "t8", name: "Bagavati Narayanan", role: "Content Writing", city: "Chennai", state: "Tamil Nadu", linkedin: "https://www.linkedin.com/in/bagavati-narayanan-98484b292/" },
-  { id: "t9", name: "Kavyal Vegad", role: "Online Events", city: "Mumbai", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/" },
-  { id: "t10", name: "Simran Nagekar", role: "Discord ", city: "Bangalore", state: "Karnataka", linkedin: "https://www.linkedin.com/in/simransn" },
-  { id: "t11", name: "Ishita Soni", role: "Design", city: "Jaipur", state: "Rajasthan", linkedin: "https://www.linkedin.com/in/ishita-soni-work" },
-  { id: "t12", name: "Sayoni Das", role: "Editing", city: "Howrah West Bengal", linkedin: "https://www.linkedin.com/in/sayoni-das-aa3571279" },
-  { id: "t13", name: "Khushpreet kaur", role: "Editing", city: "Bathinda punjab", linkedin: "https://www.linkedin.com/in/khushpreet-kaur-123436336?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-  { id: "t14", name: "Sanwedana Lokhande", role: "Content Writing", city: "Nagpur", state: "maharashtra", linkedin: "https://www.linkedin.com/in/sanwedana-lokhande-35332a33a/" },
-  { id: "t15", name: "Adyasha Das", role: "Tech", city: "Bhubaneswar", state: "Odisha", linkedin: "https://www.linkedin.com/in/adyashadas04/" },
-  { id: "t16", name: "Diya K Bhat", role: "Social Media & PR", city: "Bangalore", state: "Karnataka", linkedin: "https://www.linkedin.com/in/diya-k-bhat-75b450257" },
+  { id: "t1", name: "Manik", role: "Partnerships & Sponsorships", city: "Ambala City", state: "Haryana", linkedin: "https://www.linkedin.com/in/mrmanik/", image: img_team_manik },
+  { id: "t2", name: "Vaishnavi Iyer", role: "Resource", city: "Bangalore", state: "Karnataka", linkedin: "https://www.linkedin.com/in/vaishnaviiyerms", image: img_team_vaishnavi_iyer },
+  { id: "t3", name: "Vijay Laxmi", role: "Speaker Outreaching", city: "Delhi", linkedin: "https://www.linkedin.com/in/laxmi-vijay/", image: img_team_vijay_laxmi },
+  { id: "t4", name: "Ananya Agarwal", role: "Design", city: "Mumbai", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/ananya-agarwal-861317290/", image: img_team_ananya_agarwal },
+  { id: "t5", name: "Mahi Awasthi", role: "Content Creation", city: "Derabassi", state: "Punjab", linkedin: "https://www.linkedin.com/in/mahiawasthi/", image: img_team_mahi_awasthi },
+  { id: "t6", name: "Yashika garg", role: "Social Media & PR", city: "Abohar", state: "Punjab", linkedin: "https://www.linkedin.com/in/yashika-garg-37baa2290", image: img_team_yashika_garg },
+  { id: "t7", name: "Aditi Madhukar", role: "Discord ", city: "New Delhi", linkedin: "https://www.linkedin.com/in/aditimadhukar/", image: img_team_aditi_madhukar },
+  { id: "t8", name: "Bagavati Narayanan", role: "Content Writing", city: "Chennai", state: "Tamil Nadu", linkedin: "https://www.linkedin.com/in/bagavati-narayanan-98484b292/", image: img_team_bagavati_narayanan },
+  { id: "t9", name: "Kavyal Vegad", role: "Online Events", city: "Mumbai", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/", image: img_team_kavyal_vegad },
+  { id: "t10", name: "Simran Nagekar", role: "Discord ", city: "Bangalore", state: "Karnataka", linkedin: "https://www.linkedin.com/in/simransn", image: img_team_simran_nagekar },
+  { id: "t11", name: "Ishita Soni", role: "Design", city: "Jaipur", state: "Rajasthan", linkedin: "https://www.linkedin.com/in/ishita-soni-work", image: img_team_ishita_soni },
+  { id: "t12", name: "Sayoni Das", role: "Editing", city: "Howrah West Bengal", linkedin: "https://www.linkedin.com/in/sayoni-das-aa3571279", image: img_team_sayoni_das },
+  { id: "t13", name: "Khushpreet kaur", role: "Editing", city: "Bathinda punjab", linkedin: "https://www.linkedin.com/in/khushpreet-kaur-123436336?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", image: img_team_khushpreet_kaur },
+  { id: "t14", name: "Sanwedana Lokhande", role: "Content Writing", city: "Nagpur", state: "maharashtra", linkedin: "https://www.linkedin.com/in/sanwedana-lokhande-35332a33a/", image: img_team_sanwedana_lokhande },
+  { id: "t15", name: "Adyasha Das", role: "Tech", city: "Bhubaneswar", state: "Odisha", linkedin: "https://www.linkedin.com/in/adyashadas04/", image: img_team_adyasha_das },
+  { id: "t16", name: "Diya K Bhat", role: "Social Media & PR", city: "Bangalore", state: "Karnataka", linkedin: "https://www.linkedin.com/in/diya-k-bhat-75b450257", image: img_team_diya_k_bhat },
 ];
 
 export const mentors: Mentor[] = [
@@ -321,28 +356,28 @@ export const contributors: TeamMember[] = [
   { id: "c4", name: "Tanvi Shah", city: "Surat", state: "GJ" },
   { id: "c5", name: "Kriti Bansal", city: "Delhi", state: "DL" },
   { id: "c6", name: "Ria Menon", city: "Kochi", state: "KL" },
-  { id: "c7", name: "Aakanksha Singh", city: "Navi MUmbai", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/aakanksha-singh1/" },
-  { id: "c8", name: "Kashika Gupta", city: "Indore", state: "Madhya Pradesh", linkedin: "https://www.linkedin.com/in/kashikagupta/" },
+  { id: "c7", name: "Aakanksha Singh", city: "Navi MUmbai", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/aakanksha-singh1/", image: img_contrib_aakanksha_singh },
+  { id: "c8", name: "Kashika Gupta", city: "Indore", state: "Madhya Pradesh", linkedin: "https://www.linkedin.com/in/kashikagupta/", image: img_contrib_kashika_gupta },
 ];
 
 export const volunteers: TeamMember[] = [
-  { id: "v1", name: "Aarushi Chottani", city: "Pune", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/aarushi-chottani-80b861322" },
-  { id: "v2", name: "Alina Abreeq", city: "Hyderabad", state: "Telangana", linkedin: "https://www.linkedin.com/in/alina-abreeq" },
-  { id: "v3", name: "Ankita kuntal", city: "Srinagar", linkedin: "https://www.linkedin.com/in/ankita-kuntal?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-  { id: "v4", name: "Archana gupta", city: "New delhi", state: "delhi", linkedin: "https://www.linkedin.com/in/archana-gupta2006" },
-  { id: "v5", name: "Avya giri", city: "Delhi", linkedin: "https://www.linkedin.com/in/avya-giri-919842320?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-  { id: "v6", name: "Charmi Reddy P", city: "Hyderabad", state: "Telangana", linkedin: "https://www.linkedin.com/in/charmi-reddy-p-b2aaa2294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { id: "v1", name: "Aarushi Chottani", city: "Pune", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/aarushi-chottani-80b861322", image: img_contrib_aarushi_chottani },
+  { id: "v2", name: "Alina Abreeq", city: "Hyderabad", state: "Telangana", linkedin: "https://www.linkedin.com/in/alina-abreeq", image: img_contrib_alina_abreeq },
+  { id: "v3", name: "Ankita kuntal", city: "Srinagar", linkedin: "https://www.linkedin.com/in/ankita-kuntal?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", image: img_contrib_ankita_kuntal },
+  { id: "v4", name: "Archana gupta", city: "New delhi", state: "delhi", linkedin: "https://www.linkedin.com/in/archana-gupta2006", image: img_contrib_archana_gupta },
+  { id: "v5", name: "Avya giri", city: "Delhi", linkedin: "https://www.linkedin.com/in/avya-giri-919842320?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", image: img_contrib_avya_giri },
+  { id: "v6", name: "Charmi Reddy P", city: "Hyderabad", state: "Telangana", linkedin: "https://www.linkedin.com/in/charmi-reddy-p-b2aaa2294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", image: img_contrib_charmi_reddy_p },
   { id: "v7", name: "Dakshata", city: "Delhi" },
-  { id: "v8", name: "Dhairya Kanabar", city: "Surendranagar", state: "Gujarat", linkedin: "https://www.linkedin.com/in/dhairya-kanabar-411990294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" },
-  { id: "v9", name: "Gungun goel", city: "Meerut", state: "Uttar pradesh", linkedin: "https://www.linkedin.com/in/gungun-goyal-05154426a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-  { id: "v10", name: "Kashish Mahendra Sonawane", city: "Nashik", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/kashish-sonawane-41923a326" },
-  { id: "v11", name: "Lakshya S", city: "Chennai", state: "TamilNadu", linkedin: "https://www.linkedin.com/in/lakshya-sasikumar-7bb659342/" },
-  { id: "v12", name: "Mahak", city: "Delhi", state: "Delhi", linkedin: "https://linktr.ee/document_diaries_with_mahak" },
-  { id: "v13", name: "Pathan sama khan", city: "Hyderabad", state: "telangana", linkedin: "https://www.linkedin.com/in/sama-khan-628959281?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" },
-  { id: "v14", name: "Ragini Pandey", city: "Ghaziabad", state: "Uttar Pradesh", linkedin: "https://www.linkedin.com/in/ragini-pandey-594564261" },
-  { id: "v15", name: "Simran parween", city: "Noida", state: "Uttar Pradesh", linkedin: "https://www.linkedin.com/in/simran-parween-9529b6277?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-  { id: "v16", name: "Swagita Parida", city: "Patiala", state: "Punjab", linkedin: "https://www.linkedin.com/in/swagita-parida-876b54303?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-  { id: "v17", name: "Vanshika Chauhan", city: "Ghaziabad", state: "Uttar Pradesh", linkedin: "https://www.linkedin.com/in/vanshika-chauhan-1ba100279." },
+  { id: "v8", name: "Dhairya Kanabar", city: "Surendranagar", state: "Gujarat", linkedin: "https://www.linkedin.com/in/dhairya-kanabar-411990294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", image: img_contrib_dhairya_kanabar },
+  { id: "v9", name: "Gungun goel", city: "Meerut", state: "Uttar pradesh", linkedin: "https://www.linkedin.com/in/gungun-goyal-05154426a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", image: img_contrib_gungun_goel },
+  { id: "v10", name: "Kashish Mahendra Sonawane", city: "Nashik", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/kashish-sonawane-41923a326", image: img_contrib_kashish_mahendra_sonawane },
+  { id: "v11", name: "Lakshya S", city: "Chennai", state: "TamilNadu", linkedin: "https://www.linkedin.com/in/lakshya-sasikumar-7bb659342/", image: img_contrib_lakshya_s },
+  { id: "v12", name: "Mahak", city: "Delhi", state: "Delhi", linkedin: "https://linktr.ee/document_diaries_with_mahak", image: img_contrib_mahak },
+  { id: "v13", name: "Pathan sama khan", city: "Hyderabad", state: "telangana", linkedin: "https://www.linkedin.com/in/sama-khan-628959281?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", image: img_contrib_pathan_sama_khan },
+  { id: "v14", name: "Ragini Pandey", city: "Ghaziabad", state: "Uttar Pradesh", linkedin: "https://www.linkedin.com/in/ragini-pandey-594564261", image: img_contrib_ragini_pandey },
+  { id: "v15", name: "Simran parween", city: "Noida", state: "Uttar Pradesh", linkedin: "https://www.linkedin.com/in/simran-parween-9529b6277?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", image: img_contrib_simran_parween },
+  { id: "v16", name: "Swagita Parida", city: "Patiala", state: "Punjab", linkedin: "https://www.linkedin.com/in/swagita-parida-876b54303?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", image: img_contrib_swagita_parida },
+  { id: "v17", name: "Vanshika Chauhan", city: "Ghaziabad", state: "Uttar Pradesh", linkedin: "https://www.linkedin.com/in/vanshika-chauhan-1ba100279.", image: img_contrib_vanshika_chauhan },
 ];
 
 export const partners: Partner[] = [
