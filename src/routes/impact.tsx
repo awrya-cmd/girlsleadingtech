@@ -84,12 +84,12 @@ function ImpactPage() {
       {/* STATS SECTION */}
       <section className="relative z-10 mt-4 pb-12 md:pb-[80px] px-6">
         <div className="container mx-auto max-w-6xl">
-          <GlassCard strong glow className="bg-white/60 border border-[#f0e4d8] rounded-3xl p-12 md:p-16 shadow-[0_4px_20px_rgba(0,0,0,0.02)] relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:-translate-x-1 hover:shadow-[10px_10px_0px_#ffed95] hover:border-[#ffed95]">
+          <GlassCard strong glow className="bg-white/60 border border-[#f0e4d8] rounded-3xl p-6 md:p-16 shadow-[0_4px_20px_rgba(0,0,0,0.02)] relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:-translate-x-1 hover:shadow-[10px_10px_0px_#ffed95] hover:border-[#ffed95]">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 relative z-10">
               {stats.map((s) => (
                 <div key={s.label} className="text-center flex flex-col items-center">
                   <div
-                    className="text-6xl md:text-7xl font-black text-gray-900 tracking-tight"
+                    className="text-4xl md:text-7xl font-black text-gray-900 tracking-tight"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
                     {s.value}<span className="text-[#d955a4]">{s.suffix}</span>
@@ -113,11 +113,11 @@ function ImpactPage() {
         <div className="marquee-container">
           {[...Array(4)].map((_, i) => (
             <div key={i} className="flex whitespace-nowrap items-center px-4 w-1/2 justify-around">
-              <span className="text-[#d955a4] font-bold text-sm tracking-[0.2em] uppercase" style={{ fontFamily: "'Montserrat', sans-serif" }}>LEARN. BUILD. LEAD.</span>
+              <span className="text-[#d955a4] font-bold text-xs md:text-sm tracking-[0.1em] md:tracking-[0.2em] uppercase" style={{ fontFamily: "'Montserrat', sans-serif" }}>LEARN. BUILD. LEAD.</span>
               <span className="text-[#e879c0] text-lg mx-6">✦</span>
-              <span className="text-[#d955a4] font-bold text-sm tracking-[0.2em] uppercase" style={{ fontFamily: "'Montserrat', sans-serif" }}>4000+ WOMEN</span>
+              <span className="text-[#d955a4] font-bold text-xs md:text-sm tracking-[0.1em] md:tracking-[0.2em] uppercase" style={{ fontFamily: "'Montserrat', sans-serif" }}>4000+ WOMEN</span>
               <span className="text-[#e879c0] text-lg mx-6">✦</span>
-              <span className="text-[#d955a4] font-bold text-sm tracking-[0.2em] uppercase" style={{ fontFamily: "'Montserrat', sans-serif" }}>23+ STATES</span>
+              <span className="text[#d955a4] font-bold text-xs md:text-sm tracking-[0.1em] md:tracking-[0.2em] uppercase"style={{ fontFamily: "'Montserrat', sans-serif" }}>23+ STATES</span>
               <span className="text-[#e879c0] text-lg mx-6">✦</span>
             </div>
           ))}
@@ -170,7 +170,7 @@ function ImpactPage() {
             {testimonials.slice(0, 6).map((t, idx) => (
               <div
   key={t.id}
-  className="group relative bg-white p-8 md:p-10 flex flex-col transition-all duration-500 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] border-2 border-gray-100 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_40px_-5px_rgba(217,85,164,0.3),0_10px_20px_-5px_rgba(217,85,164,0.25)] hover:border-[#d955a4]/60 cursor-pointer"
+  className="group relative bg-white p-5 md:p-10 flex flex-col transition-all duration-500 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] border-2 border-gray-100 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_40px_-5px_rgba(217,85,164,0.3),0_10px_20px_-5px_rgba(217,85,164,0.25)] hover:border-[#d955a4]/60 cursor-pointer"
   style={{
     borderRadius: 16,
     boxShadow: "0 4px 20px rgba(0,0,0,0.04)", // Base shadow
@@ -205,7 +205,7 @@ function ImpactPage() {
       <section className="relative z-10 py-24 md:py-[80px] px-6">
         <div className="container mx-auto max-w-4xl text-center">
           <div
-            className="relative overflow-hidden rounded-[2rem] p-12 md:p-16 text-center border-2 border-[#e1b7d2] bg-gradient-to-br from-[#fffbf7] via-[#fff5f9] to-[#fffde6] transition-all duration-500 hover:scale-[1.01] hover:border-[#d955a4] hover:shadow-[0_30px_60px_-15px_rgba(217,85,164,0.15)]"
+            className="relative overflow-hidden rounded-[2rem] p-7 md:p-16 text-center border-2 border-[#e1b7d2] bg-gradient-to-br from-[#fffbf7] via-[#fff5f9] to-[#fffde6] transition-all duration-500 hover:scale-[1.01] hover:border-[#d955a4] hover:shadow-[0_30px_60px_-15px_rgba(217,85,164,0.15)]"
             style={{
               boxShadow: "0 10px 40px -10px rgba(217,85,164,0.08)"
             }}
@@ -214,7 +214,7 @@ function ImpactPage() {
             <div className="absolute -right-10 -top-10 w-40 h-40 bg-[#ffed95]/30 rounded-full blur-2xl pointer-events-none" />
             <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-[#e879c0]/15 rounded-full blur-2xl pointer-events-none" />
 
-            <h2 className="relative z-10 font-sans text-3xl md:text-4xl text-gray-900 font-extrabold tracking-tight">
+            <h2 className="relative z-10 font-sans text-2xl md:text-4xl text-gray-900 font-extrabold tracking-tight">
               Want to be on this list next?
             </h2>
             <p className="relative z-10 mx-auto mt-4 max-w-xl text-[16px] md:text-[17px] text-gray-600 font-medium leading-relaxed opacity-90">
