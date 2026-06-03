@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Sheet,
@@ -17,25 +17,12 @@ const mainLinks = [
   { to: "/partners", label: "Partners" },
 ] as const;
 
-const resourceLinks = [
-  { to: "/resources/scholarships", label: "Scholarships", desc: "Funding for women in tech" },
-  { to: "/resources/hackathons", label: "Hackathons", desc: "Build, compete, win" },
-  { to: "/resources/courses", label: "Courses", desc: "Curated learning paths" },
-  { to: "/resources/articles", label: "Articles", desc: "Reading worth your time" },
-  { to: "/resources/videos", label: "Videos", desc: "Watch & learn" },
-  { to: "/resources/books", label: "Books", desc: "Books we love" },
-  { to: "/resources/people", label: "People", desc: "Voices to follow" },
-  { to: "/resources/communities", label: "Communities", desc: "Find your tribe" },
-  { to: "/resources/roadmaps", label: "Roadmaps", desc: "Career playbooks" },
-  { to: "/resources/interview-prep", label: "Interview Prep", desc: "Ace the interview" },
-  { to: "/resources/certifications", label: "Certifications", desc: "Validate your skills" },
-] as const;
+
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [mobileResources, setMobileResources] = useState(false);
-
+  
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
@@ -70,25 +57,13 @@ export function Navbar() {
             </Link>
           ))}
 
-          <div className="group relative">
-            <button className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition hover:bg-white/60 hover:text-primary">
-              Resources <ChevronDown className="h-3.5 w-3.5 transition group-hover:rotate-180" />
-            </button>
-            <div className="invisible absolute left-1/2 top-full mt-2 w-[640px] -translate-x-1/2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
-              <div className="glass-strong grid grid-cols-2 gap-1 rounded-3xl p-3 shadow-soft">
-                {resourceLinks.map((r) => (
-                  <Link
-                    key={r.to}
-                    to={r.to}
-                    className="rounded-2xl px-4 py-3 transition hover:bg-primary/10"
-                  >
-                    <div className="text-sm font-semibold text-foreground">{r.label}</div>
-                    <div className="text-xs text-muted-foreground">{r.desc}</div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
+          <Link
+          to="/resources"
+           activeProps={{ className: "text-primary" }}
+             className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition hover:bg-white/60 hover:text-primary"
+            >
+             Resources
+          </Link>
 
           {mainLinks.slice(3).map((l) => (
             <Link
@@ -135,27 +110,13 @@ export function Navbar() {
                   {l.label}
                 </Link>
               ))}
-              <button
-                onClick={() => setMobileResources((s) => !s)}
-                className="flex items-center justify-between rounded-2xl px-4 py-3 text-base font-medium hover:bg-white/60"
+              <Link
+              to="/resources"
+               onClick={() => setOpen(false)}
+               className="rounded-2xl px-4 py-3 text-base font-medium hover:bg-white/60"
               >
-                Resources
-                <ChevronDown className={cn("h-4 w-4 transition", mobileResources && "rotate-180")} />
-              </button>
-              {mobileResources && (
-                <div className="ml-3 flex flex-col gap-0.5 border-l border-primary/20 pl-3">
-                  {resourceLinks.map((r) => (
-                    <Link
-                      key={r.to}
-                      to={r.to}
-                      onClick={() => setOpen(false)}
-                      className="rounded-xl px-3 py-2 text-sm hover:bg-white/60"
-                    >
-                      {r.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+               Resources
+               </Link>
               <a
                 href="mailto:girlsleadingtech@gmail.com"
                 className="rounded-2xl px-4 py-3 text-base font-medium hover:bg-white/60"
