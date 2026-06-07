@@ -78,12 +78,13 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <a
-            href="mailto:girlsleadingtech@gmail.com"
+         <Link
+            to="/contact"
             className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary"
           >
             Contact
-          </a>
+          </Link>
+
           <Link
             to="/join"
             className="rounded-full gradient-primary px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition hover:scale-105"
@@ -117,12 +118,15 @@ export function Navbar() {
               >
                Resources
                </Link>
-              <a
-                href="mailto:girlsleadingtech@gmail.com"
+
+              <Link
+                to="/contact"
+                onClick={() => setOpen(false)}
                 className="rounded-2xl px-4 py-3 text-base font-medium hover:bg-white/60"
               >
                 Contact
-              </a>
+              </Link>
+              
               <Link
                 to="/join"
                 onClick={() => setOpen(false)}
