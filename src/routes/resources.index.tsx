@@ -1,14 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import {
-  ArrowRight, GraduationCap, Trophy, BookOpen, Newspaper,
-  Video, Users, UserPlus, Map, BriefcaseBusiness, Library,
-  Award, Wrench, Rocket, Star,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import star from "@/assets/stickers/star.png";
 import washiTape from "@/assets/stickers/washi-tape.png";
 import paperClip from "@/assets/stickers/paper-clip.png";
 import smiley from "@/assets/stickers/smiley.png";
+import book from "@/assets/stickers/book.png";
+import briefcase from "@/assets/stickers/briefcase.png";
+import certificate from "@/assets/stickers/certificate.png";
+import chatBubble from "@/assets/stickers/chat-bubble.png";
+import checklist from "@/assets/stickers/checklist.png";
+import communityStar from "@/assets/stickers/community-sticker.png";
+import compass from "@/assets/stickers/compass.png";
+import crown from "@/assets/stickers/crown.png";
+import graduationCap from "@/assets/stickers/graduation-cap.png";
+import newspaper from "@/assets/stickers/newspaper.png";
+import trophy from "@/assets/stickers/trophy.png";
+import videoPlayBtn from "@/assets/stickers/video-play-button.png";
 import designerIdle from "@/assets/characters/designer/idle.png";
 import communityIdle from "@/assets/characters/community-girl/idle.png";
 import pixelBtn from "@/assets/pixel-button.png";
@@ -22,41 +30,175 @@ export const Route = createFileRoute("/resources/")({
   }),
   component: ResourcesHub,
 });
- 
+
 const categories = [
-  { to: "/resources/scholarships",   label: "SCHOLARSHIPS",    tagline: "Fund your future.",            desc: "Curated grants and fellowships for women breaking into tech.",                      bar: "bg-[#7EB5A6]", taglineColor: "text-[#2F5D50]", cta: "bg-[#7EB5A6] hover:bg-[#6BA393]", rotate: "-rotate-2", sticker: <img src={star}      className="absolute -top-7 left-3 w-14 rotate-[-12deg] pointer-events-none z-10" /> },
-  { to: "/resources/hackathons",     label: "HACKATHONS",      tagline: "Build. Compete. Win.",         desc: "The best hackathons to test your skills and come home with prizes.",                bar: "bg-[#FF8A5B]", taglineColor: "text-[#A64B28]", cta: "bg-[#FF8A5B] hover:bg-[#F67848]", rotate: "rotate-2",  sticker: <img src={paperClip} className="absolute -top-24 left-20 w-56 rotate-[18deg] pointer-events-none z-10" /> },
-  { to: "/resources/programs",       label: "PROGRAMS",        tagline: "Cohorts that change careers.", desc: "Fellowships and bootcamps to level up fast with other women in tech.",               bar: "bg-[#D8B4E8]", taglineColor: "text-[#7B4F92]", cta: "bg-[#D8B4E8] hover:bg-[#C89DDB]", rotate: "-rotate-1", sticker: <img src={smiley}    className="absolute -top-8 right-16 w-16 rotate-[-12deg] pointer-events-none z-10" /> },
-  { to: "/resources/courses",        label: "COURSES",         tagline: "Learn at your own pace.",      desc: "Hand-picked learning paths from beginner to advanced, free and paid.",               bar: "bg-[#A9B7FF]", taglineColor: "text-[#4B57A8]", cta: "bg-[#A9B7FF] hover:bg-[#95A5F5]", rotate: "rotate-1",  sticker: <img src={washiTape} className="absolute -top-20 left-10 w-36 rotate-[-18deg] pointer-events-none z-10" /> },
-  { to: "/resources/tools",          label: "TOOLS",           tagline: "The stack we swear by.",       desc: "Every tool and app that women in our community actually use daily.",                 bar: "bg-[#FFD166]", taglineColor: "text-[#996600]", cta: "bg-[#FFD166] hover:bg-[#F0C040]", rotate: "-rotate-2", sticker: <img src={star}      className="absolute -top-6 right-4 w-12 rotate-[10deg] pointer-events-none z-10" /> },
-  { to: "/resources/articles",       label: "ARTICLES",        tagline: "Reading worth your time.",     desc: "Essays and deep-dives on tech, careers and women in the industry.",                 bar: "bg-[#7EB5A6]", taglineColor: "text-[#2F5D50]", cta: "bg-[#7EB5A6] hover:bg-[#6BA393]", rotate: "rotate-2",  sticker: <img src={paperClip} className="absolute -top-20 left-16 w-48 rotate-[-15deg] pointer-events-none z-10" /> },
-  { to: "/resources/videos",         label: "VIDEOS",          tagline: "Watch and learn.",             desc: "Talks and tutorials that inspire and educate — picked by the community.",            bar: "bg-[#FF8A5B]", taglineColor: "text-[#A64B28]", cta: "bg-[#FF8A5B] hover:bg-[#F67848]", rotate: "-rotate-1", sticker: <img src={smiley}    className="absolute -top-7 left-4 w-14 rotate-[8deg] pointer-events-none z-10" /> },
-  { to: "/resources/books",          label: "BOOKS",           tagline: "Pages that changed us.",       desc: "Books our community keeps recommending — from memoirs to technical deep-dives.",     bar: "bg-[#A9B7FF]", taglineColor: "text-[#4B57A8]", cta: "bg-[#A9B7FF] hover:bg-[#95A5F5]", rotate: "rotate-2",  sticker: <img src={star}      className="absolute -top-8 right-6 w-16 rotate-[-14deg] pointer-events-none z-10" /> },
-  { to: "/resources/role-models",    label: "ROLE MODELS",     tagline: "Women leading the way.",       desc: "Indian women building and leading across every corner of tech.",                     bar: "bg-[#D8B4E8]", taglineColor: "text-[#7B4F92]", cta: "bg-[#D8B4E8] hover:bg-[#C89DDB]", rotate: "-rotate-2", sticker: <img src={washiTape} className="absolute -top-16 right-8 w-32 rotate-[12deg] pointer-events-none z-10" /> },
-  { to: "/resources/people",         label: "PEOPLE TO FOLLOW",tagline: "Voices worth your feed.",      desc: "Creators and founders worth following for daily doses of insight.",                  bar: "bg-[#FFD166]", taglineColor: "text-[#996600]", cta: "bg-[#FFD166] hover:bg-[#F0C040]", rotate: "rotate-1",  sticker: <img src={paperClip} className="absolute -top-20 left-12 w-44 rotate-[-20deg] pointer-events-none z-10" /> },
-  { to: "/resources/communities",    label: "COMMUNITIES",     tagline: "Find your tribe.",             desc: "Discords, groups and spaces where women in tech gather and grow.",                   bar: "bg-[#7EB5A6]", taglineColor: "text-[#2F5D50]", cta: "bg-[#7EB5A6] hover:bg-[#6BA393]", rotate: "-rotate-1", sticker: <img src={smiley}    className="absolute -top-6 right-12 w-14 rotate-[10deg] pointer-events-none z-10" /> },
-  { to: "/resources/roadmaps",       label: "ROADMAPS",        tagline: "Your career, mapped out.",     desc: "Step-by-step playbooks for every tech role — built for women starting or pivoting.", bar: "bg-[#FF8A5B]", taglineColor: "text-[#A64B28]", cta: "bg-[#FF8A5B] hover:bg-[#F67848]", rotate: "rotate-2",  sticker: <img src={star}      className="absolute -top-7 left-5 w-12 rotate-[-8deg] pointer-events-none z-10" /> },
-  { to: "/resources/interview-prep", label: "INTERVIEW PREP",  tagline: "Ace it. Every time.",          desc: "DSA, system design and negotiation — everything you need to land the offer.",        bar: "bg-[#A9B7FF]", taglineColor: "text-[#4B57A8]", cta: "bg-[#A9B7FF] hover:bg-[#95A5F5]", rotate: "-rotate-2", sticker: <img src={washiTape} className="absolute -top-16 left-8 w-36 rotate-[15deg] pointer-events-none z-10" /> },
-  { to: "/resources/certifications", label: "CERTIFICATIONS",  tagline: "Validate your skills.",        desc: "The certifications that actually matter — cloud, data, security and more.",           bar: "bg-[#D8B4E8]", taglineColor: "text-[#7B4F92]", cta: "bg-[#D8B4E8] hover:bg-[#C89DDB]", rotate: "rotate-1",  sticker: <img src={smiley}    className="absolute -top-8 right-8 w-16 rotate-[-14deg] pointer-events-none z-10" /> },
-] as const;
- 
-/* ── grid — same crosshatch structure as impact page but:
-   40px spacing (impact uses 32px), two-tone axes (pink horizontal, violet vertical),
-   opacity 0.65 (impact uses 0.80) — familiar but lighter and two-toned ── */
+  {
+    to: "/resources/scholarships",
+    label: "SCHOLARSHIPS",
+    tagline: "Fund your future.",
+    desc: "Curated grants and fellowships for women breaking into tech.",
+    bar: "bg-[#7EB5A6]", taglineColor: "text-[#2F5D50]", cta: "bg-[#7EB5A6] hover:bg-[#6BA393]", rotate: "-rotate-2",
+    stickers: [
+      <img key="s1" src={graduationCap} className="absolute -top-8 left-2 w-16 rotate-[-14deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={star}          className="absolute -top-4 right-3 w-10 rotate-[18deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/hackathons",
+    label: "HACKATHONS",
+    tagline: "Build. Compete. Win.",
+    desc: "The best hackathons to test your skills and come home with prizes.",
+    bar: "bg-[#FF8A5B]", taglineColor: "text-[#A64B28]", cta: "bg-[#FF8A5B] hover:bg-[#F67848]", rotate: "rotate-2",
+    stickers: [
+      <img key="s1" src={trophy}    className="absolute -top-9 left-4 w-16 rotate-[-10deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={paperClip} className="absolute -top-20 right-6 w-48 rotate-[18deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/programs",
+    label: "PROGRAMS",
+    tagline: "Cohorts that change careers.",
+    desc: "Fellowships and bootcamps to level up fast with other women in tech.",
+    bar: "bg-[#D8B4E8]", taglineColor: "text-[#7B4F92]", cta: "bg-[#D8B4E8] hover:bg-[#C89DDB]", rotate: "-rotate-1",
+    stickers: [
+      <img key="s1" src={checklist} className="absolute -top-9 left-3 w-16 rotate-[-12deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={smiley}    className="absolute -top-7 right-4 w-14 rotate-[10deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/courses",
+    label: "COURSES",
+    tagline: "Learn at your own pace.",
+    desc: "Hand-picked learning paths from beginner to advanced, free and paid.",
+    bar: "bg-[#A9B7FF]", taglineColor: "text-[#4B57A8]", cta: "bg-[#A9B7FF] hover:bg-[#95A5F5]", rotate: "rotate-1",
+    stickers: [
+      <img key="s1" src={book}      className="absolute -top-9 left-3 w-16 rotate-[-8deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={washiTape} className="absolute -top-16 right-2 w-32 rotate-[-18deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/tools",
+    label: "TOOLS",
+    tagline: "The stack we swear by.",
+    desc: "Every tool and app that women in our community actually use daily.",
+    bar: "bg-[#FFD166]", taglineColor: "text-[#996600]", cta: "bg-[#FFD166] hover:bg-[#F0C040]", rotate: "-rotate-2",
+    stickers: [
+      <img key="s1" src={briefcase} className="absolute -top-9 right-3 w-16 rotate-[12deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={star}      className="absolute -top-5 left-4 w-11 rotate-[-15deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/articles",
+    label: "ARTICLES",
+    tagline: "Reading worth your time.",
+    desc: "Essays and deep-dives on tech, careers and women in the industry.",
+    bar: "bg-[#7EB5A6]", taglineColor: "text-[#2F5D50]", cta: "bg-[#7EB5A6] hover:bg-[#6BA393]", rotate: "rotate-2",
+    stickers: [
+      <img key="s1" src={newspaper} className="absolute -top-9 left-3 w-16 rotate-[-10deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={paperClip} className="absolute -top-20 right-8 w-44 rotate-[-15deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/videos",
+    label: "VIDEOS",
+    tagline: "Watch and learn.",
+    desc: "Talks and tutorials that inspire and educate — picked by the community.",
+    bar: "bg-[#FF8A5B]", taglineColor: "text-[#A64B28]", cta: "bg-[#FF8A5B] hover:bg-[#F67848]", rotate: "-rotate-1",
+    stickers: [
+      <img key="s1" src={videoPlayBtn} className="absolute -top-9 left-3 w-16 rotate-[-8deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={smiley}       className="absolute -top-6 right-3 w-14 rotate-[14deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/books",
+    label: "BOOKS",
+    tagline: "Pages that changed us.",
+    desc: "Books our community keeps recommending — from memoirs to technical deep-dives.",
+    bar: "bg-[#A9B7FF]", taglineColor: "text-[#4B57A8]", cta: "bg-[#A9B7FF] hover:bg-[#95A5F5]", rotate: "rotate-2",
+    stickers: [
+      <img key="s1" src={book}      className="absolute -top-9 right-3 w-16 rotate-[10deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={washiTape} className="absolute -top-14 left-6 w-32 rotate-[-20deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/role-models",
+    label: "ROLE MODELS",
+    tagline: "Women leading the way.",
+    desc: "Indian women building and leading across every corner of tech.",
+    bar: "bg-[#D8B4E8]", taglineColor: "text-[#7B4F92]", cta: "bg-[#D8B4E8] hover:bg-[#C89DDB]", rotate: "-rotate-2",
+    stickers: [
+      <img key="s1" src={crown}         className="absolute -top-9 left-4 w-16 rotate-[-12deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={communityStar} className="absolute -top-7 right-2 w-14 rotate-[16deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/people",
+    label: "PEOPLE TO FOLLOW",
+    tagline: "Voices worth your feed.",
+    desc: "Creators and founders worth following for daily doses of insight.",
+    bar: "bg-[#FFD166]", taglineColor: "text-[#996600]", cta: "bg-[#FFD166] hover:bg-[#F0C040]", rotate: "rotate-1",
+    stickers: [
+      <img key="s1" src={chatBubble} className="absolute -top-9 left-3 w-16 rotate-[-10deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={paperClip}  className="absolute -top-20 right-6 w-44 rotate-[-20deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/communities",
+    label: "COMMUNITIES",
+    tagline: "Find your tribe.",
+    desc: "Discords, groups and spaces where women in tech gather and grow.",
+    bar: "bg-[#7EB5A6]", taglineColor: "text-[#2F5D50]", cta: "bg-[#7EB5A6] hover:bg-[#6BA393]", rotate: "-rotate-1",
+    stickers: [
+      <img key="s1" src={communityStar} className="absolute -top-9 left-4 w-16 rotate-[-8deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={smiley}        className="absolute -top-6 right-3 w-14 rotate-[12deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/roadmaps",
+    label: "ROADMAPS",
+    tagline: "Your career, mapped out.",
+    desc: "Step-by-step playbooks for every tech role — built for women starting or pivoting.",
+    bar: "bg-[#FF8A5B]", taglineColor: "text-[#A64B28]", cta: "bg-[#FF8A5B] hover:bg-[#F67848]", rotate: "rotate-2",
+    stickers: [
+      <img key="s1" src={compass}   className="absolute -top-9 left-3 w-16 rotate-[-14deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={washiTape} className="absolute -top-14 right-4 w-32 rotate-[15deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/interview-prep",
+    label: "INTERVIEW PREP",
+    tagline: "Ace it. Every time.",
+    desc: "DSA, system design and negotiation — everything you need to land the offer.",
+    bar: "bg-[#A9B7FF]", taglineColor: "text-[#4B57A8]", cta: "bg-[#A9B7FF] hover:bg-[#95A5F5]", rotate: "-rotate-2",
+    stickers: [
+      <img key="s1" src={checklist} className="absolute -top-9 right-3 w-16 rotate-[10deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={star}      className="absolute -top-5 left-4 w-11 rotate-[-18deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+  {
+    to: "/resources/certifications",
+    label: "CERTIFICATIONS",
+    tagline: "Validate your skills.",
+    desc: "The certifications that actually matter — cloud, data, security and more.",
+    bar: "bg-[#D8B4E8]", taglineColor: "text-[#7B4F92]", cta: "bg-[#D8B4E8] hover:bg-[#C89DDB]", rotate: "rotate-1",
+    stickers: [
+      <img key="s1" src={certificate} className="absolute -top-9 left-3 w-16 rotate-[-10deg] pointer-events-none z-10 drop-shadow-md" />,
+      <img key="s2" src={trophy}      className="absolute -top-7 right-3 w-14 rotate-[14deg] pointer-events-none z-10 drop-shadow-sm" />,
+    ],
+  },
+];
+
 function GridBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {/* left glow — same as impact */}
       <div
         className="absolute left-1/2 top-1/2 h-[40rem] w-[60rem] -translate-x-1/2 -translate-y-1/2 blur-3xl"
         style={{ background: "radial-gradient(circle, rgba(255,240,190,0.15), transparent 70%)" }}
       />
-      {/* side glows — resources-specific */}
       <div className="absolute left-[-10%] top-0 h-full w-[30vw] blur-3xl opacity-40"
         style={{ background: "radial-gradient(circle, rgba(255,120,180,0.18), transparent 75%)" }} />
       <div className="absolute right-[-10%] top-0 h-full w-[30vw] blur-3xl opacity-40"
         style={{ background: "radial-gradient(circle, rgba(180,120,255,0.15), transparent 75%)" }} />
-      {/* crosshatch grid — horizontal pink, vertical violet, 40px spacing */}
       <div
         className="absolute inset-0 opacity-[0.65]"
         style={{
@@ -70,7 +212,7 @@ function GridBackground() {
     </div>
   );
 }
- 
+
 function ResourcesHub() {
   return (
     <div className="relative w-full min-h-screen bg-[#fef9f4] overflow-x-hidden">
@@ -79,15 +221,12 @@ function ResourcesHub() {
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
       `}</style>
- 
-      {/* ── HERO — grid only here ── */}
+
+      {/* ── HERO ── */}
       <section className="relative z-10 pt-24 md:pt-32 pb-10 px-6 overflow-hidden">
         <GridBackground />
- 
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="flex flex-col md:flex-row md:items-end gap-6 md:gap-0">
- 
-            {/* left: heading */}
+          <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-0">
             <div className="flex-1">
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
@@ -98,7 +237,7 @@ function ResourcesHub() {
               >
                 ✦ curated for you ✦
               </motion.p>
- 
+
               {["Every", "resource", "you need."].map((word, i) => (
                 <div key={word} className="overflow-hidden">
                   <motion.h1
@@ -118,7 +257,7 @@ function ResourcesHub() {
                   </motion.h1>
                 </div>
               ))}
- 
+
               <motion.p
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -129,23 +268,22 @@ function ResourcesHub() {
                 Hand-picked. No fluff. Scholarships to roadmaps — all here for you.
               </motion.p>
             </div>
- 
-            {/* right: designer mascot — tight to heading, no empty space */}
+
             <motion.img
               src={designerIdle} alt=""
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="hidden md:block w-[140px] lg:w-[175px] object-contain pointer-events-none shrink-0 self-end"
+              className="hidden md:block w-[180px] lg:w-[280px] object-contain pointer-events-none shrink-0 self-end"
             />
           </div>
         </div>
       </section>
- 
-      {/* ── CARDS — plain bg, no grid ── */}
+
+      {/* ── CARDS ── */}
       <section className="relative z-10 py-14 md:py-20 px-6 bg-[#fef9f4]">
         <div className="container mx-auto max-w-7xl">
- 
+
           <div className="flex items-center gap-4 mb-12">
             <div className="flex-1 h-px bg-gray-200" />
             <span className="text-[10px] md:text-xs uppercase tracking-[0.28em] text-gray-400 font-bold"
@@ -154,10 +292,10 @@ function ResourcesHub() {
             </span>
             <div className="flex-1 h-px bg-gray-200" />
           </div>
- 
+
           {/* DESKTOP */}
-          <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-14">
-            {categories.map(({ to, label, tagline, desc, bar, taglineColor, cta, rotate, sticker }, idx) => (
+          <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-16">
+            {categories.map(({ to, label, tagline, desc, bar, taglineColor, cta, rotate, stickers }, idx) => (
               <motion.div
                 key={to}
                 initial={{ opacity: 0, y: 40 }}
@@ -168,7 +306,7 @@ function ResourcesHub() {
                 style={{ zIndex: 10 }}
               >
                 <div className="relative bg-white ring-1 ring-black/5 shadow-xl flex flex-col overflow-visible">
-                  {sticker}
+                  {stickers}
                   <div className={`h-5 w-full ${bar}`} />
                   <div className="p-5 flex flex-col gap-2 flex-1">
                     <h3 className="text-lg lg:text-xl font-black uppercase leading-tight tracking-tight text-gray-900"
@@ -192,12 +330,12 @@ function ResourcesHub() {
               </motion.div>
             ))}
           </div>
- 
+
           {/* MOBILE */}
-          <div className="flex sm:hidden flex-col gap-8">
-            {categories.map(({ to, label, tagline, desc, bar, taglineColor, cta, sticker }) => (
+          <div className="flex sm:hidden flex-col gap-10">
+            {categories.map(({ to, label, tagline, desc, bar, taglineColor, cta, stickers }) => (
               <div key={to} className="relative overflow-visible bg-white shadow-lg ring-1 ring-black/5 flex flex-col">
-                {sticker}
+                {stickers}
                 <div className={`h-5 w-full ${bar}`} />
                 <div className="p-5 flex flex-col">
                   <h3 className="text-lg font-black uppercase leading-tight text-gray-900 pr-10"
@@ -220,11 +358,11 @@ function ResourcesHub() {
               </div>
             ))}
           </div>
- 
+
         </div>
       </section>
- 
-      {/* ── CTA — grid back for bottom section ── */}
+
+      {/* ── CTA ── */}
       <section className="relative z-10 py-12 md:py-16 px-6 pb-24 overflow-hidden">
         <GridBackground />
         <div className="container mx-auto max-w-4xl relative z-10">
@@ -275,7 +413,7 @@ function ResourcesHub() {
           </motion.div>
         </div>
       </section>
- 
+
     </div>
   );
 }

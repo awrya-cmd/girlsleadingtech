@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
+import { useState } from "react";
 import { BookOpen, User } from "lucide-react";
 
 import { books } from "@/data/resources";
@@ -60,6 +61,31 @@ function GridBackground() {
 }
 
 function BooksPage() {
+const [selectedCategory, setSelectedCategory] = useState("All");
+
+const categories = [
+  "All",
+  ...Array.from(
+    new Set(
+      books.flatMap(
+        (book) =>
+          book.category
+            ?.split("/")
+            .map((c) => c.trim()) || []
+      )
+    )
+  ).sort(),
+];
+
+const filteredBooks =
+  selectedCategory === "All"
+    ? books
+    : books.filter((book) =>
+        book.category
+          ?.split("/")
+          .map((c) => c.trim())
+          .includes(selectedCategory)
+      );
   return (
     <div className="relative min-h-screen bg-[#fef9f4] overflow-hidden">
       <style>{`
@@ -117,7 +143,7 @@ function BooksPage() {
         <div className="flex gap-3">
           <div className="bg-white border border-gray-100 rounded-2xl px-5 py-4 shadow-sm">
             <div className="text-2xl font-black">
-              {books.length}
+              {filteredBooks.length}
             </div>
             <div className="text-xs text-gray-500 uppercase">
               Books
@@ -138,27 +164,26 @@ function BooksPage() {
   </div>
 </section>
  {/* CATEGORY FILTERS */}
-                     <section className="px-6 pb-10">
+<section className="px-6 pb-10">
   <div className="container mx-auto max-w-7xl">
     <div className="flex flex-wrap gap-3">
-      {[
-        "All",
-        "Programming",
-        "Career",
-        "Leadership",
-        "Design",
-        "Productivity",
-      ].map((category) => (
+      {categories.map((category) => (
         <button
           key={category}
-          className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-600 hover:border-[#A9B7FF] hover:text-[#4B57A8] transition"
+          onClick={() => setSelectedCategory(category)}
+          className={`rounded-full px-4 py-2 text-sm font-medium transition
+            ${
+              selectedCategory === category
+                ? "bg-[#4B57A8] text-white border border-[#4B57A8]"
+                : "bg-white border border-gray-200 text-gray-600 hover:border-[#A9B7FF] hover:text-[#4B57A8]"
+            }`}
         >
           {category}
         </button>
       ))}
-    </div>
-  </div>
-</section>
+     </div>
+   </div>
+  </section>
       {/* BOOK GRID */}
       <section className="relative px-6 pb-24">
         <div className="container mx-auto max-w-7xl">
@@ -185,7 +210,7 @@ function BooksPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {books.map((book, index) => {
+            {filteredBooks.map((book, index) => {
               const topBars = [
                 "bg-[#A9B7FF]",
                 "bg-[#D8B4E8]",
