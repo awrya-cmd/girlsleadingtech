@@ -217,7 +217,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://www.linkedin.com/in/malhotraesha/",
     "speakerDesignation": "Content Writer",
     "speakerCompany": "LinkedIn",
-    "posterImage": "/esha.png",
+    "posterImage": "/esha2.png",
     "youtubeLink": "https://www.youtube.com/watch?v=S2L4yvf2dLg",
     "attendees": 197,
     "status": "past",
@@ -506,7 +506,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://www.linkedin.com/in/yog-disha-589476118/",
     "speakerDesignation": "Founder",
     "speakerCompany": "Satva Yoga Centre",
-    "posterImage": "/yoga.png",
+    "posterImage": "/yoga2.png",
     "attendees": 9,
     "status": "past",
     "category": "Wellness & Mental Health"
@@ -720,7 +720,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://www.linkedin.com/in/vidushi-agarwal-8958-developer?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     "speakerDesignation": "2024 Winner",
     "speakerCompany": "Smart India Hackathon",
-    "posterImage": "/sih.png",
+    "posterImage": "/sih2.png",
     "attendees": 111,
     "status": "past",
     "category": "Hackathons"
@@ -932,7 +932,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://x.com/themanikdiaries",
     "speakerDesignation": "Founder",
     "speakerCompany": "Girls Leading Tech",
-    "posterImage": "/manik.png",
+    "posterImage": "/manik2.png",
     "youtubeLink": "https://x.com/GirlLeadingTech/status/1966901850571239807",
     "status": "past",
     "category": "Hackathons"
@@ -946,7 +946,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://x.com/aayushchugh",
     "speakerDesignation": "Software Engineer",
     "speakerCompany": "Avenue Ticket",
-    "posterImage": "/ayush.png",
+    "posterImage": "/ayushglt.png",
     "youtubeLink": "https://x.com/GirlLeadingTech/status/1967257007754473754",
     "status": "past",
     "category": "Core Engineering"
@@ -960,7 +960,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://x.com/Unnati_twts",
     "speakerDesignation": "Data Scientist",
     "speakerCompany": "Grid Dynamics",
-    "posterImage": "/unnatii.png",
+    "posterImage": "/unnati2.png",
     "youtubeLink": "https://x.com/GirlLeadingTech/status/1967241530168774664",
     "status": "past",
     "category": "Core Engineering"
@@ -974,7 +974,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://x.com/elleseir",
     "speakerDesignation": "Lead Consultane Ambassad",
     "speakerCompany": "Her Dao",
-    "posterImage": "/blockchain.png",
+    "posterImage": "/saure.png",
     "youtubeLink": "https://x.com/GirlLeadingTech/status/1967279353022263730",
     "status": "past",
     "category": "Web3 & Blockchain"
@@ -988,7 +988,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://x.com/realankush",
     "speakerDesignation": "Founder & Coach",
     "speakerCompany": "Real Dev Squad",
-    "posterImage": "/ankushd.png",
+    "posterImage": "/ankush2.png",
     "youtubeLink": "https://x.com/realankush",
     "status": "past",
     "category": "Core Engineering"
@@ -1002,7 +1002,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://x.com/kanishkkhurana",
     "speakerDesignation": "Devrel Engineer",
     "speakerCompany": "Across Protocol",
-    "posterImage": "/kanishk.png",
+    "posterImage": "/kanishkglt.png",
     "youtubeLink": "https://x.com/GirlLeadingTech/status/1968983669608964196",
     "status": "past",
     "category": "Web3 & Blockchain"
@@ -1016,7 +1016,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://x.com/rudythetechy",
     "speakerDesignation": "Commuity Manager",
     "speakerCompany": "Tech Kareer",
-    "posterImage": "/women.png",
+    "posterImage": "/womenglt.png",
     "youtubeLink": "https://x.com/GirlLeadingTech/status/1969416982111142252",
     "status": "past",
     "category": "Core Engineering"
@@ -1058,7 +1058,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://x.com/Imaditi007",
     "speakerDesignation": "Founder",
     "speakerCompany": "Sia Health",
-    "posterImage": "/aditi.png",
+    "posterImage": "/aditiglt.png",
     "youtubeLink": "https://x.com/GirlLeadingTech/status/1970090673547407665",
     "status": "past",
     "category": "Wellness & Mental Health"
@@ -1086,7 +1086,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://x.com/_svs_",
     "speakerDesignation": "Tech Recruiter",
     "speakerCompany": "Independent",
-    "posterImage": "/svs.png",
+    "posterImage": "/svsglt.png",
     "youtubeLink": "https://x.com/GirlLeadingTech/status/1970460131466129730",
     "status": "past",
     "category": "Placements & Internships"
@@ -1100,7 +1100,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://x.com/WHTIFIGO",
     "speakerDesignation": "Commuity Strategist Advisor",
     "speakerCompany": "Her Dao",
-    "posterImage": "/matilde.png",
+    "posterImage": "/silva.png",
     "youtubeLink": "https://x.com/GirlLeadingTech/status/1973035390245409111",
     "status": "past",
     "category": "Web3 & Blockchain"
@@ -1114,7 +1114,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://x.com/FrancescoCiull4",
     "speakerDesignation": "Developer Advocate",
     "speakerCompany": "Daily.dev",
-    "posterImage": "/rust.png",
+    "posterImage": "/rustglt.png",
     "youtubeLink": "https://x.com/GirlLeadingTech/status/1973346885651013877",
     "status": "past",
     "category": "Core Engineering"
@@ -1140,7 +1140,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://x.com/dianasoyster",
     "speakerDesignation": "Developer Advocate",
     "speakerCompany": "Vonage",
-    "posterImage": "/diana.png",
+    "posterImage": "/pham.png",
     "youtubeLink": "https://x.com/GirlLeadingTech/status/1973776234237575178",
     "status": "past",
     "category": "Core Engineering"
@@ -1193,7 +1193,7 @@ export const realEvents: Event[] = [
     "date": "2025-10-31",
     "duration": "49mins 34s",
     "speakerName": "Pearl Modi",
-    "posterImage": "/pearl.png",
+    "posterImage": "/pearl2.png",
     "speakerLinkedin": "https://www.linkedin.com/in/pearl-mody-0a0289294/",
     "youtubeLink": " https://youtu.be/IYOdKTr4GEw",
     "attendees": 64,
@@ -1336,7 +1336,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://www.linkedin.com/in/anushka-priyadarshi/",
     "speakerDesignation": "Upcoming Intern",
     "speakerCompany": "Sprinklr",
-    "posterImage": "/Uber She++ & Career Mentorship.png",
+    "posterImage": "/anushkauber.png",
     "youtubeLink": " https://youtu.be/pz2uzKFnvyo",
     "attendees": 184,
     "status": "past",

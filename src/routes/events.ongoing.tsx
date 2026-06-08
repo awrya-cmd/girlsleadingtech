@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import confusedMascot from "@/assets/main-mascot/confused.png";
 import { events } from "@/data/community";
 import { youtubeThumb, getSpeakerImageByName } from "@/lib/event-helpers";
-import { Calendar, Clock, ArrowRight, Sparkles } from "lucide-react";
+import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { useContext } from "react";
 import { EventsSearchContext } from "./events";
 
@@ -28,7 +29,7 @@ function OngoingEvents() {
   if (list.length === 0) {
     return (
       <section className="container mx-auto max-w-3xl px-6 py-20 text-center flex flex-col items-center justify-center p-12">
-        <Sparkles className="w-16 h-16 text-pink-400 mb-6" />
+        <img src={confusedMascot} alt="Confused mascot" className="w-32 h-32 object-contain mb-6 animate-bounce" style={{ animationDuration: '3s' }} />
         <h2 className="text-2xl font-semibold text-gray-800 mb-3" style={{ fontFamily: "'Montserrat', sans-serif" }}>
           No events found for this category... yet!
         </h2>
