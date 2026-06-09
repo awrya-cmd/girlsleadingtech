@@ -1169,6 +1169,7 @@ export const realEvents: Event[] = [
     "speakerDesignation": "Ecosystem Head",
     "speakerCompany": "Hela Labs",
     "youtubeLink": "https://www.youtube.com/watch?v=BVyo3DYj08g",
+    posterImage:"/hela.png",
     "summary": "This video is a detailed workshop by Shivam Garg, a Developer Relations representative at HeLa Network, conducted during the HackAura event. He introduces the HeLa ecosystem, its unique architecture, and how developers can build decentralized applications (DApps) on it.",
     "status": "past",
     "category": "Web3 & Blockchain"
@@ -1182,6 +1183,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://www.linkedin.com/in/sarah-park-324407328/",
     "speakerDesignation": "Engineer",
     "speakerCompany": "Wolfram",
+   posterImage:"/wolfram.png",
     "youtubeLink": "https://www.youtube.com/watch?v=NNmOY68jvhY",
     "summary": "This video is a comprehensive workshop led by Sarah from Wolfram, specifically tailored for participants of the HackAura hackathon. It provides a deep dive into the Wolfram Language, covering everything from basic syntax to advanced applications in data science, machine learning,",
     "status": "past",
@@ -1506,6 +1508,7 @@ export const realEvents: Event[] = [
     "speakerLinkedin": "https://www.linkedin.com/in/vrijrajsingh",
     "speakerDesignation": "Co-Founder & CEO",
     "speakerCompany": "TechFerment",
+    posterImage:"/vibe.png",
     "youtubeLink": "https://youtu.be/zzBp4GQLgFc?si=qF3SbyzZ4QJ56PvK",
     "status": "past",
     "category": "Core Engineering"
