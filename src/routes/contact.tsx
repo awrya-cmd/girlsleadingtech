@@ -421,13 +421,16 @@ function ContactPage() {
                 <img
                   src={pixelBtn}
                   alt="Join Community Button"
-                  className="w-[190px] h-auto"
+                  className="w-[140px]
+              sm:w-[180px]
+              md:w-[210px]
+              h-auto h-auto"
                 />
                 <span
-                  className="absolute inset-0 flex items-center justify-center text-black font-bold text-center pointer-events-none"
+                  className="absolute inset-0 flex items-center justify-center text-black font-bold"
                   style={{
                     fontFamily: "'Press Start 2P', monospace",
-                    fontSize: "clamp(0.65rem, 0.9vw, 0.8rem)",
+                    fontSize: "clamp(0.50rem, 0.8vw, 0.9rem)",
                     letterSpacing: "0.08em",
                     lineHeight: "1.0",
                   }}
@@ -444,20 +447,20 @@ function ContactPage() {
           <ScrollReveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
               {/* Left Column: Title, Copy & CTA */}
-              <div className="lg:col-span-6 flex flex-col justify-between items-start text-left gap-8">
+              <div className="lg:col-span-6 flex flex-col justify-start items-start text-left gap-6">
                 <div className="space-y-5">
                   <div className="w-14 h-14 rounded-full bg-white border border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)]">
                     <Hand className="w-7 h-7 stroke-[2] text-[#4f46e5]" />
                   </div>
                   <h3
                     className="text-3xl sm:text-4xl font-extrabold text-[#5b2b4a] tracking-tight leading-tight"
-                    style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    style={{ fontFamily: "'Satoshi', sans-serif" }}
                   >
                     Volunteer & Contribute
                   </h3>
                   <p
                     className="text-base sm:text-lg text-gray-700 font-semibold leading-relaxed"
-                    style={{ fontFamily: "'Satoshi', sans-serif" }}
+                    style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
                     Help shape Girls Leading Tech through events, operations, design, content, partnerships, and community initiatives.
                   </p>
@@ -552,13 +555,13 @@ function ContactPage() {
               </div>
               <h3
                 className="text-3xl sm:text-4xl font-extrabold text-[#5b2b4a] tracking-tight leading-tight"
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
+                style={{ fontFamily: "'Satoshi', sans-serif" }}
               >
                 Lead The Way For The Next Generation
               </h3>
               <p
                 className="text-base sm:text-lg text-gray-700 font-semibold leading-relaxed mt-4"
-                style={{ fontFamily: "'Satoshi', sans-serif" }}
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
                 Share your experience, guide students, host workshops, and inspire women entering technology.
               </p>
@@ -658,7 +661,7 @@ function ContactPage() {
 
               <h3
                 className="text-3xl sm:text-4xl font-black text-[#7B4F92] tracking-tight leading-tight mb-4"
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
+                style={{ fontFamily: "'Satoshi', sans-serif" }}
               >
                 Collaborate With Girls Leading Tech
               </h3>
@@ -682,9 +685,9 @@ function ContactPage() {
                 ].map((benefit, idx) => (
                   <div
                     key={idx}
-                    className="bg-white border border-black rounded-xl p-5 shadow-[3px_3px_0px_rgba(0,0,0,1)] flex items-start gap-3 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:scale-[1.01] transition-all duration-200"
+                    className="bg-white border border-black rounded-xl p-5 shadow-[3px_3px_0px_rgba(0,0,0,1)] flex items-center gap-3 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:scale-[1.01] transition-all duration-200"
                   >
-                    <span className="text-[#7B4F92] font-bold text-lg flex-shrink-0 mt-0.5">•</span>
+                    <span className="text-[#7B4F92] font-bold text-lg flex-shrink-0">•</span>
                     <span
                       className="text-[#7B4F92] font-bold text-sm leading-relaxed text-left"
                       style={{ fontFamily: "'Satoshi', sans-serif" }}
@@ -706,12 +709,11 @@ function ContactPage() {
                 
                 <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-80 hover:opacity-100 transition-opacity duration-300">
                   {[
-                    { name: "Google", color: "hover:text-[#4285F4]" },
-                    { name: "GitHub", color: "hover:text-[#181717]" },
-                    { name: "Stripe", color: "hover:text-[#008CDD]" },
-                    { name: "Microsoft", color: "hover:text-[#F25022]" },
-                    { name: "Slack", color: "hover:text-[#4A154B]" },
-                    { name: "Vercel", color: "hover:text-black" },
+                    { name: "Notion", color: "hover:text-[#000000]" },
+                    { name: "Lovable", color: "hover:text-[#ff4e50]" },
+                    { name: "Postman", color: "hover:text-[#ff6c37]" },
+                    { name: "Wolfram", color: "hover:text-[#dd1100]" },
+                    { name: "SheBuilds", color: "hover:text-[#d955a4]" },
                   ].map((logo, idx) => (
                     <span
                       key={idx}
@@ -920,13 +922,13 @@ function ContactPage() {
                     </span>
                     <h3
                       className="text-2xl md:text-3xl font-black mb-3"
-                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                      style={{ fontFamily: "'Satoshi', sans-serif" }}
                     >
                       Join our WhatsApp Community
                     </h3>
                     <p
                       className="text-gray-200 text-sm md:text-base leading-relaxed font-semibold mb-6"
-                      style={{ fontFamily: "'Satoshi', sans-serif" }}
+                      style={{ fontFamily: "'Montserrat', sans-serif" }}
                     >
                       Get updates about events, opportunities, workshops, community announcements, and new initiatives directly through our community channels.
                     </p>
@@ -935,7 +937,7 @@ function ContactPage() {
                   <div className="flex justify-start">
                     {/* WhatsApp Join Button with pulse shadow */}
                     <a
-                      href="https://chat.whatsapp.com/your-community-link"
+                      href="https://whatsapp.com/channel/0029VayYXL4K5cD7Zrzq052G"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="relative inline-block active:scale-97 hover:scale-[1.03] transition-transform duration-100 cursor-pointer border-none bg-transparent animate-pulse-shadow rounded-lg"

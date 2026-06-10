@@ -116,25 +116,18 @@ function VolunteerPage() {
             <div className="absolute bottom-[10%] right-[25%] text-lg font-bold">++</div>
           </div>
 
-          {/* Huge Faded Text Word */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
-            <span 
-              className="text-white opacity-[0.04] font-extrabold tracking-widest uppercase select-none pointer-events-none absolute whitespace-nowrap rotate-90 transform origin-center"
-              style={{ fontSize: "120px", fontWeight: 800 }}
-            >
-              CONTRIBUTE
-            </span>
+          {/* New End-to-End Diagonal Scribble Line with One Twirl */}
+          <div className="absolute top-0 left-0 w-full h-[120px] pointer-events-none z-0 select-none opacity-90 animate-float-line">
+            <svg className="w-full h-full text-[#D955A4]" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <path d="M 0,90 C 60,85 90,80 120,60 C 140,45 150,20 135,10 C 120,0 105,15 120,30 C 135,45 200,25 320,0" stroke="currentColor" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+            </svg>
           </div>
 
           {/* Left Panel Content */}
           <div className="relative z-10 flex flex-col justify-between h-full w-full">
             <div>
-              {/* Looping Ribbon Doodle at the top of the card (No overlap with text) */}
-              <div className="relative h-20 w-40 mb-6 animate-float-line">
-                <svg className="w-full h-full text-[#D955A4]" viewBox="0 0 160 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M 10,50 C 40,50 50,10 75,10 C 100,10 100,50 75,50 C 50,50 40,80 130,70" stroke="currentColor" strokeWidth="6" strokeLinecap="round" fill="none"/>
-                </svg>
-              </div>
+              {/* Space for scribble line at the top to prevent overlapping text */}
+              <div className="h-16 mb-4"></div>
 
               <div className="space-y-4">
                 <span className="text-[10px] tracking-[0.25em] text-[#D955A4] font-extrabold uppercase" style={{ fontFamily: "'Montserrat', sans-serif" }}>
