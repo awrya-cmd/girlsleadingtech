@@ -27,7 +27,7 @@ export function PartnersSection({
 
   const filteredList = allPartners.filter((p: any) => popularSlugs.includes(p.slug));
   return (
-    <section className="relative py-20">
+    <section className="relative py-20 bg-[#FFF2B2]">
       
       {/* HEADER (NEW TYPOGRAPHY STYLE) */}
       <div className="container mx-auto max-w-6xl px-6">
