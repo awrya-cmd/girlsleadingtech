@@ -8,6 +8,24 @@ export function PartnersSection({
   industryPartners,
   communityPartners,
 }: any) {
+  const allPartners = [
+    ...(ecosystemPartners || []),
+    ...(industryPartners || []),
+    ...(communityPartners || []),
+  ];
+
+  const popularSlugs = [
+    "notion",
+    "shebuilds",
+    "lovable",
+    "she-can-code",
+    "code-without-barriers",
+    "women-ai-collective",
+    "girls-who-ml",
+    "postman-pune",
+  ];
+
+  const filteredList = allPartners.filter((p: any) => popularSlugs.includes(p.slug));
   return (
     <section className="relative py-20">
       
@@ -37,49 +55,43 @@ export function PartnersSection({
         </div>
       </div>
 
-      {/* MARQUEE (UNCHANGED) */}
-      <div className="mt-14 space-y-6">
-        {[
-          { label: "Ecosystem", list: ecosystemPartners },
-          { label: "Industry", list: industryPartners },
-          { label: "Community", list: communityPartners },
-        ].map((group, gi) => (
-          <Marquee key={group.label} reverse={gi % 2 === 1}>
-            {group.list.map((p: any) => {
-              const inner = (
-                <div className="flex h-24 w-44 shrink-0 items-center justify-center glass p-4 shadow-soft transition hover:-translate-y-1 hover:shadow-soft">
-                  {p.logo ? (
-                    <img
-                      src={p.logo}
-                      alt={p.name}
-                      className="max-h-14 max-w-[80%] object-contain"
-                    />
-                  ) : (
-                    <span className="text-xs font-display text-foreground/70">
-                      {p.name}
-                    </span>
-                  )}
-                </div>
-              );
+      {/* MARQUEE (ONE LINE ONLY) */}
+      <div className="mt-14">
+        <Marquee reverse={false}>
+          {filteredList.map((p: any) => {
+            const inner = (
+              <div className="flex h-24 w-44 shrink-0 items-center justify-center glass p-4 shadow-soft transition hover:-translate-y-1 hover:shadow-soft">
+                {p.logo ? (
+                  <img
+                    src={p.logo}
+                    alt={p.name}
+                    className="max-h-14 max-w-[80%] object-contain"
+                  />
+                ) : (
+                  <span className="text-xs font-display text-foreground/70">
+                    {p.name}
+                  </span>
+                )}
+              </div>
+            );
 
-              return p.website ? (
-                <a
-                  key={p.id}
-                  href={p.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={p.name}
-                >
-                  {inner}
-                </a>
-              ) : (
-                <div key={p.id} title={p.name}>
-                  {inner}
-                </div>
-              );
-            })}
-          </Marquee>
-        ))}
+            return p.website ? (
+              <a
+                key={p.id}
+                href={p.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={p.name}
+              >
+                {inner}
+              </a>
+            ) : (
+              <div key={p.id} title={p.name}>
+                {inner}
+              </div>
+            );
+          })}
+        </Marquee>
       </div>
 
       {/* PIXEL BUTTON (ONLY CHANGE) */}
@@ -103,8 +115,8 @@ export function PartnersSection({
             "
             style={{
               fontFamily: "'Press Start 2P', monospace",
-              fontSize: "clamp(0.65rem, 1vw, 1rem)",
-              letterSpacing: "0.06em",
+              fontSize: "clamp(0.75rem, 1.2vw, 1.2rem)",
+              letterSpacing: "0.08em",
               lineHeight: "1",
             }}
           >

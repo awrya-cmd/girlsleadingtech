@@ -384,7 +384,7 @@ export default function Hero() {
               <div className="text-2xl text-black font-black">
                 {s.value}{s.suffix}
               </div>
-              <div className="text-xs uppercase tracking-widest font-black text-muted-foreground" style={{ color: PINK }}>
+              <div className="text-xs uppercase tracking-widest font-black text-muted-foreground" style={{ color: "#d955a4" }}>
                 {s.label}
               </div>
             </div>

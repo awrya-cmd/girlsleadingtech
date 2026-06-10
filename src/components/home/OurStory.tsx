@@ -1,8 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from "motion/react";
-import { Sparkles, Compass, Star } from "lucide-react";
-import ourStoryImg from "@/assets/characters/main-mascot/join-us.png";
+import { Sparkles, Compass, Star, Heart } from "lucide-react";
+import ourStoryImg from "@/assets/characters/main-mascot/our-story.png";
 import pixelStarImg from "@/assets/pixelstar.png";
+
+// Import stickers from assets
+import smileySticker from "@/assets/stickers/smiley.png";
+import starSticker from "@/assets/stickers/star.png";
+import twirlyArrow from "@/assets/stickers/twirly-arrow.png";
 
 // A hook to handle responsive path re-calculations on window resizing
 function useWindowSize() {
@@ -23,7 +28,7 @@ export default function OurStory() {
   const node1Ref = useRef<HTMLDivElement>(null);
   const node2Ref = useRef<HTMLDivElement>(null);
   const node3Ref = useRef<HTMLDivElement>(null);
-  const connectorEndRef = useRef<HTMLDivElement>(null);
+  const node4Ref = useRef<HTMLDivElement>(null);
   
   const [segments, setSegments] = useState<{ d1: string; d2: string; d3: string }>({
     d1: "",
@@ -37,7 +42,7 @@ export default function OurStory() {
     step1: false,
     step2: false,
     step3: false,
-    end: false
+    step4: false
   });
 
   useEffect(() => {
@@ -46,7 +51,7 @@ export default function OurStory() {
       !node1Ref.current ||
       !node2Ref.current ||
       !node3Ref.current ||
-      !connectorEndRef.current
+      !node4Ref.current
     ) {
       return;
     }
@@ -57,7 +62,7 @@ export default function OurStory() {
         !node1Ref.current ||
         !node2Ref.current ||
         !node3Ref.current ||
-        !connectorEndRef.current
+        !node4Ref.current
       ) {
         return;
       }
@@ -66,7 +71,7 @@ export default function OurStory() {
       const n1Rect = node1Ref.current.getBoundingClientRect();
       const n2Rect = node2Ref.current.getBoundingClientRect();
       const n3Rect = node3Ref.current.getBoundingClientRect();
-      const endRect = connectorEndRef.current.getBoundingClientRect();
+      const n4Rect = node4Ref.current.getBoundingClientRect();
 
       // Center coordinates relative to the timeline container
       const x1 = n1Rect.left + n1Rect.width / 2 - timelineRect.left;
@@ -78,28 +83,29 @@ export default function OurStory() {
       const x3 = n3Rect.left + n3Rect.width / 2 - timelineRect.left;
       const y3 = n3Rect.top + n3Rect.height / 2 - timelineRect.top;
 
-      const xEnd = endRect.left + endRect.width / 2 - timelineRect.left;
-      const yEnd = endRect.top + endRect.height / 2 - timelineRect.top;
+      const x4 = n4Rect.left + n4Rect.width / 2 - timelineRect.left;
+      const y4 = n4Rect.top + n4Rect.height / 2 - timelineRect.top;
 
       const dy1 = y2 - y1;
       const dy2 = y3 - y2;
-      const dyEnd = yEnd - y3;
+      const dy3 = y4 - y3;
 
       const isMobile = window.innerWidth < 768; // Mobile phone view
 
       if (isMobile) {
         // straight vertical lines on phone (connecting center-to-center, staying on the left)
+        // curve to center for the final segment to node 4
         setSegments({
           d1: `M ${x1} ${y1} L ${x1} ${y2}`,
           d2: `M ${x2} ${y2} L ${x2} ${y3}`,
-          d3: `M ${x3} ${y3} L ${x3} ${yEnd - 20}`
+          d3: `M ${x3} ${y3} C ${x3} ${y3 + dy3 * 0.45}, ${x4} ${y4 - dy3 * 0.45}, ${x4} ${y4}`
         });
       } else {
         // curved lines on tablet & desktop (connecting center-to-center)
         setSegments({
           d1: `M ${x1} ${y1} C ${x1} ${y1 + dy1 * 0.45}, ${x2} ${y2 - dy1 * 0.45}, ${x2} ${y2}`,
           d2: `M ${x2} ${y2} C ${x2} ${y2 + dy2 * 0.45}, ${x3} ${y3 - dy2 * 0.45}, ${x3} ${y3}`,
-          d3: `M ${x3} ${y3} C ${x3} ${y3 + dyEnd * 0.45}, ${xEnd} ${yEnd - 20}, ${xEnd} ${yEnd - 20}`
+          d3: `M ${x3} ${y3} C ${x3} ${y3 + dy3 * 0.45}, ${x4} ${y4 - dy3 * 0.45}, ${x4} ${y4}`
         });
       }
     };
@@ -121,6 +127,25 @@ export default function OurStory() {
 
   return (
     <div className="relative w-full overflow-hidden mb-4">
+      
+      {/* Floating yellow scrapbook emoji stickers */}
+      <motion.div
+        className="hidden md:flex absolute w-12 h-12 z-10 select-none pointer-events-none"
+        style={{ left: "4%", top: "35%" }}
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <img src={smileySticker} alt="Smiley" className="w-full h-full object-contain" />
+      </motion.div>
+
+      <motion.div
+        className="hidden md:flex absolute w-12 h-12 z-10 select-none pointer-events-none"
+        style={{ right: "5%", top: "65%" }}
+        animate={{ y: [0, 6, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <img src={starSticker} alt="Star" className="w-full h-full object-contain" />
+      </motion.div>
       
       {/* 1. Section Header: OUR STORY */}
       <div className="relative w-full overflow-visible select-none py-0 md:py-1 flex justify-end mb-12 md:mb-16 lg:mb-20">
@@ -201,49 +226,10 @@ export default function OurStory() {
 
         {/* Pixel Flying Elements (Stars) along the curved path (visible on tablet & desktop only) */}
         <div className="hidden md:block absolute inset-0 pointer-events-none">
-          <motion.img
-            src={pixelStarImg}
-            alt="pixel star"
-            className="absolute w-8 h-8 opacity-50"
-            style={{ left: "32%", top: "18%" }}
-            animate={{ y: [0, -8, 0], rotate: [0, 15, -15, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.img
-            src={pixelStarImg}
-            alt="pixel star"
-            className="absolute w-6 h-6 opacity-40"
-            style={{ left: "55%", top: "45%" }}
-            animate={{ y: [0, 8, 0], rotate: [0, -15, 15, 0] }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.img
-            src={pixelStarImg}
-            alt="pixel star"
-            className="absolute w-8 h-8 opacity-50"
-            style={{ left: "28%", top: "72%" }}
-            animate={{ y: [0, -6, 0], rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.img
-            src={pixelStarImg}
-            alt="pixel star"
-            className="absolute w-6 h-6 opacity-40"
-            style={{ left: "68%", top: "28%" }}
-            animate={{ y: [0, -10, 0], rotate: [0, 20, -20, 0] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          />
-          <motion.img
-            src={pixelStarImg}
-            alt="pixel star"
-            className="absolute w-7 h-7 opacity-45"
-            style={{ left: "42%", top: "60%" }}
-            animate={{ y: [0, 7, 0], rotate: [0, -12, 12, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-          />
+          
           {/* Retro small pixel colored squares */}
           <motion.div
-            className="absolute w-2 h-2 bg-[#d955a4] opacity-50"
+            className="absolute w-2.5 h-2.5 bg-[#ffed95] opacity-70 border border-black/10"
             style={{ left: "20%", top: "35%" }}
             animate={{ y: [0, -12, 0], rotate: [0, 45, 90, 180, 360] }}
             transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
@@ -279,9 +265,9 @@ export default function OurStory() {
               <motion.div
                 animate={{ scale: [1, 1.25, 1], opacity: [0.55, 0, 0.55] }}
                 transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 rounded-full bg-[#d955a4] -z-10"
+                className="absolute inset-0 rounded-full bg-[#ffed95] -z-10"
               />
-              <div className="w-10 h-10 rounded-full bg-[#d955a4] flex items-center justify-center border-4 border-white shadow-md text-white">
+              <div className="w-10 h-10 rounded-full bg-[#ffed95] flex items-center justify-center border-4 border-white shadow-md text-[#24101F]">
                 <Sparkles className="w-4 h-4" />
               </div>
             </motion.div>
@@ -296,10 +282,10 @@ export default function OurStory() {
           >
             <div className="flex-1 pt-1.5 min-w-[300px] max-w-[480px]">
               <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white font-sans tracking-tight">
-                We Started With A Belief
+                Started with a simple belief
               </h4>
-              <p className="mt-3 text-sm md:text-base text-gray-600 dark:text-gray-300 font-sans leading-relaxed">
-                Every girl deserves access to opportunities, mentorship and a supportive community in tech.
+              <p className="mt-3 text-sm md:text-base text-gray-600 dark:text-gray-300 font-sans leading-relaxed font-semibold">
+                Too many girls miss opportunities simply because they never hear about them.
               </p>
             </div>
             {/* Mascot Container: Larger on desktop, reduced size on tablet to prevent overlaps, fully static */}
@@ -331,9 +317,9 @@ export default function OurStory() {
               <motion.div
                 animate={{ scale: [1, 1.25, 1], opacity: [0.55, 0, 0.55] }}
                 transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 rounded-full bg-[#d955a4] -z-10"
+                className="absolute inset-0 rounded-full bg-[#ffed95] -z-10"
               />
-              <div className="w-10 h-10 rounded-full bg-[#d955a4] flex items-center justify-center border-4 border-white shadow-md text-white">
+              <div className="w-10 h-10 rounded-full bg-[#ffed95] flex items-center justify-center border-4 border-white shadow-md text-[#24101F]">
                 <Compass className="w-4 h-4" />
               </div>
             </motion.div>
@@ -348,10 +334,10 @@ export default function OurStory() {
           >
             <div className="max-w-[200px] sm:max-w-[220px] md:max-w-[260px] lg:max-w-[340px]">
               <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white font-sans tracking-tight">
-                We Built A Community
+                A small community was born
               </h4>
-              <p className="mt-3 text-sm md:text-base text-gray-600 dark:text-gray-300 font-sans leading-relaxed">
-                From conversations and meetups to shared learning experiences, women began growing together.
+              <p className="mt-3 text-sm md:text-base text-gray-600 dark:text-gray-300 font-sans leading-relaxed font-semibold">
+                What began as a WhatsApp group for a handful of girls became a place for learning, support, and connection.
               </p>
             </div>
           </motion.div>
@@ -374,9 +360,9 @@ export default function OurStory() {
               <motion.div
                 animate={{ scale: [1, 1.25, 1], opacity: [0.55, 0, 0.55] }}
                 transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 rounded-full bg-[#d955a4] -z-10"
+                className="absolute inset-0 rounded-full bg-[#ffed95] -z-10"
               />
-              <div className="w-10 h-10 rounded-full bg-[#d955a4] flex items-center justify-center border-4 border-white shadow-md text-white">
+              <div className="w-10 h-10 rounded-full bg-[#ffed95] flex items-center justify-center border-4 border-white shadow-md text-[#24101F]">
                 <Star className="w-4 h-4" />
               </div>
             </motion.div>
@@ -391,67 +377,41 @@ export default function OurStory() {
           >
             <div className="max-w-[200px] sm:max-w-[220px] md:max-w-[260px] lg:max-w-[340px]">
               <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white font-sans tracking-tight">
-                We’re Just Getting Started
+                A movement in the making
               </h4>
-              <p className="mt-3 text-sm md:text-base text-gray-600 dark:text-gray-300 font-sans leading-relaxed">
-                Today we continue creating pathways for future leaders in technology.
+              <p className="mt-3 text-sm md:text-base text-gray-600 dark:text-gray-300 font-sans leading-relaxed font-semibold">
+                Today, Girls Leading Tech connects thousands of girls across India and beyond, helping them grow, build, and lead.
               </p>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* 3. Visual Connector pointing down into Vision & Mission (Paper plane icon rotated diagonally up) */}
+        {/* Milestone 4 (Node: Center, with twirly arrow on the right) */}
         <motion.div
-          ref={connectorEndRef}
-          onViewportEnter={() => setVisibleSteps(prev => ({ ...prev, end: true }))}
+          onViewportEnter={() => setVisibleSteps(prev => ({ ...prev, step4: true }))}
           viewport={{ once: true, amount: 0.25 }}
-          className="w-full flex flex-col items-center justify-center pt-8 pb-4 gap-3 text-center select-none z-10 relative"
+          className="relative flex flex-col items-center justify-center min-h-[60px] mt-16 md:mt-24 z-10"
         >
-          <motion.div
-            initial={{ scale: 0, opacity: 0, y: 15 }}
-            animate={visibleSteps.end ? { scale: 1, opacity: 1, y: 0 } : { scale: 0, opacity: 0, y: 15 }}
-            transition={{ type: "spring", stiffness: 150, damping: 12, delay: 0.2 }}
-            className="text-[#d955a4] mb-1.5 flex items-center justify-center"
-          >
-            {/* Custom Folded Paper Plane SVG */}
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-14 h-14 md:w-20 md:h-20 text-[#d955a4]"
-              style={{ transform: "rotate(-15deg)" }}
+          {/* Circular Node with pulsing animation, centered */}
+          <div ref={node4Ref} className="relative z-20">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={visibleSteps.step4 ? { scale: 1 } : { scale: 0 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              className="relative"
             >
-              <path d="M22 2L2 12L11 13L22 2Z" fill="currentColor" fillOpacity="0.1" />
-              <path d="M22 2L11 13L15 22L22 2Z" fill="currentColor" fillOpacity="0.15" />
-              <path d="M11 13V19L14 16" />
-            </svg>
-          </motion.div>
-          
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={visibleSteps.end ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="rounded-full bg-[#d955a4]/8 px-9 py-4 md:px-12 md:py-5 border border-[#d955a4]/15 shadow-sm"
-          >
-            <p 
-              className="text-base md:text-lg font-bold text-[#d955a4] uppercase tracking-widest leading-none"
-              style={{ fontFamily: "'Satoshi', sans-serif" }}
-            >
-              Our Journey Continues With You
-            </p>
-          </motion.div>
-          
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={visibleSteps.end ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-xs md:text-sm text-gray-500 dark:text-gray-400 font-sans max-w-sm mt-1 leading-relaxed"
-          >
-            Together, we're building a future where every girl in tech can thrive.
-          </motion.p>
+              <motion.div
+                animate={{ scale: [1, 1.25, 1], opacity: [0.55, 0, 0.55] }}
+                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 rounded-full bg-[#ffed95] -z-10"
+              />
+              <div className="w-10 h-10 rounded-full bg-[#ffed95] flex items-center justify-center border-4 border-white shadow-md text-[#24101F]">
+                <Heart className="w-4 h-4 fill-[#24101F]" />
+              </div>
+            </motion.div>
+
+            
+          </div>
         </motion.div>
 
       </div>
