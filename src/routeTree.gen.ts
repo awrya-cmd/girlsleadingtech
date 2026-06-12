@@ -9,8 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VolunteerRouteImport } from './routes/volunteer'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as PartnerRouteImport } from './routes/partner'
+import { Route as MentorRouteImport } from './routes/mentor'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as InitiativesRouteImport } from './routes/initiatives'
 import { Route as ImpactRouteImport } from './routes/impact'
@@ -40,6 +43,11 @@ import { Route as EventsPastRouteImport } from './routes/events.past'
 import { Route as EventsOngoingRouteImport } from './routes/events.ongoing'
 import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
 
+const VolunteerRoute = VolunteerRouteImport.update({
+  id: '/volunteer',
+  path: '/volunteer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
@@ -48,6 +56,16 @@ const ResourcesRoute = ResourcesRouteImport.update({
 const PartnersRoute = PartnersRouteImport.update({
   id: '/partners',
   path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerRoute = PartnerRouteImport.update({
+  id: '/partner',
+  path: '/partner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorRoute = MentorRouteImport.update({
+  id: '/mentor',
+  path: '/mentor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JoinRoute = JoinRouteImport.update({
@@ -200,8 +218,11 @@ export interface FileRoutesByFullPath {
   '/impact': typeof ImpactRoute
   '/initiatives': typeof InitiativesRouteWithChildren
   '/join': typeof JoinRoute
+  '/mentor': typeof MentorRoute
+  '/partner': typeof PartnerRoute
   '/partners': typeof PartnersRoute
   '/resources': typeof ResourcesRouteWithChildren
+  '/volunteer': typeof VolunteerRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/ongoing': typeof EventsOngoingRoute
   '/events/past': typeof EventsPastRoute
@@ -232,7 +253,10 @@ export interface FileRoutesByTo {
   '/impact': typeof ImpactRoute
   '/initiatives': typeof InitiativesRouteWithChildren
   '/join': typeof JoinRoute
+  '/mentor': typeof MentorRoute
+  '/partner': typeof PartnerRoute
   '/partners': typeof PartnersRoute
+  '/volunteer': typeof VolunteerRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/ongoing': typeof EventsOngoingRoute
   '/events/past': typeof EventsPastRoute
@@ -264,8 +288,11 @@ export interface FileRoutesById {
   '/impact': typeof ImpactRoute
   '/initiatives': typeof InitiativesRouteWithChildren
   '/join': typeof JoinRoute
+  '/mentor': typeof MentorRoute
+  '/partner': typeof PartnerRoute
   '/partners': typeof PartnersRoute
   '/resources': typeof ResourcesRouteWithChildren
+  '/volunteer': typeof VolunteerRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/ongoing': typeof EventsOngoingRoute
   '/events/past': typeof EventsPastRoute
@@ -298,8 +325,11 @@ export interface FileRouteTypes {
     | '/impact'
     | '/initiatives'
     | '/join'
+    | '/mentor'
+    | '/partner'
     | '/partners'
     | '/resources'
+    | '/volunteer'
     | '/events/$eventId'
     | '/events/ongoing'
     | '/events/past'
@@ -330,7 +360,10 @@ export interface FileRouteTypes {
     | '/impact'
     | '/initiatives'
     | '/join'
+    | '/mentor'
+    | '/partner'
     | '/partners'
+    | '/volunteer'
     | '/events/$eventId'
     | '/events/ongoing'
     | '/events/past'
@@ -361,8 +394,11 @@ export interface FileRouteTypes {
     | '/impact'
     | '/initiatives'
     | '/join'
+    | '/mentor'
+    | '/partner'
     | '/partners'
     | '/resources'
+    | '/volunteer'
     | '/events/$eventId'
     | '/events/ongoing'
     | '/events/past'
@@ -394,12 +430,22 @@ export interface RootRouteChildren {
   ImpactRoute: typeof ImpactRoute
   InitiativesRoute: typeof InitiativesRouteWithChildren
   JoinRoute: typeof JoinRoute
+  MentorRoute: typeof MentorRoute
+  PartnerRoute: typeof PartnerRoute
   PartnersRoute: typeof PartnersRoute
   ResourcesRoute: typeof ResourcesRouteWithChildren
+  VolunteerRoute: typeof VolunteerRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/volunteer': {
+      id: '/volunteer'
+      path: '/volunteer'
+      fullPath: '/volunteer'
+      preLoaderRoute: typeof VolunteerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources': {
       id: '/resources'
       path: '/resources'
@@ -412,6 +458,20 @@ declare module '@tanstack/react-router' {
       path: '/partners'
       fullPath: '/partners'
       preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner': {
+      id: '/partner'
+      path: '/partner'
+      fullPath: '/partner'
+      preLoaderRoute: typeof PartnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentor': {
+      id: '/mentor'
+      path: '/mentor'
+      fullPath: '/mentor'
+      preLoaderRoute: typeof MentorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/join': {
@@ -691,8 +751,11 @@ const rootRouteChildren: RootRouteChildren = {
   ImpactRoute: ImpactRoute,
   InitiativesRoute: InitiativesRouteWithChildren,
   JoinRoute: JoinRoute,
+  MentorRoute: MentorRoute,
+  PartnerRoute: PartnerRoute,
   PartnersRoute: PartnersRoute,
   ResourcesRoute: ResourcesRouteWithChildren,
+  VolunteerRoute: VolunteerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
