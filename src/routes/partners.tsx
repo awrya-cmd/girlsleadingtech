@@ -144,7 +144,7 @@ function PartnersPage() {
               className="text-[#d955a4] hover:text-[#c44091] font-bold transition-colors duration-150 underline decoration-dotted underline-offset-4"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              partners@girlsleadingtech.org
+              girlsleadingtech@gmail.com
             </a>
           </div>
         </div>

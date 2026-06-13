@@ -498,7 +498,7 @@ function HomePage() {
                     href="mailto:hello@girlsleadingtech.org" 
                     className="text-[#d955a4] hover:underline font-bold transition-all duration-200"
                   >
-                    hello@girlsleadingtech.org
+                    girlsleadingtech@gmail.com
                   </a>
                 </p>
               </div>

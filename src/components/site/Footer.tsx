@@ -50,7 +50,7 @@ export function Footer() {
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* CARD 1: Brand Logo & About */}
           <div className="relative group/card h-full">
-            <div className="h-full rounded-[14px] border-2 border-black bg-[#fffdf9] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rotate-[0.5deg]">
+            <div className="h-full rounded-[14px] border-2 border-black bg-[#fffdf9] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
               {/* Smiley sticker overlapping */}
               <img
                 src={smiley}
@@ -103,13 +103,8 @@ export function Footer() {
 
           {/* CARD 2: Explore links */}
           <div className="relative group/card h-full">
-            <div className="h-full rounded-[14px] border-2 border-black bg-[#ffed95] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rotate-[-1deg]">
-              {/* Washi tape overlapping */}
-              <img
-                src={washiTape}
-                alt="Washi tape sticker"
-                className="absolute -top-6 right-10 w-24 rotate-[6deg] pointer-events-none z-10 select-none transition-transform group-hover/card:scale-105"
-              />
+            <div className="h-full rounded-[14px] border-2 border-black bg-[#ffed95] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+              
               <h4 className="font-['Press_Start_2P',monospace] text-sm uppercase tracking-wider text-black border-b-2 border-black pb-2 mb-4">
                 Explore
               </h4>
@@ -168,13 +163,8 @@ export function Footer() {
 
           {/* CARD 3: Programs links */}
           <div className="relative group/card h-full">
-            <div className="h-full rounded-[14px] border-2 border-black bg-[#D8B4E8] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rotate-[1.5deg]">
-              {/* Paper clip overlapping */}
-              <img
-                src={paperClip}
-                alt="Paper clip sticker"
-                className="absolute -top-10 right-6 w-16 rotate-[12deg] pointer-events-none z-10 select-none transition-transform group-hover/card:scale-110"
-              />
+            <div className="h-full rounded-[14px] border-2 border-black bg-[#D8B4E8] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+              
               <h4 className="font-['Press_Start_2P',monospace] text-sm uppercase tracking-wider text-black border-b-2 border-black pb-2 mb-4">
                 Programs
               </h4>
@@ -202,18 +192,9 @@ export function Footer() {
           {/* CARD 4: Get Involved & Peeking Mascot */}
           <div className="relative group/card h-full">
             {/* Mascot peaking out from behind the card (desktop only) */}
-            <img
-              src={mascotPresenting}
-              alt="GLT Mascot"
-              className="absolute -top-24 -left-12 w-28 pointer-events-none z-0 hidden lg:block select-none transition-transform group-hover/card:translate-y-[-4px]"
-            />
-            <div className="h-full rounded-[14px] border-2 border-black bg-[#ffc8e3] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rotate-[-1.5deg] relative z-10">
-              {/* Star sticker overlapping */}
-              <img
-                src={star}
-                alt="Star sticker"
-                className="absolute -top-7 -right-5 w-12 rotate-[15deg] pointer-events-none z-10 select-none transition-transform group-hover/card:scale-110"
-              />
+           
+            <div className="h-full rounded-[14px] border-2 border-black bg-[#ffc8e3] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] relative z-10">
+              
               <h4 className="font-['Press_Start_2P',monospace] text-sm uppercase tracking-wider text-black border-b-2 border-black pb-2 mb-4">
                 Get Involved
               </h4>
