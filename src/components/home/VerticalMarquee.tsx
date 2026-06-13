@@ -35,7 +35,7 @@ export default function VerticalMarquee({ images, direction, speed = 1.0 }: Vert
     const tick = () => {
       if (!el) return;
 
-      if (!isDown.current && !isInteracting) {
+        {
         if (direction === "up") {
           el.scrollTop += speed;
         } else {
@@ -58,60 +58,13 @@ export default function VerticalMarquee({ images, direction, speed = 1.0 }: Vert
     return () => cancelAnimationFrame(animationId);
   }, [isInteracting, direction, speed, images]);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    isDown.current = true;
-    setIsInteracting(true);
-    startY.current = e.pageY - (containerRef.current?.offsetTop || 0);
-    scrollTopVal.current = containerRef.current?.scrollTop || 0;
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDown.current || !containerRef.current) return;
-    e.preventDefault();
-    const y = e.pageY - containerRef.current.offsetTop;
-    const walk = (y - startY.current) * 1.5;
-    containerRef.current.scrollTop = scrollTopVal.current - walk;
-  };
-
-  const handleMouseUpOrLeave = () => {
-    isDown.current = false;
-    // Delay setting isInteracting to false so it doesn't immediately snap back
-    setTimeout(() => {
-      setIsInteracting(false);
-    }, 100);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    isDown.current = true;
-    setIsInteracting(true);
-    startY.current = e.touches[0].pageY - (containerRef.current?.offsetTop || 0);
-    scrollTopVal.current = containerRef.current?.scrollTop || 0;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDown.current || !containerRef.current) return;
-    const y = e.touches[0].pageY - containerRef.current.offsetTop;
-    const walk = (y - startY.current) * 1.5;
-    containerRef.current.scrollTop = scrollTopVal.current - walk;
-  };
+ 
 
   return (
-    <div
-      ref={containerRef}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUpOrLeave}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleMouseUpOrLeave}
-      onMouseEnter={() => setIsInteracting(true)}
-      onMouseLeave={() => {
-        handleMouseUpOrLeave();
-        setIsInteracting(false);
-      }}
-      className="h-full overflow-y-auto cursor-grab active:cursor-grabbing select-none flex flex-col gap-8 py-8 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
-      style={{ scrollBehavior: "auto" }}
-    >
+   <div
+  ref={containerRef}
+  className="h-full overflow-hidden select-none flex flex-col gap-8 py-8"
+>
       {marqueeItems.map((imgSrc, idx) => {
         // Vary heights slightly for an editorial look.
         // User requested smaller image sizes, so we adjust height classes downwards.
@@ -121,7 +74,7 @@ export default function VerticalMarquee({ images, direction, speed = 1.0 }: Vert
         return (
           <div
             key={idx}
-            className={`w-full ${heightModifier} flex-shrink-0 rounded-[24px] overflow-hidden shadow-soft transition-all duration-300 hover:scale-105 hover:-translate-y-1.5 hover:shadow-glow`}
+            className={`w-[85%] mx-auto ${heightModifier} flex-shrink-0 rounded-[20px] overflow-hidden shadow-soft transition-all duration-300 `}
           >
             <img
               src={imgSrc}

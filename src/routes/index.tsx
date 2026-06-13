@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import { motion, useScroll, useMotionValueEvent, MotionValue } from "motion/react";
+import { motion, useScroll, useMotionValueEvent, MotionValue, useInView } from "motion/react";
 import { useHydrated } from "@/hooks/use-hydrated";
 import { Marquee } from "@/components/site/Marquee";
 import FAQ from "@/components/site/FAQ";
@@ -23,6 +23,7 @@ import { Heart, Sparkle, Star } from "lucide-react";
 import VerticalMarquee from "@/components/home/VerticalMarquee";
 import joinUs from "@/assets/main-mascot/join-us.png"
 import GridBackground from "@/components/shared/GridBackground";
+import DotBackground from "@/components/shared/DotBackground"
 import SpeakersShowcase from "@/components/home/SpeakersShowcase";
 
 import gallery1 from "@/assets/gallery-1.webp";
@@ -240,7 +241,63 @@ function HomePage() {
       {/* OUR JOURNEY TIMELINE */}
       <OurJourney />
 
-      {/* WHY JOIN US — scrapbook cards */}
+     
+
+      {/* PICTURES SECTION */}
+      <section className="relative py-20 overflow-hidden">
+        <DotBackground />
+        
+        <div className="relative z-10 container mx-auto max-w-7xl px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[35%_1fr] gap-10 lg:gap-16 items-center">
+            
+            {/* TEXT COLUMN */}
+            <div className="flex flex-col justify-center text-left">
+              <p
+                className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#d955a4] font-bold"
+                style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                }}
+              >
+                COMMUNITY MOMENTS
+              </p>
+
+              <h2 className="font-sans text-4xl xl:text-5xl font-bold text-foreground leading-tight mt-4">
+                Celebrating every{" "}
+                <span
+                  className="mx-2 italic font-medium text-[#5b2b4a]"
+                  style={{
+                    fontFamily: "'times new roman', serif",
+                  }}
+                >
+                  step
+                </span>{" "}
+                forward.
+              </h2>
+
+              <p className="mt-4 text-base sm:text-lg md:text-l text-gray-700 leading-relax font-sans">
+                A glimpse at the colleges where GLT members lead chapters and hackathons.
+              </p>
+            </div>
+
+            {/* MARQUEES CONTAINER */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-[400px] md:h-[550px] overflow-hidden relative">
+              
+              {/* Marquee 1 (Upwards) */}
+              <div className="h-full overflow-hidden">
+                <VerticalMarquee images={galleryImages} direction="up" speed={1.2} />
+              </div>
+              
+              {/* Marquee 2 (Downwards) - hidden on mobile, visible on tablet and desktop */}
+              <div className="h-full overflow-hidden hidden md:block">
+                <VerticalMarquee images={galleryImages} direction="down" speed={0.8} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+       {/* WHY JOIN US — scrapbook cards */}
       <section ref={initiativesSectionRef} className="relative w-full py-16 md:py-24 overflow-hidden bg-[#fdf9f5]">
         <style>{`@import url('https://fonts.cdnfonts.com/css/satoshi');`}</style>
         <div className="relative w-full container mx-auto max-w-7xl px-6 flex flex-col justify-start gap-2 md:gap-3">
@@ -278,62 +335,6 @@ function HomePage() {
 
       
           <WhyJoinUs />
-        </div>
-      </section>
-
-      {/* PICTURES SECTION */}
-      <section className="relative py-20 overflow-hidden">
-        <GridBackground />
-        
-        <div className="relative z-10 container mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[35%_1fr] gap-10 lg:gap-16 items-center">
-            
-            {/* TEXT COLUMN */}
-            <div className="flex flex-col justify-center text-left">
-              <p
-                className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#d955a4] font-bold"
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                }}
-              >
-                COMMUNITY MOMENTS
-              </p>
-
-              <h2 className="font-sans text-4xl xl:text-5xl font-bold text-foreground leading-tight mt-4">
-                Celebrating every{" "}
-                <span
-                  className="mx-2 italic font-medium text-[#5b2b4a]"
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                  }}
-                >
-                  step
-                </span>{" "}
-                forward.
-              </h2>
-
-              <p className="mt-4 font-sans text-muted-foreground text-sm leading-relaxed test-center">
-                A glimpse at the colleges where GLT members lead chapters and hackathons.
-              </p>
-            </div>
-
-            {/* MARQUEES CONTAINER */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-[400px] md:h-[550px] overflow-hidden relative">
-              {/* Fade masks */}
-              <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
-              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-              
-              {/* Marquee 1 (Upwards) */}
-              <div className="h-full overflow-hidden">
-                <VerticalMarquee images={galleryImages} direction="up" speed={1.2} />
-              </div>
-              
-              {/* Marquee 2 (Downwards) - hidden on mobile, visible on tablet and desktop */}
-              <div className="h-full overflow-hidden hidden md:block">
-                <VerticalMarquee images={galleryImages} direction="down" speed={0.8} />
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -636,19 +637,23 @@ function HomePage() {
   );
 }
 
-function HomeInitiativesSectionShell({
-  animateBar,
-  scrollProgress,
-}: {
-  animateBar: boolean;
-  scrollProgress?: MotionValue<number>;
-}) {
+function HomeInitiativesSectionShell() {
+  const headingRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(headingRef, { once: true, amount: 0.1 });
+  const [animateBar, setAnimateBar] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      setAnimateBar(true);
+    }
+  }, [isInView]);
+
   return (
-    <section className="relative w-full md:min-h-[280vh] py-16 md:py-24 overflow-hidden">
+    <section className="relative w-full py-16 md:py-24 overflow-visible">
       <style>{`@import url('https://fonts.cdnfonts.com/css/satoshi');`}</style>
-      <div className="relative md:sticky md:top-[10vh] md:h-fit w-full container mx-auto max-w-7xl px-6 flex flex-col justify-start gap-2 md:gap-3">
+      <div className="relative w-full container mx-auto max-w-7xl px-6 flex flex-col justify-start gap-2 md:gap-3">
         <div className="relative w-full overflow-visible select-none py-0 md:py-1">
-          <div className="relative inline-block overflow-visible pl-2 md:pl-4 mb-4 md:mb-6">
+          <div ref={headingRef} className="relative inline-block overflow-visible pl-2 md:pl-4 mb-4 md:mb-6">
             <motion.div
               initial={{ scaleX: 0 }}
               animate={animateBar ? { scaleX: 1 } : { scaleX: 0 }}
@@ -667,7 +672,7 @@ function HomeInitiativesSectionShell({
           </div>
         </div>
 
-        <InitiativesScrapbook scrollProgress={scrollProgress} />
+        <InitiativesScrapbook />
 
         <div className="relative z-[100] mt-6 md:mt-2 flex justify-center items-center w-full px-4">
           <Link
@@ -699,36 +704,9 @@ function HomeInitiativesSectionShell({
 }
 
 function HomeInitiativesStaticSection() {
-  return <HomeInitiativesSectionShell animateBar={false} />;
+  return <HomeInitiativesSectionShell />;
 }
 
 function HomeInitiativesScrollSection() {
-  const initiativesSectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: initiativesScrollYProgress } = useScroll({
-    target: initiativesSectionRef,
-    offset: ["start start", "end end"],
-  });
-
-  const [animateBar, setAnimateBar] = useState(false);
-
-  useMotionValueEvent(initiativesScrollYProgress, "change", (latest) => {
-    if (latest > 0.01 && !animateBar) {
-      setAnimateBar(true);
-    }
-  });
-
-  useEffect(() => {
-    if (initiativesScrollYProgress.get() > 0.01) {
-      setAnimateBar(true);
-    }
-  }, [initiativesScrollYProgress]);
-
-  return (
-    <div ref={initiativesSectionRef}>
-      <HomeInitiativesSectionShell
-        animateBar={animateBar}
-        scrollProgress={initiativesScrollYProgress}
-      />
-    </div>
-  );
+  return <HomeInitiativesSectionShell />;
 }

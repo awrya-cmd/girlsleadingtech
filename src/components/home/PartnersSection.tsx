@@ -26,8 +26,15 @@ export function PartnersSection({
   ];
 
   const filteredList = allPartners.filter((p: any) => popularSlugs.includes(p.slug));
+
+  const firstRow = filteredList.slice(0, Math.ceil(filteredList.length / 2));
+  const secondRow = filteredList.slice(Math.ceil(filteredList.length / 2));
+
+  const row1 = [...firstRow, ...firstRow, ...firstRow];
+  const row2 = [...secondRow, ...secondRow, ...secondRow];
+
   return (
-    <section className="relative py-20 bg-[#FFF2B2]">
+    <section className="relative py-20 bg-transparent">
       
       {/* HEADER (NEW TYPOGRAPHY STYLE) */}
       <div className="container mx-auto max-w-6xl px-6">
@@ -55,10 +62,10 @@ export function PartnersSection({
         </div>
       </div>
 
-      {/* MARQUEE (ONE LINE ONLY) */}
-      <div className="mt-14">
+      {/* MARQUEES */}
+      <div className="mt-14 flex flex-col gap-6">
         <Marquee reverse={false}>
-          {filteredList.map((p: any) => {
+          {row1.map((p: any, idx: number) => {
             const inner = (
               <div className="flex h-24 w-44 shrink-0 items-center justify-center glass p-4 shadow-soft transition hover:-translate-y-1 hover:shadow-soft">
                 {p.logo ? (
@@ -77,7 +84,7 @@ export function PartnersSection({
 
             return p.website ? (
               <a
-                key={p.id}
+                key={`${p.id}-r1-${idx}`}
                 href={p.website}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -86,7 +93,43 @@ export function PartnersSection({
                 {inner}
               </a>
             ) : (
-              <div key={p.id} title={p.name}>
+              <div key={`${p.id}-r1-${idx}`} title={p.name}>
+                {inner}
+              </div>
+            );
+          })}
+        </Marquee>
+
+        <Marquee reverse={true}>
+          {row2.map((p: any, idx: number) => {
+            const inner = (
+              <div className="flex h-24 w-44 shrink-0 items-center justify-center glass p-4 shadow-soft transition hover:-translate-y-1 hover:shadow-soft">
+                {p.logo ? (
+                  <img
+                    src={p.logo}
+                    alt={p.name}
+                    className="max-h-14 max-w-[80%] object-contain"
+                  />
+                ) : (
+                  <span className="text-xs font-display text-foreground/70">
+                    {p.name}
+                  </span>
+                )}
+              </div>
+            );
+
+            return p.website ? (
+              <a
+                key={`${p.id}-r2-${idx}`}
+                href={p.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={p.name}
+              >
+                {inner}
+              </a>
+            ) : (
+              <div key={`${p.id}-r2-${idx}`} title={p.name}>
                 {inner}
               </div>
             );

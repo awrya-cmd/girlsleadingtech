@@ -5,11 +5,13 @@ import { GlassCard } from "@/components/site/GlassCard";
 import { initiatives } from "@/data/initiatives";
 import { ArrowRight } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { motion, useMotionValueEvent, MotionValue, useMotionValue } from "motion/react";
+
 import star from "@/assets/stickers/star.png"
 import washiTape from "@/assets/stickers/washi-tape.png"
 import paperClip from "@/assets/stickers/paper-clip.png"
 import smiley from "@/assets/stickers/smiley.png"
+
+import { motion, useScroll, useTransform, MotionValue } from "motion/react";
 
 export const Route = createFileRoute("/initiatives")({
   head: () => ({ meta: [{ title: "Initiatives — Girls Leading Tech" }, { name: "description", content: "Programs and initiatives by Girls Leading Tech." }] }),
@@ -37,7 +39,7 @@ function InitiativesPage() {
           {initiatives.map((i) => (
             <Link key={i.slug} to="/initiatives/$slug" params={{ slug: i.slug }} className="group block">
               <GlassCard glow className="relative h-full overflow-hidden p-7">
-                <div className={`absolute -right-10 -top-10 h-44 w-44 rounded-full bg-gradient-to-br ${colorMap[i.color]} blur-2xl`} />
+
                 <div className="relative">
                   <h3 className="font-display text-2xl">{i.name}</h3>
                   <p className="mt-2 text-sm font-medium text-primary">{i.tagline}</p>
@@ -61,7 +63,7 @@ function InitiativesPage() {
 "use client";
 
 const SCRAPBOOK_SLUGS = [
-  "empower-her",
+  "empowerher",
   "i2p-fellowship",
   "hack-aura",
   "code-at-christmas",
@@ -172,263 +174,210 @@ const cardStyles: Record<
   },
 };
 
-// Responsive left positions to spread wide on desktop
-const desktopPositions = [
-  "left-[0%]",
-  "left-[22%] md:left-[17%] lg:left-[20%]",
-  "left-[44%] md:left-[34%] lg:left-[40%]",
-  "left-[66%] md:left-[51%] lg:left-[60%]",
+
+
+// Floating sparkle doodles for background
+function Sparkle({ style }: { style: React.CSSProperties }) {
+  return (
+    <div
+      style={style}
+      className="absolute pointer-events-none select-none text-[#d955a4]/70 z-0"
+    >
+      ✦
+    </div>
+  );
+}
+
+const SPARKLE_POSITIONS: React.CSSProperties[] = [
+  // Left side / middle
+  { top: "10%",  left: "22%",  fontSize: "2.8rem" },
+  { top: "52%",  left: "20%",  fontSize: "2.6rem" },
+  { top: "18%",  left: "6%",   fontSize: "2.4rem" },
+  { top: "82%",  left: "8%",   fontSize: "2.2rem" },
+  
+  // Right side / middle
+  { top: "26%",  right: "23%", fontSize: "2.8rem" },
+  { top: "68%",  right: "21%", fontSize: "2.6rem" },
+  { top: "42%",  right: "6%",  fontSize: "3.0rem" },
+  { top: "86%",  right: "7%",  fontSize: "2.4rem" },
 ];
 
-export function InitiativesScrapbook({ scrollProgress }: { scrollProgress?: MotionValue<number> }) {
-  const fallbackProgress = useMotionValue(0);
-  const activeScrollY = scrollProgress ?? fallbackProgress;
-
-  const [visibleCount, setVisibleCount] = useState(0);
-  const [activeIdx, setActiveIdx] = useState(3);
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-
-  const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const lastScrollY = useRef(0);
-
-  const cards = SCRAPBOOK_SLUGS
-    .map((slug) => initiatives.find((i) => i.slug === slug || i.slug === slug.replace("-", "")))
-    .filter(Boolean) as typeof initiatives;
-
-  useMotionValueEvent(activeScrollY, "change", (latest) => {
-    // 1. Detect scroll direction
-    const isScrollingDown = latest > lastScrollY.current;
-    lastScrollY.current = latest;
-
-    // 2. Temporarily disable hover states to prevent visual lag/jumps
-    setIsScrolling(true);
-    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    scrollTimeoutRef.current = setTimeout(() => {
-      setIsScrolling(false);
-    }, 150);
-
-    // 3. Determine visible cards count based on scroll direction
-    let nextVisible = 0;
-    if (isScrollingDown) {
-      // Down scroll: Space thresholds out to prevent cards triggering together
-      if (latest >= 0.82) {
-        nextVisible = 4;
-      } else if (latest >= 0.62) {
-        nextVisible = 3;
-      } else if (latest >= 0.40) {
-        nextVisible = 2;
-      } else if (latest >= 0.18) {
-        nextVisible = 1;
-      } else {
-        nextVisible = 0;
-      }
-    } else {
-      // Up scroll: Exact reverse sequence thresholds
-      if (latest >= 0.80) {
-        nextVisible = 4;
-      } else if (latest >= 0.60) {
-        nextVisible = 3;
-      } else if (latest >= 0.40) {
-        nextVisible = 2;
-      } else if (latest >= 0.20) {
-        nextVisible = 1;
-      } else {
-        nextVisible = 0;
-      }
-    }
-
-    setVisibleCount(nextVisible);
-    setActiveIdx(Math.max(0, nextVisible - 1));
-  });
-
-  // Fallback for initial render / non-scroll states
-  useEffect(() => {
-    const val = activeScrollY.get();
-    let nextVisible = 0;
-    if (val >= 0.80) {
-      nextVisible = 4;
-    } else if (val >= 0.60) {
-      nextVisible = 3;
-    } else if (val >= 0.40) {
-      nextVisible = 2;
-    } else if (val >= 0.20) {
-      nextVisible = 1;
-    } else {
-      nextVisible = 0;
-    }
-    setVisibleCount(nextVisible);
-    setActiveIdx(Math.max(0, nextVisible - 1));
-  }, [cards.length, activeScrollY]);
-
-  useEffect(() => {
-    return () => {
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    };
-  }, []);
+// ── Single card (Desktop) ───────────────────────────────────────────────────
+function ScrapbookCard({
+  initiative,
+  isWide = false,
+}: {
+  initiative: (typeof initiatives)[number];
+  isWide?: boolean;
+}) {
+  const s = cardStyles[initiative.slug];
 
   return (
-    <div className="relative w-full">
-      {/* DESKTOP */}
-      <div className="relative hidden md:block w-full h-[270px] md:h-[295px] lg:h-[335px] md:left-[5%] lg:left-[3%] xl:left-[2%]">
-        {cards.map((initiative, idx) => {
-          const s = cardStyles[initiative.slug];
-          const isVisible = idx < visibleCount;
+    <div
+      className="w-full h-[210px] lg:h-[220px]"
+    >
+      <Link
+        to="/initiatives/$slug"
+        params={{ slug: initiative.slug }}
+        className="block group h-full"
+      >
+        <div className="w-full h-full rounded-none overflow-visible bg-white shadow-xl ring-1 ring-black/5 flex flex-col relative font-sans">
+          {/* Desktop Stickers */}
+          <div className="hidden md:block">
+            {s.stickers}
+          </div>
+          <div className={`h-4 w-full ${s.bar}`} />
 
-          // Staggered forward when entering, staggered reverse when exiting
-          const delay = isVisible ? idx * 150 : (3 - idx) * 150;
+          <div className="p-4 pb-3.5 flex-1 flex flex-col justify-between">
+            <div className="flex flex-col gap-1.5 text-left">
+              <h3 className="text-xl lg:text-2xl font-black uppercase leading-tight tracking-tight text-gray-900 pr-12 font-['Satoshi']">
+                {initiative.name}
+              </h3>
 
-          const isHovered = !isScrolling && idx === hoveredIdx;
+              <p className={`font-['Montserrat'] text-[10px] font-extrabold tracking-[0.02em] uppercase ${s.tagline}`}>
+                {initiative.tagline}
+              </p>
 
-          return (
-            <div
-              key={initiative.slug}
-              onClick={() => setActiveIdx(idx)}
-              onMouseEnter={() => setHoveredIdx(idx)}
-              onMouseLeave={() => setHoveredIdx(null)}
-              className={`
-                absolute top-0
-                w-[240px] md:w-[270px] lg:w-[360px]
-                h-[240px] md:h-[260px] lg:h-[290px]
-                cursor-pointer
-                will-change-[transform,opacity]
-                transition duration-800 ease-out
-                ${desktopPositions[idx]}
-                ${s.rotate}
-                ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-28"
-                }
-                ${
-                  isHovered
-                    ? "scale-[1.03] shadow-2xl"
-                    : "scale-100 shadow-xl"
-                }
-              `}
-              style={{
-                zIndex: isHovered ? 50 : (idx + 1) * 10,
-                transitionDelay: `${delay}ms`,
-              }}
-            >
-              <div className="w-full h-full rounded-none overflow-visible bg-white ring-1 ring-black/5 flex flex-col">
-                {s.stickers}
-                <div className={`h-5 w-full ${s.bar}`} />
-
-                <div className="p-6 flex flex-col h-[calc(100%-8px)] relative justify-between">
-        
-
-                  <div>
-                    {/* title */}
-                    <h3 className="text-xl md:text-2xl lg:text-3xl font-black uppercase leading-tight tracking-tight text-gray-900 pr-12 font-['Satoshi']">
-                      {initiative.name}
-                    </h3>
-
-                    {/* tagline */}
-                    
-                    <p className={`font-['Montserrat'] mt-1 text-[10px] font-extrabold tracking-[0.01em] ${s.tagline}`}>
-                      {initiative.tagline}
-                    </p>
-
-                    {/* desc */}
-                    <p className="mt-4 md:text-[9px] text-black leading-[1.9] line-clamp-3 max-w-[92%]"
-                    style={{
-                    fontFamily: "'Press Start 2P', monospace",
-                    fontSize: "clamp(0.7rem, 1.0vw, 1.1rem)",
-                    }}
-                    >
-                      {initiative.description}
-                    </p>
-                  </div>
-
-                  {/* CTA */}
-                  <Link
-                    to="/initiatives/$slug"
-                    params={{ slug: initiative.slug }}
-                    onClick={(e) => e.stopPropagation()}
-                    className={`
-                      mt-auto inline-flex items-center gap-1.5
-                      self-start rounded-full
-                      ${s.cta}
-                      px-4 py-2
-                      text-xs font-bold text-white
-                      transition hover:scale-105
-                    `}
-                  >
-                    Explore
-                    <ArrowRight className="h-3 w-3" />
-                  </Link>
-                </div>
-              </div>
+              <p
+                className={`mt-1.5 text-black leading-relaxed max-w-[92%] ${isWide ? "line-clamp-3" : "line-clamp-2"}`}
+                style={{
+                  fontFamily: "'Press Start 2P', monospace",
+                  fontSize: "clamp(0.68rem, 0.78vw, 0.85rem)",
+                }}
+              >
+                {initiative.description}
+              </p>
             </div>
-          );
-        })}
-      </div>
 
-      {/* MOBILE */}
-      <div className="flex md:hidden flex-col gap-6 px-4">
-        {cards.map((initiative) => {
-          const s = cardStyles[initiative.slug];
-
-          return (
             <div
-              key={initiative.slug}
-              className="relative rounded-none overflow-visible bg-white shadow-lg ring-1 ring-black/5 flex flex-col"
+              className={`mt-3 inline-flex items-center gap-1.5 self-start rounded-full ${s.cta} px-3.5 py-1.5 text-xs font-bold text-white transition group-hover:scale-105`}
             >
-              {s.mobileStickers}
-              <div className={`h-5 w-full ${s.bar}`} />
+              Explore
+              <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+            </div>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+}
 
-              <div className="p-6 flex flex-col relative">
+// ── Single card (Mobile) ────────────────────────────────────────────────────
+function ScrapbookCardMobile({
+  initiative,
+}: {
+  initiative: (typeof initiatives)[number];
+}) {
+  const s = cardStyles[initiative.slug];
+
+  return (
+    <div className="w-full max-w-[340px] h-[310px] rounded-none overflow-visible bg-white shadow-xl ring-1 ring-black/5 flex flex-col relative font-sans">
+      {/* Mobile Stickers */}
+      <div>
+        {s.mobileStickers}
+      </div>
+      <div className={`h-5 w-full ${s.bar}`} />
+
+      <div className="p-6 flex-1 flex flex-col justify-between">
+        <div className="flex flex-col gap-2 text-left">
+          <h3 className="text-2xl font-black uppercase leading-tight tracking-tight text-gray-900 pr-12 font-['Satoshi']">
+            {initiative.name}
+          </h3>
+
+          <p className={`font-['Montserrat'] text-[11px] font-extrabold tracking-[0.01em] ${s.tagline}`}>
+            {initiative.tagline}
+          </p>
+
+          <p className="mt-3 text-sm text-gray-600 leading-relaxed line-clamp-4">
+            {initiative.description}
+          </p>
+        </div>
+
+        <div
+          className={`mt-4 inline-flex items-center gap-1.5 self-start rounded-full ${s.cta} px-4 py-2 text-xs font-bold text-white`}
+        >
+          Explore
+          <ArrowRight className="h-3.5 w-3.5" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Main export ───────────────────────────────────────────────────────────────
+export function InitiativesScrapbook() {
+  const cards = SCRAPBOOK_SLUGS
+    .map((slug) => initiatives.find((i) => i.slug === slug))
+    .filter(Boolean) as (typeof initiatives);
+
+  return (
+    <>
+      {/* Desktop Layout: Grid layout with varied card sizes sliding in on scroll */}
+      <div className="hidden md:block relative w-full max-w-6xl mx-auto px-6 py-8">
+        <div className="grid grid-cols-12 gap-8 w-full">
           
+          {/* Card 1: Wide (col-span-7) */}
+          <motion.div 
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ type: "spring", stiffness: 60, damping: 15 }}
+            className="col-span-7"
+          >
+            <ScrapbookCard initiative={cards[0]} isWide={true} />
+          </motion.div>
 
-                <h3 className="text-xl font-black uppercase leading-tight text-gray-900 pr-12">
-                  {initiative.name}
-                </h3>
+          {/* Card 2: Narrow (col-span-5) */}
+          {cards[1] && (
+            <motion.div 
+              initial={{ x: 100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ type: "spring", stiffness: 60, damping: 15 }}
+              className="col-span-5"
+            >
+              <ScrapbookCard initiative={cards[1]} isWide={false} />
+            </motion.div>
+          )}
 
-                <p className={`mt-1 text-[10px] font-black uppercase tracking-[0.2em] ${s.tagline}`}>
-                  {initiative.tagline}
-                </p>
+          {/* Card 3: Narrow (col-span-5) */}
+          {cards[2] && (
+            <motion.div 
+              initial={{ x: -100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ type: "spring", stiffness: 60, damping: 15 }}
+              className="col-span-5"
+            >
+              <ScrapbookCard initiative={cards[2]} isWide={false} />
+            </motion.div>
+          )}
 
-                <p className="mt-3 text-sm text-gray-500 leading-relaxed">
-                  {initiative.description}
-                </p>
+          {/* Card 4: Wide (col-span-7) */}
+          {cards[3] && (
+            <motion.div 
+              initial={{ x: 100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ type: "spring", stiffness: 60, damping: 15 }}
+              className="col-span-7"
+            >
+              <ScrapbookCard initiative={cards[3]} isWide={true} />
+            </motion.div>
+          )}
 
-                <Link
-                  to="/initiatives/$slug"
-                  params={{ slug: initiative.slug }}
-                  className={`
-                    mt-4 inline-flex items-center gap-1.5
-                    rounded-full ${s.cta}
-                    px-4 py-2 text-xs font-bold text-white
-                    self-start transition hover:scale-105
-                  `}
-                >
-                  Explore
-                  <ArrowRight className="h-3 w-3" />
-                </Link>
-              </div>
-            </div>
-          );
-        })}
+        </div>
       </div>
 
-      {/* dots */}
-      <div className="mt-4 hidden md:flex justify-start gap-2 pl-2">
-        {cards.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setActiveIdx(idx)}
-            className={`
-              h-2 rounded-full transition-all duration-300
-              ${
-                idx === activeIdx
-                  ? "w-7 bg-primary"
-                  : "w-2 bg-primary/25"
-              }
-            `}
+      {/* Mobile Layout: Clean vertical card list */}
+      <div className="md:hidden flex flex-col items-center gap-8 w-full py-8">
+        {cards.map((initiative) => (
+          <ScrapbookCardMobile
+            key={initiative.slug}
+            initiative={initiative}
           />
         ))}
       </div>
-    </div>
+    </>
   );
 }
