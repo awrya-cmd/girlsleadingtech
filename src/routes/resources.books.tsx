@@ -227,6 +227,15 @@ function BooksPage() {
                 className="group relative overflow-hidden rounded-[20px] bg-[#fffdf9]/95 border-2 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:-translate-x-0.5 hover:shadow-[8px_8px_0px_0px_#d955a4] hover:bg-[#fffdf9] flex flex-col justify-between"
               >
                 <div>
+                  {book.image && (
+                    <img
+                      src={book.image}
+                      alt={book.title}
+                      loading="lazy"
+                      onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                      className="mb-4 h-44 w-full object-cover rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                    />
+                  )}
                   {book.category && (
                     <span className="inline-block rounded-full bg-pink-100 text-pink-700 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">
                       {book.category}
