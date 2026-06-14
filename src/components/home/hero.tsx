@@ -308,7 +308,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 flex flex-col items-center max-w-[1400]px">
+      <div className="relative z-10 flex flex-col items-center max-w-[1400]px pt-10 sm:pt-14 md:pt-18 lg:pt-24">
         {/* HERO TEXT */}
         <HeroText />
 
@@ -384,7 +384,7 @@ export default function Hero() {
               <div className="text-2xl text-black font-black">
                 {s.value}{s.suffix}
               </div>
-              <div className="text-xs uppercase tracking-widest font-black text-muted-foreground" style={{ color: PINK }}>
+              <div className="text-xs uppercase tracking-widest font-black text-muted-foreground" style={{ color: "#d955a4" }}>
                 {s.label}
               </div>
             </div>

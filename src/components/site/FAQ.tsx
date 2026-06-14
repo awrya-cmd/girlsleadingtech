@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { SectionHeading } from "./SectionHeading";
+
 
 const faqs = [
   {
@@ -43,14 +43,26 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative py-24">
+    <section id="faq" className="relative pt-4 pb-12 md:pb-16">
       <div className="container mx-auto max-w-4xl px-6">
-        <SectionHeading
-          eyebrow="FAQ"
-          title="Frequently Asked Questions"
-          description="Find answers to common questions about Girls Leading Tech."
-          className="mb-14"
-        />
+        <div className="text-center mb-8">
+          <p
+            className="text-xs md:text-lg uppercase tracking-[0.3em] text-[#d955a4] font-bold"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            FAQ
+          </p>
+
+          <h2 className="font-sans text-4xl md:text-5xl font-bold text-foreground leading-tight mt-4">
+            Frequently{" "}
+            <span
+              className="mx-2 italic font-medium text-[#5b2b4a]"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Asked Questions.
+            </span>
+          </h2>
+        </div>
 
         <div className="space-y-4">
           {faqs.map((faq, index) => {
@@ -61,7 +73,7 @@ export default function FAQ() {
                 className="glass rounded-2xl overflow-hidden shadow-soft transition-all duration-300 border border-border/50 hover:border-primary/30"
               >
                 <button
-                  className="w-full p-6 text-left flex justify-between items-center font-medium text-foreground hover:text-primary transition-colors focus:outline-none"
+                  className="w-full py-4 px-6 text-left flex justify-between items-center font-medium text-foreground hover:text-primary transition-colors focus:outline-none"
                   onClick={() => toggleFAQ(index)}
                   aria-expanded={isOpen}
                 >
@@ -78,7 +90,7 @@ export default function FAQ() {
 
                 <div
                   className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen
-                    ? "max-h-[300px] opacity-100 pb-6 px-6"
+                    ? "max-h-[300px] opacity-100 pb-4 px-6"
                     : "max-h-0 opacity-0 pointer-events-none"
                     }`}
                 >

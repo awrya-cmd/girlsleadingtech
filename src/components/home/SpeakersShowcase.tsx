@@ -81,17 +81,14 @@ function SpeakerShowcaseCard({ speaker, delay }: SpeakerShowcaseCardProps) {
 
 export default function SpeakersShowcase() {
   // Explicitly list the 5 speakers in their exact display order (replacing Ramesh, Shilpi, Disha)
-  const featuredIds = ["s17", "s103", "s44", "s46", "s20"];
+  const featuredIds = ["s17", "s103", "s44", "s46"];
   const displaySpeakers = featuredIds
     .map((id) => speakers.find((s) => s.id === id))
     .filter((s): s is typeof speakers[0] => !!s);
 
-  const row1 = displaySpeakers.slice(0, 3);
-  const row2 = displaySpeakers.slice(3, 5);
 
   return (
-    <div className="container mx-auto max-w-6xl px-6 flex flex-col items-center mt-0
-      ">
+    <div className="container mx-auto max-w-6xl px-6 flex flex-col items-center justify-center -mt-10 md:-mt-16 lg:-mt-24 py-4 md:py-8 select-none">
 
       {/* SECTION TITLE */}
       <div className="mb-10 md:mb-14 text-center">
@@ -117,63 +114,49 @@ export default function SpeakersShowcase() {
         </h2>
       </div>
 
-      {/* DESKTOP & TABLET LAYOUT: Row 1 = 3, Row 2 = 2 */}
-      <div className="hidden md:flex w-full flex-col items-center gap-6 sm:gap-8 md:gap-12 select-none">
-        {/* Row 1: 3 Speakers */}
-        <div className="flex flex-row justify-center items-stretch gap-[2.5vw] md:gap-8 w-full max-w-5xl">
-          {row1.map((s, idx) => (
-            <div key={s.id} className="w-[26vw] max-w-[260px] min-w-[90px]">
+      {/* DESKTOP & TABLET LAYOUT: Single Row of 4 */}
+        <div className="hidden md:flex justify-center items-stretch gap-6 lg:gap-8 max-w-5xl select-none">
+          {displaySpeakers.map((s, idx) => (
+            <div
+              key={s.id}
+              className="w-[20vw] max-w-[220px] min-w-[140px]"
+            >
               <SpeakerShowcaseCard speaker={s} delay={idx} />
             </div>
           ))}
         </div>
 
-        {/* Row 2: 2 Speakers */}
-        <div className="flex flex-row justify-center items-stretch gap-[2.5vw] md:gap-8 w-full max-w-5xl">
-          {row2.map((s, idx) => (
-            <div key={s.id} className="w-[26vw] max-w-[260px] min-w-[90px]">
-              <SpeakerShowcaseCard speaker={s} delay={idx + 3} />
+     {/* MOBILE LAYOUT: 2 × 2 */}
+        <div className="flex md:hidden w-full flex-col items-center gap-5 select-none">
+          {/* Row 1 */}
+          <div className="flex justify-center gap-4 w-full px-4">
+            <div className="w-[38vw] max-w-[140px] min-w-[90px]">
+              <SpeakerShowcaseCard speaker={displaySpeakers[0]} delay={0} />
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* MOBILE LAYOUT: Row 1 = 2, Row 2 = 2, Row 3 = 1 centered underneath */}
-      <div className="flex md:hidden w-full flex-col items-center gap-6 select-none">
-        {/* Row 1: 2 Speakers */}
-        <div className="flex flex-row justify-center items-stretch gap-4 w-full px-4">
-          <div className="w-[42vw] max-w-[160px] min-w-[100px]">
-            <SpeakerShowcaseCard speaker={displaySpeakers[0]} delay={0} />
+            <div className="w-[38vw] max-w-[140px] min-w-[90px]">
+              <SpeakerShowcaseCard speaker={displaySpeakers[1]} delay={1} />
+            </div>
           </div>
-          <div className="w-[42vw] max-w-[160px] min-w-[100px]">
-            <SpeakerShowcaseCard speaker={displaySpeakers[1]} delay={1} />
-          </div>
-        </div>
 
-        {/* Row 2: 2 Speakers */}
-        <div className="flex flex-row justify-center items-stretch gap-4 w-full px-4">
-          <div className="w-[42vw] max-w-[160px] min-w-[100px]">
-            <SpeakerShowcaseCard speaker={displaySpeakers[2]} delay={2} />
-          </div>
-          <div className="w-[42vw] max-w-[160px] min-w-[100px]">
-            <SpeakerShowcaseCard speaker={displaySpeakers[3]} delay={3} />
+          {/* Row 2 */}
+          <div className="flex justify-center gap-4 w-full px-4">
+            <div className="w-[38vw] max-w-[140px] min-w-[90px]">
+              <SpeakerShowcaseCard speaker={displaySpeakers[2]} delay={2} />
+            </div>
+
+            <div className="w-[38vw] max-w-[140px] min-w-[90px]">
+              <SpeakerShowcaseCard speaker={displaySpeakers[3]} delay={3} />
+            </div>
           </div>
         </div>
 
-        {/* Row 3: 1 Speaker centered */}
-        <div className="flex flex-row justify-center items-stretch gap-4 w-full px-4">
-          <div className="w-[42vw] max-w-[160px] min-w-[100px]">
-            <SpeakerShowcaseCard speaker={displaySpeakers[4]} delay={4} />
-          </div>
-        </div>
-      </div>
-
-      {/* SEE MORE SPEAKERS BUTTON */}
-<div className="relative z-[100] mt-10 md:mt-14 flex justify-center items-center w-full px-4">
-  <Link
-    to="/humans"
-    className="relative inline-block z-[100] transition-transform duration-200 hover:scale-105 active:scale-95 cursor-pointer"
-  >
+            {/* SEE MORE SPEAKERS BUTTON */}
+      <div className="relative z-[100] mt-8 md:mt-10 flex justify-center items-center w-full px-4">
+        <Link
+          to="/humans"
+          className="relative inline-block z-[100] transition-transform duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+        >
     <img
       src={pixelBtn}
       alt="See More Speakers"
