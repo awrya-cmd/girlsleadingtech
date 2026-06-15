@@ -49,12 +49,21 @@ export default function MemberProfileCard({
 
         {/* Foreground Image Panel (Square, sharp corners, no border radius, hidden overflow) */}
         <div className="relative w-full h-full bg-white dark:bg-zinc-950 border border-border/10 overflow-hidden shadow-sm md:group-hover:shadow-md transition-shadow duration-300">
+          {/* Background image copy — prevents blank edges when foreground zooms */}
+          {image && (
+            <img
+              src={image}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover scale-110 blur-sm opacity-60 pointer-events-none select-none"
+            />
+          )}
           {image ? (
             <img
               src={image}
               alt={name}
               loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-105"
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center font-display text-4xl text-[#d955a4]/30 bg-gradient-to-br from-[#d955a4]/10 to-[#5b2b4a]/10">

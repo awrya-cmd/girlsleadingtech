@@ -122,6 +122,7 @@ import img_contrib_ragini_pandey from "@/assets/contributors/ragini-pandey.jpg";
 import img_contrib_simran_parween from "@/assets/contributors/simran-parween.jpg";
 import img_contrib_swagita_parida from "@/assets/contributors/swagita-parida.jpg";
 import img_contrib_vanshika_chauhan from "@/assets/contributors/vanshika-chauhan.jpg";
+import img_mentor_sara_kapoor from "@/assets/contributors/Sara-Kapoor.jpg";
 import img_team_aditi_madhukar from "@/assets/team/aditi-madhukar.jpeg";
 import img_team_adyasha_das from "@/assets/contributors/adyasha-das.jpg";
 import img_team_ananya_agarwal from "@/assets/team/ananya-agarwal.jpg";
@@ -346,7 +347,7 @@ export const mentors: Mentor[] = [
   { id: "m3", name: "Anjali Mehra", designation: "Principal SDE", company: "Amazon" },
   { id: "m4", name: "Pooja Sinha", designation: "Founder & CEO", company: "BloomTech" },
   { id: "m5", name: "Devika Nair", designation: "Staff ML", company: "Meta" },
-  { id: "m6", name: "Sara Kapoor", designation: "Engineering Manager", company: "Shopify" },
+  { id: "m6", name: "Sara Kapoor", designation: "Engineering Manager", company: "Shopify", image: img_mentor_sara_kapoor },
 ];
 
 export const contributors: TeamMember[] = [
