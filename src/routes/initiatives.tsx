@@ -6,10 +6,30 @@ import { initiatives } from "@/data/initiatives";
 import { ArrowRight } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
-import star from "@/assets/stickers/star.png"
-import washiTape from "@/assets/stickers/washi-tape.png"
-import paperClip from "@/assets/stickers/paper-clip.png"
-import smiley from "@/assets/stickers/smiley.png"
+import star from "@/assets/stickers/star.png";
+import washiTape from "@/assets/stickers/washi-tape.png";
+import paperClip from "@/assets/stickers/paper-clip.png";
+import smiley from "@/assets/stickers/smiley.png";
+import book from "@/assets/stickers/book.png";
+import crown from "@/assets/stickers/crown.png";
+import heart from "@/assets/stickers/heart.png";
+import trophy from "@/assets/stickers/trophy.png";
+import briefcase from "@/assets/stickers/briefcase.png";
+import paperPlaneSticker from "@/assets/stickers/paper-plane.png";
+
+import presentingMascot from "@/assets/main-mascot/presenting.png";
+import excitedMascot from "@/assets/main-mascot/excited.png";
+import buildMascot from "@/assets/main-mascot/build.png";
+import pointingMascot from "@/assets/main-mascot/pointing.png";
+import thinkMascot from "@/assets/main-mascot/think.png";
+import idleMascot from "@/assets/main-mascot/idle.png";
+import wavingMascot from "@/assets/main-mascot/waving.png";
+import welcomingMascot from "@/assets/main-mascot/welcoming.png";
+import organizerIdle from "@/assets/characters/organizer/idle.png";
+import growthMascot from "@/assets/main-mascot/growth.png";
+import explainingMascot from "@/assets/main-mascot/explaining.png";
+import notingDownMascot from "@/assets/main-mascot/noting-down.png";
+import showingImpactMascot from "@/assets/main-mascot/showing-impact.png";
 
 import { motion, useScroll, useTransform, MotionValue } from "motion/react";
 
@@ -26,34 +46,217 @@ const colorMap: Record<string, string> = {
   violet: "from-purple-400/60 to-violet-200/30",
 };
 
+const initiativeEnhancements: Record<string, { category: string; mascot?: string; sticker?: string }> = {
+  "empowerher": { category: "Flagship Summit", mascot: presentingMascot, sticker: star },
+  "empowerher-2-0": { category: "Flagship Summit", mascot: excitedMascot, sticker: crown },
+  "i2p-fellowship": { category: "Fellowship", mascot: growthMascot, sticker: book },
+  "hogwarts": { category: "Fellowship", mascot: buildMascot, sticker: book },
+  "code-at-christmas": { category: "Seasonal Event", mascot: wavingMascot, sticker: smiley },
+  "hack-aura": { category: "Hackathon", mascot: thinkMascot, sticker: paperClip },
+  "valentines-week": { category: "Seasonal Event", mascot: idleMascot, sticker: heart },
+  "glt-spotlight": { category: "Series", mascot: pointingMascot, sticker: star },
+  "mentorship": { category: "Mentorship", mascot: explainingMascot, sticker: briefcase },
+  "global-ai-buildathon": { category: "Hackathon", mascot: buildMascot, sticker: washiTape },
+  "machine-learning-cohort": { category: "Cohort", mascot: notingDownMascot, sticker: book },
+  "buildsprint": { category: "Hackathon", mascot: showingImpactMascot, sticker: trophy }
+};
+
+function InitiativesHero() {
+  return (
+    <div className="relative w-full pt-32 pb-24 overflow-hidden flex items-center justify-center bg-[#fef9f4]">
+      {/* Subtle Graph Paper Grid overlay */}
+      <div
+        className="absolute inset-0 opacity-60 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(217, 85, 164, 0.15) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(217, 85, 164, 0.15) 1px, transparent 1px)
+          `,
+          backgroundSize: "32px 32px",
+        }}
+      />
+      {/* Ambient glows */}
+      <div className="absolute top-1/2 left-1/4 w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-pink-300/20 rounded-full blur-[100px] pointer-events-none -translate-y-1/2" />
+      <div className="absolute top-1/2 right-1/4 w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-violet-300/20 rounded-full blur-[100px] pointer-events-none -translate-y-1/2" />
+
+      <div className="relative z-10 container mx-auto px-6 flex items-center justify-center gap-10 md:gap-4 lg:gap-12">
+        
+        {/* Left Graphic */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, x: -30 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, type: "spring", bounce: 0.4 }}
+          className="hidden md:block w-36 lg:w-48 shrink-0 z-20"
+        >
+          <img src={organizerIdle} alt="Organizer idle" className="w-full h-auto object-contain drop-shadow-xl" />
+        </motion.div>
+
+        {/* Center Text Block */}
+        <div className="relative flex flex-col items-center text-center max-w-4xl z-10">
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-[#d955a4] mb-6 mt-8 md:mt-0"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            ✦ Our Initiatives ✦
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative inline-block text-center"
+          >
+            {/* Star Sticker (Left) - Raised to match heart position */}
+            <motion.img 
+              src={star} 
+              alt="Floating star" 
+              className="absolute -top-16 -left-6 md:-left-12 w-12 md:w-16 opacity-80"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            />
+            {/* Heart Sticker (Right) - Raised high into upper right corner */}
+            <motion.img 
+              src={heart} 
+              alt="Floating heart" 
+              className="hidden md:block absolute -top-16 -right-8 md:-right-12 w-10 md:w-12 opacity-70"
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            />
+            
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black text-slate-900 leading-[1.1] tracking-tight relative z-10">
+              Programs powering the <br className="hidden md:block" /> 
+              <span className="font-serif italic lowercase text-[#d955a4] font-normal tracking-normal text-6xl sm:text-7xl md:text-8xl lg:text-[6.5rem] relative">
+                movement
+                <span className="absolute left-full top-[50%] -translate-y-1/2 hidden md:flex items-center pointer-events-none">
+                  <img src={paperPlaneSticker} alt="Paper Plane" className="w-14 md:w-16 h-auto ml-4 rotate-[10deg]" />
+                </span>
+              </span>
+            </h1>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="mt-8 text-base md:text-lg text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed"
+          >
+            Flagship summits, hackathons, fellowships and seasonal celebrations — all under one roof.
+          </motion.p>
+
+        </div>
+        
+        {/* Right Graphic */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, x: 30 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.3, type: "spring", bounce: 0.4 }}
+          className="hidden md:block w-36 lg:w-48 shrink-0 z-20 self-end mb-4"
+        >
+          <img src={welcomingMascot} alt="Mascot welcoming" className="w-full h-auto object-contain drop-shadow-xl" />
+        </motion.div>
+
+      </div>
+    </div>
+  );
+}
+
+const solidColorMap: Record<string, string> = {
+  pink: "bg-[#d955a4]",
+  lavender: "bg-[#a27bdf]",
+  peach: "bg-[#ff8a5b]",
+  rose: "bg-[#e86b86]",
+  violet: "bg-[#8a5bd6]",
+};
+
+const textColorMap: Record<string, string> = {
+  pink: "text-[#d955a4]",
+  lavender: "text-[#a27bdf]",
+  peach: "text-[#ff8a5b]",
+  rose: "text-[#e86b86]",
+  violet: "text-[#8a5bd6]",
+};
+
+const buttonColorMap: Record<string, string> = {
+  pink: "bg-[#d955a4] hover:bg-[#c44992]",
+  lavender: "bg-[#a27bdf] hover:bg-[#8f68c9]",
+  peach: "bg-[#ff8a5b] hover:bg-[#e87a4f]",
+  rose: "bg-[#e86b86] hover:bg-[#d65f78]",
+  violet: "bg-[#8a5bd6] hover:bg-[#784cc2]",
+};
+
 function InitiativesPage() {
   return (
-    <>
-      <PageHeader
-        eyebrow="Initiatives"
-        title="Programs powering the movement."
-        description="Flagship summits, hackathons, fellowships and seasonal celebrations — all under one roof."
-      />
-      <section className="container mx-auto max-w-7xl px-6 pb-20">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {initiatives.map((i) => (
-            <Link key={i.slug} to="/initiatives/$slug" params={{ slug: i.slug }} className="group block">
-              <GlassCard glow className="relative h-full overflow-hidden p-7">
+    <div className="bg-[#fef9f4] min-h-screen">
+      <InitiativesHero />
+      <section className="container mx-auto max-w-6xl px-6 pb-24 relative z-20 mt-4 md:mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {initiatives.map((i, index) => {
+            const headerColor = solidColorMap[i.color] || solidColorMap.pink;
+            const textColor = textColorMap[i.color] || textColorMap.pink;
+            const btnColor = buttonColorMap[i.color] || buttonColorMap.pink;
+            
+            const alternativeStickers = [washiTape, heart, star];
+            const currentSticker = alternativeStickers[index % 3];
 
-                <div className="relative">
-                  <h3 className="font-display text-2xl">{i.name}</h3>
-                  <p className="mt-2 text-sm font-medium text-primary">{i.tagline}</p>
-                  <p className="mt-4 text-sm text-muted-foreground">{i.description}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                    Learn more <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
-                  </span>
+            return (
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+                key={i.slug} 
+                className="relative flex flex-col bg-white shadow-lg hover:shadow-xl transition-all duration-300 group max-w-[340px] mx-auto w-full rounded-none"
+              >
+                {/* Thick Solid Color Block Header */}
+                <div className={`h-4 w-full ${headerColor}`} />
+                
+                {/* Floating Sticker Graphic */}
+                <div className={`absolute z-10 drop-shadow-md transition-transform duration-300 pointer-events-none group-hover:scale-110 ${
+                  currentSticker === washiTape ? "-top-3 right-4 w-16" :
+                  currentSticker === star ? "-top-5 right-4 w-10" :
+                  "-top-4 right-4 w-8"
+                }`}>
+                  <img src={currentSticker} alt="sticker" className="w-full h-auto object-contain" />
                 </div>
-              </GlassCard>
-            </Link>
-          ))}
+
+                <div className="flex-1 flex flex-col p-8">
+                  <div className="flex flex-col gap-1 mb-4">
+                    {/* Title */}
+                    <h3 className="font-sans font-bold text-xl uppercase text-slate-900 tracking-tight">
+                      {i.name}
+                    </h3>
+                    
+                    {/* Subtitle */}
+                    <p className={`font-sans text-sm font-bold uppercase tracking-wider ${textColor}`}>
+                      {i.tagline}
+                    </p>
+                  </div>
+                  
+                  {/* Body Text */}
+                  <p className="text-gray-700 font-mono text-sm leading-relaxed mb-6 flex-1">
+                    {i.description}
+                  </p>
+                  
+                  {/* CTA Button */}
+                  <Link 
+                    to="/initiatives/$slug" 
+                    params={{ slug: i.slug }}
+                    className={`inline-flex items-center justify-center gap-1.5 ${btnColor} text-white font-bold py-2 px-4 rounded-sm shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md w-fit text-sm`}
+                    style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  >
+                    Explore <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
-    </>
+    </div>
   );
 }
 
