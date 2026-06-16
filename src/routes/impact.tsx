@@ -4,6 +4,7 @@ import { stats } from "@/data/stats";
 import { testimonials } from "@/data/community";
 import { ArrowRight } from "lucide-react";
 import { IndiaCommunityMap } from "@/components/site/IndiaCommunityMap";
+import React from "react";
 
 export const Route = createFileRoute("/impact")({
   head: () => ({
@@ -45,17 +46,17 @@ function ImpactPage() {
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');`}</style>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');`}</style>
 
-      <style>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .marquee-container {
-          display: flex;
-          width: 200%;
-          animation: scroll 20s linear infinite;
-        }
-      `}</style>
+     <style>{`
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-run {
+    display: flex;
+    width: 200%;
+    animation: ticker 28s linear infinite;
+  }
+`}</style>
 
       {/* HEADER SECTION */}
      <section className="relative z-10 pt-32 md:pt-40 pb-20 px-6">
@@ -108,22 +109,42 @@ function ImpactPage() {
         </div>
       </section>
 
+      {/* TICKER */}
       {/* SCROLLING TICKER */}
-      <div className="relative z-10 w-full overflow-hidden bg-[#fef9f4] border-y border-[#f0e4d8] py-4 flex mt-8">
-        <div className="marquee-container">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="flex whitespace-nowrap items-center px-4 w-1/2 justify-around">
-              <span className="text-[#d955a4] font-bold text-xs md:text-sm tracking-[0.1em] md:tracking-[0.2em] uppercase" style={{ fontFamily: "'Montserrat', sans-serif" }}>LEARN. BUILD. LEAD.</span>
-              <span className="text-[#e879c0] text-lg mx-6">✦</span>
-              <span className="text-[#d955a4] font-bold text-xs md:text-sm tracking-[0.1em] md:tracking-[0.2em] uppercase" style={{ fontFamily: "'Montserrat', sans-serif" }}>4000+ WOMEN</span>
-              <span className="text-[#e879c0] text-lg mx-6">✦</span>
-              <span className="text[#d955a4] font-bold text-xs md:text-sm tracking-[0.1em] md:tracking-[0.2em] uppercase"style={{ fontFamily: "'Montserrat', sans-serif" }}>23+ STATES</span>
-              <span className="text-[#e879c0] text-lg mx-6">✦</span>
-            </div>
-          ))}
-        </div>
-      </div>z
-
+{/* SCROLLING TICKER */}
+<div className="relative z-10 w-full overflow-hidden bg-[#ffc2da] border-y-[1.5px] border-black py-3 md:py-4 mt-8">
+  <div style={{
+    display: "flex",
+    width: "max-content",
+    animation: "ticker 28s linear infinite",
+  }}>
+    {[...Array(4)].map((_, i) => (
+      <div key={i} style={{ display: "flex", alignItems: "center" }}>
+        {["LEARN. BUILD. LEAD.", "4000+ WOMEN", "1100+ COLLEGES", "23+ STATES", "JOIN THE MOVEMENT"].map((t) => (
+          <div key={t} style={{ display: "flex", alignItems: "center" }}>
+            <span style={{
+              fontFamily: "Montserrat, sans-serif",
+              fontWeight: "700",
+              fontSize: "clamp(10px, 1.5vw, 13px)",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              whiteSpace: "nowrap",
+              padding: "0 clamp(10px, 2vw, 28px)",
+              color: "#000",
+            }}>
+              {t}
+            </span>
+            <span style={{
+              color: "#000",
+              fontSize: "clamp(10px, 1.5vw, 14px)",
+              lineHeight: 1,
+            }}>✦</span>
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</div>
       {/* MAP SECTION */}
       <section className="relative z-10 py-24 md:py-[80px] px-6 bg-[#fcf5ef]">
         <div className="container mx-auto max-w-6xl">
