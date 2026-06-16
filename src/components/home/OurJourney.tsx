@@ -179,7 +179,7 @@ export default function OurJourney() {
         <div className="relative z-10 flex flex-col items-center justify-center flex-1 overflow-hidden">
 
           {/* HOW IT'S GOING Text header (sticky, stays in place while horizontal slides move) */}
-          <div className="w-full flex justify-center mb-6 lg:mt-12 select-none z-10">
+          <div className="w-full flex justify-center mb-6 lg:mt-14 select-none z-10">
             <p
               className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#d955a4] font-bold text-center"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
@@ -216,7 +216,7 @@ export default function OurJourney() {
                       </div>
 
                       {/* Date */}
-                      <div className="mt-4 md:mt-5">
+                      <div className="mt-4 md:mt-0">
                         <h2 className="text-gray-900 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-tight leading-none font-sans">
                           {card.date}
                         </h2>
