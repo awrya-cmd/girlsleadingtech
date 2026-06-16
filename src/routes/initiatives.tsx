@@ -25,7 +25,7 @@ import thinkMascot from "@/assets/main-mascot/think.png";
 import idleMascot from "@/assets/main-mascot/idle.png";
 import wavingMascot from "@/assets/main-mascot/waving.png";
 import welcomingMascot from "@/assets/main-mascot/welcoming.png";
-import organizerIdle from "@/assets/characters/organizer/idle.png";
+import initiativeMascot from "@/assets/main-mascot/initiative-mascot.png";
 import growthMascot from "@/assets/main-mascot/growth.png";
 import explainingMascot from "@/assets/main-mascot/explaining.png";
 import notingDownMascot from "@/assets/main-mascot/noting-down.png";
@@ -63,7 +63,7 @@ const initiativeEnhancements: Record<string, { category: string; mascot?: string
 
 function InitiativesHero() {
   return (
-    <div className="relative w-full pt-32 pb-24 overflow-hidden flex items-center justify-center bg-[#fef9f4]">
+    <div className="relative w-full pt-32 pb-24 overflow-x-clip flex items-center justify-center bg-[#fef9f4]">
       {/* Subtle Graph Paper Grid overlay */}
       <div
         className="absolute inset-0 opacity-60 pointer-events-none"
@@ -88,7 +88,7 @@ function InitiativesHero() {
           transition={{ duration: 0.6, delay: 0.2, type: "spring", bounce: 0.4 }}
           className="hidden md:block w-36 lg:w-48 shrink-0 z-20"
         >
-          <img src={organizerIdle} alt="Organizer idle" className="w-full h-auto object-contain drop-shadow-xl" />
+          <img src={initiativeMascot} alt="Initiatives mascot" className="w-full h-auto object-contain drop-shadow-xl" />
         </motion.div>
 
         {/* Center Text Block */}
@@ -122,7 +122,8 @@ function InitiativesHero() {
             <motion.img 
               src={heart} 
               alt="Floating heart" 
-              className="hidden md:block absolute -top-16 -right-8 md:-right-12 w-10 md:w-12 opacity-70"
+              className="absolute w-7 sm:w-9 md:w-12 opacity-70"
+              style={{ top: "-15%", right: "1vw" }}
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             />
@@ -164,6 +165,56 @@ function InitiativesHero() {
   );
 }
 
+function InitiativesMarquee() {
+  const items = [
+    "EMPOWERHER",
+    "EMPOWERHER 2.0",
+    "HOGWARTS OF TECH",
+    "CODE AT CHRISTMAS",
+    "HACK AURA",
+    "VALENTINE'S WEEK",
+    "GLT SPOTLIGHT",
+    "GLT MENTORSHIP PROGRAM",
+    "GLOBAL AI BUILDATHON",
+    "MACHINE LEARNING COHORT",
+    "BUILDSPRINT"
+  ];
+  
+  // Repeat content to ensure it covers wide screens smoothly
+  const marqueeItems = [...items, ...items, ...items];
+
+  return (
+    <div className="relative w-full overflow-hidden bg-[#ffc2da] border-y-[1.5px] border-black py-2 md:py-2.5 flex whitespace-nowrap z-20 -mt-8 md:-mt-6 mb-8 md:mb-6">
+      <div className="animate-marquee flex w-max">
+        <div className="flex items-center">
+          {marqueeItems.map((item, idx) => (
+            <span 
+              key={`group1-${idx}`}
+              className="flex items-center text-black uppercase font-bold font-sans text-sm md:text-base tracking-[0.15em]"
+              style={{ textShadow: "0 0 12px rgba(255,255,255,0.9), 0 0 4px rgba(255,255,255,0.5)" }}
+            >
+              {item}
+              <span className="mx-6 md:mx-10 text-lg md:text-xl">✦</span>
+            </span>
+          ))}
+        </div>
+        <div className="flex items-center">
+          {marqueeItems.map((item, idx) => (
+            <span 
+              key={`group2-${idx}`}
+              className="flex items-center text-black uppercase font-bold font-sans text-sm md:text-base tracking-[0.15em]"
+              style={{ textShadow: "0 0 12px rgba(255,255,255,0.9), 0 0 4px rgba(255,255,255,0.5)" }}
+            >
+              {item}
+              <span className="mx-6 md:mx-10 text-lg md:text-xl">✦</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const solidColorMap: Record<string, string> = {
   pink: "bg-[#d955a4]",
   lavender: "bg-[#a27bdf]",
@@ -192,14 +243,15 @@ function InitiativesPage() {
   return (
     <div className="bg-[#fef9f4] min-h-screen">
       <InitiativesHero />
-      <section className="container mx-auto max-w-6xl px-6 pb-24 relative z-20 mt-4 md:mt-8">
+      <InitiativesMarquee />
+      <section className="container mx-auto max-w-6xl px-6 pb-24 relative z-20 mt-8 md:mt-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {initiatives.map((i, index) => {
             const headerColor = solidColorMap[i.color] || solidColorMap.pink;
             const textColor = textColorMap[i.color] || textColorMap.pink;
             const btnColor = buttonColorMap[i.color] || buttonColorMap.pink;
             
-            const alternativeStickers = [washiTape, heart, star];
+            const alternativeStickers = [smiley, heart, star];
             const currentSticker = alternativeStickers[index % 3];
 
             return (
@@ -209,18 +261,23 @@ function InitiativesPage() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
                 key={i.slug} 
-                className="relative flex flex-col bg-white shadow-lg hover:shadow-xl transition-all duration-300 group max-w-[340px] mx-auto w-full rounded-none"
+                className="relative flex flex-col bg-white shadow-lg hover:shadow-[0_12px_20px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-300 ease-out group max-w-[340px] mx-auto w-full rounded-none"
               >
                 {/* Thick Solid Color Block Header */}
                 <div className={`h-4 w-full ${headerColor}`} />
                 
                 {/* Floating Sticker Graphic */}
                 <div className={`absolute z-10 drop-shadow-md transition-transform duration-300 pointer-events-none group-hover:scale-110 ${
-                  currentSticker === washiTape ? "-top-3 right-4 w-16" :
+                  currentSticker === smiley ? "-top-4 right-4 w-12" :
                   currentSticker === star ? "-top-5 right-4 w-10" :
                   "-top-4 right-4 w-8"
                 }`}>
-                  <img src={currentSticker} alt="sticker" className="w-full h-auto object-contain" />
+                  <img 
+                    src={currentSticker} 
+                    alt="sticker" 
+                    className="w-full h-auto object-contain"
+                    style={{ transform: index % 3 === 0 ? "rotate(-8deg)" : index % 3 === 1 ? "rotate(12deg)" : "rotate(-15deg)" }}
+                  />
                 </div>
 
                 <div className="flex-1 flex flex-col p-8">
