@@ -108,6 +108,36 @@ function EventDetail() {
             </p>
           )}
 
+          {event.timestamps && event.timestamps.length > 0 && (
+            <div className="mt-8">
+              <h2 className="font-semibold text-[#701a4b] text-xl md:text-2xl" style={{ fontFamily: "'Playfair Display', serif" }}>
+                Session Timeline
+              </h2>
+              <div className="mt-4 flex flex-col gap-2 max-w-xl">
+                {event.timestamps.map((ts, idx) => {
+                  const secs = timestampToSeconds(ts.time);
+                  const videoLink = getYoutubeLinkWithTimestamp(event.youtubeLink || "", secs);
+                  return (
+                    <a
+                      key={idx}
+                      href={videoLink || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-3 rounded-xl bg-white/50 border border-[#d955a4]/10 hover:border-[#d955a4]/30 hover:bg-[#ffed95]/20 transition-all duration-200 group animate-[fadeIn_0.3s_ease-out]"
+                    >
+                      <span className="font-mono text-sm font-bold text-[#d8358d] bg-white border border-[#d955a4]/20 rounded-lg px-2.5 py-1 shadow-sm group-hover:scale-105 transition-transform">
+                        {ts.time}
+                      </span>
+                      <span className="font-sans text-sm font-semibold text-gray-700 group-hover:text-gray-900 transition-colors">
+                        {ts.title}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {event.speakers && event.speakers.length > 0 ? (
             <div className="mt-8 flex flex-col gap-4 max-w-md relative">
               {event.speakers.map((speaker) => {
@@ -198,4 +228,23 @@ function EventDetail() {
       </div>
     </section>
   );
+}
+
+function timestampToSeconds(timeStr: string): number {
+  const parts = timeStr.split(":").map((p) => parseInt(p, 10) || 0);
+  let seconds = 0;
+  if (parts.length === 3) {
+    seconds = parts[0] * 3600 + parts[1] * 60 + parts[2];
+  } else if (parts.length === 2) {
+    seconds = parts[0] * 60 + parts[1];
+  } else if (parts.length === 1) {
+    seconds = parts[0];
+  }
+  return seconds;
+}
+
+function getYoutubeLinkWithTimestamp(baseLink: string, seconds: number): string {
+  if (!baseLink) return "";
+  const separator = baseLink.includes("?") ? "&" : "?";
+  return `${baseLink}${separator}t=${seconds}`;
 }
