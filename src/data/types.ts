@@ -1,3 +1,8 @@
+export interface Timestamp {
+  time: string;
+  title: string;
+}
+
 export interface Speaker {
   id: string;
   name: string;
@@ -19,10 +24,12 @@ export interface Event {
   speakerLinkedin?: string;
   speakerDesignation?: string;
   speakerCompany?: string;
+  speakers?: Speaker[];
   posterImage?: string;
   summary?: string;
   status: "upcoming" | "past" | "ongoing";
   category?: string;
+  timestamps?: Timestamp[];
 }
 
 export interface Scholarship {

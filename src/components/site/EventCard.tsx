@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Calendar, Clock, Play, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getSpeakerImageByName } from "@/lib/event-helpers";
 
 export function EventCard({
   event,
@@ -17,6 +18,25 @@ export function EventCard({
   isHighlighted?: boolean;
   index: number;
 }) {
+  const hasSpeakers = event.speakers && event.speakers.length > 0;
+  const firstSpeaker = hasSpeakers ? event.speakers[0] : null;
+
+  const resolvedSpeakerImg = hasSpeakers
+    ? (firstSpeaker.image || getSpeakerImageByName(firstSpeaker.name) || null)
+    : speakerImg;
+
+  const displayName = hasSpeakers
+    ? `${firstSpeaker.name}${event.speakers.length > 1 ? ` +${event.speakers.length - 1} more` : ""}`
+    : event.speakerName;
+
+  const displayCompany = hasSpeakers
+    ? "Panel Discussion"
+    : event.speakerCompany;
+
+  const displayInitial = hasSpeakers
+    ? firstSpeaker.name?.charAt(0)
+    : event.speakerName?.charAt(0);
+
   return (
     <div
       className="relative group h-full transition-all duration-400 ease-out z-10 hover:z-50 hover:scale-[1.03] pt-4"
@@ -46,6 +66,7 @@ export function EventCard({
             
 
 
+
             {/* Badges */}
             {!isUpcoming && (
               <span className="absolute top-4 right-4 inline-block rounded-full bg-gray-900/80 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur shadow-sm">
@@ -68,17 +89,17 @@ export function EventCard({
             
             <div className="mt-5 flex items-center gap-3">
               <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-gray-100 border-2 border-white shadow-sm">
-                {speakerImg ? (
-                  <img src={speakerImg} alt={event.speakerName} className="h-full w-full object-cover" loading="lazy" />
+                {resolvedSpeakerImg ? (
+                  <img src={resolvedSpeakerImg} alt={hasSpeakers ? firstSpeaker.name : event.speakerName} className="h-full w-full object-cover" loading="lazy" />
                 ) : (
                   <div className="flex h-full items-center justify-center text-xs font-bold text-gray-400">
-                    {event.speakerName?.charAt(0)}
+                    {displayInitial}
                   </div>
                 )}
               </div>
               <div className="min-w-0">
-                <div className="truncate text-sm font-bold text-gray-900 font-sans">{event.speakerName}</div>
-                <div className="truncate text-xs text-gray-500 font-medium">{event.speakerCompany}</div>
+                <div className="truncate text-sm font-bold text-gray-900 font-sans">{displayName}</div>
+                <div className="truncate text-xs text-gray-500 font-medium">{displayCompany}</div>
               </div>
             </div>
 

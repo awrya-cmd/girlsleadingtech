@@ -6,16 +6,42 @@ export const realEvents: Event[] = [
     "title": "A Panel Discussion on Google WE Scholarship",
     "date": "2024-11-26",
     "duration": "39mins 36s",
-    "speakerName": "Kavya Choudhary",
-    "speakerLinkedin": "https://www.linkedin.com/in/ridhy-arora-097784258/",
-    "speakerDesignation": "Scholars'2024",
-    "speakerCompany": "WE by Google TalentSprint",
+
+    speakers: [
+    {
+      id: "sp1",
+      name: "Kavya Choudhary",
+      designation: "Scholar'2024",
+      company: "WE by Google TalentSprint",
+      linkedin: "https://www.linkedin.com/in/kavya1610/"
+    },
+
+    {
+      id: "sp2",
+      name: "Ridhy Arora",
+      designation: "Scholar'2024",
+      company: "WE by Google TalentSprint",
+      linkedin: "https://www.linkedin.com/in/ridhy-arora-097784258/"
+    },
+
+    {
+      id: "sp3",
+      name: "Sravya Uppalavapati",
+      designation: "Scholar'2024",
+      company: "WE by Google TalentSprint",
+      linkedin: "https://www.linkedin.com/in/sravyauppalapati16/"
+    }
+
+  ],
+
     "youtubeLink": "https://youtu.be/T92Vx4-Giy4",
     "attendees": 37,
     "summary": "This panel discussion, hosted by Girls Leading Tech, provides a detailed roadmap for first-year female engineering students interested in the WE Scholarship program. The program is a two-year mentorship initiative supported by Google and managed by TalentSprint, designed to equip",
     "status": "past",
     "category": "Scholarships"
   },
+
+
   {
     "id": "evt-002",
     "title": "Google STEP Internship Mentorship Session",
@@ -36,10 +62,25 @@ export const realEvents: Event[] = [
     "title": "Google Summer of Code Mentorship Session",
     "date": "2024-12-11",
     "duration": "1hr 3mins  9 s",
-    "speakerName": "Nishant Singhal",
-    "speakerLinkedin": "https://www.linkedin.com/in/nishant-singhal19/",
-    "speakerDesignation": "GSoC'23 Contributor",
-    "speakerCompany": "Google",
+    
+    speakers: [
+    {
+      id: "sp1",
+      name: "Nishant Singhal",
+      designation: "GSOC'23 Contributor",
+      company: "Google",
+      linkedin: "https://www.linkedin.com/in/nishant-singhal19/"
+    },
+
+    {
+      id: "sp2",
+      name: "Angel Sharma",
+      designation: "GSOC'24 Mentor",
+      company: "Google",
+      linkedin: "https://www.linkedin.com/in/angel-sharma-2a5240260/"
+    }
+  ],
+
     "youtubeLink": "https://youtu.be/qYo1UFocUwo",
     "attendees": 78,
     "summary": "This video is a comprehensive guide to Google Summer of Code (GSOC), featuring insights from Nishant Singhal (GSOC 2022 contributor and 2023 mentor) and Angel Sharma (GSOC 2024 contributor). 1.",
@@ -458,10 +499,26 @@ export const realEvents: Event[] = [
     "title": "Master Twitter/ to Grow your Network and Career",
     "date": "2025-06-12",
     "duration": "1hr 1min 19s",
-    "speakerName": "Preksha Mahajan",
-    "speakerLinkedin": "https://www.linkedin.com/in/anshika-aggarwal-704847249/",
-    "speakerDesignation": "SWE Intern",
-    "speakerCompany": "Nielson Salesforce",
+
+    speakers: [
+    {
+      id: "sp1",
+      name: "Preksha Mahajan",
+      designation: "SWE Intern",
+      company: "Nielson",
+      linkedin: "https://www.linkedin.com/in/preksha-mahajan-090359214/"
+    },
+
+    {
+      id: "sp2",
+      name: "Anshika Aggarwal",
+      designation: "Intern",
+      company: "Salesforce",
+      linkedin: "https://www.linkedin.com/in/anshika-aggarwal-704847249/"
+    }
+  ],
+
+   
     "youtubeLink": "https://www.youtube.com/watch?v=g69YR_HVLdY",
     "attendees": 51,
     "summary": "This video, titled \"Get Started with Twitter | How to get Jobs/Internships from Twitter?\", features a detailed session hosted by Manik from the Girls Leading Tech community. The guest speakers, Anika (Salesforce Intern) and Preksha Majan (Software Engineering Intern at Nielsen),",
@@ -716,10 +773,25 @@ export const realEvents: Event[] = [
     "title": "How to Win Hackathons Ft. Sih",
     "date": "2025-08-21",
     "duration": "not recorded",
-    "speakerName": "Vidhushi Agarwal",
-    "speakerLinkedin": "https://www.linkedin.com/in/vidushi-agarwal-8958-developer?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-    "speakerDesignation": "2024 Winner",
-    "speakerCompany": "Smart India Hackathon",
+  
+    speakers: [
+    {
+      id: "sp1",
+      name: "Vidhushi Agarwal",
+      designation: "2024 Winner",
+      company: "Smart India Hackathon",
+      linkedin: "https://in.linkedin.com/in/vidushi-agarwal-8958-developer"
+    },
+
+    {
+      id: "sp2",
+      name: "Diya Parelkar",
+      designation: "2024 Winner",
+      company: "Smart India Hackathon",
+      linkedin: "https://www.linkedin.com/in/diya-parelkar?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+    }
+  ],
+
     "posterImage": "/sih2.png",
     "attendees": 111,
     "status": "past",
@@ -1349,10 +1421,25 @@ export const realEvents: Event[] = [
     "title": "How to Crack LinkedIn Coachin 2026",
     "date": "2026-01-03",
     "duration": "59mins 55s",
-    "speakerName": "Kritika Dhima",
-    "speakerLinkedin": "https://www.linkedin.com/in/kritika-dhiman-a23104290/",
-    "speakerDesignation": "LinkedIn Coachin Mentee",
-    "speakerCompany": "LinkedIn",
+   
+    speakers: [
+    {
+      id: "sp1",
+      name: "Kritika Dhiman",
+      designation: "Linkedin CoachIn Mentee",
+      company: "Linkedin",
+      linkedin: "https://www.linkedin.com/in/kritika-dhiman-a23104290/"
+    },
+
+    {
+      id: "sp2",
+      name: "Garima Sahu",
+      designation: "Linkedin CoachIn Mentee",
+      company: "Linkedin",
+      linkedin: "https://www.linkedin.com/in/garima-sahu-84649a322/"
+    }
+  ],
+
     "youtubeLink": "https://www.youtube.com/watch?v=7YzcHkhoYaU",
     "attendees": 139,
     "summary": "This video is a comprehensive guide on how to crack the LinkedIn CoachIn program and secure a subsequent internship at LinkedIn. The discussion features two former mentees, Garima and Kritika, who share their end-to-end journey from application to final interviews.",

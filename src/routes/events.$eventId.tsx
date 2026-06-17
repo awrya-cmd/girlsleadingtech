@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getEvent } from "@/data/community";
 import { youtubeThumb, getSpeakerImageByName } from "@/lib/event-helpers";
-import { Calendar, Clock, ArrowLeft, ExternalLink } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, ExternalLink, Linkedin } from "lucide-react";
 import starSticker from "@/assets/stickers/star.png";
 import paperClip from "@/assets/stickers/paper-clip.png";
 import smiley from "@/assets/stickers/smiley.png";
@@ -108,26 +108,78 @@ function EventDetail() {
             </p>
           )}
 
-          <div className="mt-8 relative max-w-md">
-            <div className="relative flex items-center gap-4 rounded-2xl bg-[#FFD966] shadow-md border border-[#d955a4]/20 border-l-[5px] border-l-[#d955a4] p-5 z-10">
-              <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full bg-gray-100 border-2 border-white shadow-sm">
-                {speakerImg ? (
-                  <img src={speakerImg} alt={event.speakerName} className="h-full w-full object-cover" />
-                ) : (
-                  <div className="flex h-full items-center justify-center font-sans text-2xl font-black text-gray-300">
-                    {event.speakerName?.charAt(0)}
+          {event.speakers && event.speakers.length > 0 ? (
+            <div className="mt-8 flex flex-col gap-4 max-w-md relative">
+              {event.speakers.map((speaker) => {
+                const img = speaker.image || getSpeakerImageByName(speaker.name);
+                return (
+                  <div key={speaker.id} className="relative flex items-center gap-4 rounded-2xl bg-[#FFD966] shadow-md border border-[#d955a4]/20 border-l-[5px] border-l-[#d955a4] p-5 z-10">
+                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full bg-gray-100 border-2 border-white shadow-sm">
+                      {img ? (
+                        <img src={img} alt={speaker.name} className="h-full w-full object-cover" />
+                      ) : (
+                        <div className="flex h-full items-center justify-center font-sans text-2xl font-black text-gray-300">
+                          {speaker.name?.charAt(0)}
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#d8358d]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                        Speaker
+                      </div>
+                      <div className="mt-1 font-sans text-xl font-black text-gray-900">{speaker.name}</div>
+                      <div className="text-xs font-semibold text-gray-700">{speaker.designation} · {speaker.company}</div>
+                    </div>
+                    {speaker.linkedin && (
+                      <a
+                        href={speaker.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute top-3 right-3 p-1.5 rounded-full bg-white/80 text-gray-700 hover:bg-[#0077B5] hover:text-white transition-all duration-200 hover:scale-110 shadow-sm hover:shadow-md z-20"
+                        title={`${speaker.name}'s LinkedIn Profile`}
+                        aria-label={`${speaker.name} on LinkedIn`}
+                      >
+                        <Linkedin className="h-3.5 w-3.5" />
+                      </a>
+                    )}
                   </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="mt-8 relative max-w-md">
+              <div className="relative flex items-center gap-4 rounded-2xl bg-[#FFD966] shadow-md border border-[#d955a4]/20 border-l-[5px] border-l-[#d955a4] p-5 z-10">
+                <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full bg-gray-100 border-2 border-white shadow-sm">
+                  {speakerImg ? (
+                    <img src={speakerImg} alt={event.speakerName} className="h-full w-full object-cover" />
+                  ) : (
+                    <div className="flex h-full items-center justify-center font-sans text-2xl font-black text-gray-300">
+                      {event.speakerName?.charAt(0)}
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#d8358d]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                    Speaker
+                  </div>
+                  <div className="mt-1 font-sans text-xl font-black text-gray-900">{event.speakerName}</div>
+                  <div className="text-xs font-semibold text-gray-700">{event.speakerDesignation} · {event.speakerCompany}</div>
+                </div>
+                {event.speakerLinkedin && (
+                  <a
+                    href={event.speakerLinkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute top-3 right-3 p-1.5 rounded-full bg-white/80 text-gray-700 hover:bg-[#0077B5] hover:text-white transition-all duration-200 hover:scale-110 shadow-sm hover:shadow-md z-20"
+                    title={`${event.speakerName}'s LinkedIn Profile`}
+                    aria-label={`${event.speakerName} on LinkedIn`}
+                  >
+                    <Linkedin className="h-3.5 w-3.5" />
+                  </a>
                 )}
               </div>
-              <div>
-                <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#d8358d]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                  Speaker
-                </div>
-                <div className="mt-1 font-sans text-xl font-black text-gray-900">{event.speakerName}</div>
-                <div className="text-xs font-semibold text-gray-700">{event.speakerDesignation} · {event.speakerCompany}</div>
-              </div>
             </div>
-          </div>
+          )}
 
           {(event.registrationLink || event.youtubeLink) && (
             <div className="mt-8 pt-6 border-t border-[#ffed95]/50">
