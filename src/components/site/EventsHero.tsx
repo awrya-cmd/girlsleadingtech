@@ -3,10 +3,13 @@ import eventGirlMascot from "@/assets/characters/community-girl/event-girl.png";
 import eventsMascot from "@/assets/characters/community-girl/event-mascot.png";
 import starSticker from "@/assets/stickers/star.png";
 import washiTape from "@/assets/stickers/washi-tape.png";
+import GridBackground from "@/components/shared/GridBackground";
+import { Grid } from "lucide-react";
 
 export function EventsHero() {
   return (
     <div className="relative z-10 pt-32 md:pt-40 w-full">
+      <GridBackground />
       {/* Ambient Glows */}
       <div className="absolute top-1/2 -left-[5%] w-[300px] h-[400px] md:w-[40vw] md:h-[50vh] bg-[rgba(216,53,141,0.15)] rounded-full blur-[120px] pointer-events-none -translate-y-1/2 z-[-1]" />
       <div className="absolute top-1/2 -right-[5%] w-[300px] h-[400px] md:w-[40vw] md:h-[50vh] bg-[rgba(216,53,141,0.15)] rounded-full blur-[120px] pointer-events-none -translate-y-1/2 z-[-1]" />

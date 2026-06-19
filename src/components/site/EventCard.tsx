@@ -41,7 +41,12 @@ export function EventCard({
     <div
       className="relative group h-full transition-all duration-400 ease-out z-10 hover:z-50 hover:scale-[1.03] pt-4"
     >
-      <Link to="/events/$eventId" params={{ eventId: event.id }} className="block h-full">
+      <Link
+        to="/events/$eventId"
+        params={{ eventId: event.id }}
+        search={{ from: event.status }}
+        className="block h-full"
+      >
         <article
           className={cn(
             "relative flex h-full flex-col overflow-visible rounded-[24px] bg-white transition-all duration-400 border-[2px] border-[#d955a4]",

@@ -574,23 +574,6 @@ function HomePage() {
           font-size: 18px !important;
           box-shadow: 0 4px 15px rgba(124,58,237,0.3) !important;
         }
-        /* Accessibility High Contrast styles if enabled */
-        .accessibility-high-contrast {
-          filter: contrast(1.18);
-        }
-        /* Feedback Button styling */
-        .glt-feedback-btn {
-          position: fixed;
-          right: 0;
-          top: 50%;
-          z-index: 9999;
-          transform: translate(50%, -50%) rotate(-90deg) translateY(-30%);
-          transform-origin: center;
-          transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s;
-        }
-        .glt-feedback-btn:hover {
-          transform: translate(50%, -50%) rotate(-90deg) translateY(-50%);
-        }
       `}</style>
 
       {/* Scroll to Top Button */}
@@ -605,34 +588,6 @@ function HomePage() {
           </svg>
         </button>
       )}
-
-      {/* Floating Rotated Feedback Button */}
-      <a
-        href="https://docs.google.com/forms/d/e/1FAIpQLSeRE1g3tyUfgZ7UyqH3jGGIkQsJ2jfKlJaumpwGa_tPZeYcJQ/viewform"
-        target="_blank"
-        rel="noreferrer noopener"
-        className="glt-feedback-btn pointer-events-auto hidden md:flex items-center gap-2 px-4 py-2.5 bg-[#ffed95] border-2 border-r-0 border-black shadow-[-2px_2px_0px_rgba(0,0,0,1)] hover:bg-[#ffeef2] cursor-pointer font-bold text-xs uppercase rounded-t-lg"
-        style={{ fontFamily: "'Satoshi', sans-serif" }}
-      >
-        <svg className="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        </svg>
-        <span>Feedback</span>
-      </a>
-
-      {/* Accessibility Button */}
-      <button
-        onClick={() => {}}
-        className="fixed bottom-[24px] left-[24px] z-[9999] flex items-center justify-center w-11 h-11 bg-white border-2 border-black rounded-full shadow-[2.5px_2.5px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:bg-[#ffeef2] active:translate-y-0 active:shadow-[1px_1px_0px_rgba(0,0,0,1)] transition-all cursor-pointer pointer-events-auto"
-        aria-label="Accessibility Options"
-      >
-        <svg className="w-5 h-5 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="5" r="1" />
-          <path d="m9 20 3-6 3 6" />
-          <path d="m6 8 6 2 6-2" />
-          <path d="M12 10v4" />
-        </svg>
-      </button>
 </>
   );
 }

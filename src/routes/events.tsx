@@ -4,6 +4,7 @@ import { EventsHero } from "@/components/site/EventsHero";
 import { motion } from "motion/react";
 import React, { useRef, useState } from "react";
 import { Search, PlayCircle, Calendar, History } from "lucide-react";
+import GridBackground from "@/components/shared/GridBackground";
 
 export const EventsSearchContext = React.createContext({ 
   search: '', 
@@ -22,28 +23,7 @@ export const Route = createFileRoute("/events")({
   component: EventsLayout,
 });
 
-function GridBackground() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      <div
-        className="absolute left-1/2 top-1/2 h-[40rem] w-[60rem] -translate-x-1/2 -translate-y-1/2 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, rgba(255,240,190,0.15), transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute inset-0 opacity-80"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(217, 85, 164, 0.25) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(217, 85, 164, 0.25) 1px, transparent 1px)
-          `,
-          backgroundSize: "32px 32px",
-        }}
-      />
-    </div>
-  );
-}
+
 
 function EventsLayout() {
   const { pathname } = useLocation();
@@ -99,12 +79,12 @@ function EventsLayout() {
           animation: ticker 28s linear infinite;
         }
       `}</style>
-      <GridBackground />
+  
       
       {!isDetail && (
         <header className="relative z-10 w-full">
           <EventsHero />
-          
+        
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -112,9 +92,12 @@ function EventsLayout() {
             className="flex flex-col items-center px-6"
             ref={toggleRef}
           >
-            <div className="flex flex-col items-center w-full my-10 md:my-12 gap-6">
+          
+
+            <GridBackground className="opacity-30" />
+            <div className="relative flex flex-col items-center w-full my-10 md:my-12 gap-6"> 
               {/* Search Bar */}
-              <div className="relative w-full max-w-md">
+              <div className="relative w-full max-w-md z-10">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <Search className="h-5 w-5 text-gray-500" />
                 </div>
@@ -149,49 +132,64 @@ function EventsLayout() {
             </div>
 
             {/* 3-Way Toggle */}
-            <div className="bg-white/80 backdrop-blur-md border border-gray-100 flex p-1.5 rounded-sm shadow-sm">
-              <Link
-                to="/events/ongoing"
-                resetScroll={false}
-                onClick={handleScrollToGrid}
-                className={cn(
-                  "flex items-center gap-2 rounded-sm px-5 py-2.5 text-sm font-bold transition-all duration-300",
-                  isOngoing
-                    ? "bg-[#ffed95] text-black shadow-sm"
-                    : "text-slate-500 hover:text-slate-900 hover:bg-slate-100/50"
-                )}
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
-              >
-                <PlayCircle className="w-4 h-4" /> Ongoing
-              </Link>
-              <Link
-                to="/events/upcoming"
-                resetScroll={false}
-                onClick={handleScrollToGrid}
-                className={cn(
-                  "flex items-center gap-2 rounded-sm px-5 py-2.5 text-sm font-bold transition-all duration-300",
-                  isUpcoming
-                    ? "bg-[#ffed95] text-black shadow-sm"
-                    : "text-slate-500 hover:text-slate-900 hover:bg-slate-100/50"
-                )}
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
-              >
-                <Calendar className="w-4 h-4" /> Upcoming
-              </Link>
-              <Link
-                to="/events/past"
-                resetScroll={false}
-                onClick={handleScrollToGrid}
-                className={cn(
-                  "flex items-center gap-2 rounded-sm px-5 py-2.5 text-sm font-bold transition-all duration-300",
-                  isPast
-                    ? "bg-[#ffed95] text-black shadow-sm"
-                    : "text-slate-500 hover:text-slate-900 hover:bg-slate-100/50"
-                )}
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
-              >
-                <History className="w-4 h-4" /> Past
-              </Link>
+            <div className="mx-auto w-full max-w-md border border-[#d955a4]/15 bg-white/50 backdrop-blur-md rounded-none p-1 flex flex-row overflow-x-auto items-center justify-between [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+              <div className="flex flex-row items-center gap-1 flex-grow justify-center">
+                <Link
+                  to="/events/ongoing"
+                  resetScroll={false}
+                  onClick={handleScrollToGrid}
+                  className={cn(
+                    "flex flex-row items-center gap-2 px-5 py-2.5 rounded-none text-sm font-semibold transition-all duration-300 whitespace-nowrap cursor-pointer shrink-0 w-full justify-center md:w-auto",
+                    isOngoing
+                      ? "bg-gradient-to-r from-[#d955a4] to-[#922b6c] text-white shadow-soft"
+                      : "text-slate-500 hover:text-[#d955a4] hover:bg-[#d955a4]/5"
+                  )}
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                >
+                  <PlayCircle className={cn("h-4.5 w-4.5 transition-colors duration-300", isOngoing ? "text-white" : "text-[#d955a4]")} />
+                  <span>Ongoing</span>
+                </Link>
+              </div>
+
+              <div className="h-6 w-[1px] bg-pink-100/40 shrink-0" />
+
+              <div className="flex flex-row items-center gap-1 flex-grow justify-center">
+                <Link
+                  to="/events/upcoming"
+                  resetScroll={false}
+                  onClick={handleScrollToGrid}
+                  className={cn(
+                    "flex flex-row items-center gap-2 px-5 py-2.5 rounded-none text-sm font-semibold transition-all duration-300 whitespace-nowrap cursor-pointer shrink-0 w-full justify-center md:w-auto",
+                    isUpcoming
+                      ? "bg-gradient-to-r from-[#d955a4] to-[#922b6c] text-white shadow-soft"
+                      : "text-slate-500 hover:text-[#d955a4] hover:bg-[#d955a4]/5"
+                  )}
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                >
+                  <Calendar className={cn("h-4.5 w-4.5 transition-colors duration-300", isUpcoming ? "text-white" : "text-[#d955a4]")} />
+                  <span>Upcoming</span>
+                </Link>
+              </div>
+
+              <div className="h-6 w-[1px] bg-pink-100/40 shrink-0" />
+
+              <div className="flex flex-row items-center gap-1 flex-grow justify-center">
+                <Link
+                  to="/events/past"
+                  resetScroll={false}
+                  onClick={handleScrollToGrid}
+                  className={cn(
+                    "flex flex-row items-center gap-2 px-5 py-2.5 rounded-none text-sm font-semibold transition-all duration-300 whitespace-nowrap cursor-pointer shrink-0 w-full justify-center md:w-auto",
+                    isPast
+                      ? "bg-gradient-to-r from-[#d955a4] to-[#922b6c] text-white shadow-soft"
+                      : "text-slate-500 hover:text-[#d955a4] hover:bg-[#d955a4]/5"
+                  )}
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                >
+                  <History className={cn("h-4.5 w-4.5 transition-colors duration-300", isPast ? "text-white" : "text-[#d955a4]")} />
+                  <span>Past</span>
+                </Link>
+              </div>
             </div>
           </motion.div>
           
@@ -204,7 +202,7 @@ function EventsLayout() {
           >
             <div className="ticker-run">
               {[...Array(4)].map((_, i) => (
-                <div key={i} className="flex whitespace-nowrap items-center px-4 w-1/2 justify-around">
+                <div key={i} className="flex whitespace-nowrap items-center px-4 shrink-0 justify-around">
                   {[
                     "MONTHLY TECH TALKS", "INDUSTRY WORKSHOPS", "HACKATHON MENTORSHIP",
                     "COMMUNITY DEMO DAYS", "GET PLACED",

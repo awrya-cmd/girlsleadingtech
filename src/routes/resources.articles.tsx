@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { GlassCard } from "@/components/site/GlassCard";
 import { articles } from "@/data/resources";
 import { ExternalLink } from "lucide-react";
+import { BackToResources } from "@/components/site/PageHeader";
 import articlesMascot from "@/assets/characters/articles.png";
 import washiTape from "@/assets/stickers/washi-tape.png";
 import star from "@/assets/stickers/star.png";
@@ -68,6 +69,7 @@ function ArticlesPage() {
       {/* HERO BANNER SECTION */}
       <section className="relative pt-32 pb-12 px-6 z-10">
         <div className="container mx-auto max-w-6xl relative">
+          <BackToResources />
           
           {/* Main Hero Card Container */}
           <div className="relative bg-[#FFF8EF] border-2 border-black rounded-[24px] pt-16 pb-8 px-6 md:pt-20 md:pb-12 md:px-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-visible">

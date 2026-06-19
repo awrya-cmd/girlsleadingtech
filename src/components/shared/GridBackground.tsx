@@ -1,4 +1,10 @@
-export default function GridBackground() {
+type GridBackgroundProps = {
+  className?: string;
+};
+
+export default function GridBackground({
+  className = "",
+}: GridBackgroundProps) {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
 

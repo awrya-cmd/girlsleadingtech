@@ -36,19 +36,13 @@ function PastEvents() {
         <p className="text-gray-500 mb-8 max-w-md">
           We're currently brewing up some new sessions. Check back soon, or explore our Past events to get inspired.
         </p>
-        <Link 
-          to="/events/past"
-          className="px-6 py-2.5 rounded-full bg-[#ffed95] text-black font-semibold shadow-sm hover:bg-[#fde047] hover:shadow-md transition-all duration-300"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
-        >
-          Explore Past Events
-        </Link>
+        
       </section>
     );
   }
 
   return (
-    <section className="container mx-auto max-w-6xl px-6 py-14 pb-32">
+    <section className="container mx-auto max-w-6xl px-6 py-14 pb-0">
       <div className="grid gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-3 pt-6">
         {list.map((e, idx) => {
           const thumb = e.posterImage || youtubeThumb(e.youtubeLink) || null;

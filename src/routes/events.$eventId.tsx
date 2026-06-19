@@ -7,6 +7,11 @@ import paperClip from "@/assets/stickers/paper-clip.png";
 import smiley from "@/assets/stickers/smiley.png";
 
 export const Route = createFileRoute("/events/$eventId")({
+  validateSearch: (search: Record<string, unknown>): { from?: string } => {
+    return {
+      from: search.from ? (search.from as string) : undefined,
+    };
+  },
   loader: ({ params }) => {
     const event = getEvent(params.eventId);
     if (!event) throw notFound();
@@ -35,6 +40,14 @@ export const Route = createFileRoute("/events/$eventId")({
 
 function EventDetail() {
   const { event } = Route.useLoaderData();
+  const { from } = Route.useSearch();
+  const activeTab = from || event.status;
+  const backPath =
+    activeTab === "past"
+      ? "/events/past"
+      : activeTab === "ongoing"
+      ? "/events/ongoing"
+      : "/events/upcoming";
   const thumb = youtubeThumb(event.youtubeLink) || event.posterImage;
   const speakerImg = getSpeakerImageByName(event.speakerName);
   const isUpcoming = event.status === "upcoming";
@@ -48,7 +61,7 @@ function EventDetail() {
       
       <div className="w-full mb-6 flex justify-start">
         <Link 
-          to="/events/upcoming" 
+          to={backPath} 
           className="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-gray-900 transition-transform hover:-translate-x-1 uppercase tracking-widest"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
