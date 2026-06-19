@@ -308,3 +308,23 @@
   }
 }
 
+/* Accessibility High Contrast styles if enabled */
+.accessibility-high-contrast {
+  filter: contrast(1.18);
+}
+
+/* Feedback Button styling */
+.glt-feedback-btn {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  z-index: 9999;
+  transform: translate(50%, -50%) rotate(-90deg) translateY(-30%);
+  transform-origin: center;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s;
+}
+.glt-feedback-btn:hover {
+  transform: translate(50%, -50%) rotate(-90deg) translateY(-50%);
+}
+
+
