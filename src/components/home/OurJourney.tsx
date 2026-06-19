@@ -120,9 +120,10 @@ export default function OurJourney() {
   };
 
   const highlightNumbers = (text: string) => {
-    const parts = text.split(/(\b\d{1,3}(?:,\d{3})*\+?)/g);
+    // Matches comma-grouped numbers (e.g. "3,000+") OR plain digit runs of any length (e.g. "500", "1000")
+    const parts = text.split(/(\b\d{1,3}(?:,\d{3})+\+?|\b\d+\+?)/g);
     return parts.map((part, i) => {
-      if (/^\d{1,3}(?:,\d{3})*\+?$/.test(part)) {
+      if (/^\d{1,3}(?:,\d{3})+\+?$|^\d+\+?$/.test(part)) {
         return (
           <span key={i} className="text-[#d955a4] font-black underline decoration-[#d955a4] decoration-2 underline-offset-4">
             {part}
