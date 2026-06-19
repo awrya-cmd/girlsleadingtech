@@ -11,7 +11,7 @@ const faqs = [
   {
     question: "Who can join Girls Leading Tech?",
     answer:
-      "Whether you're just starting your tech journey, exploring new interests, building projects, or already deep into coding — you're welcome here. Everyone starts somewhere.",
+      "Whether you're just starting your tech journey, exploring new interests, building projects, or already deep into coding - you're welcome here. Everyone starts somewhere.",
   },
   {
     question: "Is joining the community free?",
