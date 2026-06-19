@@ -288,14 +288,14 @@ function ResourcesHub() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.12 }}
                 transition={{ duration: 0.5, delay: (idx % 4) * 0.08, type: "spring", stiffness: 70, damping: 14 }}
-                className={`relative overflow-visible ${rotate} hover:rotate-0 hover:scale-[1.03] transition-all duration-300`}
+                className={`relative overflow-visible ${rotate} hover:rotate-0 hover:scale-[1.03] transition-all duration-300 h-full`}
                 style={{ zIndex: 10 }}
               >
-                <div className="relative bg-white ring-1 ring-black/5 shadow-xl flex flex-col overflow-visible">
+                <div className="relative bg-white ring-1 ring-black/5 shadow-xl flex flex-col overflow-visible h-full">
                   {stickers}
                   <div className={`h-5 w-full ${bar}`} />
                   <div className="p-5 flex flex-col gap-2 flex-1">
-                    <h3 className="text-lg lg:text-xl font-black uppercase leading-tight tracking-tight text-gray-900"
+                    <h3 className="text-lg lg:text-xl font-black uppercase leading-tight tracking-tight text-gray-900 line-clamp-2 min-h-[2.4em]"
                       style={{ fontFamily: "'Satoshi','Montserrat',sans-serif" }}>
                       {label}
                     </h3>
@@ -383,7 +383,7 @@ function ResourcesHub() {
                     className="relative inline-block active:scale-95 transition-transform duration-100">
                     <img src={pixelBtn} alt="Suggest a Resource" className="w-[196px] h-auto" />
                     <span className="absolute inset-0 flex items-center justify-center text-black font-bold"
-                      style={{ fontFamily: "'Press Start 2P',monospace", fontSize: "clamp(0.55rem,0.85vw,0.78rem)", letterSpacing: "0.05em" }}>
+                      style={{ fontFamily: "'Press Start 2P',monospace", fontSize: "clamp(0.75rem,1.1vw,1rem)", letterSpacing: "0.05em" }}>
                       Suggest one →
                     </span>
                   </a>
