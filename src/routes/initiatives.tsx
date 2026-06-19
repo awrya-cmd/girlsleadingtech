@@ -169,15 +169,16 @@ function InitiativesMarquee() {
   const items = [
     "EMPOWERHER",
     "EMPOWERHER 2.0",
-    "HOGWARTS OF TECH",
+    "IDEA TO PRODUCT (I2P) FELLOWSHIP",
     "CODE AT CHRISTMAS",
     "HACK AURA",
     "VALENTINE'S WEEK",
     "GLT SPOTLIGHT",
+    "HOGWARTS OF TECH",
     "GLT MENTORSHIP PROGRAM",
     "GLOBAL AI BUILDATHON",
     "MACHINE LEARNING COHORT",
-    "BUILDSPRINT"
+    "BUILD SPRINT"
   ];
   
   // Repeat content to ensure it covers wide screens smoothly
@@ -299,14 +300,26 @@ function InitiativesPage() {
                   </p>
                   
                   {/* CTA Button */}
-                  <Link 
-                    to="/initiatives/$slug" 
-                    params={{ slug: i.slug }}
-                    className={`inline-flex items-center justify-center gap-1.5 ${btnColor} text-white font-bold py-2 px-4 rounded-sm shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md w-fit text-sm`}
-                    style={{ fontFamily: "'Montserrat', sans-serif" }}
-                  >
-                    Explore <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                  {i.url ? (
+                    <a
+                      href={i.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center justify-center gap-1.5 ${btnColor} text-white font-bold py-2 px-4 rounded-sm shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md w-fit text-sm`}
+                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    >
+                      Explore <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+                  ) : (
+                    <Link 
+                      to="/initiatives/$slug" 
+                      params={{ slug: i.slug }}
+                      className={`inline-flex items-center justify-center gap-1.5 ${btnColor} text-white font-bold py-2 px-4 rounded-sm shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md w-fit text-sm`}
+                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    >
+                      Explore <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  )}
                 </div>
               </motion.div>
             );

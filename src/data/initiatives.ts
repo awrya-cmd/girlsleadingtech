@@ -21,11 +21,11 @@ export const initiatives: Initiative[] = [
   },
   {
     slug: "i2p-fellowship",
-    name: "Hogwarts of Tech",
-    tagline: "A magical start to your tech journey.",
+    name: "Idea to Product (i2p) Fellowship",
+    tagline: "From concept to prototype — build your next big thing.",
     description:
-      "An intensive 4-week cohort-based program designed to introduce beginners to the world of open source, development, and community building.",
-    url: "https://hogwartz.girlsleadingtech.com/",
+      "An intensive cohort-based program guiding developers and creators from raw ideas to functional, launched products under the mentorship of industry experts.",
+    url: "https://i2pfellowship.girlsleadingtech.com/",
     color: "lavender",
   },
   {
@@ -94,9 +94,10 @@ export const initiatives: Initiative[] = [
   },
   {
     slug: "buildsprint",
-    name: "BuildSprint",
+    name: "Build Sprint",
     tagline: "Ship it fast.",
     description: "A rapid 48-hour challenge focused on taking an idea from zero to a deployed MVP.",
+    url: "https://empowerher2026.girlsleadingtech.com/portfolio-build-sprint",
     color: "lavender",
   }
 ];

@@ -22,6 +22,10 @@ import OurJourney from "@/components/home/OurJourney";
 import { Heart, Sparkle, Star } from "lucide-react";
 import VerticalMarquee from "@/components/home/VerticalMarquee";
 import joinUs from "@/assets/main-mascot/join-us.png"
+import starSticker from "@/assets/stickers/star.png";
+import heartSticker from "@/assets/stickers/heart.png";
+import smileySticker from "@/assets/stickers/smiley.png";
+import twirlyArrowSticker from "@/assets/stickers/twirly-arrow.png";
 import GridBackground from "@/components/shared/GridBackground";
 import DotBackground from "@/components/shared/DotBackground"
 import SpeakersShowcase from "@/components/home/SpeakersShowcase";
@@ -365,71 +369,85 @@ function HomePage() {
 
       {/* CTA */}
       <div className="w-full overflow-hidden pt-12 -mt-12">
-        <section className="relative py-16 md:py-24 bg-[#d955a4] overflow-visible mt-12">
+        <section className="relative py-16 md:py-24 bg-[#ffecf5] overflow-visible mt-12">
           {/* Scalloped top border matching scrapbook reference image */}
           <div className="absolute top-0 left-0 w-full overflow-visible z-20 pointer-events-none -translate-y-[99%]">
             <svg 
               viewBox="0 0 1200 40" 
               preserveAspectRatio="none" 
-              className="w-full h-[32px] md:h-[42px] text-[#d955a4] fill-current"
+              className="w-full h-[32px] md:h-[42px] text-[#ffecf5] fill-current"
             >
               <path d="M 0 40 Q 60 0, 120 40 Q 180 0, 240 40 Q 300 0, 360 40 Q 420 0, 480 40 Q 540 0, 600 40 Q 660 0, 720 40 Q 780 0, 840 40 Q 900 0, 960 40 Q 1020 0, 1080 40 Q 1140 0, 1200 40 L 1200 41 L 0 41 Z" />
             </svg>
           </div>
 
+          {/* Dotted paper grid overlay */}
+          <div 
+            className="absolute inset-0 opacity-40 pointer-events-none z-0"
+            style={{
+              backgroundImage: `radial-gradient(circle, rgba(217, 85, 164, 0.16) 1.5px, transparent 1.5px)`,
+              backgroundSize: "24px 24px",
+            }}
+          />
+
         {/* Background Scrapbook Glows and Doodles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           {/* Soft floating blobs behind card */}
-          <div className="absolute -top-12 left-1/3 w-64 h-64 rounded-full bg-[#faf7a7]/10 blur-2xl" />
-          <div className="absolute -bottom-16 right-1/4 w-80 h-80 rounded-full bg-[#f7f3ea]/10 blur-3xl" />
+          <div className="absolute -top-12 left-1/3 w-64 h-64 rounded-full bg-[#d955a4]/8 blur-2xl animate-pulse" />
+          <div className="absolute -bottom-16 right-1/4 w-80 h-80 rounded-full bg-[#8a5bd6]/8 blur-3xl animate-pulse" />
+          <div className="absolute top-12 right-1/3 w-72 h-72 rounded-full bg-[#faf7a7]/12 blur-2xl" />
           
-          {/* Sparkles / Stars / Hearts scattered */}
-          <motion.div 
-            className="absolute top-12 left-[8%] text-[#faf7a7]/30"
-            animate={{ rotate: [0, 15, -15, 0], scale: [1, 1.1, 0.9, 1] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Star className="w-8 h-8 fill-[#faf7a7]/10" />
-          </motion.div>
-          <motion.div 
-            className="absolute bottom-16 left-[12%] text-[#faf7a7]/20"
-            animate={{ y: [0, -6, 0] }}
+          {/* Floating/Interactive physical stickers */}
+          <motion.img 
+            src={starSticker} 
+            alt="star sticker"
+            className="absolute top-10 left-[8%] w-14 h-auto select-none opacity-80 hidden md:block"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.img 
+            src={heartSticker} 
+            alt="heart sticker"
+            className="absolute bottom-12 left-[10%] w-12 h-auto select-none opacity-80 rotate-[-15deg] hidden md:block"
+            animate={{ y: [0, -8, 0], rotate: [-15, -10, -20, -15] }}
             transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Heart className="w-10 h-10 fill-[#faf7a7]/5 rotate-[-12deg]" />
-          </motion.div>
-          <motion.div 
-            className="absolute top-20 right-[10%] text-[#faf7a7]/30"
-            animate={{ scale: [0.9, 1.1, 0.9] }}
+          />
+          <motion.img 
+            src={smileySticker} 
+            alt="smiley sticker"
+            className="absolute top-16 right-[8%] w-14 h-auto select-none opacity-80 rotate-[12deg] hidden md:block"
+            animate={{ scale: [1, 1.05, 0.95, 1] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Sparkle className="w-8 h-8" />
-          </motion.div>
-          <motion.div 
-            className="absolute bottom-12 right-[8%] text-[#faf7a7]/20"
-            animate={{ rotate: [0, -10, 10, 0] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Star className="w-6 h-6 fill-[#faf7a7]/10" />
-          </motion.div>
+          />
+          <motion.img 
+            src={twirlyArrowSticker} 
+            alt="twirly arrow"
+            className="absolute bottom-16 right-[12%] w-24 h-auto select-none opacity-85 rotate-[-20deg] hidden lg:block pointer-events-none"
+            animate={{ x: [0, 4, 0], y: [0, -4, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          />
         </div>
 
         <div className="container mx-auto max-w-5xl px-6 relative z-10">
           
           {/* Large Organic Paper Cutout Card with subtle float animation */}
           <motion.div 
-            className="relative bg-[#FFF8EF] border-[6px] md:border-[10px] border-white shadow-[0_20px_50px_rgba(0,0,0,0.18)] overflow-visible"
+            className="relative bg-[#FFFBF7] border-[4px] md:border-[6px] border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] md:shadow-[16px_16px_0px_rgba(0,0,0,1)] overflow-visible"
             style={{
-              borderRadius: "36px 48px 32px 54px",
-              backgroundImage: "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.015) 100%)",
-              transform: "rotate(-1deg)"
+              borderRadius: "24px 36px 20px 40px",
+              transform: "rotate(-0.8deg)"
             }}
-            animate={{ y: [0, -3, 0] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           >
-            {/* Tape corners / Scrapbook accents */}
-            <div className="absolute -top-3.5 -left-4 w-16 h-6 bg-[#faf7a7]/65 border border-black/5 shadow-sm rotate-[-30deg] pointer-events-none select-none" />
+            {/* Washi tape sticker */}
+            <div className="absolute -top-4 -left-6 w-20 h-7 bg-[#faf7a7]/80 border-l border-r border-dashed border-black/20 shadow-sm rotate-[-28deg] pointer-events-none select-none z-30" />
             
+            {/* Hand-drawn badge sticker */}
+            <div className="absolute -bottom-6 -left-4 md:-bottom-8 md:-left-6 bg-[#8a5bd6] border-2 border-black text-white text-[10px] md:text-xs font-mono font-bold px-3.5 py-1.5 rounded-full shadow-[3px_3px_0px_rgba(0,0,0,1)] rotate-[12deg] select-none pointer-events-none z-30 flex items-center gap-1.5">
+              <span>🌸</span> GLT TRIBE
+            </div>
+
             {/* Sparkle pop sticker */}
             <div className="absolute -top-6 right-10 text-[#faf7a7] pointer-events-none select-none filter drop-shadow-[1px_2px_1px_rgba(0,0,0,0.1)]">
               <Sparkle className="w-10 h-10 fill-[#faf7a7]" />
@@ -441,61 +459,79 @@ function HomePage() {
               <div className="flex-1 px-6 py-12 md:px-12 md:py-14 text-left">
                 
                 {/* Label */}
-                <p
-                  className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#d955a4] mb-5 font-bold"
+                <span
+                  className="inline-block text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#d955a4] bg-[#ffecf5] border border-[#d955a4]/30 px-3.5 py-1 rounded-full mb-5 font-extrabold"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
-                  JOIN THE MOVEMENT
-                </p>
+                  ✦ JOIN THE MOVEMENT ✦
+                </span>
 
                 {/* Heading */}
                 <h2
-                  className="text-3xl md:text-5xl font-black text-gray-900 leading-tight"
+                  className="text-4xl md:text-6xl font-black text-gray-900 leading-tight"
                   style={{ fontFamily: "'Satoshi', sans-serif" }}
                 >
-                  Be the change.
+                  Be the <span className="text-[#d955a4] underline decoration-wavy decoration-[#faf7a7] underline-offset-4 decoration-4">change</span>.
                 </h2>
 
                 {/* Subheading */}
                 <p
-                  className="mt-4 max-w-xl text-gray-600 text-base md:text-lg leading-relaxed"
+                  className="mt-5 max-w-xl text-gray-700 text-base md:text-lg leading-relaxed font-medium"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
                   Your story could inspire thousands of girls to take their first
-                  step into technology.
+                  step into technology. Build projects, share opportunities, and lead the future.
                 </p>
 
+                {/* Member count pill */}
+                <div 
+                  className="mt-6 flex items-center gap-2 text-[11px] font-mono text-[#8a5bd6] font-extrabold bg-[#8a5bd6]/10 border border-[#8a5bd6]/30 w-fit px-3 py-1 rounded-full"
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                >
+                  <span>🚀</span> 4,000+ members already onboard
+                </div>
+
                 {/* Button container */}
-                <div className="mt-10 flex gap-8">
+                <div className="mt-8 flex flex-wrap gap-5 items-center">
                   <Link
                     to="/join"
-                    className="relative inline-block active:scale-95 transition-transform duration-100"
+                    className="relative inline-block active:scale-95 transition-all duration-200 group"
                   >
-                    <img
-                      src={pixelBtn}
-                      alt="Join Community Button"
-                      className="w-[190px] h-auto"
-                    />
+                    <div className="relative">
+                      <img
+                        src={pixelBtn}
+                        alt="Join Community Button"
+                        className="w-[195px] h-auto transition-all duration-200 group-hover:brightness-110 drop-shadow-[4px_6px_0px_rgba(0,0,0,1)] group-hover:drop-shadow-[2px_3px_0px_rgba(0,0,0,1)]"
+                      />
 
-                    {/* Button overlay text */}
-                    <span
-                      className="absolute inset-0 flex items-center justify-center text-black font-bold"
-                      style={{
-                        fontFamily: "'Press Start 2P', monospace",
-                        fontSize: "clamp(0.75rem, 1.2vw, 1.2rem)",
-                        letterSpacing: "0.08em",
-                      }}
-                    >
-                      Join Community →
-                    </span>
+                      {/* Button overlay text */}
+                      <span
+                        className="absolute inset-0 flex items-center justify-center text-black font-bold"
+                        style={{
+                          fontFamily: "'Press Start 2P', monospace",
+                          fontSize: "0.82rem",
+                          letterSpacing: "0.08em",
+                        }}
+                      >
+                        Join Now →
+                      </span>
+                    </div>
                   </Link>
+
+                  {/* Secondary/Email Action: Neo-brutalism design style button */}
+                  <a
+                    href="mailto:girlsleadingtech@gmail.com"
+                    className="h-[48px] flex items-center justify-center px-6 border-2 border-black bg-white text-black font-extrabold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-y-0 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all text-xs uppercase font-mono tracking-wider"
+                  >
+                    Email Us
+                  </a>
                 </div>
 
                 {/* Friendly Mail alternative */}
-                <p className="mt-8 text-s text-[#24101F]/80 font-medium font-sans">
+                <p className="mt-8 text-sm text-gray-500 font-medium font-sans">
                   Prefer to mail us?{" "}
                   <a 
-                    href="mailto:hello@girlsleadingtech.org" 
+                    href="mailto:girlsleadingtech@gmail.com" 
                     className="text-[#d955a4] hover:underline font-bold transition-all duration-200"
                   >
                     girlsleadingtech@gmail.com
@@ -509,27 +545,54 @@ function HomePage() {
 
             {/* Live Overlapping Mascot container */}
             {/* Desktop Mascot */}
-            <div className="hidden md:block absolute right-[-40px] bottom-[-20px] w-[280px] lg:w-[360px] z-20 pointer-events-none select-none">
-              
+            <div className="hidden md:block absolute right-[-45px] bottom-[-20px] w-[290px] lg:w-[370px] z-20 pointer-events-none select-none animate-float">
+              <motion.div
+                initial={{ y: 80, opacity: 0, rotate: 10 }}
+                whileInView={{ y: 0, opacity: 1, rotate: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ type: "spring", stiffness: 50, damping: 15, delay: 0.2 }}
+                className="relative"
+              >
+                {/* Speech Bubble */}
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.8, type: "spring", stiffness: 100 }}
+                  className="absolute -top-14 -left-24 bg-white border-2 border-black px-4.5 py-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] rotate-[-6deg]"
+                >
+                  <p className="font-mono text-xs font-black text-black whitespace-nowrap">
+                    We're waiting for you! ✨
+                  </p>
+                  {/* Little speech bubble arrow */}
+                  <div className="absolute right-8 -bottom-2 w-4.5 h-4.5 bg-white border-b-2 border-r-2 border-black rotate-45" />
+                </motion.div>
+                
                 <img
                   src={joinUs}
                   alt="Mascot Desktop"
                   className="w-full h-auto object-contain"
                 />
-            
+              </motion.div>
             </div>
 
             {/* Mobile Mascot */}
-            <div className="md:hidden flex justify-center px-6 pb-8 pointer-events-none select-none">
-              
-            
+            <div className="md:hidden flex flex-col items-center px-6 pb-8 pointer-events-none select-none">
+              <div className="relative w-[210px] mx-auto">
+                {/* Mobile Speech Bubble */}
+                <div className="absolute -top-11 -left-6 bg-white border-2 border-black px-3 py-1.5 shadow-[3px_3px_0px_rgba(0,0,0,1)] rotate-[-4deg]">
+                  <p className="font-mono text-[10px] font-black text-black whitespace-nowrap">
+                    Join the tribe! 🌸
+                  </p>
+                  <div className="absolute right-4 -bottom-2.5 w-3.5 h-3.5 bg-white border-b-2 border-r-2 border-black rotate-45" />
+                </div>
+                
                 <img
                   src={joinUs}
                   alt="Mascot Mobile"
                   className="w-full h-auto object-contain"
                 />
-                
-             
+              </div>
             </div>
 
           </motion.div>
