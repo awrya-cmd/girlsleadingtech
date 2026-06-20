@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "motion/react";
 import { useState } from "react";
 import { User } from "lucide-react";
 import { BackToResources } from "@/components/site/PageHeader";
@@ -225,47 +224,62 @@ function BooksPage() {
             {filteredBooks.map((book) => (
               <GlassCard
                 strong
-                key={book.title}
-                className="group relative overflow-hidden rounded-[20px] bg-[#fffdf9]/95 border-2 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:-translate-x-0.5 hover:shadow-[8px_8px_0px_0px_#d955a4] hover:bg-[#fffdf9] flex flex-col justify-between"
+                key={book.id}
+                className="group relative overflow-hidden rounded-[20px] bg-[#fffdf9]/95 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:-translate-x-0.5 hover:shadow-[8px_8px_0px_0px_#d955a4] hover:bg-[#fffdf9] flex flex-col"
               >
-                <div>
-                  {book.image && (
+                {/* Full-bleed cover image */}
+                {book.image && (
+                  <div
+                    className="relative w-full h-52 overflow-hidden rounded-t-[18px] border-b-2 border-black flex-shrink-0"
+                    ref={(el) => {
+                      /* hide wrapper if img fails */
+                    }}
+                  >
                     <img
                       src={book.image}
                       alt={book.title}
                       loading="lazy"
-                      onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-                      className="mb-4 h-44 w-full object-cover rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                      onError={(e) => {
+                        const wrapper = (e.currentTarget as HTMLImageElement).parentElement;
+                        if (wrapper) wrapper.style.display = "none";
+                      }}
+                      className="h-full w-full object-cover object-top"
                     />
-                  )}
-                  {book.category && (
-                    <span className="inline-block rounded-full bg-pink-100 text-pink-700 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">
-                      {book.category}
-                    </span>
-                  )}
+                  </div>
+                )}
 
-                  <h3 className="mt-4 font-display text-xl font-bold leading-tight text-gray-900 group-hover:text-[#d955a4] transition-colors">
-                    {book.title}
-                  </h3>
+                {/* Card body */}
+                <div className="flex flex-col flex-1 justify-between p-6">
+                  <div>
+                    {book.category && (
+                      <span className="inline-block rounded-full bg-pink-100 text-pink-700 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">
+                        {book.category}
+                      </span>
+                    )}
 
-                  <div className="mt-4 flex items-center gap-2 text-gray-600">
-                    <User className="h-4 w-4" />
-                    <span className="text-xs font-semibold text-secondary">
-                      {book.author || "Community Recommendation"}
-                    </span>
+                    <h3 className="mt-4 font-display text-xl font-bold leading-tight text-gray-900 group-hover:text-[#d955a4] transition-colors">
+                      {book.title}
+                    </h3>
+
+                    <div className="mt-3 flex items-center gap-2 text-gray-600">
+                      <User className="h-4 w-4 flex-shrink-0" />
+                      <span className="text-xs font-semibold text-secondary">
+                        {book.author || "Community Recommendation"}
+                      </span>
+                    </div>
+
+                    {book.description && (
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                        {book.description}
+                      </p>
+                    )}
                   </div>
 
-                  {book.description && (
-                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                      {book.description}
-                    </p>
-                  )}
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-gray-100/50">
-                  <span className="inline-flex items-center rounded-lg bg-[#A9B7FF]/15 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#4B57A8]">
-                    ✦ Recommended by the community
-                  </span>
+                  <div className="mt-6 pt-4 border-t border-gray-100/50">
+                    <span className="inline-flex items-center rounded-lg bg-[#A9B7FF]/15 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#4B57A8]">
+                      ✦ Recommended by the community
+                    </span>
+                  </div>
                 </div>
               </GlassCard>
             ))}
