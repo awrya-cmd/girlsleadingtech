@@ -220,7 +220,7 @@ function BooksPage() {
                         const wrapper = (e.currentTarget as HTMLImageElement).parentElement;
                         if (wrapper) wrapper.style.display = "none";
                       }}
-                      className="h-full w-full object-cover object-center"
+                      className="h-full w-full object-contain"
                     />
                   </div>
                 )}
