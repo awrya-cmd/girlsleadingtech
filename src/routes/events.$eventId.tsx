@@ -127,7 +127,7 @@ function EventDetail() {
                 Session Timeline
               </h2>
               <div className="mt-4 flex flex-col gap-2 max-w-xl">
-                {event.timestamps.map((ts, idx) => {
+                {event.timestamps.map((ts: { time: string; title: string }, idx: number) => {
                   const secs = timestampToSeconds(ts.time);
                   const videoLink = getYoutubeLinkWithTimestamp(event.youtubeLink || "", secs);
                   return (
@@ -153,7 +153,7 @@ function EventDetail() {
 
           {event.speakers && event.speakers.length > 0 ? (
             <div className="mt-8 flex flex-col gap-4 max-w-md relative">
-              {event.speakers.map((speaker) => {
+              {event.speakers.map((speaker: { id: string; name: string; image?: string; designation?: string; company?: string; linkedin?: string }) => {
                 const img = speaker.image || getSpeakerImageByName(speaker.name);
                 return (
                   <div key={speaker.id} className="relative flex items-center gap-4 rounded-2xl bg-[#FFD966] shadow-md border border-[#d955a4]/20 border-l-[5px] border-l-[#d955a4] p-5 z-10">

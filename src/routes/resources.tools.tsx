@@ -157,7 +157,7 @@ function ToolsPage() {
       <section className="relative z-10 container mx-auto max-w-6xl px-6 pb-24 pt-4">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {tools.map((r, idx) => {
-            const logoUrl = getLogoUrl(r.link);
+            const logoUrl = getLogoUrl(r.link ?? "");
 
             const CardInner = (
               <GlassCard
