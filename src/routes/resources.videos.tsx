@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState as _useStateSearch } from "react";
+import { ResourceSearchBar, filterBySearch } from "@/components/site/ResourceSearchBar";
 import { GlassCard } from "@/components/site/GlassCard";
 import { videos } from "@/data/resources";
 import { ExternalLink } from "lucide-react";
@@ -60,6 +62,8 @@ function GridBackground() {
 }
 
 function VideosPage() {
+  const [_q, _setQ] = _useStateSearch("");
+  const _filtered = filterBySearch(videos, _q, ["title","name","description","summary","author","provider","organisedBy","company","role","domain","category","categories","benefit","eligibility","keywords"]);
   return (
     <div className="relative w-full min-h-screen bg-[#fef9f4] overflow-hidden">
       <GridBackground />
@@ -148,8 +152,9 @@ function VideosPage() {
 
       {/* CARDS SECTION */}
       <section className="relative z-10 container mx-auto max-w-6xl px-6 pb-24 pt-4">
+        <ResourceSearchBar value={_q} onChange={_setQ} placeholder="Search videos..." />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {videos.map((r, idx) => {
+          {_filtered.map((r, idx) => {
             const CardInner = (
               <GlassCard
                 strong

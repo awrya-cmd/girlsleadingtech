@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState as _useStateSearch } from "react";
+import { ResourceSearchBar, filterBySearch } from "@/components/site/ResourceSearchBar";
 import { GlassCard } from "@/components/site/GlassCard";
 import { scholarships } from "@/data/scholarships";
 import { ExternalLink, Calendar, Award, Users } from "lucide-react";
@@ -59,6 +61,8 @@ function GridBackground() {
 }
 
 function ScholarshipsPage() {
+  const [_q, _setQ] = _useStateSearch("");
+  const _filtered = filterBySearch(scholarships, _q, ["title","name","description","summary","author","provider","organisedBy","company","role","domain","category","categories","benefit","eligibility","keywords"]);
   return (
     <div className="relative w-full min-h-screen bg-[#fef9f4] overflow-hidden">
       <GridBackground />
@@ -146,8 +150,9 @@ function ScholarshipsPage() {
 
       {/* CARDS SECTION */}
       <section className="relative z-10 container mx-auto max-w-6xl px-6 pb-24 pt-4">
+        <ResourceSearchBar value={_q} onChange={_setQ} placeholder="Search scholarships..." />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {scholarships.map((s, i) => (
+          {_filtered.map((s, i) => (
             <a
               key={s.id}
               href={s.link}
