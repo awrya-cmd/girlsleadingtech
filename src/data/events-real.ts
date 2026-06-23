@@ -59,7 +59,7 @@ export const realEvents: Event[] = [
 
     "youtubeLink": "https://youtu.be/T92Vx4-Giy4",
     "attendees": 37,
-    "summary": "This panel discussion, hosted by Girls Leading Tech, provides a detailed roadmap for first-year female engineering students interested in the WE Scholarship program. The program is a two-year mentorship initiative supported by Google and managed by TalentSprint, designed to equip",
+    "summary": "The panelists explained the WE Scholar program, eligibility requirements, and the multi-stage selection process. They discussed aptitude, coding, English, and interview rounds along with practical preparation strategies. The conversation covered common coding questions, confidence-building tips, and handling rejection if not selected. Speakers also shared their experiences from the bootcamp and Google office visit, highlighting networking, mentorship, and learning opportunities.",
     "status": "past",
     "category": "Scholarships"
   },
@@ -100,7 +100,7 @@ export const realEvents: Event[] = [
 
     "youtubeLink": "https://youtu.be/N3iP6_oaum0",
     "attendees": 22,
-    "summary": "This video features a comprehensive Q&A session with Jigisha Arora, a Google STEP intern, providing valuable insights into the internship application process, interview preparation, and the overall Google intern experience. Overview of Google STEP Internship Purpose: The STEP (St",
+    "summary": "Jigisha Aurora, a Google STEP Intern, shared her journey and explained why STEP is one of the most valuable opportunities for second-year students. She discussed the application process, resume shortlisting, interview preparation, referrals, and common DSA topics asked in interviews. The session also covered internship life at Google, conversion to SWE Intern, and practical advice for maximizing internship opportunities. A large portion of the discussion focused on referrals, preparation timelines, and internship experiences at Google.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -153,7 +153,7 @@ export const realEvents: Event[] = [
 
     "youtubeLink": "https://youtu.be/qYo1UFocUwo",
     "attendees": 78,
-    "summary": "This video is a comprehensive guide to Google Summer of Code (GSOC), featuring insights from Nishant Singhal (GSOC 2022 contributor and 2023 mentor) and Angel Sharma (GSOC 2024 contributor). 1.",
+    "summary": "Nishant Singhal and Angel Sharma introduced Google Summer of Code and explained how students can begin contributing to open source. They walked through the GSOC timeline, selecting organizations, finding mentors, contributing effectively, and writing strong proposals. The speakers shared their own GSOC experiences, discussed common mistakes, and emphasized consistency over prior open-source experience.",
     "status": "past",
     "category": "Open Source Programs"
   },
@@ -191,7 +191,7 @@ export const realEvents: Event[] = [
         ],
     "youtubeLink": "https://youtu.be/J8nHxauzyDs",
     "attendees": 67,
-    "summary": "This video is a detailed mentorship session by Divina Pooja John, a Software Engineer at Google, focused on preparing for Google internships (SWE, STEP) and the Women Engineers (WE) program. 1.",
+    "summary": "Divina Pooja John shared her experience securing a Google SWE Internship and discussed the complete recruitment journey. She explained resume building, interview preparation, project work, networking, and how students can prepare for technical interviews. The conversation also covered common mistakes, skill development, and strategies for standing out during the hiring process. Attendees gained insight into Google's expectations and internship experience from a former intern's perspective.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -230,7 +230,7 @@ export const realEvents: Event[] = [
 
     "youtubeLink": "https://youtu.be/1bm_ARA1zfo",
     "attendees": 144,
-    "summary": "This video is a detailed mentorship session by Radhika Bansal, an incoming software engineer at Uber, who explains the entire process of landing the Uber She++ and Uber Star Internship. Below is a detailed summary of the key sections discussed in the video:  1.",
+    "summary": "Radhika, an Uber Star Intern and Google WE Scholar, explained the difference between Uber She++ and Uber Star Internship programs. She discussed eligibility, application procedures, online assessments, and interview preparation strategies. The session also explored networking opportunities through Uber She++, internship expectations, and how students can strengthen their profiles for selection. Participants received practical guidance on approaching Uber opportunities both on-campus and off-campus.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -268,7 +268,7 @@ export const realEvents: Event[] = [
       ],
     "youtubeLink": "https://youtu.be/lmOpsbqATyQ",
     "attendees": 66,
-    "summary": "This is a comprehensive summary of the LinkedIn Masterclass hosted by Manik (@themanikdiaries) for the \"Girls Leading Tech\" community. The session is a deep dive into optimizing a LinkedIn profile to attract opportunities and build a professional brand.",
+    "summary": "The LinkedIn Masterclass focused on personal branding, profile optimization, networking, and content creation on LinkedIn. The speaker, reviewed real profiles and explained what makes a profile stand out to recruiters. Students learned how to write better headlines, create impactful posts, build meaningful connections, and leverage LinkedIn for internships and opportunities. The session emphasized practical improvements that can immediately increase visibility and engagement.",
     "status": "past",
     "category": "Networking & Personal Branding"
   },
@@ -306,7 +306,7 @@ export const realEvents: Event[] = [
 
     "youtubeLink": "https://youtu.be/OuRihewdRKg",
     "attendees": 165,
-    "summary": "This video is a detailed mentorship session hosted by Girls Leading Tech, featuring Swasti Sarum (a LinkedIn CoachIn '24 mentee and upcoming JPMC intern). She provides a comprehensive guide on how to navigate the LinkedIn CoachIn program, from the application stage to securing an",
+    "summary": "Swati Sargam, a LinkedIn Coaching mentee and upcoming JPMorgan intern, explained the highly selective LinkedIn Coaching mentorship program. She covered eligibility, application stages, online assessments, screening calls, interview preparation, and mentorship benefits. The session highlighted how the program helps women engineering students prepare for technical careers and internship opportunities. Attendees also learned what recruiters evaluate during interviews and how to present their experiences effectively",
     "status": "past",
     "category": "Networking & Personal Branding"
   },
@@ -345,7 +345,7 @@ export const realEvents: Event[] = [
 
     "youtubeLink": "https://youtu.be/luBrrTvTtHg",
     "attendees": 69,
-    "summary": "This mentorship session, titled \"Blockchain Fundamentals,\" is led by Mohammad Mudassir, a software engineer at the Algorand Foundation and former researcher at IIT Bombay. He provides a comprehensive overview of blockchain technology, its history, and its future.",
+    "summary": "This mentorship session, titled \"Blockchain Fundamentals,\" is led by Muhammad Mudassir, a software engineer at the Algorand Foundation and former researcher at IIT Bombay. He explained how blockchains function, the role of smart contracts, and key applications beyond cryptocurrency. Students were introduced to the broader Web3 ecosystem, development opportunities, and potential career paths in the blockchain space. The session served as a beginner-friendly foundation for understanding decentralized technologies.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -468,7 +468,7 @@ export const realEvents: Event[] = [
 
     "youtubeLink": "https://youtu.be/B1WVvwqMd6k",
     "attendees": 213,
-    "summary": "This video is an extensive webinar featuring Tanisha Singh, the winner of the Google Girl Hackathon (GGH) 2024. She shares her comprehensive journey, technical strategies, and practical advice for female engineering students aiming to excel in high-stakes hackathons.",
+    "summary": "This session walked through the complete Google Girl Hackathon journey based on a previous winner’s experience, covering resume shortlisting, coding rounds, project development, and final presentations. Tanisha shared preparation strategies for DSA rounds, tips for selecting and scoping projects, and lessons from building an AI-powered disaster relief solution. A major focus was on practical execution, research, presentation skills, and handling judge questions. The Q&A also covered resumes, AI/ML learning, project building, and hackathon expectations for students across different years.",
     "status": "past",
     "category": "Hackathons"
   },
@@ -612,7 +612,7 @@ title: "Bounties, SIH & Q&A"
 
     "youtubeLink": "https://youtu.be/6cM8fqBy1_w",
     "attendees": 52,
-    "summary": "The video, titled \"How you can build a strong Network | By Garima Pahwa,\" is a detailed session hosted by the \"Girls Leading Tech\" community. The guest speaker, Garima Pahwa, a 4th-year college student and employee at Becton Dickinson, shares her practical journey and strategies",
+    "summary": "Garima Pawa, a fourth-year student and professional at Becton Dickinson, shared practical advice on networking, community involvement, hackathons, LinkedIn presence, and leveraging connections for internships and jobs. She emphasized networking as building meaningful relationships through collaboration, projects, and communities rather than simply collecting contacts. The session also covered maintaining connections, online vs offline networking, community programs, and balancing networking with academics and career goals.",
     "status": "past",
     "category": "Networking & Personal Branding"
   },
@@ -650,7 +650,7 @@ title: "Overcoming Self-Doubt, Failure & Growth Mindset"
 ],
 
     "youtubeLink": "https://youtu.be/WkiHwfHo-qk",
-    "summary": "The video titled \"Entrepreneurship & Strategic Thinking,\" featuring Nidhi Mehta (Founder of Self Achievers and a TEDx speaker), provides a comprehensive guide for women looking to venture into the startup world. It was part of the \"EmpowerHer\" event organized by the Girls Leading",
+    "summary": "Nidhi Banthia Mehta shared her 23-year entrepreneurial journey, from launching a Bollywood dance fitness venture in Silicon Valley to building multiple successful businesses. She discussed how entrepreneurship provides women with flexibility, financial independence, and personal fulfillment. The session also covered business idea validation, differentiation strategies, overcoming self-doubt, handling criticism, and building resilience through continuous learning and growth.",
     "status": "past",
     "category": "Leadership & Soft Skills"
   },
@@ -701,7 +701,7 @@ title: "Confidence, Career Growth & Key Takeaways"
 }
 ],
     "youtubeLink": "https://www.youtube.com/watch?v=pdAkjkFv4i4",
-    "summary": "In this detailed presentation titled \"How Leadership & Public Speaking Build Your Confidence,\" Shilpi Mitra, a lead at Microsoft with over 18 years of experience, shares her journey and practical strategies for personal and professional growth. 1.",
+    "summary": "Shilpi Mitra shared how confidence is a skill that can be developed through leadership experiences and public speaking. She discussed common barriers to confidence, especially for women in tech, and highlighted the role of mentorship, continuous learning, and taking initiative. Through personal stories and practical tips, she encouraged students to embrace opportunities, practice consistently, and build confidence through action.",
     "status": "past",
     "category": "Leadership & Soft Skills"
   },
@@ -739,7 +739,7 @@ title: "Managing Burnout, Priorities & Work-Life Integration"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=QTazZvDYFAw",
-    "summary": "This 53-minute video features a guest lecture by Dr. Naga Swathi, a veteran SAP strategist, author, and energy transformation coach, as part of the #5 EMpowerHer series.",
+    "summary": "Dr. Naga Swathi shared practical insights on identifying one's true potential through self-awareness, journaling, and reflection. She discussed how childhood conditioning, societal expectations, fear of success, and fear of failure can limit personal growth. The session focused on overcoming mental barriers, prioritizing effectively, managing burnout, and building confidence through mindset shifts, visualization, and conscious decision-making. An interactive Q&A covered topics like career choices, balancing multiple goals, parental expectations, and avoiding burnout.",
     "status": "past",
     "category": "Core Engineering"
   },
@@ -777,7 +777,7 @@ title: "Purpose, Self-Relationship & Managing Anxiety"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=0BBn6bgb_F8",
-    "summary": "This video features Madhu Sathvik, a yoga trainer and life coach, discussing holistic approaches to mental health and wellness. She emphasizes that mental well-being can be achieved naturally through lifestyle changes, nutrition, and mindfulness.",
+    "summary": "A holistic wellness session focused on improving mental health through lifestyle changes, nutrition, movement, sleep, mindfulness, and self-awareness. The speaker emphasized the connection between physical and mental well-being, discussed practical ways to manage stress and anxiety, and guided participants through simple pranayama techniques. The session concluded with audience questions on anxiety, self-esteem, and handling expectations.",
     "status": "past",
     "category": "Wellness & Mental Health"
   },
@@ -838,7 +838,7 @@ title: "Inside the AI/ML Cohort Experience"
 
     "youtubeLink": "https://www.youtube.com/watch?v=F3bvY6T8iQo",
     "attendees": 91,
-    "summary": "This video is a detailed panel discussion hosted by the community Girls Leading Tech, featuring three mentees (Urvashi, Garima, and Suvarna) who share their experiences and advice on how to successfully apply to and benefit from Codess.Cafe, a prominent mentorship platform for wo",
+    "summary": "This session focused on helping students understand the Codess Cafe mentorship program, including the application process, selection criteria, resume building, essay writing, and cohort structure. The speakers shared their personal journeys, experiences as mentees, and tips for increasing selection chances. Attendees also asked questions about ML cohorts, resumes, hackathons, LinkedIn profiles, and mentorship benefits.",
     "status": "past",
     "category": "Scholarships"
   },
@@ -877,7 +877,7 @@ title: "Are Paid Events Worth Attending?"
 
     "youtubeLink": "https://www.youtube.com/watch?v=TSZXUpS78oo",
     "attendees": 61,
-    "summary": "The video \"How to find the Events Happening around you?\" by the channel Girls Leading Tech is a comprehensive guide and interactive session led by Manik. It focuses on the importance of networking, how to discover tech events, and strategies for making the most out of them.",
+    "summary": "Manik shared practical strategies for discovering quality tech events, hackathons, meetups, and conferences, especially for students from smaller cities. He covered how to evaluate events, build meaningful networks, increase chances of getting selected for flagship events, and leverage communities, platforms, and social media to find opportunities. The session also included audience Q&A, personal networking experiences, and recommendations for both virtual and in-person events.",
     "status": "past",
     "category": "Networking & Personal Branding"
   },
@@ -916,7 +916,7 @@ title: "DSA Revision Techniques & Interview Preparation"
 
     "youtubeLink": "https://www.youtube.com/watch?v=uTANGbXJ4pY",
     "attendees": 249,
-    "summary": "In this video, Deeksha Pandey, an SDE III at Google, shares her detailed journey from a Tier-3 college to cracking top tech companies like Microsoft and Google. Educational Background and Early Challenges College Environment: Deeksha attended a state government college (BIET Jhan",
+    "summary": "Deeksha Pandey shared her journey from a state government college to securing offers from Microsoft and Google through off-campus preparation. She discussed her DSA learning strategy, competitive programming routine, hackathon participation, resume-building techniques, and interview preparation. The session also covered common mistakes students make, how to stand out as a candidate, and practical advice for internships, hackathons, and career growth.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -954,7 +954,7 @@ title: "Consistency, Networking & Advice for Students"
     ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=l2ysqBR6yHI&pp=0gcJCdkKAYcqIYzv",
-    "summary": "This video from the Girls Leading Tech spotlight series features Siddhi Gupta, a first-year Computer Science student at NIT Kurukshetra, who shares her journey from being an academic topper to becoming an Amazon Future Engineer (AFE) Scholar. Academic Background & Achievements Ac",
+    "summary": "Siddhi Gupta shared her journey from being a school topper to becoming an Amazon Future Engineer Scholar and a Computer Science student at NIT Kurukshetra. She discussed her early interest in coding, structured college roadmap, DSA preparation, web development journey, scholarship application process, and the importance of consistency, networking, and applying for opportunities without fear.",
     "status": "past",
     "category": "Scholarships"
   },
@@ -993,7 +993,7 @@ title: "Intuit Interview Process & Placement Q&A"
 
     "youtubeLink": "https://www.youtube.com/watch?v=VRhuMVR_XTw",
     "attendees": 86,
-    "summary": "This video is an extensive mentorship session featuring Akanksha Buchke, a Senior Software Engineer at Intuit, who shares a comprehensive roadmap for students and professionals looking to crack roles at top product-based companies like Intuit, Google, and Microsoft. The session i",
+    "summary": "Akanksha shared a structured five-step framework for securing internships and jobs at product-based companies, covering programming languages, DSA, projects, internships, CS fundamentals, and resume building. She explained how to prepare for technical interviews, optimize LinkedIn profiles, and approach placements strategically from tier-2/3 colleges. The session also included detailed guidance on Intuit’s interview process and an extensive Q&A on DSA, projects, resumes, internships, and career planning.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -1010,7 +1010,7 @@ title: "Intuit Interview Process & Placement Q&A"
     timestamps: [
 {
 time: "00:00:00",
-title: "Introduction & Samriti's Journey"
+title: "Introduction & Samridhi's Journey"
 },
 {
 time: "00:01:43",
@@ -1031,7 +1031,7 @@ title: "Managing Opportunities, DSA & Career Advice"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=Yx5jibuU5hg",
-    "summary": "This video is an interview with Samridhi Gupta, a second-year engineering student who has secured several prestigious scholarships and fellowships. She shares her journey, the application processes for various programs, and advice for women in tech.",
+    "summary": "Samridhi Gupta shares her journey as a WE Scholar, GHC Scholar, HPAIR delegate, and Google Girl Hackathon semi-finalist. She discusses how she discovered opportunities, prepared for various programs, balanced academics with extracurriculars, and built confidence through community support. The session also covers DSA, development, internships, networking, and advice for women in tech.",
     "status": "past",
     "category": "Scholarships"
   },
@@ -1068,7 +1068,7 @@ title: "Advice for Beginners & Self-Belief"
     ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=fERcXjig4jM",
-    "summary": "This video features an interview with Naina Modi, a first-year Computer Science student at LNCT Bhopal, who has achieved remarkable success by securing multiple prestigious scholarships and fellowships early in her college journey. The conversation provides a roadmap for students",
+    "summary": "Naina Modi, a first-year CSE student, shares her journey of getting selected as a Harvard WECode Scholar and participating in multiple scholarship and mentorship programs. She discusses discovering opportunities, balancing academics with upskilling, overcoming rejections, building a career in tech, and tips for writing strong scholarship applications. The session also highlights the importance of communities, networking, self-belief, and exploring different tech domains early.",
     "status": "past",
     "category": "Scholarships"
   },
@@ -1077,7 +1077,7 @@ title: "Advice for Beginners & Self-Belief"
     "title": "How to Crack Lfx",
     "date": "2025-06-01",
     "duration": "43mins 4s",
-    "speakerName": "Chinmayi D.s",
+    "speakerName": "Chinmayi DS",
     "speakerLinkedin": "https://www.linkedin.com/in/chinmayi-d-s-2608b0263/",
     "speakerDesignation": "Mentee",
     "speakerCompany": "Lfx",
@@ -1106,7 +1106,7 @@ title: "Open Source Advice & Audience Q&A"
 
     "youtubeLink": "https://www.youtube.com/watch?v=20SraqgHPo4",
     "attendees": 119,
-    "summary": "This video is an extensive guide by Chinmayee Das, a 2024 LFX mentee and 2025 Google Summer of Code (GSoC) contributor, on how to successfully get into the Linux Foundation Mentorship (LFX). Below is a detailed summary of the key sections and advice provided in the session:  1.",
+    "summary": "Chinmayi DS, an LFX 2024 mentee at Hyperledger Fabric, shared her journey into open source and the Linux Foundation's LFX Mentorship Program. She explained the application and interview process, how to write a strong cover letter, connect with mentors, and contribute effectively to open-source projects. The session also covered practical tips for increasing selection chances and building an open-source profile.",
     "status": "past",
     "category": "Open Source Programs"
   },
@@ -1144,7 +1144,7 @@ title: "Advice to Younger Self & Personal Growth"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=UQJ5XhurFbw&pp=0gcJCdkKAYcqIYzv",
-    "summary": "This video is an episode of the GLT Spotlight series featuring Aarushi Chottani, a 17-year-old high school student who has made significant strides in the tech and research fields at a very young age. Early Tech Journey Starting Young: Aarushi’s interest in tech began at age 11 t",
+    "summary": "Aarushi shared how she began her tech journey with Scratch programming and robotics at age 11, later learning Python and JavaScript through self-learning and projects. She discussed balancing high school with internships, fellowships, research, and community leadership roles. The conversation focused on networking, research, personal growth, and building skills beyond academics through curiosity and initiative.",
     "status": "past",
     "category": "Core Engineering"
   },
@@ -1182,7 +1182,7 @@ title: "Q&A: ESOC Applications, ML Resources & ETHIndia"
 
     "youtubeLink": "https://www.youtube.com/watch?v=xnl-GIXszK8",
     "attendees": 44,
-    "summary": "This video is a detailed session hosted by Girls Leading Tech, featuring Pranav Bhat, a contributor to the European Summer of Code (ESOC) and a student at NIT Karnataka. The session provides a comprehensive guide on breaking into open source, specifically focusing on the newly es",
+    "summary": "Pranav shared his journey from open-source contributor to ESOC participant, explaining how ESOC works, how it compares to GSOC, and why open source is valuable for students. He walked through finding organizations, making contributions on GitHub, application and proposal stages, and best practices for engaging with open-source communities. The session also included Q&A on ML learning resources, GSOC/ESOC preparation, and hackathon experiences like ETHIndia.",
     "status": "past",
     "category": "Open Source Programs"
   },
@@ -1237,7 +1237,7 @@ title: "Jobs, Internships & Career Growth Through Twitter"
    
     "youtubeLink": "https://www.youtube.com/watch?v=g69YR_HVLdY",
     "attendees": 51,
-    "summary": "This video, titled \"Get Started with Twitter | How to get Jobs/Internships from Twitter?\", features a detailed session hosted by Manik from the Girls Leading Tech community. The guest speakers, Anika (Salesforce Intern) and Preksha Majan (Software Engineering Intern at Nielsen),",
+    "summary": "An interactive session focused on leveraging Twitter (X) for networking, personal branding, learning, and career growth in tech. The speakers shared their own Twitter journeys, explained how beginners can get started, build meaningful connections, discover internships and opportunities, and use the platform more effectively than traditional professional networks in certain scenarios. The discussion also covered content creation, viral tweets, handling negativity, and real-life success stories from Twitter networking.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -1276,7 +1276,7 @@ title: "AWS AI & ML Scholarship vs ML Summer School"
 
     "youtubeLink": "https://www.youtube.com/watch?v=QOI35U32TOc",
     "attendees": 162,
-    "summary": "This video features Anushka Srivastava, a Software Engineering Intern at Microsoft and a 2024 Amazon ML Summer School (MLSS) mentee, sharing her comprehensive guide on how to get into and make the most of the Amazon ML Summer School.The session is hosted by Girls Leading Tech and",
+    "summary": "Anushka Srivastava, an Amazon ML Summer School 2024 mentee and Microsoft Software Engineering Intern, shared a detailed overview of Amazon ML Summer School, including eligibility, selection process, curriculum, and career opportunities. She discussed preparation strategies for the online assessment, the benefits of the program, internship pathways, and her personal journey in AI/ML. The session also covered AWS AI & ML Scholarship, project-building advice, and insights into internships and career growth in tech.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -1315,7 +1315,7 @@ title: "Personal Motivation, Career Advice & AMA Session"
 
     "youtubeLink": "https://www.youtube.com/watch?v=Y1rT73vDdB0",
     "attendees": 86,
-    "summary": "In this video, Khushi, a Google Women Techmakers (WTM) Ambassador and Developer Advocate, shares a comprehensive guide on how to join the WTM Ambassador program. She provides insights from her own journey, details the application process, and discusses the perks of being part of",
+    "summary": "Khushi shared her journey of becoming a Google Women Techmakers Ambassador, including her first rejection, eventual selection, and the community work that strengthened her application. She explained the WTM application process, key questions, selection criteria, and practical tips for building a strong profile. The session also covered ambassador benefits, responsibilities, networking opportunities, and advice on community building, hackathons, and career growth in tech.",
     "status": "past",
     "category": "Core Engineering"
   },
@@ -1367,7 +1367,7 @@ title: "GitHub, Open Source & Placement Readiness"
 
     "youtubeLink": "https://www.youtube.com/watch?v=dRXGYcYNOyA",
     "attendees": 85,
-    "summary": "The video features Priyanshi Agarwal, a Software Development Engineer (SDE) at Flipkart and former intern at Amazon, sharing a comprehensive roadmap for cracking engineering roles at top tech companies. 1.",
+    "summary": "The speaker shared her journey from a Tier-3 college to securing offers from Amazon and Flipkart, emphasizing DSA consistency, resume building, internships, and LinkedIn presence. She discussed language choices for DSA, interview preparation strategies, open-source contributions, hackathons, and how to stand out in placements. The session was highly interactive with students asking questions about placements, communication skills, resumes, and career growth.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -1406,7 +1406,7 @@ title: "Job Market, Career Advice & Audience Q&A"
 
     "youtubeLink": "https://www.youtube.com/watch?v=Dkzxav6CLKg",
     "attendees": 89,
-    "summary": "This video is a comprehensive mentorship session featuring Riya Singhal, a Software Development Engineer (SDE) at Microsoft with prior experience at Red Hat and IBM. She shares a detailed roadmap for cracking top product-based companies, focusing on preparation strategies, resume",
+    "summary": "Riya Singhal shared her journey from Red Hat and IBM to Microsoft, along with practical advice on cracking product-based company interviews. She covered DSA preparation strategies, system design expectations, resume and LinkedIn optimization, job market realities, and common mistakes students make while preparing for placements. The session concluded with an interactive Q&A on career choices, open source, networking, and interview preparation.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -1445,7 +1445,7 @@ title: "Navigating Career Confusion & Finding Direction"
 
     "youtubeLink": "https://www.youtube.com/watch?v=karUHuo0w34&pp=0gcJCdkKAYcqIYzv",
     "attendees": 142,
-    "summary": "This video features Juie Chandra, a Software Development Engineer at Flipkart and the winner of Flipkart GRID 5.0, sharing a comprehensive roadmap for students and professionals to excel in the prestigious hackathon. The Flipkart GRID Roadmap Juie breaks down the hackathon into s",
+    "summary": "Juhi Chandra, Flipkart GRID 5.0 winner and Software Development Engineer at Flipkart, shared her journey of winning the hackathon and securing a role at the company. She explained the GRID selection process, how to approach problem statements, build impactful MVPs, document research, and present solutions effectively. The session also covered resume building, open-source contributions, career exploration, and practical advice for students starting their tech journey.",
     "status": "past",
     "category": "Hackathons"
   },
@@ -1497,7 +1497,7 @@ title: "Advanced Approach: Transformers & Deep Learning Models"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=a_vOegkcMM8 https://www.youtube.com/watch?v=iPlED7mHG-0",
-    "summary": "session 2  This video is the second lecture in a Machine Learning cohort series, featuring Suvendu Mohanty, a Senior Applied ML Engineer at Amazon. The session focuses on the practical application of machine learning using a real-world project example: Intent Recognition in Car I",
+    "summary": "This session focuses on solving a real-world NLP problem: intent classification for a car voice assistant system. The speaker explains how unstructured text (chat history + user commands) is transformed into structured features for machine learning.A baseline approach using TF-IDF vectorization and logistic regression is built step-by-step, including preprocessing, label encoding, and model evaluation.The session then extends into an advanced approach using transformer-based embeddings and deep learning for better performance and multilingual support.Finally, the speaker connects the pipeline to real production ML systems and briefly discusses scalability and MLOps concepts",
     "status": "past",
     "category": "AI & Machine Learning"
   },
@@ -1536,7 +1536,7 @@ title: "Letters of Recommendation & Application Tips"
 
     "youtubeLink": "https://www.youtube.com/watch?v=Y2guRprmN-o",
     "attendees": 86,
-    "summary": "This video is a comprehensive guide by Akanksha Rani, a 2024 Google Generation Scholar, on how to successfully apply for the scholarship. She shares her personal journey of facing rejections before ultimately winning the award in her final year.",
+    "summary": "The session is a detailed walkthrough of the Google Generation Scholarship application process, eligibility, and preparation strategy. Akansha shares her personal journey of getting rejected twice before finally receiving the scholarship in her final attempt. She explains how essays, online coding assessments, CGPA, and recommendation letters collectively impact selection. Key emphasis is placed on storytelling in essays using problem–solution–impact and building a strong tech profile over time.",
     "status": "past",
     "category": "Scholarships"
   },
@@ -1574,7 +1574,7 @@ title: "Confusion Matrix & Model Evaluation Metrics"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=RNK2i9SYMJc",
-    "summary": "This video is a detailed lecture by Yashika Kokar, a Software Development Engineer at Morgan Stanley, focusing on the foundational concepts of Machine Learning, specifically Linear Regression, Logistic Regression, and Model Evaluation Metrics.Below is a detailed summary of the ke",
+    "summary": "This session introduces core machine learning fundamentals including linear regression, logistic regression, and model evaluation techniques. The speaker explains supervised learning using real-world intuition, followed by regression equations, gradient descent, and loss functions. It then transitions into classification using logistic regression and probability-based decision making. The session concludes with evaluation metrics like confusion matrix, accuracy, and F1 score along with bias-variance tradeoff.",
     "status": "past",
     "category": "AI & Machine Learning"
   },
@@ -1612,7 +1612,7 @@ title: "Live Coding: Bias-Variance Visualization"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=Wl7nM4JuUj0",
-    "summary": "This comprehensive workshop, led by Akshat Gautam (CTO at Fern Bio), focuses on the practical foundations of Machine Learning, specifically emphasizing that data quality is more critical than model complexity. Core Philosophy: \"Garbage In, Garbage Out\" The speaker highlights that",
+    "summary": "This workshop introduces practical machine learning concepts with a strong focus on feature engineering, feature selection, and bias-variance trade-off. The speaker explains how real-world data quality and transformation often matter more than model complexity, using industry and Kaggle examples. Key ML preprocessing techniques like encoding, scaling, and domain-driven feature creation are discussed in depth. The session concludes with a live coding demonstration visualizing model performance and error trade-offs.",
     "status": "past",
     "category": "AI & Machine Learning"
   },
@@ -1650,7 +1650,7 @@ title: "XGBoost, LightGBM & Boosting Concepts"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=SM6ZBLc_Cys",
-    "summary": "This video is an advanced masterclass on Model Optimization and Ensemble Learning, presented by Aman Mundra, a Senior AI/ML Engineer at PayPal. The session focuses on moving beyond basic decision trees to high-performance industry algorithms like Random Forest, XGBoost, and Light",
+    "summary": "This advanced ML session focuses on model optimization and ensemble learning techniques built on decision trees. The speaker explains key industry algorithms like Random Forest, XGBoost, and LightGBM, along with when and why they are used. Core concepts such as bagging vs boosting, bias-variance tradeoff, hyperparameter tuning, and class imbalance handling are also covered. The session connects theory with practical industry use cases from large-scale data systems.",
     "status": "past",
     "category": "AI & Machine Learning"
   },
@@ -1764,7 +1764,7 @@ title: "Startup Validation, Funding & MVP Reality Check"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=NDRxh0RvP90",
-    "summary": "The video, titled \"Navigating the Landscape of AI Startups,\" features Neha Goyel, founder of Tarzi AI, sharing her extensive journey from a fifth-grade coder to a tech leader at companies like Microsoft and eventually an entrepreneur. Here is a detailed summary of the key insight",
+    "summary": "The session explores the speaker’s journey from early coding exposure to building AI-driven startups, including experiences at Cognizant, Infosys, MathWorks, and Microsoft. She shares insights on startup building, AI product development, sustainability in fashion through her venture Darzi AI, and lessons from working with OpenAI technologies.Key discussions include startup validation, fundraising realities, importance of distribution over just AI, and how founders should approach product building in today’s ecosystem. The session also covers hiring, co-founder dynamics, and practical advice for students entering AI and startup ecosystems.",
     "status": "past",
     "category": "Leadership & Soft Skills"
   },
@@ -1773,7 +1773,7 @@ title: "Startup Validation, Funding & MVP Reality Check"
     "title": "How to Build a Winning Hackathon Project",
     "date": "2025-08-19",
     "duration": "35mins 43s",
-    "speakerName": "Manna Tyagi",
+    "speakerName": "Manan Tyagi",
     "speakerLinkedin": "https://www.linkedin.com/in/mannantyagi/",
     "speakerDesignation": "Winner",
     "speakerCompany": "Smart India Hackathon",
@@ -1802,7 +1802,7 @@ title: "Q&A: UI vs Backend & Winning Factors"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=dPQaiVNLTGI&pp=0gcJCdkKAYcqIYzv",
-    "summary": "The video \"Ep.1 - How to Build a Winning Hackathon Project\" features Manan Tyagi, a Smart India Hackathon (SIH) 2023 winner and seasoned mentor, sharing a comprehensive roadmap for succeeding in hackathons. 1.",
+    "summary": "This session breaks down how to approach hackathons strategically, from forming a strong, diverse team to identifying the right problem statement. The speaker emphasizes that winning is less about complex coding and more about clarity of idea, execution strategy, and especially pitching. He also shares real project examples like his SIH environment monitoring system to show how ideas evolve into impactful products. The session ends with practical Q&A on common hackathon mistakes and decision-making.",
     "status": "past",
     "category": "Hackathons"
   },
@@ -1939,7 +1939,7 @@ title: "Scaling Users, Feedback Loop & Growth Strategy"
 
     
     "youtubeLink": "https://www.youtube.com/watch?v=VKCFLiVnQ7w",
-    "summary": "This video, titled \"Ep. 6 - From Hackathon to Startup: Zero to One,\" features Gurjit Singh, an angel investor and product management expert, who provides a comprehensive roadmap for students and developers to transform weekend hackathon projects into viable businesses.",
+    "summary": "This session explains how hackathon projects can be transformed into real, scalable startups by shifting focus from winning demos to solving genuine user problems. The speaker breaks down a practical 5-step framework involving problem identification, MVP building, user feedback, and business model thinking. He emphasizes execution, real user validation, and iteration over overengineering or judging-focused development. The talk also covers scaling from early users to growth, handling investor mindset, and building with purpose over hype.",
     "status": "past",
     "category": "Hackathons"
   },
@@ -1977,7 +1977,7 @@ title: "Career Advice & Navigating Industry Noise"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=0yF1lcGeVGk",
-    "summary": "This detailed summary covers the interview from the Girls Leading Tech podcast (Episode 7) featuring Dr. Krishna Chhattan Rao, Program Director at the Translational Data Analytics Institute at Ohio State University.",
+    "summary": "This session explores the rapid evolution of generative AI and its impact on jobs, education, governance, and society. The speaker shares real-world examples of AI agents, responsible AI systems, and emerging risks like deepfakes and misinformation.He explains how AI will reshape industries by creating new roles while reducing repetitive tasks, emphasizing the need for reskilling and human-AI collaboration. The discussion concludes with practical advice on navigating career confusion and staying relevant in a fast-changing tech landscape.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -2015,7 +2015,7 @@ title: "AI Evolution & Future of Graphics"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=aCeh534nSt8",
-    "summary": "This video, titled \"Ep.8 - Build a Career in Computer Graphics and Vision,\" features Pritesh Kakar, a technical expert from Adobe with over 15 years of experience. He provides a comprehensive roadmap for students and professionals looking to enter the fields of 3D graphics, AI, a",
+    "summary": "This session introduces the fundamentals of computer graphics and computer vision, covering how 3D scenes are transformed into realistic images and how vision systems reverse that process. The speaker explains core techniques like rasterization, ray tracing, shaders, textures, and meshes, along with their trade-offs in real-time and offline rendering. He also highlights applications across gaming, VFX, AR/VR, automotive, healthcare, and simulation industries. The talk concludes with how AI is reshaping graphics through neural rendering, diffusion models, and emerging 3D representation methods like NeRFs and Gaussian splats.",
     "status": "past",
     "category": "AR/VR & Emerging Tech"
   },
@@ -2052,7 +2052,7 @@ title: "Firebase Studio & Vibe Coding Workflow"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=tL-B6v3J31E",
-    "summary": "This video features Pankaj Rai, a Google Developer Expert, providing a comprehensive guide on rapid prototyping for hackathons using Android, Firebase, and Generative AI. He emphasizes \"vibe coding\"—a shift where developers act as supervisors to AI agents that handle the heavy li",
+    "summary": "This session explores how developers can rapidly build hackathon-ready prototypes using Android, Firebase, and generative AI tools. The speaker breaks down on-device AI (Gemini Nano), cloud-based Gemini models, and how Firebase AI Logic simplifies integration. It also covers productivity boosts through Gemini in Android Studio and the shift toward AI-assisted “vibe coding” with Firebase Studio. Overall, it focuses on reducing development time and increasing prototype quality using modern AI-powered developer tools.",
     "status": "past",
     "category": "Hackathons"
   },
@@ -2091,7 +2091,7 @@ title: "Live Demos: Portfolio & Certificate Generator"
 
     "youtubeLink": "https://www.youtube.com/watch?v=f2NLQdlY6SQ",
     "attendees": 35,
-    "summary": "The video titled \"React 101: Mastering React from Beginner to Advance\" features Pravin Kumar Purushothaman, a Director of Engineering with over 12 years of experience. The session is highly interactive, focusing on practical demonstrations of React, developer workflows, and real-",
+    "summary": "This session is an interactive beginner-friendly walkthrough of React fundamentals, starting from why React exists and how it compares with traditional HTML/CSS/JS setups. The speaker explains real-world workflows like component reuse, backend communication using JSON, and modern tooling such as Node, npm, and Vite. Through live coding, he demonstrates React project setup, state management, and hot module replacement while building simple UI components. The session also includes engaging demos like portfolio generation and certificate verification to show real-world applications of React.",
     "status": "past",
     "category": "Core Engineering"
   },
@@ -2130,7 +2130,7 @@ title: "Hacktoberfest & Open Source Opportunities"
 
     "youtubeLink": "https://www.youtube.com/watch?v=XtBF0FBO3Wk",
     "attendees": 200,
-    "summary": "This video features Suhaani Agarwal, a GSoC 2025 contributor and multiple hackathon winner, providing a comprehensive guide on how to prepare for and crack Google Summer of Code (GSoC) 2026. 1.",
+    "summary": "This session covers the fundamentals of open source and a detailed breakdown of Google Summer of Code, including its timeline, selection process, and structure. The speaker shares her personal journey into GSoC, along with practical strategies for choosing the right organization and building meaningful contributions. A major focus is on writing strong proposals, engaging with maintainers, and maintaining consistency throughout the application process. The session also touches on Hacktoberfest, other open-source programs, and general advice on hackathons, skill-building, and managing college alongside development work.",
     "status": "past",
     "category": "Open Source Programs"
   },
@@ -2167,7 +2167,7 @@ title: "Success Metrics & Iteration/Pivot"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=irJ-wp5cjh4",
-    "summary": "In the video \"How to Validate Your Hackathon Idea Like a Product Manager,\" Yajar Bajaj, an AI Product Manager at Dubai Holding, provides a comprehensive framework for transforming hackathon prototypes into viable products. He emphasizes that 90% of startups fail due to a lack of",
+    "summary": "This session explains how to validate hackathon ideas using a product manager’s mindset focused on real-world problem solving.The speaker emphasizes problem discovery through user conversations, JTBD, and persona building before writing any code.He introduces MVPs, landing page “fake door” tests, and rapid experimentation using AI tools.The talk also covers success metrics, iteration, and pivoting using real startup examples like Zomato and Airbnb.",
     "status": "past",
     "category": "Hackathons"
   },
@@ -2218,7 +2218,7 @@ title: "AI in Technical Writing & Future Skills"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=3b1qmZT5Jnw",
-    "summary": "This video, titled \"Technical Writing 101,\" features a comprehensive session by Riza Faren, a Developer Advocate at Orkes. It provides an in-depth guide to the fundamentals of technical writing, its role in developer experience, and how the field is evolving with AI.",
+    "summary": "This session explores the fundamentals of technical writing, covering clarity, structure, audience awareness, and consistency as core principles. The speaker explains different documentation types like API references, SDK guides, and tutorials, and how each serves a unique developer need. She also walks through the full documentation lifecycle from research to publishing and maintenance. The talk further highlights how SEO/GEO, analytics, and AI are transforming modern technical writing and developer advocacy roles.",
     "status": "past",
     "category": "Wellness & Mental Health"
   },
@@ -2255,7 +2255,7 @@ title: "Interview Preparation, Communication & Career Breakthrough"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=zqL84gfxhGg",
-    "summary": "This detailed summary covers the key insights from the video \"How to get high paying jobs in AI,\" featuring Shivam Chiroia, a Senior ML Scientist at present.ai and IISC Bangalore alumnus. 1.",
+    "summary": "The session focuses on how to build a high-paying career in AI/ML by mastering fundamentals rather than chasing trends. The speaker shares his journey from a non-CS background in electronics to securing a senior ML role and a 50 LPA offer within a year. He emphasizes strong basics in mathematics, statistics, linear algebra, and optimization as the real key to AI success. He also discusses resumes, referrals, interviews, and why startups can offer faster growth than big MNCs.",
     "status": "past",
     "category": "AI & Machine Learning"
   },
@@ -2406,7 +2406,7 @@ title: "Idea Selection, Research & Judge Psychology"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=zbCwocWSPZ4",
-    "summary": "This video, titled \"Tips to Win Hackathons,\" features a detailed discussion between Souradip Pal (an AI engineer and 4x hackathon winner, including Smart India Hackathon) and Mohammad Danish (a hackathon organizer and Web3 enthusiast). They provide a 360-degree view of how to suc",
+    "summary": "This session explores how to win hackathons from both a participant and organizer perspective. Souradip shares real experiences from multiple hackathons including SIH, focusing on prototypes, pitches, and execution under pressure. Danish explains how organizers evaluate teams and what makes a submission stand out in terms of teamwork, idea clarity, and impact. Together, they break down practical strategies for ideation, PPT design, pitching, and maximizing learning and networking from hackathons.",
     "status": "past",
     "category": "Hackathons"
   },
@@ -2472,7 +2472,7 @@ title: "Graph-Based Fraud Detection & Network View"
     ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=DIH6wdNpV70",
-    "summary": "The video features Anubha Pandit, a Data Science Manager at Mastercard’s AI Garage, discussing the transformative role of Artificial Intelligence in the finance and payment sectors. Below is a detailed summary of the presentation:  1.",
+    "summary": "This session explores how AI is transforming the financial ecosystem, especially in payments, fraud detection, and risk management. The speaker from Mastercard AI Garage explains how large-scale transaction networks operate and how AI helps secure them. Key techniques like sequential modeling, graph neural networks, and generative AI are used to detect fraud and understand user behavior. The talk also highlights responsible AI, fairness, and scalability challenges in real-world financial systems.",
     "status": "past",
     "category": "AI & Machine Learning"
   },
@@ -2523,7 +2523,7 @@ title: "Graph-Based Fraud Detection & Network View"
     "title": "Innovation and Emerging Tech - How Can WE Make Use of Its Full Potential",
     "date": "2025-10-02",
     "duration": "48mins 27s",
-    "speakerName": "Kaushuka a",
+    "speakerName": "Kaushuka A",
     "speakerDesignation": "Core SWE Develoer",
     timestamps: [
 {
@@ -2549,7 +2549,7 @@ title: "Storytelling, Marketing & Real-World Impact"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=6lkz6eiF8pM",
-    "summary": "This video features Koshika, a B.Tech student in AI and Data Science and winner of the IITM Shastra Techathon 2024. She discusses how to move beyond the \"hype\" of emerging technologies like AI, Web3, and Blockchain to build meaningful, practical solutions.",
+    "summary": "This session explores how emerging technologies like AI, web3, and agentic systems are reshaping innovation, while also warning against blindly following tech hype. The speaker explains the Gartner hype cycle and how technologies move from inflated expectations to practical productivity.She emphasizes a problem-first approach to building solutions instead of forcing trendy technologies into projects. The talk also covers how students can use LLMs effectively, balance simplicity vs complexity, and improve hackathon execution and product storytelling.",
     "status": "past",
     "category": "Web3 & Blockchain"
   },
@@ -2616,7 +2616,7 @@ title: "Developer Tools, dApp Building & Documentation"
 
     "youtubeLink": "https://www.youtube.com/watch?v=BVyo3DYj08g",
     posterImage:"/hela.png",
-    "summary": "This video is a detailed workshop by Shivam Garg, a Developer Relations representative at HeLa Network, conducted during the HackAura event. He introduces the HeLa ecosystem, its unique architecture, and how developers can build decentralized applications (DApps) on it.",
+    "summary": "This session introduces the Hela blockchain ecosystem and its vision of decentralization focused on user-owned data and real-world adoption. The speaker explains Hela’s stablecoin-based gas model (HLUSD), making transaction fees predictable and suitable for consumer-facing applications. He also breaks down the modular architecture with execution, consensus, guardian, and AI layers, highlighting support for EVM compatibility and agentic AI development. The workshop further covers developer tooling, documentation, grants, and ecosystem programs to encourage builders to create scalable dApps.",
     "status": "past",
     "category": "Web3 & Blockchain"
   },
@@ -2655,7 +2655,7 @@ title: "Data Repository, Time Series & ML Overview"
 
    posterImage:"/wolfram.png",
     "youtubeLink": "https://www.youtube.com/watch?v=NNmOY68jvhY",
-    "summary": "This video is a comprehensive workshop led by Sarah from Wolfram, specifically tailored for participants of the HackAura hackathon. It provides a deep dive into the Wolfram Language, covering everything from basic syntax to advanced applications in data science, machine learning,",
+    "summary": "This session introduces the core concepts of Wolfram Language through hands-on examples in a notebook environment. The speaker walks through syntax, variables, functions, and the unique cell-based workflow used in Wolfram. She then expands into functional programming patterns, list processing, and alternatives to traditional loops using built-in functions like Table and Map. The workshop also explores visualization, image processing, natural language input, and Wolfram’s data and machine learning capabilities, including time series analysis and built-in models.",
     "status": "past",
     "category": "Hackathons"
   },
@@ -2706,7 +2706,7 @@ title: "Mindset, Motivation & Vision for Women in Tech"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=4igMN9i1EyU",
-    "summary": "This video is the 5th episode of the GLT Spotlight podcast by Girls Leading Tech, featuring Smita Bhoine, a second-year Computer Engineering student at SNDT Women's University. The conversation provides a deep dive into her technical journey, her experience with the Codess Cafe m",
+    "summary": "Smitha shares her journey from early curiosity in science and ICT to pursuing computer engineering and transitioning into AI/ML and research-oriented work. She talks about exploring multiple tech domains, building projects, and eventually finding direction through Django, neural networks, and hackathons.She explains the Coders Cafe mentorship program, its application process, cohort structure, and how it supports women in tech through guided learning and community.She also reflects on her long-term goals, including research internships at IIT/EPFL, PhD aspirations, and Cambridge, while emphasizing discipline, self-learning, and consistency.",
     "status": "past",
     "category": "Scholarships"
   },
@@ -2744,7 +2744,7 @@ title: "Resume Building, Coding Profiles & ATS-Friendly Tips"
 ],
 
     "attendees": 320,
-    "summary": "This video provides a comprehensive guide to the Google STEP (Student Training in Engineering Program) Internship for 2026, featuring insights from Mehak Garg, a former STEP intern. The session covers everything from the application process to specific interview preparation strat",
+    "summary": "This session covers the complete Google STEP internship selection process including resume shortlisting, telephonic screening, and two DSA-focused technical interviews. The speaker explains how strong coding profiles and consistent DSA practice matter more than advanced projects at the early stage.She also shares preparation strategies using resources like Striver’s A2Z sheet and emphasizes thinking out loud during interviews.Additional guidance is given on resumes, referrals, timelines, and how to approach uncertainty during preparation.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -2803,7 +2803,7 @@ title: "Hackathon Kickoff & Session Introduction"
 },
 {
 time: "00:01:15",
-title: "Speaker Introduction (Gracie Dugar)"
+title: "Speaker Introduction"
 },
 {
 time: "00:02:17",
@@ -2820,7 +2820,7 @@ title: "La Gravity Cafe & Social Impact Journey"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=E02ediWQ7v4",
-    "summary": "This video, titled \"Guitar, Coding and a Cup of Tea,\" features Gracey Dugar, a data science student and co-founder of LaGravitea, in a pre-hackathon session for \"Coded Christmas\" hosted by Girls Leading Tech. Personal Background & Multi-Disciplinary Life Gracey Dugar's Profile: G",
+    "summary": "This session featured Gracey Dugar, a software engineer and co-founder of La Gravity, sharing her journey across tech, music, and social impact. She spoke about balancing academics in data science with self-learning, creativity, and consistent discipline.She emphasized real-world problem solving, encouraging participants to think critically before relying on AI tools.Gracey also shared her entrepreneurial experience building a deaf-run café and highlighted confidence, initiative, and creativity as key traits for women in tech and hackathons.",
     "status": "past",
     "category": "Hackathons"
   },
@@ -2858,7 +2858,7 @@ title: "Careers, Research Paths & Getting Started in Quantum"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=anNL8jYhjCg&pp=0gcJCdkKAYcqIYzv",
-    "summary": "This video, titled \"Quantum Curiosity: Exploring Ideas Beyond Normal Coding,\" features Ernestine Lerisha, a Quantum and AI Researcher, who provides a detailed introduction to quantum computing and its real-world applications, particularly for those coming from a traditional codin",
+    "summary": "This session introduces quantum computing through real-world analogies and hackathon scenarios, making complex concepts accessible without heavy physics or math.The speaker explains core ideas like qubits, superposition, entanglement, and measurement using relatable examples such as coins, mazes, and project building.The discussion also explores quantum applications in cryptography, optimization, finance, and future job opportunities in the field.It concludes with guidance on getting started in quantum research, internships, and how AI and quantum can complement each other.",
     "status": "past",
     "category": "AR/VR & Emerging Tech"
   },
@@ -2896,7 +2896,7 @@ title: "Advice, Personal Journey & Balance"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=8goFETlO3T8",
-    "summary": "This video features an inspiring interview and presentation by Manishka Dubey, a 12-year-old founder, robotics innovator, and author. Hosted by \"Girls Leading Tech\" as a pre-hackathon session for \"Code at Christmas,\" the discussion focuses on her journey, her startup, and her adv",
+    "summary": "This session features 12-year-old entrepreneur and founder of Tinker Tekky, Manishka Dubey, sharing her journey in robotics, startups, and innovation from an early age. She talks about building STEM-focused solutions, her startup experience, and how curiosity led her into tech and entrepreneurship.The core focus of the session is her hackathon philosophy - start simple, build a strong MVP, and focus on one clear solution instead of overcomplicating ideas. She also shares insights on confidence, execution, and how young creators can approach problem-solving smartly.The conversation also highlights her personal experiences with funding, schooling, and balancing life while pursuing innovation and creativity.",
     "status": "past",
     "category": "Hackathons"
   },
@@ -2947,7 +2947,7 @@ title: "MVP Building, Fallbacks & Product Thinking"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=4WNsXuXLIw8",
-    "summary": "This video, titled \"From Idea to Impact: Designing AI Experiences That Users Trust,\" features Aprajita, a Front-end Architect at Mycom with over 17 years of experience. She provides a comprehensive guide for developers and students on how to integrate AI into products meaningfull",
+    "summary": "This session explores practical front-end development insights combined with modern AI integration in products and hackathons. The speaker emphasizes user-centric design, usability, and why AI should only be used when it genuinely adds value. Key focus areas include trust, explainability, and avoiding unnecessary AI features in hackathon projects. The discussion also highlights MVP thinking, fallback systems, and building real-world impactful products rather than feature-heavy demos.",
     "status": "past",
     "category": "Core Engineering"
   },
@@ -2984,7 +2984,7 @@ title: "Digital Public Infrastructure (DPI) Explained"
     ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=7j3yI3vZOvE",
-    "summary": "This detailed summary covers the \"Building for Social Good\" session hosted by Girls Leading Tech, featuring Ajitha, the Program Coordinator at Code4GovTech (C4GT). The video serves as an educational deep dive into how technology can be leveraged for social impact through open-sou",
+    "summary": "This session introduces students to the ecosystem of open source, Digital Public Goods (DPGs), and Digital Public Infrastructure (DPI), and how they connect to real-world social impact. Ajitha explains how global goals like the SDGs guide the creation of technology for public benefit. She also breaks down how open-source systems, government digital infrastructure, and community-driven platforms work together. The session further highlights Code for Gov’s role in connecting students with organizations to solve real societal problems through tech.",
     "status": "past",
     "category": "Core Engineering"
   },
@@ -3053,7 +3053,7 @@ title: "Internship Process & Post-Mentorship Experience"
 
     "youtubeLink": "https://www.youtube.com/watch?v=7YzcHkhoYaU",
     "attendees": 139,
-    "summary": "This video is a comprehensive guide on how to crack the LinkedIn CoachIn program and secure a subsequent internship at LinkedIn. The discussion features two former mentees, Garima and Kritika, who share their end-to-end journey from application to final interviews.",
+    "summary": "This session features two LinkedIn Coaching Program mentees sharing their end-to-end experience of getting selected and completing the program. They explain eligibility criteria, importance of a strong LinkedIn profile, and the multi-stage selection process including OA and telephonic interview. The speakers also break down DSA preparation strategies, common OA question types, and evaluation based on test cases. Finally, they discuss mentorship structure, hackathon experience, and internship opportunities after program completion.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -3104,7 +3104,7 @@ title: "Networking, Mentorship & Career Growth Strategies"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=_DH-gVUPICM",
-    "summary": "This video features an interview with Su Jella, a distinguished digital data and AI strategist, discussing the evolving landscape of women’s leadership in technology. The conversation focuses on how diversity influences AI development, strategies for career growth, and the human",
+    "summary": "This video features an interview with Su Jella, a distinguished digital data and AI strategist, discussing the evolving landscape of women’s leadership in technology. The conversation focuses on how diversity influences AI development, strategies for career growth, and the human. She also highlights career growth strategies such as building visibility, networking early, and developing storytelling and communication skills. Overall, the discussion encourages women to embrace courage, authenticity, and curiosity to thrive in STEM and AI-driven industries.",
     "status": "past",
     "category": "Placements & Internships"
   },
@@ -3141,7 +3141,7 @@ title: "Courage, Limiting Beliefs & Writing Your Own Life Story"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=QIJxhEO8WE4",
-    "summary": "The video titled \"Resilience and Courage - Writing your own life story\" features Madhura Sinha, the Founder and CEO of Aspire For Her, along with her colleagues Preeti Bhaskar and Hepsiba. The session, hosted by \"Girls Leading Tech\" for International Women's Day, focuses on empow",
+    "summary": "The session explores resilience, courage, and rewriting personal narratives through lived experiences of women across India. Madhura Sinha shares the mission of Aspire For Her and its goal of increasing women’s workforce participation and economic independence. The discussion highlights real-life stories of struggle, reinvention, and community support, especially through initiatives like “Not Alone.” It emphasizes breaking limiting beliefs, building confidence, and taking bold steps in careers and life.",
     "status": "past",
     "category": "Leadership & Soft Skills"
   },
@@ -3179,7 +3179,7 @@ title: "Resilience, Courage & Building Inner Strength"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=kKUN1YnvRSU&t=3s",
-    "summary": "The video titled \"Courage Above All ft Jacintha Jayachandran,\" hosted by the \"Girls Leading Tech\" channel, features a powerful keynote by Jacintha Jayachandran, the Founder-CEO of HopeWorks Foundation. The talk is a critique of societal expectations placed on women and a call to",
+    "summary": "The speaker shares a powerful reflection on courage, challenging societal expectations placed on women and urging authenticity over conformity. She emphasizes rejecting imposed roles, expressing emotions freely, and building self-trust instead of relying on external validation.She encourages women to speak up, embrace imperfection, and redefine success on their own terms rather than societal standards.The session also explores resilience, self-compassion, and the importance of taking small daily actions even during difficult phases.",
     "status": "past",
     "category": "Leadership & Soft Skills"
   },
@@ -3216,7 +3216,7 @@ title: "AI, Future Jobs & Continuous Learning"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=5236jNJXB4s",
-    "summary": "This video features Chaitra Rao, Founder and Managing Partner of People Impact, sharing her 24+ years of experience in executive search and talent acquisition. She provides a comprehensive guide for students and professionals looking to build meaningful careers in the evolving te",
+    "summary": "This event features Chaitra Rao, Founder and Managing Partner of People Impact, sharing her 24+ years of eience in executive search and talent acquisition. She explains how students should identify their interests early and actively build relevant technical and professional skills through projects, certifications, and hackathons. She highlights the importance of visibility through platforms like LinkedIn, as well as communication skills, adaptability, and self-awareness in career growth. The talk also addresses common concerns around AI, failure, and career uncertainty, reframing them as opportunities for growth and learning.",
     "status": "past",
     "category": "Leadership & Soft Skills"
   },
@@ -3254,7 +3254,7 @@ title: "Action Plan, LinkedIn & Final Advice"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=j_1Bqtf9FRA",
-    "summary": "This video features Sobhitha Neelanath, a Senior Engineering Leader at Salesforce, sharing a comprehensive career guide titled \"Career Compass: Prepare and Practice.\" The session is structured around three core pillars: Building a Foundation, Creating a Personal Brand, and Ensuri",
+    "summary": "This session focuses on guiding students and early professionals through building a strong career foundation, standing out in competitive tech spaces, and sustaining long-term growth.The speaker emphasizes core fundamentals like technical expertise, resume building, communication skills, networking, and mentorship as key pillars for early career success.She also highlights personal branding through LinkedIn, projects, internships, and elevator pitches, along with continuous learning and adaptability in the AI-driven world.",
     "status": "past",
     "category": "Networking & Personal Branding"
   },
@@ -3292,7 +3292,7 @@ title: "Embracing Self & Designing Who You Become"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=hTu4mLX3asc",
-    "summary": "This detailed summary of the video \"How to Embrace Yourself and Discover Your Purpose\" featuring Bhavana Issar, Founder and CEO of Caregiver Saathi, explores her journey and insights on building a life driven by purpose. 1.",
+    "summary": "The session explores how life purpose is not a single fixed goal but a continuously evolving meaning shaped by different phases of life. Bhavana Issar shares insights from her journey across HR, entrepreneurship, caregiving, and technology, emphasizing self-awareness and adaptability. She highlights the importance of reflection, feedback, and accepting imperfections while navigating external pressure and social expectations. The discussion ultimately reframes purpose as a flexible process of becoming rather than a destination.",
     "status": "past",
     "category": "Leadership & Soft Skills"
   },
@@ -3330,7 +3330,7 @@ title: "Industry Advice, Networking & Career Growth Tips"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=h5tUFMQNrAQ",
-    "summary": "The video, titled \"Introduction to AI Careers with Yashaswini Vismaya,\" is an in-depth session focused on navigating the evolving landscape of Artificial Intelligence (AI) and Machine Learning (ML). Yashaswini Vismaya, an AI engineer with 15 years of experience, provides a compre",
+    "summary": "The speaker introduces the AI landscape, explaining core concepts from machine learning and deep learning to generative AI and agentic systems. She breaks down different AI career paths including builder, researcher, strategist, ethicist, and domain expert roles.She further explains skill progression levels across roles like ML engineer, data scientist, and AI product manager with real industry expectations.The session concludes with practical advice on curiosity, networking, internships, and building a strong portfolio to stay relevant in the evolving AI industry.",
     "status": "past",
     "category": "AI & Machine Learning"
   },
@@ -3368,7 +3368,7 @@ title: "Overcoming Fear & Building Confidence"
 ],
 
     "youtubeLink": "https://www.youtube.com/watch?v=zra81UZd6nA",
-    "summary": "The video, titled \"The power of Public Speaking with Bobbie Carlton,\" is a comprehensive session from the Empower Her 2.0 event. Bobbie Carlton, founder of Innovation Women and a TEDx speaker, discusses the critical importance of public speaking for women's career advancement and",
+    "summary": "This session explores how public speaking becomes a powerful tool for visibility, leadership, and career growth, especially for women in tech and business. The speaker breaks down how speaking opportunities build confidence, credibility, connections, and even income over time. She also highlights the gender gap in speaking opportunities and why representation on stage matters. Practical guidance is shared on finding speaking gigs, building a signature talk, and overcoming fear of public speaking.",
     "status": "past",
     "category": "Leadership & Soft Skills"
   },
@@ -3407,7 +3407,7 @@ title: "Alumni Impact, Confidence & Closing Remarks"
 
     "youtubeLink": "https://youtu.be/7n6I7_rvFUc",
     "attendees": 152,
-    "summary": "The video features a detailed session with Sashi Gundala, Director of Aspire India, where she shares her career journey and provides deep insights into the Aspire Leaders Program, an initiative affiliated with Harvard University. 1.",
+    "summary": "The event is hosted by Sashi Gundala, who shares her journey from engineering student in India to building a long career in education leadership across the US and India. She discusses founding and scaling initiatives, transitioning into edtech and curriculum design, and eventually joining Aspire India as its first India director. She highlights key challenges faced as a woman leader and minority abroad, emphasizing cultural adaptation, professionalism, and confidence-building. She also explains Aspire’s leadership program, scholarships, alumni network, and real-world skill development opportunities for students.",
     "status": "past",
     "category": "Leadership & Soft Skills"
   },
