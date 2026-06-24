@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { GlassCard } from "@/components/site/GlassCard";
 import { roleModels } from "@/data/role-models";
+import { Linkedin } from "lucide-react";
 import roleModelsMascot from "@/assets/characters/role-models.png";
 import paperClip from "@/assets/stickers/paper-clip.png";
 import star from "@/assets/stickers/star.png";
@@ -146,57 +147,73 @@ function RoleModelsPage() {
       {/* CARDS SECTION */}
       <section className="relative z-10 container mx-auto max-w-6xl px-6 pb-24 pt-4">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {roleModels.map((p, idx) => (
-            <GlassCard
-              strong
-              key={p.id}
-              className="group h-full bg-[#fffdf9]/95 border-2 border-black rounded-[20px] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:-translate-x-0.5 hover:shadow-[8px_8px_0px_0px_#d955a4] hover:bg-[#fffdf9] flex flex-col justify-between"
-              style={{ animationDelay: `${(idx % 12) * 0.04}s` }}
-            >
-              <div>
-                <div className="flex items-start gap-3">
-                  {p.image && (
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      loading="lazy"
-                      className="h-14 w-14 shrink-0 rounded-full border-2 border-black object-cover shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
-                    />
+          {roleModels.map((p, idx) => {
+            const profileUrl = p.linkedin ?? `https://www.linkedin.com/in/${p.id.replace(/-\d+$/, "")}`;
+
+            return (
+              <GlassCard
+                strong
+                key={p.id}
+                className="group h-full bg-[#fffdf9]/95 border-2 border-black rounded-[20px] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:-translate-x-0.5 hover:shadow-[8px_8px_0px_0px_#d955a4] hover:bg-[#fffdf9] flex flex-col justify-between"
+                style={{ animationDelay: `${(idx % 12) * 0.04}s` }}
+              >
+                <div>
+                  <div className="flex items-start gap-3">
+                    {p.image && (
+                      <img
+                        src={p.image}
+                        alt={p.name}
+                        loading="lazy"
+                        className="h-14 w-14 shrink-0 rounded-full border-2 border-black object-cover shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                      />
+                    )}
+                    <span className="inline-block rounded-full bg-pink-100 text-pink-700 px-3 py-1 text-[10px] font-bold uppercase tracking-wider self-center">
+                      {p.domain}
+                    </span>
+                  </div>
+                  
+                  <h3 className="mt-4 font-display text-xl font-bold leading-tight text-gray-900 group-hover:text-[#d955a4] transition-colors">
+                    {p.name}
+                  </h3>
+                  
+                  {(p.role || p.company) && (
+                    <p className="mt-1.5 text-xs font-semibold text-secondary">
+                      {[p.role, p.company].filter(Boolean).join(" · ")}
+                    </p>
                   )}
-                  <span className="inline-block rounded-full bg-pink-100 text-pink-700 px-3 py-1 text-[10px] font-bold uppercase tracking-wider self-center">
-                    {p.domain}
-                  </span>
+                  
+                  {p.summary && (
+                    <p className="mt-3.5 text-sm text-muted-foreground leading-relaxed line-clamp-5">
+                      {p.summary}
+                    </p>
+                  )}
                 </div>
                 
-                <h3 className="mt-4 font-display text-xl font-bold leading-tight text-gray-900 group-hover:text-[#d955a4] transition-colors">
-                  {p.name}
-                </h3>
-                
-                {(p.role || p.company) && (
-                  <p className="mt-1.5 text-xs font-semibold text-secondary">
-                    {[p.role, p.company].filter(Boolean).join(" · ")}
-                  </p>
+                {p.location && (
+                  <div className="mt-6 pt-3 border-t border-gray-100/50">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                      Location
+                    </p>
+                    <p className="mt-0.5 text-xs font-semibold text-gray-700">
+                      {p.location}
+                    </p>
+                  </div>
                 )}
-                
-                {p.summary && (
-                  <p className="mt-3.5 text-sm text-muted-foreground leading-relaxed line-clamp-5">
-                    {p.summary}
-                  </p>
-                )}
-              </div>
-              
-              {p.location && (
                 <div className="mt-6 pt-3 border-t border-gray-100/50">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                    Location
-                  </p>
-                  <p className="mt-0.5 text-xs font-semibold text-gray-700">
-                    {p.location}
-                  </p>
+                  <a
+                    href={profileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Connect with ${p.name} on LinkedIn`}
+                    className="inline-flex items-center gap-2 rounded-full border border-transparent bg-[#0A66C2] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[#0959a8]"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                    Connect
+                  </a>
                 </div>
-              )}
-            </GlassCard>
-          ))}
+              </GlassCard>
+            );
+          })}
         </div>
       </section>
     </div>

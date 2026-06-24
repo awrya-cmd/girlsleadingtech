@@ -62,6 +62,7 @@ export interface PersonToFollow {
   name: string;
   domain: string;
   linkedin?: string;
+  linkedinImage?: string;
   twitter?: string;
   instagram?: string;
   portfolio?: string;
