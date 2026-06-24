@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { GlassCard } from "@/components/site/GlassCard";
 import { stats } from "@/data/stats";
-import { testimonials } from "@/data/community";
 import { ArrowRight } from "lucide-react";
 import { IndiaCommunityMap } from "@/components/site/IndiaCommunityMap";
+import { TestimonialsMarquee } from "@/components/home/TestimonialsGrid";
 import React from "react";
 
 export const Route = createFileRoute("/impact")({
@@ -170,8 +170,8 @@ function ImpactPage() {
       </section>
 
       {/* STORIES SECTION */}
-      <section className="relative z-10 py-24 md:py-[80px] px-6">
-        <div className="container mx-auto max-w-6xl">
+      <section className="relative z-10 py-24 md:py-[80px] w-full overflow-hidden flex flex-col justify-center">
+        <div className="container mx-auto max-w-6xl px-6">
           <div className="mb-16 md:mb-20 text-center max-w-2xl mx-auto">
             <p
               className="text-base md:text-lg uppercase tracking-[0.3em] text-[#d955a4] font-bold mb-4 opacity-80"
@@ -186,39 +186,10 @@ function ImpactPage() {
               Words from members whose lives changed because of this community. No fluff, just impact.
             </p>
           </div>
+        </div>
 
-          <div className="grid gap-6 md:gap-8 md:grid-cols-3">
-            {testimonials.slice(0, 6).map((t, idx) => (
-              <div
-  key={t.id}
-  className="group relative bg-white p-5 md:p-10 flex flex-col transition-all duration-500 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] border-2 border-gray-100 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_40px_-5px_rgba(217,85,164,0.3),0_10px_20px_-5px_rgba(217,85,164,0.25)] hover:border-[#d955a4]/60 cursor-pointer"
-  style={{
-    borderRadius: 16,
-    boxShadow: "0 4px 20px rgba(0,0,0,0.04)", // Base shadow
-    animation: `fadeUp 0.6s ease-out forwards`,
-    animationDelay: `${idx * 0.1}s`,
-    opacity: 0,
-    transform: 'translateY(20px)'
-  }}
->
-
-              
-                <div
-                  className="mb-4 text-6xl leading-none text-[#d955a4] transition-transform duration-500 ease-out group-hover:scale-125 group-hover:-rotate-6 origin-top-left"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
-                  &ldquo;
-                </div>
-                <p className="flex-1 text-gray-800 text-[15px] leading-relaxed mb-8">
-                  {t.quote}
-                </p>
-                <div>
-                  <p className="font-bold text-gray-900 font-sans tracking-tight">{t.name}</p>
-                  <p className="text-[13px] font-medium text-[#d955a4] mt-1 font-sans">{t.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="relative z-10 w-full overflow-visible">
+          <TestimonialsMarquee />
         </div>
       </section>
 

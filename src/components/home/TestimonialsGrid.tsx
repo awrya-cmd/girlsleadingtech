@@ -9,7 +9,7 @@ import varshaImg from "@/assets/video-testimonials/Varsha-Dewangan.png";
 import nehaImg from "@/assets/video-testimonials/A.Neha-Sabari- Sree.png";
 
 
-function TestimonialsMarquee() {
+export function TestimonialsMarquee() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isInteracting, setIsInteracting] = useState(false);
   const isDown = useRef(false);
