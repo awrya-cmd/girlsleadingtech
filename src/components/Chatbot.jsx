@@ -493,39 +493,7 @@ export default function Chatbot() {
           </div>
         )}
 
-        {/* Feedback pill — sits above the chat FAB */}
-        {!open && (
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeRE1g3tyUfgZ7UyqH3jGGIkQsJ2jfKlJaumpwGa_tPZeYcJQ/viewform"
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label="Suggest a feature or resource"
-            style={{
-              background: "rgba(10,8,25,0.88)",
-              border: "1px solid rgba(168,85,247,0.4)",
-              borderRadius: "999px",
-              color: "rgba(255,255,255,0.9)",
-              padding: "8px 16px",
-              fontSize: "12px",
-              fontWeight: 600,
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-              backdropFilter: "blur(12px)",
-              boxShadow: "0 4px 20px rgba(124,58,237,0.25)",
-              transition: "all 0.2s",
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.background = "linear-gradient(135deg, rgba(124,58,237,0.5), rgba(219,39,119,0.35))";
-              e.currentTarget.style.transform = "scale(1.03)";
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.background = "rgba(10,8,25,0.88)";
-              e.currentTarget.style.transform = "scale(1)";
-            }}
-          >
-            DROP A FEEDBACK
-          </a>
-        )}
+        
 
         {/* FAB button */}
         <button

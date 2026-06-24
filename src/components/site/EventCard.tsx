@@ -1,8 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Calendar, Clock, Play, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const rotations = [-2, 1.5, -1, 2, -1.5, 2.5];
+import { getSpeakerImageByName } from "@/lib/event-helpers";
 
 export function EventCard({
   event,
@@ -19,20 +18,35 @@ export function EventCard({
   isHighlighted?: boolean;
   index: number;
 }) {
-  const rot = rotations[index % rotations.length] ?? 0;
-  
-  const dateObj = new Date(event.date);
-  const monthStr = dateObj.toLocaleDateString("en-US", { month: "short" }).toUpperCase();
-  const dateNum = dateObj.getDate();
+  const hasSpeakers = event.speakers && event.speakers.length > 0;
+  const firstSpeaker = hasSpeakers ? event.speakers[0] : null;
+
+  const resolvedSpeakerImg = hasSpeakers
+    ? (firstSpeaker.image || getSpeakerImageByName(firstSpeaker.name) || null)
+    : speakerImg;
+
+  const displayName = hasSpeakers
+    ? `${firstSpeaker.name}${event.speakers.length > 1 ? ` +${event.speakers.length - 1} more` : ""}`
+    : event.speakerName;
+
+  const displayCompany = hasSpeakers
+    ? "Panel Discussion"
+    : event.speakerCompany;
+
+  const displayInitial = hasSpeakers
+    ? firstSpeaker.name?.charAt(0)
+    : event.speakerName?.charAt(0);
 
   return (
     <div
-      className="relative group h-full transition-all duration-400 ease-out z-10 hover:z-50 hover:scale-[1.03] hover:!rotate-0 pt-4"
-      style={{
-        transform: `rotate(${rot}deg)`,
-      }}
+      className="relative group h-full transition-all duration-400 ease-out z-10 hover:z-50 hover:scale-[1.03] pt-4"
     >
-      <Link to="/events/$eventId" params={{ eventId: event.id }} className="block h-full">
+      <Link
+        to="/events/$eventId"
+        params={{ eventId: event.id }}
+        search={{ from: event.status }}
+        className="block h-full"
+      >
         <article
           className={cn(
             "relative flex h-full flex-col overflow-visible rounded-[24px] bg-white transition-all duration-400 border-[2px] border-[#d955a4]",
@@ -55,15 +69,8 @@ export function EventCard({
               </div>
             )}
             
-            {/* Calendar Tear-off */}
-            <div className="absolute top-4 left-4 bg-white rounded-lg shadow-md overflow-hidden w-12 text-center flex flex-col border border-gray-100 z-20">
-              <div className="bg-[#d955a4] text-white text-[9px] font-bold uppercase tracking-widest py-1" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                {monthStr}
-              </div>
-              <div className="text-gray-900 font-black text-lg py-1 leading-none" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                {dateNum}
-              </div>
-            </div>
+
+
 
             {/* Badges */}
             {!isUpcoming && (
@@ -87,17 +94,17 @@ export function EventCard({
             
             <div className="mt-5 flex items-center gap-3">
               <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-gray-100 border-2 border-white shadow-sm">
-                {speakerImg ? (
-                  <img src={speakerImg} alt={event.speakerName} className="h-full w-full object-cover" loading="lazy" />
+                {resolvedSpeakerImg ? (
+                  <img src={resolvedSpeakerImg} alt={hasSpeakers ? firstSpeaker.name : event.speakerName} className="h-full w-full object-cover" loading="lazy" />
                 ) : (
                   <div className="flex h-full items-center justify-center text-xs font-bold text-gray-400">
-                    {event.speakerName?.charAt(0)}
+                    {displayInitial}
                   </div>
                 )}
               </div>
               <div className="min-w-0">
-                <div className="truncate text-sm font-bold text-gray-900 font-sans">{event.speakerName}</div>
-                <div className="truncate text-xs text-gray-500 font-medium">{event.speakerCompany}</div>
+                <div className="truncate text-sm font-bold text-gray-900 font-sans">{displayName}</div>
+                <div className="truncate text-xs text-gray-500 font-medium">{displayCompany}</div>
               </div>
             </div>
 

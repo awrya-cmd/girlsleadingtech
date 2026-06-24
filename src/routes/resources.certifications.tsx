@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState as _useStateSearch } from "react";
+import { ResourceSearchBar, filterBySearch } from "@/components/site/ResourceSearchBar";
 import { GlassCard } from "@/components/site/GlassCard";
 import { certifications } from "@/data/resources";
 import { ExternalLink } from "lucide-react";
+import { BackToResources } from "@/components/site/PageHeader";
 import certificationsMascot from "@/assets/characters/certifications.png";
 import paperClip from "@/assets/stickers/paper-clip.png";
 import star from "@/assets/stickers/star.png";
@@ -59,6 +62,8 @@ function GridBackground() {
 }
 
 function CertificationsPage() {
+  const [_q, _setQ] = _useStateSearch("");
+  const _filtered = filterBySearch(certifications, _q, ["title","name","description","summary","author","provider","organisedBy","company","role","domain","category","categories","benefit","eligibility","keywords"]);
   return (
     <div className="relative w-full min-h-screen bg-[#fef9f4] overflow-hidden">
       <GridBackground />
@@ -68,6 +73,7 @@ function CertificationsPage() {
       {/* HERO BANNER SECTION */}
       <section className="relative pt-32 pb-12 px-6 z-10">
         <div className="container mx-auto max-w-6xl relative">
+          <BackToResources />
           
           {/* Main Hero Card Container */}
           <div className="relative bg-[#FFF8EF] border-2 border-black rounded-[24px] pt-16 pb-8 px-6 md:pt-20 md:pb-12 md:px-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-visible">
@@ -146,8 +152,9 @@ function CertificationsPage() {
 
       {/* CARDS SECTION */}
       <section className="relative z-10 container mx-auto max-w-6xl px-6 pb-24 pt-4">
+        <ResourceSearchBar value={_q} onChange={_setQ} placeholder="Search certifications..." />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {certifications.map((r, idx) => {
+          {_filtered.map((r, idx) => {
             const CardInner = (
               <GlassCard
                 strong

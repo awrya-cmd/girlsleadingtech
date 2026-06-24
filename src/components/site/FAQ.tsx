@@ -6,12 +6,12 @@ const faqs = [
   {
     question: "What is Girls Leading Tech?",
     answer:
-      "Girls Leading Tech is a community built for people who are curious, ambitious, and excited about technology. Think learning, mentorship, collaboration, opportunities, and a space where ideas turn into impact.",
+      "Girls Leading Tech is a community built for girls who are curious, ambitious, and excited about technology. Think learning, mentorship, collaboration, opportunities, and a space where ideas turn into impact.",
   },
   {
     question: "Who can join Girls Leading Tech?",
     answer:
-      "Whether you're just starting your tech journey, exploring new interests, building projects, or already deep into coding — you're welcome here. Everyone starts somewhere.",
+      "Whether you're just starting your tech journey, exploring new interests, building projects, or already deep into coding - you're welcome here. Everyone starts somewhere.",
   },
   {
     question: "Is joining the community free?",

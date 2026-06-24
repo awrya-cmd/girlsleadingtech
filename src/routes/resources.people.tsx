@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState as _useStateSearch } from "react";
+import { ResourceSearchBar, filterBySearch } from "@/components/site/ResourceSearchBar";
 import { GlassCard } from "@/components/site/GlassCard";
 import { peopleToFollow } from "@/data/community";
 import { Linkedin, Twitter, Globe } from "lucide-react";
+import { BackToResources } from "@/components/site/PageHeader";
 import peopleMascot from "@/assets/characters/people.png";
 import washiTape from "@/assets/stickers/washi-tape.png";
 import star from "@/assets/stickers/star.png";
@@ -59,6 +62,8 @@ function GridBackground() {
 }
 
 function PeoplePage() {
+  const [_q, _setQ] = _useStateSearch("");
+  const _filtered = filterBySearch(peopleToFollow, _q, ["title","name","description","summary","author","provider","organisedBy","company","role","domain","category","categories","benefit","eligibility","keywords"]);
   return (
     <div className="relative w-full min-h-screen bg-[#fef9f4] overflow-hidden">
       <GridBackground />
@@ -68,6 +73,7 @@ function PeoplePage() {
       {/* HERO BANNER SECTION */}
       <section className="relative pt-32 pb-12 px-6 z-10">
         <div className="container mx-auto max-w-6xl relative">
+          <BackToResources />
           
           {/* Main Hero Card Container */}
           <div className="relative bg-[#FFF8EF] border-2 border-black rounded-[24px] pt-16 pb-8 px-6 md:pt-20 md:pb-12 md:px-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-visible">
@@ -146,8 +152,9 @@ function PeoplePage() {
 
       {/* CARDS SECTION */}
       <section className="relative z-10 container mx-auto max-w-6xl px-6 pb-24 pt-4">
+        <ResourceSearchBar value={_q} onChange={_setQ} placeholder="Search people..." />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {peopleToFollow.map((p, i) => (
+          {_filtered.map((p, i) => (
             <GlassCard
               strong
               key={p.id}
@@ -155,19 +162,19 @@ function PeoplePage() {
               style={{ animationDelay: `${(i % 9) * 0.05}s` }}
             >
               <div>
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-black bg-[#ffed95] text-lg font-bold text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-black bg-[#ffed95] text-2xl font-bold text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
                     {p.image ? (
                       <img src={p.image} alt={p.name} loading="lazy" className="h-full w-full object-cover" />
                     ) : (
                       p.name.charAt(0)
                     )}
                   </div>
-                  <div>
+                  <div className="pt-1.5">
                     <h3 className="font-display text-lg font-bold leading-tight text-gray-900 group-hover:text-[#d955a4] transition-colors">
                       {p.name}
                     </h3>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#d955a4]">
+                    <span className="mt-2 inline-block rounded-full bg-pink-100 text-pink-700 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider">
                       {p.domain}
                     </span>
                   </div>

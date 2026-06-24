@@ -33,11 +33,11 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "absolute inset-x-0 top-0 z-50 flex items-center justify-between transition-all duration-300 px-6 md:px-12 pointer-events-none bg-transparent",
-        scrolled ? "py-3" : "py-5",
+        "fixed inset-x-0 top-0 z-50 flex items-center justify-between transition-all duration-300 px-6 md:px-12 pointer-events-none bg-transparent",
+        scrolled ? "py-2" : "py-3.5",
       )}
     >
-      <div className="flex w-full max-w-7xl mx-auto items-center justify-between pointer-events-auto relative h-16 md:h-20">
+      <div className="flex w-full max-w-7xl mx-auto items-center justify-between pointer-events-auto relative h-12 md:h-14">
         
         {/* Left Column: Logo */}
         <div className="flex-1 flex justify-start items-center">
@@ -67,7 +67,7 @@ export function Navbar() {
                     className: "bg-[#ffed95] border border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black font-bold",
                   }}
                   inactiveProps={{
-                    className: "text-gray-800 hover:text-black border border-transparent hover:border-black/10 hover:bg-[#d955a4]/20 font-medium",
+                    className: "text-gray-800 hover:text-[#d955a4] border border-transparent font-medium",
                   }}
                   activeOptions={{ exact: l.to === "/" }}
                   className="px-4 py-2 text-sm transition-all duration-200 rounded-md"
@@ -83,7 +83,7 @@ export function Navbar() {
                   className: "bg-[#ffed95] border border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black font-bold",
                 }}
                 inactiveProps={{
-                  className: "text-gray-800 hover:text-black border border-transparent hover:border-black/10 hover:bg-[#d955a4]/20 font-medium",
+                  className: "text-gray-800 hover:text-[#d955a4] border border-transparent font-medium",
                 }}
                 className="px-4 py-2 text-sm transition-all duration-200 rounded-md"
                 style={{ fontFamily: "'Satoshi', sans-serif" }}
@@ -99,7 +99,7 @@ export function Navbar() {
                     className: "bg-[#ffed95] border border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black font-bold",
                   }}
                   inactiveProps={{
-                    className: "text-gray-800 hover:text-black border border-transparent hover:border-black/10 hover:bg-[#d955a4]/20 font-medium",
+                    className: "text-gray-800 hover:text-[#d955a4] border border-transparent font-medium",
                   }}
                   className="px-4 py-2 text-sm transition-all duration-200 rounded-md"
                   style={{ fontFamily: "'Satoshi', sans-serif" }}
@@ -114,7 +114,7 @@ export function Navbar() {
                   className: "bg-[#ffed95] border border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-black font-bold",
                 }}
                 inactiveProps={{
-                  className: "text-gray-800 hover:text-black border border-transparent hover:border-black/10 hover:bg-[#d955a4]/20 font-medium",
+                  className: "text-gray-800 hover:text-[#d955a4] border border-transparent font-medium",
                 }}
                 className="px-4 py-2 text-sm transition-all duration-200 rounded-md"
                 style={{ fontFamily: "'Satoshi', sans-serif" }}

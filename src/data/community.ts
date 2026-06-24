@@ -102,7 +102,15 @@ import spk_yajur_bajaj from "@/assets/speakers/yajur-bajaj.webp";
 import spk_yashaswini_vismaya from "@/assets/speakers/yashaswini-vismaya.webp";
 import spk_yashika_kukkar from "@/assets/speakers/yashika-kukkar.webp";
 import spk_yog_disha from "@/assets/speakers/yog-disha.webp";
-
+import spk_ridhy from "@/assets/speakers/ridhy-arora.webp";
+import spk_sravya from "@/assets/speakers/sravya-uppalapati.webp";
+import spk_angel from "@/assets/speakers/angel-sharma.webp";
+import spk_anshika from "@/assets/speakers/anshika-agarwal.webp";
+import spk_diya from "@/assets/speakers/diya-parelkar.webp";
+import spk_garima from "@/assets/speakers/garima-sahu.webp";
+import spk_garimajha from "@/assets/speakers/garima-jha.webp";
+import spk_danish from "@/assets/speakers/mohammad-danish.webp";
+import spk_sweta from "@/assets/speakers/sweta-pandey.webp";
 
 import img_contrib_aakanksha_singh from "@/assets/contributors/aakanksha-singh.jpg";
 import img_contrib_aarushi_chottani from "@/assets/contributors/aarushi-chottani.png";
@@ -117,7 +125,7 @@ import img_contrib_kashika_gupta from "@/assets/contributors/kashika-gupta.jpg";
 import img_contrib_kashish_mahendra_sonawane from "@/assets/contributors/kashish-mahendra-sonawane.jpeg";
 import img_contrib_lakshya_s from "@/assets/contributors/lakshya-s.jpg";
 import img_contrib_mahak from "@/assets/contributors/mahak.jpg";
-import img_contrib_pathan_sama_khan from "@/assets/contributors/pathan-sama-khan.JPG";
+import img_contrib_pathan_sama_khan from "@/assets/contributors/pathan-sama-khan.jpg";
 import img_contrib_ragini_pandey from "@/assets/contributors/ragini-pandey.jpg";
 import img_contrib_simran_parween from "@/assets/contributors/simran-parween.jpg";
 import img_contrib_swagita_parida from "@/assets/contributors/swagita-parida.jpg";
@@ -139,8 +147,22 @@ import img_team_simran_nagekar from "@/assets/team/simran-nagekar.jpg";
 import img_team_vaishnavi_iyer from "@/assets/team/vaishnavi-iyer.jpg";
 import img_team_vijay_laxmi from "@/assets/team/vijay-laxmi.jpg";
 import img_team_yashika_garg from "@/assets/team/yashika-garg.jpg";
+
+import img_pf_andrew_ng from "@/assets/people/andrew-ng.jpg";
+import img_pf_naval_ravikant from "@/assets/people/naval-ravikant.webp";
+import img_pf_sam_altman from "@/assets/people/sam-altman.jpg";
+import img_pf_reshma_saujani from "@/assets/people/reshma-saujani.jpg";
+import img_pf_cassidy_williams from "@/assets/people/cassidy-williams.png";
+import img_pf_kelsey_hightower from "@/assets/people/kelsey-hightower.jpg";
+import img_pf_lex_fridman from "@/assets/people/lex-fridman.webp";
+import img_pf_lenny_rachitsky from "@/assets/people/lenny-rachitsky.webp";
+import img_pf_fei_fei_li from "@/assets/people/fei-fei-li.jpg";
+import img_pf_tracy_chou from "@/assets/people/tracy-chou.jpg";
+import img_pf_sahil_lavingia from "@/assets/people/sahil-lavingia.jpg";
+import img_pf_anthony_fu from "@/assets/people/anthony-fu.jpg";
+
 export const speakers: Speaker[] = [
-  { id: "s1", name: "Kavya Choudhary", designation: "Scholars'2024", company: "WE by Google TalentSprint", linkedin: "https://www.linkedin.com/in/ridhy-arora-097784258/", image: spk_kavya },
+  { id: "s1", name: "Kavya Choudhary", designation: "Scholars'2024", company: "WE by Google TalentSprint", linkedin: "https://www.linkedin.com/in/kavya1610/", image: spk_kavya },
   { id: "s2", name: "Jigisha Arora", designation: "STEP Intern", company: "Google", linkedin: "https://www.linkedin.com/in/jigisha-arora-212ab5256/", image: spk_jigisha_arora },
   { id: "s3", name: "Nishant Singhal", designation: "GSoC'23 Contributor", company: "Google", linkedin: "https://www.linkedin.com/in/nishant-singhal19/", image: spk_nishant_singhal },
   { id: "s4", name: "Divina Pooja John", designation: "Software Engineer", company: "Google", linkedin: "https://www.linkedin.com/in/divina-john/", image: spk_divina_pooja_john },
@@ -161,7 +183,7 @@ export const speakers: Speaker[] = [
   { id: "s19", name: "Shilpi Mitra", designation: "Principle Software Engineer Manager", company: "Microsoft", linkedin: "https://www.linkedin.com/in/shilpimitra/", image: spk_shilpi_mitra },
   { id: "s20", name: "Dr. Naga Swathi T.j", designation: "Global Senior Director", company: "SAP", linkedin: "https://www.linkedin.com/in/drnagaswathitj/", image: spk_naga_swathi },
   { id: "s21", name: "Madhu Sathvik", designation: "Founder", company: "Satwa Yoga", linkedin: "https://www.facebook.com/madhu.sathvik/", image: spk_madhu_sathvik },
-  { id: "s22", name: "Urvashi Agarwal", designation: "Intern", company: "Drdo", linkedin: "https://www.linkedin.com/in/garimajha25/", image: spk_urvashi_agarwal },
+  { id: "s22", name: "Urvashi Agarwal", designation: "Mentee", company: "Codess Cafe", linkedin: "https://www.linkedin.com/in/uraviva/", image: spk_urvashi_agarwal },
   { id: "s23", name: "Deeksha Pandey", designation: "SDE III", company: "Google", linkedin: "https://www.linkedin.com/in/deekshapandey16/", image: spk_deeksha_pandey },
   { id: "s24", name: "Siddhi Gupta", designation: "Scholar", company: "Amazon Future Engineer", linkedin: "https://www.linkedin.com/in/siddhiguptas/", image: spk_siddhi_gupta },
   { id: "s25", name: "Akanksha Buchke", designation: "Intuit", company: "Senior Software Engineer", linkedin: "https://www.linkedin.com/in/akanksha-buchke/", image: spk_akanksha_buchke },
@@ -170,7 +192,7 @@ export const speakers: Speaker[] = [
   { id: "s28", name: "Chinmayi D.s", designation: "Mentee", company: "Lfx", linkedin: "https://www.linkedin.com/in/chinmayi-d-s-2608b0263/", image: spk_chinmayi },
   { id: "s29", name: "Aarushi Chottani", designation: "Director", company: "Outreach Debate", linkedin: "https://www.linkedin.com/in/aarushi-chottani-80b861322/", image: spk_aarushi_chottani },
   { id: "s30", name: "Pranav Bhat", designation: "Esoc@Skytime Ethindia'24 Winner", company: "", linkedin: "https://www.linkedin.com/in/pranav-bhat-966003195/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3B0zFh%2FMa9RsOiFwG3sD4txg%3D%3D", image: spk_pranav_bhat },
-  { id: "s31", name: "Preksha Mahajan", designation: "SWE Intern", company: "Nielson Salesforce", linkedin: "https://www.linkedin.com/in/anshika-aggarwal-704847249/", image: spk_preksha_mahajan },
+  { id: "s31", name: "Preksha Mahajan", designation: "SWE Intern", company: "Nielson", linkedin: "https://www.linkedin.com/in/preksha-mahajan-090359214/", image: spk_preksha_mahajan },
   { id: "s32", name: "Aunshka Srivastava", designation: "SWE Intern", company: "Microsoft", linkedin: "https://www.linkedin.com/in/anushka-srivastava-798540255/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3B0zFh%2FMa9RsOiFwG3sD4txg%3D%3D", image: spk_anushka_srivastava },
   { id: "s33", name: "Khushi Panwar", designation: "Ambassador", company: "Women Techmakers", linkedin: "https://www.linkedin.com/in/smilewithkhushi/", image: spk_khushi_panwar },
   { id: "s34", name: "Yog Disha", designation: "Founder", company: "Satva Yoga Centre", linkedin: "https://www.linkedin.com/in/yog-disha-589476118/", image: spk_yog_disha },
@@ -232,7 +254,7 @@ export const speakers: Speaker[] = [
   { id: "s90", name: "Aprajita Verma", designation: "Frontend Architect", company: "Mycom", linkedin: "https://www.linkedin.com/in/aprajita-verma-19522814a/", image: spk_aprajita_verma },
   { id: "s91", name: "Ajitha Sindhe", designation: "Program Manager", company: "Code4govtech", linkedin: "https://www.linkedin.com/in/ajitha-sindhe-63623b105/", image: spk_ajitha_sindhe },
   { id: "s92", name: "Anushka Priyadarshi", designation: "Upcoming Intern", company: "Sprinklr", linkedin: "https://www.linkedin.com/in/anushka-priyadarshi/", image: spk_anushka_priyadarshi },
-  { id: "s93", name: "Kritika Dhima", designation: "LinkedIn Coachin Mentee", company: "LinkedIn", linkedin: "https://www.linkedin.com/in/kritika-dhiman-a23104290/", image: spk_kritika_dhima },
+  { id: "s93", name: "Kritika Dhiman", designation: "LinkedIn Coachin Mentee", company: "LinkedIn", linkedin: "https://www.linkedin.com/in/kritika-dhiman-a23104290/", image: spk_kritika_dhima },
   { id: "s94", name: "Bhagyasrie M Masorkar", designation: "Digital Transformatoin Leader", company: "Sify Technologies Ltd", linkedin: "https://www.linkedin.com/in/bhagyashree-masurkar/", image: spk_bhagyasrie_m_masorkar },
   { id: "s95", name: "Su Jella", designation: "Executive Leader", company: "Nano Insights", linkedin: "https://www.linkedin.com/in/sujella/", image: spk_su_jella },
   { id: "s96", name: "Madhura Das", designation: "Founder & CEO", company: "Aspire for Her", linkedin: "https://www.linkedin.com/in/madhura-dasgupta-sinha/", image: spk_madhura_das },
@@ -243,6 +265,16 @@ export const speakers: Speaker[] = [
   { id: "s101", name: "Yashaswini Vismaya", designation: "Agent AI Engineer", company: "Ltimindtree", linkedin: "https://www.linkedin.com/in/yash-vis/", image: spk_yashaswini_vismaya },
   { id: "s102", name: "Bobbie Carlton", designation: "Founder", company: "Innovation Women", linkedin: "https://www.linkedin.com/in/bobbiecarlton/", image: spk_bobbie_carlton },
   { id: "s103", name: "Sashi Gundala", designation: "Director", company: "Aspire India", linkedin: "https://www.linkedin.com/in/sashigundala/", image: spk_sashi_gundala },
+  { id: "s104", name: "Ridhy Arora", designation: "Scholars'2024", company: "WE by Google TalentSprint", linkedin: "https://www.linkedin.com/in/ridhy-arora-097784258/", image: spk_ridhy },
+  { id: "s105", name: "Sravya Uppalavapati", designation: "Scholars'2024", company: "WE by Google TalentSprint", linkedin: "https://www.linkedin.com/in/sravyauppalapati16/", image: spk_sravya },
+  {id:  "s106", name: "Angel Sharma", designation: "GSOC'24 Mentor", company: "Google", linkedin: "https://www.linkedin.com/in/angel-sharma-2a5240260/", image: spk_angel },
+  {id:  "s107", name: "Anshika Aggarwal", designation: "Intern", company: "Salesforce", linkedin: "https://www.linkedin.com/in/anshika-aggarwal-704847249/", image: spk_anshika },
+  {id:  "s108", name: "Diya Parelkar", designation: "2024 Winner", company: "Smart India Hackathon", linkedin: " https://www.linkedin.com/in/diya-parelkar?utm_source=share_via&utm_content=profile&utm_medium=member_android", image: spk_diya },
+  {id:  "s109", name: "Garima Sahu", designation: "Linkedin CoachIn Mentee", company: "Linkedin", linkedin: "https://www.linkedin.com/in/garima-sahu-84649a322/", image: spk_garima },
+  {id:  "s110", name: "Mohammad Danish", designation: "Web3 Enthusiast", company: "", linkedin: "", image: spk_danish },
+  {id:  "s111", name: "Garima Jha", designation: "Intern", company: "DRDO", linkedin: "https://www.linkedin.com/in/garimajha25/", image: spk_garimajha },
+  {id:  "s112", name: "Sweta Pandey", designation: "Mentee", company: "Codess Cafe", linkedin: "https://www.linkedin.com/in/sweta-pandey-37178a22b/", image: spk_sweta }
+
 ];
 
 export const events: Event[] = realEvents.length ? realEvents : [
@@ -325,7 +357,15 @@ export const getEvent = (id: string) => events.find((e) => e.id === id);
 export const team: TeamMember[] = [
   { id: "t1", name: "Manik", role: "Partnerships & Sponsorships", city: "Ambala City", state: "Haryana", linkedin: "https://www.linkedin.com/in/mrmanik/", image: img_team_manik },
   { id: "t2", name: "Vaishnavi Iyer", role: "Resource", city: "Bangalore", state: "Karnataka", linkedin: "https://www.linkedin.com/in/vaishnaviiyerms", image: img_team_vaishnavi_iyer },
-  { id: "t3", name: "Vijay Laxmi", role: "Speaker Outreaching", city: "Delhi", linkedin: "https://www.linkedin.com/in/laxmi-vijay/", image: img_team_vijay_laxmi },
+ {
+  id: "t3",
+  name: "Vijay Laxmi",
+  role: "Speaker Outreaching",
+  city: "Delhi",
+  linkedin: "https://www.linkedin.com/in/laxmi-vijay/",
+  image: img_team_vijay_laxmi,
+  description: "The voice behind GLT's incredible speaker lineup — Vijay reaches out, builds relationships, and brings inspiring women in tech to our stage.",
+},
   { id: "t4", name: "Ananya Agarwal", role: "Design", city: "Mumbai", state: "Maharashtra", linkedin: "https://www.linkedin.com/in/ananya-agarwal-861317290/", image: img_team_ananya_agarwal },
   { id: "t5", name: "Mahi Awasthi", role: "Content Creation", city: "Derabassi", state: "Punjab", linkedin: "https://www.linkedin.com/in/mahiawasthi/", image: img_team_mahi_awasthi },
   { id: "t6", name: "Yashika garg", role: "Social Media & PR", city: "Abohar", state: "Punjab", linkedin: "https://www.linkedin.com/in/yashika-garg-37baa2290", image: img_team_yashika_garg },
@@ -432,18 +472,18 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const peopleToFollow: PersonToFollow[] = [
-  { id: "pf1", name: "Andrew Ng", domain: "AI / ML", linkedin: "https://www.linkedin.com/in/andrewyng/", summary: "Co-founder of Coursera and DeepLearning.AI. One of the most influential voices in modern AI.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg/400px-Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg" },
-  { id: "pf2", name: "Naval Ravikant", domain: "Finance & Business", twitter: "https://x.com/naval", summary: "AngelList founder. Sharp essays on wealth, leverage and the long game.", image: "https://upload.wikimedia.org/wikipedia/commons/5/55/Naval_Ravikant_%28cropped%29.jpg" },
-  { id: "pf3", name: "Sam Altman", domain: "AI / Startups", twitter: "https://x.com/sama", summary: "CEO of OpenAI. Pragmatic takes on building startups and the future of AI.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Meeting_with_Masayoshi_Son_and_Sam_Altman_%28February_3%2C_2025%29_%283x4_cropped_on_Altman%29.jpg/400px-Meeting_with_Masayoshi_Son_and_Sam_Altman_%28February_3%2C_2025%29_%283x4_cropped_on_Altman%29.jpg" },
-  { id: "pf4", name: "Reshma Saujani", domain: "Women in Tech", linkedin: "https://www.linkedin.com/in/reshmasaujani/", summary: "Founder of Girls Who Code. Author and tireless advocate for girls in STEM.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/2018-prathamusa-reshma-saujani.jpg/400px-2018-prathamusa-reshma-saujani.jpg" },
-  { id: "pf5", name: "Cassidy Williams", domain: "Frontend / DevRel", twitter: "https://x.com/cassidoo", summary: "Engineer, educator and one of the warmest voices in frontend.", image: "https://api.dicebear.com/9.x/initials/svg?seed=Cassidy%20Williams&backgroundColor=f8c8d8,e8a87c,c9a0dc,87a878,e85d3a&textColor=ffffff&fontWeight=700" },
-  { id: "pf6", name: "Kelsey Hightower", domain: "DevOps / Cloud", twitter: "https://x.com/kelseyhightower", summary: "Kubernetes legend. Generous teacher of distributed systems.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Kelsey_Hightower_%28cropped%2C_brightened%29.png/400px-Kelsey_Hightower_%28cropped%2C_brightened%29.png" },
-  { id: "pf7", name: "Lex Fridman", domain: "AI / Podcasts", twitter: "https://x.com/lexfridman", summary: "MIT researcher and podcaster exploring AI, science and life.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Lex_Fridman_teaching_at_MIT_in_2018.png/400px-Lex_Fridman_teaching_at_MIT_in_2018.png" },
-  { id: "pf8", name: "Lenny Rachitsky", domain: "Product", linkedin: "https://www.linkedin.com/in/lennyrachitsky/", summary: "Ex-Airbnb PM running the most-read product newsletter on the internet.", image: "https://api.dicebear.com/9.x/initials/svg?seed=Lenny%20Rachitsky&backgroundColor=f8c8d8,e8a87c,c9a0dc,87a878,e85d3a&textColor=ffffff&fontWeight=700" },
-  { id: "pf9", name: "Fei-Fei Li", domain: "AI / ML", linkedin: "https://www.linkedin.com/in/fei-fei-li-4541247/", summary: "Stanford AI lab co-director. Pioneer of computer vision and ImageNet.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Fei-Fei_Li_at_AI_for_Good_2017.jpg/400px-Fei-Fei_Li_at_AI_for_Good_2017.jpg" },
-  { id: "pf10", name: "Tracy Chou", domain: "Engineering / Founders", twitter: "https://x.com/triketora", summary: "Founder of Block Party. Vocal advocate for diversity in tech.", image: "https://api.dicebear.com/9.x/initials/svg?seed=Tracy%20Chou&backgroundColor=f8c8d8,e8a87c,c9a0dc,87a878,e85d3a&textColor=ffffff&fontWeight=700" },
-  { id: "pf11", name: "Sahil Lavingia", domain: "Indie Founders", twitter: "https://x.com/shl", summary: "Founder of Gumroad. Honest writing on indie founding and creative work.", image: "https://pbs.twimg.com/profile_images/1701128842596773888/lP3kZj7s_400x400.jpg" },
-  { id: "pf12", name: "Anthony Fu", domain: "Open Source", twitter: "https://x.com/antfu7", summary: "Vue/Vite/UnoCSS core team. Prolific open-source maintainer.", image: "https://api.dicebear.com/9.x/initials/svg?seed=Anthony%20Fu&backgroundColor=f8c8d8,e8a87c,c9a0dc,87a878,e85d3a&textColor=ffffff&fontWeight=700" },
+  { id: "pf1", name: "Andrew Ng", domain: "AI / ML", linkedin: "https://www.linkedin.com/in/andrewyng/", summary: "Co-founder of Coursera and DeepLearning.AI. One of the most influential voices in modern AI.", image: img_pf_andrew_ng },
+  { id: "pf2", name: "Naval Ravikant", domain: "Finance & Business", twitter: "https://x.com/naval", summary: "AngelList founder. Sharp essays on wealth, leverage and the long game.", image: img_pf_naval_ravikant },
+  { id: "pf3", name: "Sam Altman", domain: "AI / Startups", twitter: "https://x.com/sama", summary: "CEO of OpenAI. Pragmatic takes on building startups and the future of AI.", image: img_pf_sam_altman },
+  { id: "pf4", name: "Reshma Saujani", domain: "Women in Tech", linkedin: "https://www.linkedin.com/in/reshmasaujani/", summary: "Founder of Girls Who Code. Author and tireless advocate for girls in STEM.", image: img_pf_reshma_saujani },
+  { id: "pf5", name: "Cassidy Williams", domain: "Frontend / DevRel", twitter: "https://x.com/cassidoo", summary: "Engineer, educator and one of the warmest voices in frontend.", image: img_pf_cassidy_williams },
+  { id: "pf6", name: "Kelsey Hightower", domain: "DevOps / Cloud", twitter: "https://x.com/kelseyhightower", summary: "Kubernetes legend. Generous teacher of distributed systems.", image: img_pf_kelsey_hightower },
+  { id: "pf7", name: "Lex Fridman", domain: "AI / Podcasts", twitter: "https://x.com/lexfridman", summary: "MIT researcher and podcaster exploring AI, science and life.", image: img_pf_lex_fridman },
+  { id: "pf8", name: "Lenny Rachitsky", domain: "Product", linkedin: "https://www.linkedin.com/in/lennyrachitsky/", summary: "Ex-Airbnb PM running the most-read product newsletter on the internet.", image: img_pf_lenny_rachitsky },
+  { id: "pf9", name: "Fei-Fei Li", domain: "AI / ML", linkedin: "https://www.linkedin.com/in/fei-fei-li-4541247/", summary: "Stanford AI lab co-director. Pioneer of computer vision and ImageNet.", image: img_pf_fei_fei_li },
+  { id: "pf10", name: "Tracy Chou", domain: "Engineering / Founders", twitter: "https://x.com/triketora", summary: "Founder of Block Party. Vocal advocate for diversity in tech.", image: img_pf_tracy_chou },
+  { id: "pf11", name: "Sahil Lavingia", domain: "Indie Founders", twitter: "https://x.com/shl", summary: "Founder of Gumroad. Honest writing on indie founding and creative work.", image: img_pf_sahil_lavingia },
+  { id: "pf12", name: "Anthony Fu", domain: "Open Source", twitter: "https://x.com/antfu7", summary: "Vue/Vite/UnoCSS core team. Prolific open-source maintainer.", image: img_pf_anthony_fu },
 ];
 
 export const placeholderResources: Record<string, Resource[]> = {

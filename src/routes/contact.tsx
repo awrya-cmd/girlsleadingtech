@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { socials } from "@/data/socials";
 import {
   Mail,
@@ -133,6 +134,50 @@ function SideGlow() {
   );
 }
 
+// Animated pill-slider tab bar — active tab gets a sliding gradient pill behind it
+function TabSlider({
+  tabs,
+  activeIndex,
+  onChange,
+}: {
+  tabs: { label: string; icon: React.ElementType }[];
+  activeIndex: number;
+  onChange: (index: number) => void;
+}) {
+  return (
+    <div
+      className="inline-flex flex-wrap items-center justify-center gap-1 bg-white/80 backdrop-blur-sm rounded-full border border-black/5 shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-1.5 mx-auto"
+      role="tablist"
+    >
+      {tabs.map((tab, idx) => {
+        const isActive = activeIndex === idx;
+        return (
+          <button
+            key={tab.label}
+            type="button"
+            role="tab"
+            aria-selected={isActive}
+            onClick={() => onChange(idx)}
+            className="relative px-5 py-2.5 rounded-full text-sm font-bold transition-colors duration-200 cursor-pointer"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            {isActive && (
+              <motion.div
+                layoutId="activeTabPill"
+                className="absolute inset-0 rounded-full bg-gradient-to-r from-[#ff5b5b] to-[#ff8a3d]"
+                transition={{ type: "spring", stiffness: 500, damping: 35 }}
+              />
+            )}
+            <span className={`relative z-10 whitespace-nowrap ${isActive ? "text-white" : "text-gray-600 hover:text-gray-900"}`}>
+              {tab.label}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -142,6 +187,7 @@ function ContactPage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
 
   const userTypes = [
     "Student",
@@ -167,6 +213,7 @@ function ContactPage() {
   };  const pathCards = [
     {
       title: "Join our Community",
+      tabLabel: "Join Community",
       subtitle: "Become part of a thriving network.",
       benefitsTitle: "Why join us:",
       benefits: [
@@ -185,6 +232,7 @@ function ContactPage() {
     },
     {
       title: "Volunteer / Contribute",
+      tabLabel: "Volunteer",
       subtitle: "Gain leadership experience and build projects.",
       benefitsTitle: "What you'll build:",
       benefits: [
@@ -203,6 +251,7 @@ function ContactPage() {
     },
     {
       title: "Speaker / Mentor",
+      tabLabel: "Mentor",
       subtitle: "Share your knowledge and lead workshops.",
       benefitsTitle: "Your impact:",
       benefits: [
@@ -221,6 +270,7 @@ function ContactPage() {
     },
     {
       title: "Partner / Sponsor",
+      tabLabel: "Partner",
       subtitle: "Collaborate on initiatives and support diversity.",
       benefitsTitle: "Partnership benefits:",
       benefits: [
@@ -238,6 +288,8 @@ function ContactPage() {
       to: "/partner",
     },
   ];
+
+  const tabs = pathCards.map((p) => ({ label: p.tabLabel, icon: p.icon }));
 
   const socialLinks = [
     {
@@ -358,390 +410,399 @@ function ContactPage() {
             >
               ✦ Choose the path that best describes you ✦
             </p>
+
+            {/* Tab Slider */}
+            <div className="mt-8 flex justify-center">
+              <TabSlider tabs={tabs} activeIndex={activeTab} onChange={setActiveTab} />
+            </div>
   
           </ScrollReveal>
         </section>
 
-        {/* SECTION 1: JOIN COMMUNITY */}
-        <section className="relative container mx-auto max-w-5xl px-6 py-20 z-10">  
-          <ScrollReveal>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              {/* Left Column: Direct Text (No Card) */}
-              <div className="lg:col-span-5 flex flex-col items-start text-left gap-5">
-                <div className="w-14 h-14 rounded-full bg-white border border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)]">
-                  <Users className="w-7 h-7 stroke-[2] text-[#eab308]" />
-                </div>
-                <h3
-                  className="text-3xl sm:text-4xl font-extrabold text-[#5b2b4a] tracking-tight leading-tight"
-                  style={{ fontFamily: "'Satoshi', sans-serif" }}
-                >
-                  Join Our Community
-                </h3>
-                <p
-                  className="text-base sm:text-lg text-gray-700 font-semibold leading-relaxed"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
-                >
-                  Become part of a thriving network of ambitious women in tech, where you can grow, learn, and lead.
-                </p>
-              </div>
-
-              {/* Right Column: Yellow Card */}
-              <div className="lg:col-span-7">
-                <div className="bg-[#FFFCEB] border-2 border-black rounded-[24px] p-8 md:p-10 shadow-[6px_6px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:scale-[1.01] active:scale-99 transition-all duration-300 relative z-10 overflow-hidden">
-                  <span className="text-xs uppercase font-extrabold tracking-widest text-[#eab308] block mb-4 text-left" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                    Community Perks & Benefits
-                  </span>
-                  <ul className="space-y-4 text-left">
-                    {[
-                      "Attend events and workshops",
-                      "Meet ambitious women in tech",
-                      "Access opportunities and resources",
-                      "Become part of a supportive network"
-                    ].map((benefit, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-start gap-3 text-gray-800 text-base sm:text-lg font-bold leading-relaxed"
+        {/* SELECTED PATH PANEL — switches on tab click */}
+        <section className="relative container mx-auto max-w-5xl px-6 py-20 z-10">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              {activeTab === 0 && (
+                <>
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    {/* Left Column: Direct Text (No Card) */}
+                    <div className="lg:col-span-5 flex flex-col items-start text-left gap-5">
+                      <div className="w-14 h-14 rounded-full bg-white border border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+                        <Users className="w-7 h-7 stroke-[2] text-[#eab308]" />
+                      </div>
+                      <h3
+                        className="text-3xl sm:text-4xl font-extrabold text-[#5b2b4a] tracking-tight leading-tight"
                         style={{ fontFamily: "'Satoshi', sans-serif" }}
                       >
-                        <span className="text-[#eab308] text-xl font-bold flex-shrink-0 leading-none mt-0.5">•</span>
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Centered Primary CTA Below entire section */}
-            <div className="flex justify-center mt-12">
-              <Link
-                to="/join"
-                className="relative inline-block active:scale-95 hover:scale-[1.03] transition-all duration-200 cursor-pointer border-none bg-transparent"
-              >
-                <img
-                  src={pixelBtn}
-                  alt="Join Community Button"
-                  className="w-[140px]
-              sm:w-[180px]
-              md:w-[210px]
-              h-auto h-auto"
-                />
-                <span
-                  className="absolute inset-0 flex items-center justify-center text-black font-bold"
-                  style={{
-                    fontFamily: "'Press Start 2P', monospace",
-                    fontSize: "clamp(0.50rem, 0.8vw, 0.9rem)",
-                    letterSpacing: "0.08em",
-                    lineHeight: "1.0",
-                  }}
-                >
-                  Join Community →
-                </span>
-              </Link>
-            </div>
-          </ScrollReveal>
-        </section>
-
-        {/* SECTION 2: VOLUNTEER & CONTRIBUTE */}
-        <section className="relative container mx-auto max-w-5xl px-6 py-20 z-10 border-t border-black/5">
-          <ScrollReveal>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-              {/* Left Column: Title, Copy & CTA */}
-              <div className="lg:col-span-6 flex flex-col justify-start items-start text-left gap-6">
-                <div className="space-y-5">
-                  <div className="w-14 h-14 rounded-full bg-white border border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)]">
-                    <Hand className="w-7 h-7 stroke-[2] text-[#4f46e5]" />
-                  </div>
-                  <h3
-                    className="text-3xl sm:text-4xl font-extrabold text-[#5b2b4a] tracking-tight leading-tight"
-                    style={{ fontFamily: "'Satoshi', sans-serif" }}
-                  >
-                    Volunteer & Contribute
-                  </h3>
-                  <p
-                    className="text-base sm:text-lg text-gray-700 font-semibold leading-relaxed"
-                    style={{ fontFamily: "'Montserrat', sans-serif" }}
-                  >
-                    Help shape Girls Leading Tech through events, operations, design, content, partnerships, and community initiatives.
-                  </p>
-                </div>
-
-                {/* Left Aligned Premium Rectangular CTA - Matches Card Colors */}
-                <div>
-                  <Link
-                    to="/volunteer"
-                    className="inline-block px-8 py-4 bg-[#EEF2FF] text-[#1e3a8a] border-2 border-black rounded-[14px] shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] active:scale-[0.97] active:translate-y-0 active:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all duration-200 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] text-center cursor-pointer uppercase font-bold"
-                    style={{
-                      fontFamily: "'Press Start 2P', monospace",
-                      fontSize: "9px",
-                      letterSpacing: "0.05em",
-                    }}
-                  >
-                    Explore Opportunities
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right Column: Light Blue Card */}
-              <div className="lg:col-span-6 flex">
-                <div className="w-full bg-[#EEF2FF] border-2 border-black rounded-[24px] p-8 md:p-10 shadow-[6px_6px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:scale-[1.01] active:scale-99 transition-all duration-300 relative z-10 flex flex-col justify-between overflow-hidden">
-                  <div className="space-y-6 mt-4">
-                    <div>
-                      <span
-                        className="text-xs uppercase font-extrabold tracking-widest text-[#4f46e5] block mb-3 text-left"
+                        Join Our Community
+                      </h3>
+                      <p
+                        className="text-base sm:text-lg text-gray-700 font-semibold leading-relaxed"
                         style={{ fontFamily: "'Montserrat', sans-serif" }}
                       >
-                        What You'll Work On
+                        Become part of a thriving network of ambitious women in tech, where you can grow, learn, and lead.
+                      </p>
+                    </div>
+
+                    {/* Right Column: Yellow Card */}
+                    <div className="lg:col-span-7">
+                      <div className="bg-[#FFFCEB] border-2 border-black rounded-[24px] p-8 md:p-10 shadow-[6px_6px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:scale-[1.01] active:scale-99 transition-all duration-300 relative z-10 overflow-hidden">
+                        <span className="text-xs uppercase font-extrabold tracking-widest text-[#eab308] block mb-4 text-left" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                          Community Perks & Benefits
+                        </span>
+                        <ul className="space-y-4 text-left">
+                          {[
+                            "Attend events and workshops",
+                            "Meet ambitious women in tech",
+                            "Access opportunities and resources",
+                            "Become part of a supportive network"
+                          ].map((benefit, idx) => (
+                            <li
+                              key={idx}
+                              className="flex items-start gap-3 text-gray-800 text-base sm:text-lg font-bold leading-relaxed"
+                              style={{ fontFamily: "'Satoshi', sans-serif" }}
+                            >
+                              <span className="text-[#eab308] text-xl font-bold flex-shrink-0 leading-none mt-0.5">•</span>
+                              <span>{benefit}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Centered Primary CTA Below entire section */}
+                  <div className="flex justify-center mt-12">
+                    <Link
+                      to="/join"
+                      className="relative inline-block active:scale-95 hover:scale-[1.03] transition-all duration-200 cursor-pointer border-none bg-transparent"
+                    >
+                      <img
+                        src={pixelBtn}
+                        alt="Join Community Button"
+                        className="w-[140px]
+                  sm:w-[180px]
+                  md:w-[210px]
+                  h-auto h-auto"
+                      />
+                      <span
+                        className="absolute inset-0 flex items-center justify-center text-black font-bold"
+                        style={{
+                          fontFamily: "'Press Start 2P', monospace",
+                          fontSize: "clamp(0.50rem, 0.8vw, 0.9rem)",
+                          letterSpacing: "0.08em",
+                          lineHeight: "1.0",
+                        }}
+                      >
+                        Join Community →
                       </span>
-                      <div className="flex flex-wrap gap-2">
-                        {[
-                          "Event Operations",
-                          "Social Media",
-                          "Design",
-                          "Content Creation",
-                          "Partnerships",
-                          "Community Building",
-                        ].map((pill, pIdx) => (
+                    </Link>
+                  </div>
+                </>
+              )}
+
+              {activeTab === 1 && (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+                  {/* Left Column: Title, Copy & CTA */}
+                  <div className="lg:col-span-6 flex flex-col justify-start items-start text-left gap-6">
+                    <div className="space-y-5">
+                      <div className="w-14 h-14 rounded-full bg-white border border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+                        <Hand className="w-7 h-7 stroke-[2] text-[#4f46e5]" />
+                      </div>
+                      <h3
+                        className="text-3xl sm:text-4xl font-extrabold text-[#5b2b4a] tracking-tight leading-tight"
+                        style={{ fontFamily: "'Satoshi', sans-serif" }}
+                      >
+                        Volunteer & Contribute
+                      </h3>
+                      <p
+                        className="text-base sm:text-lg text-gray-700 font-semibold leading-relaxed"
+                        style={{ fontFamily: "'Montserrat', sans-serif" }}
+                      >
+                        Help shape Girls Leading Tech through events, operations, design, content, partnerships, and community initiatives.
+                      </p>
+                    </div>
+
+                    {/* Left Aligned Premium Rectangular CTA - Matches Card Colors */}
+                    <div>
+                      <Link
+                        to="/volunteer"
+                        className="inline-block px-8 py-4 bg-[#EEF2FF] text-[#1e3a8a] border-2 border-black rounded-[14px] shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] active:scale-[0.97] active:translate-y-0 active:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all duration-200 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] text-center cursor-pointer uppercase font-bold"
+                        style={{
+                          fontFamily: "'Press Start 2P', monospace",
+                          fontSize: "9px",
+                          letterSpacing: "0.05em",
+                        }}
+                      >
+                        Explore Opportunities
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Light Blue Card */}
+                  <div className="lg:col-span-6 flex">
+                    <div className="w-full bg-[#EEF2FF] border-2 border-black rounded-[24px] p-8 md:p-10 shadow-[6px_6px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:scale-[1.01] active:scale-99 transition-all duration-300 relative z-10 flex flex-col justify-between overflow-hidden">
+                      <div className="space-y-6 mt-4">
+                        <div>
                           <span
-                            key={pIdx}
-                            className="bg-white border border-black px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1e3a8a] shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:scale-[1.02] transition-all duration-200"
+                            className="text-xs uppercase font-extrabold tracking-widest text-[#4f46e5] block mb-3 text-left"
                             style={{ fontFamily: "'Montserrat', sans-serif" }}
                           >
-                            {pill}
+                            What You'll Work On
+                          </span>
+                          <div className="flex flex-wrap gap-2">
+                            {[
+                              "Event Operations",
+                              "Social Media",
+                              "Design",
+                              "Content Creation",
+                              "Partnerships",
+                              "Community Building",
+                            ].map((pill, pIdx) => (
+                              <span
+                                key={pIdx}
+                                className="bg-white border border-black px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1e3a8a] shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:scale-[1.02] transition-all duration-200"
+                                style={{ fontFamily: "'Montserrat', sans-serif" }}
+                              >
+                                {pill}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div>
+                          <span
+                            className="text-xs uppercase font-extrabold tracking-widest text-[#4f46e5] block mb-2 text-left"
+                            style={{ fontFamily: "'Montserrat', sans-serif" }}
+                          >
+                            Past Initiatives
+                          </span>
+                          <ul className="space-y-2 text-left">
+                            {[
+                              "Community networking events",
+                              "Technical workshops",
+                              "Speaker sessions",
+                              "Student-led initiatives",
+                            ].map((item, idx) => (
+                              <li
+                                key={idx}
+                                className="flex items-start gap-2.5 text-gray-800 text-sm sm:text-base font-semibold leading-relaxed"
+                                style={{ fontFamily: "'Satoshi', sans-serif" }}
+                              >
+                                <span className="text-[#4f46e5] font-bold text-sm flex-shrink-0 mt-0.5">•</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 2 && (
+                <>
+                  {/* Top Title Block */}
+                  <div className="text-center max-w-3xl mx-auto mb-12">
+                    <div className="w-14 h-14 rounded-full bg-white border border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)] mx-auto mb-5">
+                      <Mic className="w-7 h-7 stroke-[2] text-[#10b981]" />
+                    </div>
+                    <h3
+                      className="text-3xl sm:text-4xl font-extrabold text-[#5b2b4a] tracking-tight leading-tight"
+                      style={{ fontFamily: "'Satoshi', sans-serif" }}
+                    >
+                      Lead The Way For The Next Generation
+                    </h3>
+                    <p
+                      className="text-base sm:text-lg text-gray-700 font-semibold leading-relaxed mt-4"
+                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    >
+                      Share your experience, guide students, host workshops, and inspire women entering technology.
+                    </p>
+                  </div>
+
+                  {/* Horizontal Showcase Row */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {[
+                      {
+                        title: "Mentorship",
+                        benefits: ["1:1 guidance", "Career advice"],
+                      },
+                      {
+                        title: "Workshop Sessions",
+                        benefits: ["Technical topics", "Industry insights"],
+                      },
+                      {
+                        title: "Speaker Events",
+                        benefits: ["Community talks", "Fireside chats"],
+                      },
+                    ].map((showcase, sIdx) => (
+                      <div
+                        key={sIdx}
+                        className="bg-[#EBFDF5] border-2 border-black rounded-[20px] p-6 shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] hover:scale-[1.01] active:scale-99 transition-all duration-300 relative z-10 flex flex-col justify-between"
+                      >
+                        <div className="text-left space-y-3">
+                          <h4
+                            className="font-bold text-lg text-[#065f46]"
+                            style={{ fontFamily: "'Montserrat', sans-serif" }}
+                          >
+                            {showcase.title}
+                          </h4>
+                          <ul className="space-y-2">
+                            {showcase.benefits.map((b, idx) => (
+                              <li
+                                key={idx}
+                                className="flex items-start gap-2 text-gray-800 text-sm sm:text-base font-semibold leading-relaxed"
+                                style={{ fontFamily: "'Satoshi', sans-serif" }}
+                              >
+                                <span className="text-[#10b981] font-bold text-sm mt-0.5">•</span>
+                                <span>{b}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Bottom Section: Who We're Looking For & CTA */}
+                  <div className="mt-12 text-center space-y-8">
+                    <div className="space-y-4">
+                      <span
+                        className="text-xs uppercase font-extrabold tracking-widest text-[#10b981] block"
+                        style={{ fontFamily: "'Montserrat', sans-serif" }}
+                      >
+                        Who We're Looking For
+                      </span>
+                      <div className="flex flex-wrap justify-center gap-2 max-w-xl mx-auto">
+                        {["Engineers", "Designers", "Researchers", "Founders", "Product Managers"].map((role, idx) => (
+                          <span
+                            key={idx}
+                            className="bg-white border border-black px-4 py-1.5 rounded-full text-xs font-bold text-[#065f46] shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                            style={{ fontFamily: "'Montserrat', sans-serif" }}
+                          >
+                            {role}
                           </span>
                         ))}
                       </div>
                     </div>
 
-                    <div>
-                      <span
-                        className="text-xs uppercase font-extrabold tracking-widest text-[#4f46e5] block mb-2 text-left"
-                        style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    <div className="pt-2">
+                      <Link
+                        to="/mentor"
+                        className="inline-block px-8 py-4 bg-[#A7F3D0] text-[#065f46] border-2 border-black rounded-[14px] shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] active:scale-[0.97] active:translate-y-0 active:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all duration-200 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] text-center cursor-pointer uppercase font-bold"
+                        style={{
+                          fontFamily: "'Press Start 2P', monospace",
+                          fontSize: "9px",
+                          letterSpacing: "0.05em",
+                        }}
                       >
-                        Past Initiatives
-                      </span>
-                      <ul className="space-y-2 text-left">
-                        {[
-                          "Community networking events",
-                          "Technical workshops",
-                          "Speaker sessions",
-                          "Student-led initiatives",
-                        ].map((item, idx) => (
-                          <li
-                            key={idx}
-                            className="flex items-start gap-2.5 text-gray-800 text-sm sm:text-base font-semibold leading-relaxed"
-                            style={{ fontFamily: "'Satoshi', sans-serif" }}
-                          >
-                            <span className="text-[#4f46e5] font-bold text-sm flex-shrink-0 mt-0.5">•</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                        Become a Mentor
+                      </Link>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-        </section>
+                </>
+              )}
 
-        {/* SECTION 3: SPEAKER / MENTOR */}
-        <section className="relative container mx-auto max-w-5xl px-6 py-20 z-10 border-t border-black/5">
-          <ScrollReveal>
-            {/* Top Title Block */}
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <div className="w-14 h-14 rounded-full bg-white border border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)] mx-auto mb-5">
-                <Mic className="w-7 h-7 stroke-[2] text-[#10b981]" />
-              </div>
-              <h3
-                className="text-3xl sm:text-4xl font-extrabold text-[#5b2b4a] tracking-tight leading-tight"
-                style={{ fontFamily: "'Satoshi', sans-serif" }}
-              >
-                Lead The Way For The Next Generation
-              </h3>
-              <p
-                className="text-base sm:text-lg text-gray-700 font-semibold leading-relaxed mt-4"
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
-              >
-                Share your experience, guide students, host workshops, and inspire women entering technology.
-              </p>
-            </div>
+              {activeTab === 3 && (
+                <div className="bg-[#F0EBFF] border-2 border-black rounded-[32px] p-8 md:p-12 shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[10px_10px_0px_rgba(0,0,0,1)] hover:scale-[1.005] transition-all duration-300 relative z-10 overflow-hidden text-center">
+                  <div className="w-14 h-14 rounded-full bg-white border border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)] mx-auto mb-6">
+                    <Handshake className="w-7 h-7 stroke-[2] text-[#7B4F92]" />
+                  </div>
 
-            {/* Horizontal Showcase Row */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "Mentorship",
-                  benefits: ["1:1 guidance", "Career advice"],
-                },
-                {
-                  title: "Workshop Sessions",
-                  benefits: ["Technical topics", "Industry insights"],
-                },
-                {
-                  title: "Speaker Events",
-                  benefits: ["Community talks", "Fireside chats"],
-                },
-              ].map((showcase, sIdx) => (
-                <div
-                  key={sIdx}
-                  className="bg-[#EBFDF5] border-2 border-black rounded-[20px] p-6 shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] hover:scale-[1.01] active:scale-99 transition-all duration-300 relative z-10 flex flex-col justify-between"
-                >
-                  <div className="text-left space-y-3">
-                    <h4
-                      className="font-bold text-lg text-[#065f46]"
-                      style={{ fontFamily: "'Montserrat', sans-serif" }}
-                    >
-                      {showcase.title}
-                    </h4>
-                    <ul className="space-y-2">
-                      {showcase.benefits.map((b, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-start gap-2 text-gray-800 text-sm sm:text-base font-semibold leading-relaxed"
+                  <h3
+                    className="text-3xl sm:text-4xl font-black text-[#7B4F92] tracking-tight leading-tight mb-4"
+                    style={{ fontFamily: "'Satoshi', sans-serif" }}
+                  >
+                    Collaborate With Girls Leading Tech
+                  </h3>
+
+                  <span
+                    className="text-xs uppercase font-extrabold tracking-widest text-[#7B4F92] block mb-8"
+                    style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  >
+                    Why partner with us?
+                  </span>
+
+                  {/* Grid of 6 benefits */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {[
+                      "Reach emerging tech talent",
+                      "Support diversity in technology",
+                      "Collaborate on community initiatives",
+                      "Increase brand visibility",
+                      "Support educational programs",
+                      "Build long-term impact",
+                    ].map((benefit, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-white border border-black rounded-xl p-5 shadow-[3px_3px_0px_rgba(0,0,0,1)] flex items-center gap-3 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:scale-[1.01] transition-all duration-200"
+                      >
+                        <span className="text-[#7B4F92] font-bold text-lg flex-shrink-0">•</span>
+                        <span
+                          className="text-[#7B4F92] font-bold text-sm leading-relaxed text-left"
                           style={{ fontFamily: "'Satoshi', sans-serif" }}
                         >
-                          <span className="text-[#10b981] font-bold text-sm mt-0.5">•</span>
-                          <span>{b}</span>
-                        </li>
+                          {benefit}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Grayscale partner logos */}
+                  <div className="mt-12 border-t border-purple-200/50 pt-8">
+                    <span
+                      className="text-xs uppercase font-extrabold tracking-widest text-gray-500 block mb-6"
+                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    >
+                      Trusted By & Community Ecosystem
+                    </span>
+                    
+                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                      {[
+                        { name: "Notion", color: "hover:text-[#000000]" },
+                        { name: "Lovable", color: "hover:text-[#ff4e50]" },
+                        { name: "Postman", color: "hover:text-[#ff6c37]" },
+                        { name: "Wolfram", color: "hover:text-[#dd1100]" },
+                        { name: "SheBuilds", color: "hover:text-[#d955a4]" },
+                      ].map((logo, idx) => (
+                        <span
+                          key={idx}
+                          className={`text-gray-500 font-black tracking-widest text-base md:text-lg transition-colors duration-300 cursor-default select-none filter grayscale hover:grayscale-0 ${logo.color}`}
+                          style={{ fontFamily: "'Montserrat', sans-serif" }}
+                        >
+                          {logo.name}
+                        </span>
                       ))}
-                    </ul>
+                    </div>
+                  </div>
+
+                  {/* Center partner CTA below logos */}
+                  <div className="pt-10">
+                    <Link
+                      to="/partner"
+                      className="inline-block px-8 py-4 bg-[#7B4F92] text-[#FFFBF7] border-2 border-black rounded-[14px] shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] active:scale-[0.97] active:translate-y-0 active:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all duration-200 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] text-center cursor-pointer uppercase font-bold"
+                      style={{
+                        fontFamily: "'Press Start 2P', monospace",
+                        fontSize: "9px",
+                        letterSpacing: "0.05em",
+                      }}
+                    >
+                      Partner With GLT
+                    </Link>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            {/* Bottom Section: Who We're Looking For & CTA */}
-            <div className="mt-12 text-center space-y-8">
-              <div className="space-y-4">
-                <span
-                  className="text-xs uppercase font-extrabold tracking-widest text-[#10b981] block"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
-                >
-                  Who We're Looking For
-                </span>
-                <div className="flex flex-wrap justify-center gap-2 max-w-xl mx-auto">
-                  {["Engineers", "Designers", "Researchers", "Founders", "Product Managers"].map((role, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-white border border-black px-4 py-1.5 rounded-full text-xs font-bold text-[#065f46] shadow-[2px_2px_0px_rgba(0,0,0,1)]"
-                      style={{ fontFamily: "'Montserrat', sans-serif" }}
-                    >
-                      {role}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="pt-2">
-                <Link
-                  to="/mentor"
-                  className="inline-block px-8 py-4 bg-[#A7F3D0] text-[#065f46] border-2 border-black rounded-[14px] shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] active:scale-[0.97] active:translate-y-0 active:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all duration-200 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] text-center cursor-pointer uppercase font-bold"
-                  style={{
-                    fontFamily: "'Press Start 2P', monospace",
-                    fontSize: "9px",
-                    letterSpacing: "0.05em",
-                  }}
-                >
-                  Become a Mentor
-                </Link>
-              </div>
-            </div>
-          </ScrollReveal>
-        </section>
-
-        {/* SECTION 4: PARTNER / SPONSOR */}
-        <section className="relative container mx-auto max-w-5xl px-6 py-20 z-10 border-t border-black/5">
-          <ScrollReveal>
-            {/* lavender card wrapper */}
-            <div className="bg-[#F0EBFF] border-2 border-black rounded-[32px] p-8 md:p-12 shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[10px_10px_0px_rgba(0,0,0,1)] hover:scale-[1.005] transition-all duration-300 relative z-10 overflow-hidden text-center">
-              <div className="w-14 h-14 rounded-full bg-white border border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)] mx-auto mb-6">
-                <Handshake className="w-7 h-7 stroke-[2] text-[#7B4F92]" />
-              </div>
-
-              <h3
-                className="text-3xl sm:text-4xl font-black text-[#7B4F92] tracking-tight leading-tight mb-4"
-                style={{ fontFamily: "'Satoshi', sans-serif" }}
-              >
-                Collaborate With Girls Leading Tech
-              </h3>
-
-              <span
-                className="text-xs uppercase font-extrabold tracking-widest text-[#7B4F92] block mb-8"
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
-              >
-                Why partner with us?
-              </span>
-
-              {/* Grid of 6 benefits */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {[
-                  "Reach emerging tech talent",
-                  "Support diversity in technology",
-                  "Collaborate on community initiatives",
-                  "Increase brand visibility",
-                  "Support educational programs",
-                  "Build long-term impact",
-                ].map((benefit, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white border border-black rounded-xl p-5 shadow-[3px_3px_0px_rgba(0,0,0,1)] flex items-center gap-3 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:scale-[1.01] transition-all duration-200"
-                  >
-                    <span className="text-[#7B4F92] font-bold text-lg flex-shrink-0">•</span>
-                    <span
-                      className="text-[#7B4F92] font-bold text-sm leading-relaxed text-left"
-                      style={{ fontFamily: "'Satoshi', sans-serif" }}
-                    >
-                      {benefit}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Grayscale partner logos */}
-              <div className="mt-12 border-t border-purple-200/50 pt-8">
-                <span
-                  className="text-xs uppercase font-extrabold tracking-widest text-gray-500 block mb-6"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
-                >
-                  Trusted By & Community Ecosystem
-                </span>
-                
-                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-80 hover:opacity-100 transition-opacity duration-300">
-                  {[
-                    { name: "Notion", color: "hover:text-[#000000]" },
-                    { name: "Lovable", color: "hover:text-[#ff4e50]" },
-                    { name: "Postman", color: "hover:text-[#ff6c37]" },
-                    { name: "Wolfram", color: "hover:text-[#dd1100]" },
-                    { name: "SheBuilds", color: "hover:text-[#d955a4]" },
-                  ].map((logo, idx) => (
-                    <span
-                      key={idx}
-                      className={`text-gray-500 font-black tracking-widest text-base md:text-lg transition-colors duration-300 cursor-default select-none filter grayscale hover:grayscale-0 ${logo.color}`}
-                      style={{ fontFamily: "'Montserrat', sans-serif" }}
-                    >
-                      {logo.name}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Center partner CTA below logos */}
-              <div className="pt-10">
-                <Link
-                  to="/partner"
-                  className="inline-block px-8 py-4 bg-[#7B4F92] text-[#FFFBF7] border-2 border-black rounded-[14px] shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] active:scale-[0.97] active:translate-y-0 active:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all duration-200 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] text-center cursor-pointer uppercase font-bold"
-                  style={{
-                    fontFamily: "'Press Start 2P', monospace",
-                    fontSize: "9px",
-                    letterSpacing: "0.05em",
-                  }}
-                >
-                  Partner With GLT
-                </Link>
-              </div>
-            </div>
-          </ScrollReveal>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </section>
 
       </div>

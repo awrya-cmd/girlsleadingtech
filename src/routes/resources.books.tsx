@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "motion/react";
 import { useState } from "react";
 import { User } from "lucide-react";
+import { BackToResources } from "@/components/site/PageHeader";
+import { ResourceSearchBar, filterBySearch } from "@/components/site/ResourceSearchBar";
 import { GlassCard } from "@/components/site/GlassCard";
 import { books } from "@/data/resources";
 import booksMascot from "@/assets/characters/books.png";
@@ -21,31 +22,18 @@ export const Route = createFileRoute("/resources/books")({
 function GridBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {/* LEFT GLOW */}
       <div
         className="absolute left-[-12%] top-[-10%] h-[120%] w-[35vw] blur-3xl opacity-80"
-        style={{
-          background: "radial-gradient(circle, rgba(255,120,180,0.28), transparent 75%)",
-        }}
+        style={{ background: "radial-gradient(circle, rgba(255,120,180,0.28), transparent 75%)" }}
       />
-
-      {/* RIGHT GLOW */}
       <div
         className="absolute right-[-12%] top-[-10%] h-[120%] w-[35vw] blur-3xl opacity-80"
-        style={{
-          background: "radial-gradient(circle, rgba(240,120,255,0.24), transparent 75%)",
-        }}
+        style={{ background: "radial-gradient(circle, rgba(240,120,255,0.24), transparent 75%)" }}
       />
-
-      {/* CENTER CREAM GLOW */}
       <div
         className="absolute left-1/2 top-1/2 h-[30rem] w-[50rem] -translate-x-1/2 -translate-y-1/2 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, rgba(255,240,190,0.28), transparent 72%)",
-        }}
+        style={{ background: "radial-gradient(circle, rgba(255,240,190,0.28), transparent 72%)" }}
       />
-
-      {/* GRID LAYER */}
       <div
         className="absolute inset-0 opacity-80"
         style={{
@@ -62,22 +50,20 @@ function GridBackground() {
 
 function BooksPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQ, setSearchQ] = useState("");
 
   const categories = [
     "All",
     ...Array.from(
       new Set(
         books.flatMap(
-          (book) =>
-            book.category
-              ?.split("/")
-              .map((c) => c.trim()) || []
+          (book) => book.category?.split("/").map((c) => c.trim()) || []
         )
       )
     ).sort(),
   ];
 
-  const filteredBooks =
+  const byCategory =
     selectedCategory === "All"
       ? books
       : books.filter((book) =>
@@ -86,6 +72,14 @@ function BooksPage() {
             .map((c) => c.trim())
             .includes(selectedCategory)
         );
+
+  const filteredBooks = filterBySearch(byCategory, searchQ, [
+    "title",
+    "description",
+    "author",
+    "category",
+    "keywords",
+  ]);
 
   return (
     <div className="relative min-h-screen bg-[#fef9f4] overflow-hidden">
@@ -96,11 +90,11 @@ function BooksPage() {
       {/* HERO BANNER SECTION */}
       <section className="relative pt-32 pb-12 px-6 z-10">
         <div className="container mx-auto max-w-6xl relative">
-          
-          {/* Main Hero Card Container */}
+          <BackToResources />
+
           <div className="relative bg-[#FFF8EF] border-2 border-black rounded-[24px] pt-16 pb-8 px-6 md:pt-20 md:pb-12 md:px-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-visible">
-            
-            {/* Top Bar Window control */}
+
+            {/* Top Bar */}
             <div className="absolute top-0 left-0 right-0 h-10 bg-[#D8B4E8] border-b-2 border-black flex items-center justify-between px-4 rounded-t-[22px] select-none z-10">
               <div className="flex gap-1.5">
                 {["#FF8FAB", "#d955a4", "#f0b158"].map((c, i) => (
@@ -113,7 +107,7 @@ function BooksPage() {
               <div className="w-12" />
             </div>
 
-            {/* Overlapping Stickers */}
+            {/* Stickers */}
             <img
               src={washiTape}
               alt="Washi Tape Sticker"
@@ -125,12 +119,9 @@ function BooksPage() {
               className="absolute -top-7 -right-4 w-12 rotate-[15deg] pointer-events-none z-20 select-none transition-transform hover:scale-110"
             />
 
-            {/* Soft decorative inner glow */}
             <div className="absolute -right-10 -top-10 w-48 h-48 bg-[#ffed95]/20 rounded-full blur-3xl pointer-events-none" />
-            
+
             <div className="flex flex-col-reverse md:flex-row items-center md:items-stretch justify-between gap-8 md:gap-12 relative z-10">
-              
-              {/* Heading Content */}
               <div className="flex-1 text-center md:text-left flex flex-col justify-center animate-fade-up">
                 <p
                   className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#d955a4] font-bold mb-4 opacity-80"
@@ -145,7 +136,6 @@ function BooksPage() {
                   A collection of books recommended by women in tech — from programming and design to leadership, careers, and personal growth.
                 </p>
 
-                {/* Compact Stats Grid inline */}
                 <div className="mt-8 flex gap-3 justify-center md:justify-start">
                   <div className="bg-white border-2 border-black rounded-xl px-4 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     <div className="text-xl font-bold text-gray-900">{filteredBooks.length}</div>
@@ -157,12 +147,11 @@ function BooksPage() {
                   </div>
                 </div>
               </div>
-              
-              {/* Layout Spacer on Desktop */}
+
               <div className="hidden md:block w-[180px] lg:w-[240px] shrink-0" />
             </div>
 
-            {/* Mascot Overlap for Desktop */}
+            {/* Mascot Desktop */}
             <div className="hidden md:block absolute right-6 lg:right-12 bottom-[-24px] w-[210px] lg:w-[270px] z-20 animate-float">
               <img
                 src={booksMascot}
@@ -171,7 +160,7 @@ function BooksPage() {
               />
             </div>
 
-            {/* Mascot Centered for Mobile */}
+            {/* Mascot Mobile */}
             <div className="md:hidden flex justify-center mt-6 w-44 mx-auto z-20 animate-float">
               <img
                 src={booksMascot}
@@ -184,6 +173,13 @@ function BooksPage() {
         </div>
       </section>
 
+      {/* SEARCH */}
+      <section className="relative z-10 px-6 pb-6">
+        <div className="container mx-auto max-w-6xl">
+          <ResourceSearchBar value={searchQ} onChange={setSearchQ} placeholder="Search books..." />
+        </div>
+      </section>
+
       {/* CATEGORY FILTERS */}
       <section className="relative z-10 px-6 pb-10">
         <div className="container mx-auto max-w-6xl">
@@ -193,10 +189,9 @@ function BooksPage() {
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] cursor-pointer
-                  ${
-                    selectedCategory === category
-                      ? "bg-[#4B57A8] text-white"
-                      : "bg-white text-gray-700 hover:bg-[#ffc8e3]/40"
+                  ${selectedCategory === category
+                    ? "bg-[#4B57A8] text-white"
+                    : "bg-white text-gray-700 hover:bg-[#ffc8e3]/40"
                   }`}
               >
                 {category}
@@ -211,7 +206,10 @@ function BooksPage() {
         <div className="container mx-auto max-w-6xl">
 
           <div className="mb-12 text-center md:text-left">
-            <h2 className="text-3xl font-bold text-gray-900 tracking-tight" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+            <h2
+              className="text-3xl font-bold text-gray-900 tracking-tight"
+              style={{ fontFamily: "'Montserrat', sans-serif" }}
+            >
               Community Shelf
             </h2>
             <p className="mt-2 text-sm text-gray-500" style={{ fontFamily: "'Montserrat', sans-serif" }}>
@@ -223,47 +221,59 @@ function BooksPage() {
             {filteredBooks.map((book) => (
               <GlassCard
                 strong
-                key={book.title}
-                className="group relative overflow-hidden rounded-[20px] bg-[#fffdf9]/95 border-2 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:-translate-x-0.5 hover:shadow-[8px_8px_0px_0px_#d955a4] hover:bg-[#fffdf9] flex flex-col justify-between"
+                key={book.id}
+                className="group relative overflow-hidden rounded-[20px] bg-[#fffdf9]/95 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:-translate-x-0.5 hover:shadow-[8px_8px_0px_0px_#d955a4] hover:bg-[#fffdf9] flex flex-col"
               >
-                <div>
-                  {book.image && (
+                {/* Full-bleed cover image */}
+                {book.image && (
+                  <div
+                    className="relative w-full h-64 overflow-hidden rounded-t-[18px] border-b-2 border-black flex-shrink-0 bg-gray-50"
+                  >
                     <img
                       src={book.image}
                       alt={book.title}
                       loading="lazy"
-                      onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-                      className="mb-4 h-44 w-full object-cover rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                      onError={(e) => {
+                        const wrapper = (e.currentTarget as HTMLImageElement).parentElement;
+                        if (wrapper) wrapper.style.display = "none";
+                      }}
+                      className="h-full w-full object-contain"
                     />
-                  )}
-                  {book.category && (
-                    <span className="inline-block rounded-full bg-pink-100 text-pink-700 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">
-                      {book.category}
-                    </span>
-                  )}
+                  </div>
+                )}
 
-                  <h3 className="mt-4 font-display text-xl font-bold leading-tight text-gray-900 group-hover:text-[#d955a4] transition-colors">
-                    {book.title}
-                  </h3>
+                {/* Card body */}
+                <div className="flex flex-col flex-1 justify-between p-6">
+                  <div>
+                    {book.category && (
+                      <span className="inline-block rounded-full bg-pink-100 text-pink-700 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">
+                        {book.category}
+                      </span>
+                    )}
 
-                  <div className="mt-4 flex items-center gap-2 text-gray-600">
-                    <User className="h-4 w-4" />
-                    <span className="text-xs font-semibold text-secondary">
-                      {book.author || "Community Recommendation"}
-                    </span>
+                    <h3 className="mt-4 font-display text-xl font-bold leading-tight text-gray-900 group-hover:text-[#d955a4] transition-colors">
+                      {book.title}
+                    </h3>
+
+                    <div className="mt-3 flex items-center gap-2 text-gray-600">
+                      <User className="h-4 w-4 flex-shrink-0" />
+                      <span className="text-xs font-semibold text-secondary">
+                        {book.author || "Community Recommendation"}
+                      </span>
+                    </div>
+
+                    {book.description && (
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                        {book.description}
+                      </p>
+                    )}
                   </div>
 
-                  {book.description && (
-                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                      {book.description}
-                    </p>
-                  )}
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-gray-100/50">
-                  <span className="inline-flex items-center rounded-lg bg-[#A9B7FF]/15 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#4B57A8]">
-                    ✦ Recommended by the community
-                  </span>
+                  <div className="mt-6 pt-4 border-t border-gray-100/50">
+                    <span className="inline-flex items-center rounded-lg bg-[#A9B7FF]/15 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#4B57A8]">
+                      ✦ Recommended by the community
+                    </span>
+                  </div>
                 </div>
               </GlassCard>
             ))}
@@ -275,8 +285,7 @@ function BooksPage() {
       <section className="relative z-10 px-6 pb-24">
         <div className="container mx-auto max-w-6xl">
           <div className="relative rounded-[24px] border-2 border-black bg-[#FFF8EF] p-8 md:p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-visible">
-            
-            {/* Top Bar Window control decoration */}
+
             <div className="absolute top-0 left-0 right-0 h-8 bg-[#ffed95] border-b-2 border-black flex items-center px-4 rounded-t-[22px] select-none">
               <div className="flex gap-1">
                 <span className="w-2 h-2 rounded-full border border-black bg-[#FF8FAB]" />
@@ -286,11 +295,17 @@ function BooksPage() {
             </div>
 
             <div className="max-w-2xl mt-4">
-              <p className="text-xs uppercase tracking-[0.3em] font-black text-[#d955a4]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+              <p
+                className="text-xs uppercase tracking-[0.3em] font-black text-[#d955a4]"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
+              >
                 CONTRIBUTE
               </p>
 
-              <h2 className="mt-4 text-2xl md:text-4xl font-bold text-gray-900 leading-tight" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+              <h2
+                className="mt-4 text-2xl md:text-4xl font-bold text-gray-900 leading-tight"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
+              >
                 Found a book everyone should read?
               </h2>
 

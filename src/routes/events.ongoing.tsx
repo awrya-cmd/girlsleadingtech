@@ -38,7 +38,7 @@ function OngoingEvents() {
         </p>
         <Link 
           to="/events/past"
-          className="px-6 py-2.5 rounded-full border-2 border-pink-400 text-pink-500 font-semibold hover:bg-pink-50 transition-colors"
+          className="px-6 py-2.5 rounded-full bg-[#ffed95] text-black font-semibold shadow-sm hover:bg-[#fde047] hover:shadow-md transition-all duration-300"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
           Explore Past Events
@@ -47,13 +47,13 @@ function OngoingEvents() {
     );
   }
   return (
-    <section className="container mx-auto max-w-6xl px-6 py-14 pb-20">
+    <section className="container mx-auto max-w-6xl px-6 py-14 pb-0">
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {list.map((e) => {
           const thumb = youtubeThumb(e.youtubeLink) || e.posterImage;
           const speakerImg = getSpeakerImageByName(e.speakerName);
           return (
-            <Link key={e.id} to="/events/$eventId" params={{ eventId: e.id }} className="group">
+            <Link key={e.id} to="/events/$eventId" params={{ eventId: e.id }} search={{ from: "ongoing" }} className="group">
               <article className="flex h-full flex-col overflow-hidden rounded-3xl bg-card ring-1 ring-border/60 shadow-soft transition-all duration-500 hover:-translate-y-1.5">
                 <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-pink-soft/50 via-lavender/40 to-peach/50">
                   {thumb ? (

@@ -1,12 +1,17 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getEvent } from "@/data/community";
 import { youtubeThumb, getSpeakerImageByName } from "@/lib/event-helpers";
-import { Calendar, Clock, ArrowLeft, ExternalLink } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, ExternalLink, Linkedin } from "lucide-react";
 import starSticker from "@/assets/stickers/star.png";
 import paperClip from "@/assets/stickers/paper-clip.png";
 import smiley from "@/assets/stickers/smiley.png";
 
 export const Route = createFileRoute("/events/$eventId")({
+  validateSearch: (search: Record<string, unknown>): { from?: string } => {
+    return {
+      from: search.from ? (search.from as string) : undefined,
+    };
+  },
   loader: ({ params }) => {
     const event = getEvent(params.eventId);
     if (!event) throw notFound();
@@ -35,6 +40,14 @@ export const Route = createFileRoute("/events/$eventId")({
 
 function EventDetail() {
   const { event } = Route.useLoaderData();
+  const { from } = Route.useSearch();
+  const activeTab = from || event.status;
+  const backPath =
+    activeTab === "past"
+      ? "/events/past"
+      : activeTab === "ongoing"
+      ? "/events/ongoing"
+      : "/events/upcoming";
   const thumb = youtubeThumb(event.youtubeLink) || event.posterImage;
   const speakerImg = getSpeakerImageByName(event.speakerName);
   const isUpcoming = event.status === "upcoming";
@@ -48,7 +61,7 @@ function EventDetail() {
       
       <div className="w-full mb-6 flex justify-start">
         <Link 
-          to="/events/upcoming" 
+          to={backPath} 
           className="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-gray-900 transition-transform hover:-translate-x-1 uppercase tracking-widest"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
@@ -108,26 +121,108 @@ function EventDetail() {
             </p>
           )}
 
-          <div className="mt-8 relative max-w-md">
-            <div className="relative flex items-center gap-4 rounded-2xl bg-[#FFD966] shadow-md border border-[#d955a4]/20 border-l-[5px] border-l-[#d955a4] p-5 z-10">
-              <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full bg-gray-100 border-2 border-white shadow-sm">
-                {speakerImg ? (
-                  <img src={speakerImg} alt={event.speakerName} className="h-full w-full object-cover" />
-                ) : (
-                  <div className="flex h-full items-center justify-center font-sans text-2xl font-black text-gray-300">
-                    {event.speakerName?.charAt(0)}
-                  </div>
-                )}
-              </div>
-              <div>
-                <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#d8358d]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                  Speaker
-                </div>
-                <div className="mt-1 font-sans text-xl font-black text-gray-900">{event.speakerName}</div>
-                <div className="text-xs font-semibold text-gray-700">{event.speakerDesignation} · {event.speakerCompany}</div>
+          {event.timestamps && event.timestamps.length > 0 && (
+            <div className="mt-8">
+              <h2 className="font-semibold text-[#701a4b] text-xl md:text-2xl" style={{ fontFamily: "'Playfair Display', serif" }}>
+                Session Timeline
+              </h2>
+              <div className="mt-4 flex flex-col gap-2 max-w-xl">
+                {event.timestamps.map((ts: { time: string; title: string }, idx: number) => {
+                  const secs = timestampToSeconds(ts.time);
+                  const videoLink = getYoutubeLinkWithTimestamp(event.youtubeLink || "", secs);
+                  return (
+                    <a
+                      key={idx}
+                      href={videoLink || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-3 rounded-xl bg-white/50 border border-[#d955a4]/10 hover:border-[#d955a4]/30 hover:bg-[#ffed95]/20 transition-all duration-200 group animate-[fadeIn_0.3s_ease-out]"
+                    >
+                      <span className="font-mono text-sm font-bold text-[#d8358d] bg-white border border-[#d955a4]/20 rounded-lg px-2.5 py-1 shadow-sm group-hover:scale-105 transition-transform">
+                        {ts.time}
+                      </span>
+                      <span className="font-sans text-sm font-semibold text-gray-700 group-hover:text-gray-900 transition-colors">
+                        {ts.title}
+                      </span>
+                    </a>
+                  );
+                })}
               </div>
             </div>
-          </div>
+          )}
+
+          {event.speakers && event.speakers.length > 0 ? (
+            <div className="mt-8 flex flex-col gap-4 max-w-md relative">
+              {event.speakers.map((speaker: { id: string; name: string; image?: string; designation?: string; company?: string; linkedin?: string }) => {
+                const img = speaker.image || getSpeakerImageByName(speaker.name);
+                return (
+                  <div key={speaker.id} className="relative flex items-center gap-4 rounded-2xl bg-[#FFD966] shadow-md border border-[#d955a4]/20 border-l-[5px] border-l-[#d955a4] p-5 z-10">
+                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full bg-gray-100 border-2 border-white shadow-sm">
+                      {img ? (
+                        <img src={img} alt={speaker.name} className="h-full w-full object-cover" />
+                      ) : (
+                        <div className="flex h-full items-center justify-center font-sans text-2xl font-black text-gray-300">
+                          {speaker.name?.charAt(0)}
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#d8358d]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                        Speaker
+                      </div>
+                      <div className="mt-1 font-sans text-xl font-black text-gray-900">{speaker.name}</div>
+                      <div className="text-xs font-semibold text-gray-700">{speaker.designation} · {speaker.company}</div>
+                    </div>
+                    {speaker.linkedin && (
+                      <a
+                        href={speaker.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute top-3 right-3 p-1.5 rounded-full bg-white/80 text-gray-700 hover:bg-[#0077B5] hover:text-white transition-all duration-200 hover:scale-110 shadow-sm hover:shadow-md z-20"
+                        title={`${speaker.name}'s LinkedIn Profile`}
+                        aria-label={`${speaker.name} on LinkedIn`}
+                      >
+                        <Linkedin className="h-3.5 w-3.5" />
+                      </a>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="mt-8 relative max-w-md">
+              <div className="relative flex items-center gap-4 rounded-2xl bg-[#FFD966] shadow-md border border-[#d955a4]/20 border-l-[5px] border-l-[#d955a4] p-5 z-10">
+                <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full bg-gray-100 border-2 border-white shadow-sm">
+                  {speakerImg ? (
+                    <img src={speakerImg} alt={event.speakerName} className="h-full w-full object-cover" />
+                  ) : (
+                    <div className="flex h-full items-center justify-center font-sans text-2xl font-black text-gray-300">
+                      {event.speakerName?.charAt(0)}
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#d8358d]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                    Speaker
+                  </div>
+                  <div className="mt-1 font-sans text-xl font-black text-gray-900">{event.speakerName}</div>
+                  <div className="text-xs font-semibold text-gray-700">{event.speakerDesignation} · {event.speakerCompany}</div>
+                </div>
+                {event.speakerLinkedin && (
+                  <a
+                    href={event.speakerLinkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute top-3 right-3 p-1.5 rounded-full bg-white/80 text-gray-700 hover:bg-[#0077B5] hover:text-white transition-all duration-200 hover:scale-110 shadow-sm hover:shadow-md z-20"
+                    title={`${event.speakerName}'s LinkedIn Profile`}
+                    aria-label={`${event.speakerName} on LinkedIn`}
+                  >
+                    <Linkedin className="h-3.5 w-3.5" />
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
 
           {(event.registrationLink || event.youtubeLink) && (
             <div className="mt-8 pt-6 border-t border-[#ffed95]/50">
@@ -146,4 +241,23 @@ function EventDetail() {
       </div>
     </section>
   );
+}
+
+function timestampToSeconds(timeStr: string): number {
+  const parts = timeStr.split(":").map((p) => parseInt(p, 10) || 0);
+  let seconds = 0;
+  if (parts.length === 3) {
+    seconds = parts[0] * 3600 + parts[1] * 60 + parts[2];
+  } else if (parts.length === 2) {
+    seconds = parts[0] * 60 + parts[1];
+  } else if (parts.length === 1) {
+    seconds = parts[0];
+  }
+  return seconds;
+}
+
+function getYoutubeLinkWithTimestamp(baseLink: string, seconds: number): string {
+  if (!baseLink) return "";
+  const separator = baseLink.includes("?") ? "&" : "?";
+  return `${baseLink}${separator}t=${seconds}`;
 }

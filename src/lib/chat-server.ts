@@ -226,7 +226,7 @@ function respondRoleModels(): string {
     "Women in tech worth following:",
     roleModels.slice(0, 5).map((r) => ({
       category: "Role Model",
-      line: `${r.name} (${r.domain}) — ${r.summary.slice(0, 120)}${r.summary.length > 120 ? "…" : ""}`,
+      line: `${r.name} (${r.domain}) — ${(r.summary ?? "").slice(0, 120)}${(r.summary ?? "").length > 120 ? "…" : ""}`,
     })),
   );
 }

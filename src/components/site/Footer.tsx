@@ -1,17 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { Linkedin, Instagram, Twitter, Youtube, Github, Mail, Sparkles } from "lucide-react";
+import { Linkedin, Instagram, Youtube, Github, Mail, Sparkles, Newspaper, Heart } from "lucide-react";
 import { socials, programLinks } from "@/data/socials";
+import gltLogo from "@/assets/GLT-logo.png";
 
 // Scrapbook assets
-import star from "@/assets/stickers/star.png";
-import washiTape from "@/assets/stickers/washi-tape.png";
-import paperClip from "@/assets/stickers/paper-clip.png";
 import smiley from "@/assets/stickers/smiley.png";
-import mascotPresenting from "@/assets/main-mascot/presenting.png";
 
 export function Footer() {
   return (
-    <footer className="relative mt-24 overflow-visible border-t-4 border-black bg-[#fdf9f5] pb-16 pt-0">
+    <footer className="relative mt-24 overflow-visible border-t-4 border-black bg-[#fdf9f5] pb-14 pt-0">
       {/* Playful top banner / header bar mimicking retro game / pixel design */}
       <div className="w-full flex items-center bg-[#ffc8e3] border-b-4 border-black py-3 px-6 select-none justify-between overflow-hidden relative z-10">
         <div className="flex gap-2">
@@ -46,33 +43,35 @@ export function Footer() {
         }}
       />
 
-      <div className="container mx-auto max-w-7xl px-6 pt-16 relative z-10">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="container mx-auto max-w-7xl px-6 pt-8 relative z-10">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {/* CARD 1: Brand Logo & About */}
           <div className="relative group/card h-full">
-            <div className="h-full rounded-[14px] border-2 border-black bg-[#fffdf9] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <div className="h-full rounded-[14px] border-2 border-black bg-[#fffdf9] p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
               {/* Smiley sticker overlapping */}
               <img
                 src={smiley}
                 alt="Smiley sticker"
                 className="absolute -top-7 -left-5 w-12 rotate-[-12deg] pointer-events-none z-10 select-none transition-transform group-hover/card:scale-110"
               />
-              <div className="flex flex-col h-full justify-between gap-6">
+              <div className="flex flex-col h-full justify-between gap-4">
                 <div>
                   <Link to="/" className="flex items-center gap-2">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-none border-2 border-black bg-[#ffed95] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                      <Sparkles className="h-4 w-4 text-black" />
-                    </span>
+                    <img 
+                      src={gltLogo} 
+                      alt="GLT Logo" 
+                      className="h-12 w-auto object-contain select-none pointer-events-none" 
+                    />
                     <span className="font-display text-lg font-black text-black">
                       Girls Leading <span className="text-[#d955a4]">Tech</span>
                     </span>
                   </Link>
-                  <p className="mt-4 text-base font-sans font-medium text-black leading-relaxed">
+                  <p className="mt-3 text-base font-sans font-medium text-black leading-relaxed">
                     A community empowering 4000+ women across 23+ states to lead in tech. Built with
                     love, code, and dreams.
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-2 pt-2">
+                <div className="flex flex-wrap gap-1.5 pt-1">
                   <SocialIcon href={socials.linkedin}>
                     <Linkedin className="h-4 w-4" />
                   </SocialIcon>
@@ -80,7 +79,9 @@ export function Footer() {
                     <Instagram className="h-4 w-4" />
                   </SocialIcon>
                   <SocialIcon href={socials.twitter}>
-                    <Twitter className="h-4 w-4" />
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
                   </SocialIcon>
                   <SocialIcon href={socials.youtube}>
                     <Youtube className="h-4 w-4" />
@@ -94,6 +95,9 @@ export function Footer() {
                     <Github className="h-4 w-4" />
                   </SocialIcon>
                   <SocialIcon href={socials.newsletter}>
+                    <Newspaper className="h-4 w-4" />
+                  </SocialIcon>
+                  <SocialIcon href="mailto:girlsleadingtech@gmail.com">
                     <Mail className="h-4 w-4" />
                   </SocialIcon>
                 </div>
@@ -101,139 +105,126 @@ export function Footer() {
             </div>
           </div>
 
-          {/* CARD 2: Explore links */}
-          <div className="relative group/card h-full">
-            <div className="h-full rounded-[14px] border-2 border-black bg-[#ffed95] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-              
-              <h4 className="font-['Press_Start_2P',monospace] text-sm uppercase tracking-wider text-black border-b-2 border-black pb-2 mb-4">
-                Explore
-              </h4>
-              <ul className="space-y-3 font-sans font-semibold text-base text-black">
-                <li>
-                  <Link
-                    to="/impact"
-                    className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform"
-                  >
-                    <span className="text-[#d955a4]">↳</span> Impact
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/resources"
-                    className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform"
-                  >
-                    <span className="text-[#d955a4]">↳</span> Resources
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/events"
-                    className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform"
-                  >
-                    <span className="text-[#d955a4]">↳</span> Events
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/initiatives"
-                    className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform"
-                  >
-                    <span className="text-[#d955a4]">↳</span> Initiatives
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/humans"
-                    className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform"
-                  >
-                    <span className="text-[#d955a4]">↳</span> Humans
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/partners"
-                    className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform"
-                  >
-                    <span className="text-[#d955a4]">↳</span> Partners
-                  </Link>
-                </li>
-              </ul>
+          {/* COLUMN 2: Explore & Get Involved Stacked */}
+          <div className="flex flex-col gap-4">
+            {/* CARD 2: Explore links */}
+            <div className="relative group/card">
+              <div className="rounded-[14px] border-2 border-black bg-[#ffed95] p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                <h4 className="font-['Press_Start_2P',monospace] text-xs uppercase tracking-wider text-black border-b-2 border-black pb-1.5 mb-2">
+                  Explore
+                </h4>
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-2 font-sans font-semibold text-sm text-black">
+                  <li>
+                    <Link to="/impact" className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform">
+                      <span className="text-[#d955a4]">↳</span> Impact
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/resources" className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform">
+                      <span className="text-[#d955a4]">↳</span> Resources
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/events" className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform">
+                      <span className="text-[#d955a4]">↳</span> Events
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/initiatives" className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform">
+                      <span className="text-[#d955a4]">↳</span> Initiatives
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/humans" className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform">
+                      <span className="text-[#d955a4]">↳</span> Humans
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/partners" className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform">
+                      <span className="text-[#d955a4]">↳</span> Partners
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* CARD 4: Get Involved */}
+            <div className="relative group/card">
+              <div className="rounded-[14px] border-2 border-black bg-[#ffc8e3] p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] relative z-10">
+                <h4 className="font-['Press_Start_2P',monospace] text-xs uppercase tracking-wider text-black border-b-2 border-black pb-1.5 mb-2">
+                  Get Involved
+                </h4>
+                <ul className="space-y-1.5 font-sans font-semibold text-sm text-black max-h-[85px] overflow-y-auto pr-1 no-scrollbar">
+                  <li>
+                    <Link to="/join" className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform">
+                      <span className="text-[#d955a4]">↳</span> Join the tribe
+                    </Link>
+                  </li>
+                  <li>
+                    <a href="mailto:girlsleadingtech@gmail.com" className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform break-all">
+                      <span className="text-[#d955a4]">↳</span> Email Us
+                    </a>
+                  </li>
+                  <li>
+                    {/* CHANGED: "Sub newsletter" → full label */}
+                    <a href={socials.newsletter} target="_blank" rel="noopener noreferrer" className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform">
+                      <span className="text-[#d955a4]">↳</span> Subscribe to Newsletter
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
           {/* CARD 3: Programs links */}
           <div className="relative group/card h-full">
-            <div className="h-full rounded-[14px] border-2 border-black bg-[#D8B4E8] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-              
-              <h4 className="font-['Press_Start_2P',monospace] text-sm uppercase tracking-wider text-black border-b-2 border-black pb-2 mb-4">
+            <div className="h-full rounded-[14px] border-2 border-black bg-[#D8B4E8] p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+              <h4 className="font-['Press_Start_2P',monospace] text-xs uppercase tracking-wider text-black border-b-2 border-black pb-1.5 mb-2">
                 Programs
               </h4>
-              <ul className="space-y-2.5 font-sans font-semibold text-base text-black max-h-[220px] overflow-y-auto pr-1 no-scrollbar">
-                {programLinks.map((p) => (
-                  <li key={p.name}>
-                    {p.url ? (
-                      <a
-                        href={p.url}
-                        className="hover:text-[#d955a4] transition-all flex items-center gap-1 hover:translate-x-0.5 duration-150 transform"
-                      >
-                        <span className="text-[#d955a4] text-xs">↳</span> {p.name}
-                      </a>
-                    ) : (
-                      <span className="text-gray-600/70 flex items-center gap-1">
-                        <span className="text-gray-400">↳</span> {p.name}
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5 font-sans font-semibold text-sm text-black">
+                {programLinks.map((p) => {
+                  // CHANGED: shorten long program names for display only
+                  const displayName =
+                    p.name === "GLT Mentorship Program" ? "Mentorship" :
+                    p.name === "Machine Learning Cohort" ? "ML Cohort" :
+                    p.name;
 
-          {/* CARD 4: Get Involved & Peeking Mascot */}
-          <div className="relative group/card h-full">
-            {/* Mascot peaking out from behind the card (desktop only) */}
-           
-            <div className="h-full rounded-[14px] border-2 border-black bg-[#ffc8e3] p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] relative z-10">
-              
-              <h4 className="font-['Press_Start_2P',monospace] text-sm uppercase tracking-wider text-black border-b-2 border-black pb-2 mb-4">
-                Get Involved
-              </h4>
-              <ul className="space-y-3 font-sans font-semibold text-base text-black">
-                <li>
-                  <Link
-                    to="/join"
-                    className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform"
-                  >
-                    <span className="text-[#d955a4]">↳</span> Join the tribe
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="mailto:girlsleadingtech@gmail.com"
-                    className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform break-all"
-                  >
-                    <span className="text-[#d955a4]">↳</span> Email Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={socials.newsletter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-[#d955a4] transition-all flex items-center gap-1.5 hover:translate-x-1 duration-150 transform"
-                  >
-                    <span className="text-[#d955a4]">↳</span> Sub newsletter
-                  </a>
-                </li>
+                  return (
+                    <li key={p.name}>
+                      {p.url ? (
+                        <a
+                          href={p.url}
+                          className="hover:text-[#d955a4] transition-all flex items-center gap-1 hover:translate-x-0.5 duration-150 transform"
+                          title={p.name}
+                        >
+                          <span className="text-[#d955a4] text-xs">↳</span> {displayName}
+                        </a>
+                      ) : (
+                        <span className="text-gray-600/70 flex items-center gap-1" title={p.name}>
+                          <span className="text-gray-400">↳</span> {displayName}
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>
         </div>
 
-        {/* Footer bottom bar with copyright and meta-info */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t-2 border-black pt-8 text-center text-base font-semibold text-black md:flex-row relative z-10">
+        {/* Footer bottom bar */}
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t-2 border-black pt-4 text-center text-base font-semibold text-black md:flex-row relative z-10 -translate-y-3">
           <p className="font-['Montserrat',sans-serif]">
-            © {new Date().getFullYear()} Girls Leading Tech. Made with 💖 for the next generation.
+            © {new Date().getFullYear()} Girls Leading Tech. Made with{" "}
+            <Link
+              to="/secret-admin"
+              aria-label="Admin"
+              className="inline-block align-middle mx-1 cursor-pointer"
+            >
+              <Heart className="h-4 w-4 fill-[#d955a4] stroke-[#d955a4] inline-block align-middle transition-transform hover:scale-125" />
+            </Link>{" "}
+            for the next generation.
           </p>
           <p className="font-['Press_Start_2P',monospace] text-xs uppercase tracking-wider text-black/80">
             Empowering women in tech

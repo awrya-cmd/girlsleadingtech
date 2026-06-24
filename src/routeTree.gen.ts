@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
+import { Route as SecretAdminRouteImport } from './routes/secret-admin'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as PartnerRouteImport } from './routes/partner'
@@ -46,6 +47,11 @@ import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
 const VolunteerRoute = VolunteerRouteImport.update({
   id: '/volunteer',
   path: '/volunteer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecretAdminRoute = SecretAdminRouteImport.update({
+  id: '/secret-admin',
+  path: '/secret-admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResourcesRoute = ResourcesRouteImport.update({
@@ -222,6 +228,7 @@ export interface FileRoutesByFullPath {
   '/partner': typeof PartnerRoute
   '/partners': typeof PartnersRoute
   '/resources': typeof ResourcesRouteWithChildren
+  '/secret-admin': typeof SecretAdminRoute
   '/volunteer': typeof VolunteerRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/ongoing': typeof EventsOngoingRoute
@@ -256,6 +263,7 @@ export interface FileRoutesByTo {
   '/mentor': typeof MentorRoute
   '/partner': typeof PartnerRoute
   '/partners': typeof PartnersRoute
+  '/secret-admin': typeof SecretAdminRoute
   '/volunteer': typeof VolunteerRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/ongoing': typeof EventsOngoingRoute
@@ -292,6 +300,7 @@ export interface FileRoutesById {
   '/partner': typeof PartnerRoute
   '/partners': typeof PartnersRoute
   '/resources': typeof ResourcesRouteWithChildren
+  '/secret-admin': typeof SecretAdminRoute
   '/volunteer': typeof VolunteerRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/ongoing': typeof EventsOngoingRoute
@@ -329,6 +338,7 @@ export interface FileRouteTypes {
     | '/partner'
     | '/partners'
     | '/resources'
+    | '/secret-admin'
     | '/volunteer'
     | '/events/$eventId'
     | '/events/ongoing'
@@ -363,6 +373,7 @@ export interface FileRouteTypes {
     | '/mentor'
     | '/partner'
     | '/partners'
+    | '/secret-admin'
     | '/volunteer'
     | '/events/$eventId'
     | '/events/ongoing'
@@ -398,6 +409,7 @@ export interface FileRouteTypes {
     | '/partner'
     | '/partners'
     | '/resources'
+    | '/secret-admin'
     | '/volunteer'
     | '/events/$eventId'
     | '/events/ongoing'
@@ -434,6 +446,7 @@ export interface RootRouteChildren {
   PartnerRoute: typeof PartnerRoute
   PartnersRoute: typeof PartnersRoute
   ResourcesRoute: typeof ResourcesRouteWithChildren
+  SecretAdminRoute: typeof SecretAdminRoute
   VolunteerRoute: typeof VolunteerRoute
 }
 
@@ -444,6 +457,13 @@ declare module '@tanstack/react-router' {
       path: '/volunteer'
       fullPath: '/volunteer'
       preLoaderRoute: typeof VolunteerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/secret-admin': {
+      id: '/secret-admin'
+      path: '/secret-admin'
+      fullPath: '/secret-admin'
+      preLoaderRoute: typeof SecretAdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resources': {
@@ -755,6 +775,7 @@ const rootRouteChildren: RootRouteChildren = {
   PartnerRoute: PartnerRoute,
   PartnersRoute: PartnersRoute,
   ResourcesRoute: ResourcesRouteWithChildren,
+  SecretAdminRoute: SecretAdminRoute,
   VolunteerRoute: VolunteerRoute,
 }
 export const routeTree = rootRouteImport

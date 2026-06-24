@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState as _useStateSearch } from "react";
+import { ResourceSearchBar, filterBySearch } from "@/components/site/ResourceSearchBar";
 import { GlassCard } from "@/components/site/GlassCard";
 import { hackathons } from "@/data/hackathons";
 import { ExternalLink, Clock, Calendar, Trophy, Users } from "lucide-react";
+import { BackToResources } from "@/components/site/PageHeader";
 import hackathonMascot from "@/assets/characters/hackathon.png";
 import washiTape from "@/assets/stickers/washi-tape.png";
 import star from "@/assets/stickers/star.png";
@@ -59,6 +62,8 @@ function GridBackground() {
 }
 
 function HackathonsPage() {
+  const [_q, _setQ] = _useStateSearch("");
+  const _filtered = filterBySearch(hackathons, _q, ["title","name","description","summary","author","provider","organisedBy","company","role","domain","category","categories","benefit","eligibility","keywords"]);
   return (
     <div className="relative w-full min-h-screen bg-[#fef9f4] overflow-hidden">
       <GridBackground />
@@ -68,6 +73,7 @@ function HackathonsPage() {
       {/* HERO BANNER SECTION */}
       <section className="relative pt-32 pb-12 px-6 z-10">
         <div className="container mx-auto max-w-6xl relative">
+          <BackToResources />
           
           {/* Main Hero Card Container */}
           <div className="relative bg-[#FFF8EF] border-2 border-black rounded-[24px] pt-16 pb-8 px-6 md:pt-20 md:pb-12 md:px-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-visible">
@@ -146,8 +152,9 @@ function HackathonsPage() {
 
       {/* CARDS SECTION */}
       <section className="relative z-10 container mx-auto max-w-6xl px-6 pb-24 pt-4">
+        <ResourceSearchBar value={_q} onChange={_setQ} placeholder="Search hackathons..." />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {hackathons.map((h, i) => (
+          {_filtered.map((h, i) => (
             <a
               key={h.id}
               href={h.link}

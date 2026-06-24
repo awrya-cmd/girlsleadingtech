@@ -3,7 +3,14 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { HeadContent, Scripts, createRootRoute, Link } from "@tanstack/react-router";
 import Chatbot from "@/components/Chatbot";
+
+import AccessibilityWidget from "@/components/shared/AccessibilityWidget";
+
+import { FeedbackButton } from "@/components/FeedbackButton";
+import { AccessibilityButton } from "@/components/AccessibilityButton";
+
 import appCss from "../styles.css?url";
+
 
 function NotFound() {
   return (
@@ -45,6 +52,9 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "shortcut icon", type: "image/png", href: "/favicon.png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -81,6 +91,12 @@ function RootComponent() {
       </main>
       <Footer />
       <Chatbot />
+
+      <AccessibilityWidget />
+
+      <FeedbackButton />
+      <AccessibilityButton />
+
     </>
   );
 }

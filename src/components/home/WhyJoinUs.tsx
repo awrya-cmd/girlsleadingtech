@@ -118,7 +118,7 @@ export function WhyJoinUs() {
             style={{
               y: panelY,
             }}
-            className="absolute inset-x-0 top-0 w-full min-h-screen bg-[#F4ECE8] z-20 flex flex-col justify-start pt-[12vh] pb-16 overflow-visible pointer-events-auto"
+            className="absolute inset-x-0 top-0 w-full min-h-screen bg-[#F4ECE8] z-20 flex flex-col justify-start pt-[12vh] lg:pt-[calc(12vh+10px)] pb-16 overflow-visible pointer-events-auto"
           >
             <div className="relative w-full container mx-auto max-w-7xl px-4 sm:px-6">
               
@@ -150,7 +150,7 @@ export function WhyJoinUs() {
                     className="group relative flex flex-col justify-between p-6 sm:p-7 h-full min-h-[290px] md:min-h-[320px] bg-[#d2f4d2] border-2 border-black rounded-[24px] shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
                   >
                     <div>
-                      {/* Top Row: Lil Logos & Arrow Button */}
+                      {/* Top Row: Lil Logos */}
                       <div className="flex items-center justify-between gap-2 mb-4">
                         <div className="flex items-center gap-2">
                           <div className="p-2 bg-white border border-black rounded-lg shadow-[1.5px_1.5px_0px_rgba(0,0,0,1)] animate-float-y">
@@ -159,9 +159,6 @@ export function WhyJoinUs() {
                           <div className="p-2 bg-white border border-black rounded-lg shadow-[1.5px_1.5px_0px_rgba(0,0,0,1)] animate-wiggle-hover">
                             <Mail className="w-5 h-5 text-gray-900 stroke-[2.5]" />
                           </div>
-                        </div>
-                        <div className="w-9 h-9 rounded-full border-2 border-black flex items-center justify-center bg-white text-black transition-colors group-hover:bg-black group-hover:text-white shrink-0 cursor-pointer">
-                          <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
                         </div>
                       </div>
 
@@ -197,7 +194,7 @@ export function WhyJoinUs() {
                     className="group relative flex flex-col justify-between p-6 sm:p-7 h-full min-h-[290px] md:min-h-[320px] bg-[#ffe4cc] border-2 border-black rounded-[24px] shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
                   >
                     <div>
-                      {/* Top Row: Lil Logos & Arrow Button */}
+                      {/* Top Row: Lil Logos */}
                       <div className="flex items-center justify-between gap-2 mb-4">
                         <div className="flex items-center gap-2">
                           <div className="p-2 bg-white border border-black rounded-lg shadow-[1.5px_1.5px_0px_rgba(0,0,0,1)] animate-wiggle-hover">
@@ -206,9 +203,6 @@ export function WhyJoinUs() {
                           <div className="p-2 bg-white border border-black rounded-lg shadow-[1.5px_1.5px_0px_rgba(0,0,0,1)] animate-float-y">
                             <Laptop className="w-5 h-5 text-gray-900 stroke-[2.5]" />
                           </div>
-                        </div>
-                        <div className="w-9 h-9 rounded-full border-2 border-black flex items-center justify-center bg-white text-black transition-colors group-hover:bg-black group-hover:text-white shrink-0 cursor-pointer">
-                          <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
                         </div>
                       </div>
 
@@ -244,18 +238,15 @@ export function WhyJoinUs() {
                     className="group relative flex flex-col justify-between p-6 sm:p-7 h-full min-h-[290px] md:min-h-[320px] bg-[#e3e0ff] border-2 border-black rounded-[24px] shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
                   >
                     <div>
-                      {/* Top Row: Lil Logos & Arrow Button */}
+                      {/* Top Row: Lil Logos */}
                       <div className="flex items-center justify-between gap-2 mb-4">
                         <div className="flex items-center gap-2">
                           <div className="p-2 bg-white border border-black rounded-lg shadow-[1.5px_1.5px_0px_rgba(0,0,0,1)] animate-pulse-heart">
-                            <Heart className="w-5 h-5 text-[#d955a4] fill-[#d955a4] stroke-[2]" />
+                            <Heart className="w-5 h-5 border-black stroke-[2]" />
                           </div>
                           <div className="p-2 bg-white border border-black rounded-lg shadow-[1.5px_1.5px_0px_rgba(0,0,0,1)] animate-float-y">
                             <MapPin className="w-5 h-5 text-gray-900 stroke-[2.5]" />
                           </div>
-                        </div>
-                        <div className="w-9 h-9 rounded-full border-2 border-black flex items-center justify-center bg-white text-black transition-colors group-hover:bg-black group-hover:text-white shrink-0 cursor-pointer">
-                          <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
                         </div>
                       </div>
 
@@ -291,7 +282,7 @@ export function WhyJoinUs() {
                     className="group relative flex flex-col justify-between p-6 sm:p-7 h-full min-h-[290px] md:min-h-[320px] bg-[#e0e7ff] border-2 border-black rounded-[24px] shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
                   >
                     <div>
-                      {/* Top Row: Lil Logos & Arrow Button */}
+                      {/* Top Row: Lil Logos */}
                       <div className="flex items-center justify-between gap-2 mb-4">
                         <div className="flex items-center gap-2">
                           <div className="p-2 bg-white border border-black rounded-lg shadow-[1.5px_1.5px_0px_rgba(0,0,0,1)] animate-wiggle-hover">
@@ -300,9 +291,6 @@ export function WhyJoinUs() {
                           <div className="p-2 bg-white border border-black rounded-lg shadow-[1.5px_1.5px_0px_rgba(0,0,0,1)] animate-pulse-heart">
                             <Sparkles className="w-5 h-5 text-gray-900 stroke-[2.5]" />
                           </div>
-                        </div>
-                        <div className="w-9 h-9 rounded-full border-2 border-black flex items-center justify-center bg-white text-black transition-colors group-hover:bg-black group-hover:text-white shrink-0 cursor-pointer">
-                          <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
                         </div>
                       </div>
 

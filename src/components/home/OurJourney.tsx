@@ -46,7 +46,7 @@ const milestones: MilestoneCard[] = [
   {
     date: "Aug  2025",
     title: "3,000+ Girls & Growing",
-    description: "From mentorship cohorts and fellowships to hackathons, learning programs, and community-led initiatives, Girls Leading Tech continues empowering thousands of girls to rise together.",
+    description: "Through mentorship, hackathons, learning programs, and community-led initiatives, Girls Leading Tech empowers thousands of girls to learn, lead, and rise together.",
     mascot: t5,
   },
 ];
@@ -120,9 +120,10 @@ export default function OurJourney() {
   };
 
   const highlightNumbers = (text: string) => {
-    const parts = text.split(/(\b\d{1,3}(?:,\d{3})*\+?)/g);
+    // Matches comma-grouped numbers (e.g. "3,000+") OR plain digit runs of any length (e.g. "500", "1000")
+    const parts = text.split(/(\b\d{1,3}(?:,\d{3})+\+?|\b\d+\+?)/g);
     return parts.map((part, i) => {
-      if (/^\d{1,3}(?:,\d{3})*\+?$/.test(part)) {
+      if (/^\d{1,3}(?:,\d{3})+\+?$|^\d+\+?$/.test(part)) {
         return (
           <span key={i} className="text-[#d955a4] font-black underline decoration-[#d955a4] decoration-2 underline-offset-4">
             {part}
@@ -134,7 +135,7 @@ export default function OurJourney() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[600vh] bg-[#ffed95] z-10 w-full overflow-visible -mt-8 md:-mt-12 lg:-mt-16">
+    <div ref={containerRef} className="relative h-[600vh] bg-[#faf3cf] z-10 w-full overflow-visible -mt-8 md:-mt-12 lg:-mt-16">
 
       {/* Local CSS: override overflow-x to clip so position:sticky works in all browsers */}
       <style dangerouslySetInnerHTML={{__html: `
@@ -145,7 +146,7 @@ export default function OurJourney() {
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');`}</style>
 
       {/* Sticky viewport — fullscreen height for correct sticky pinning */}
-      <div className="sticky top-0 h-screen lg:h-[105vh] overflow-hidden flex flex-col z-10 bg-[#ffed95]">
+      <div className="sticky top-0 h-screen lg:h-[105vh] overflow-hidden flex flex-col z-10 bg-[#fff9db]">
 
         {/* Decorative pixel stars */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.4] z-0">
@@ -179,7 +180,7 @@ export default function OurJourney() {
         <div className="relative z-10 flex flex-col items-center justify-center flex-1 overflow-hidden">
 
           {/* HOW IT'S GOING Text header (sticky, stays in place while horizontal slides move) */}
-          <div className="w-full flex justify-center mb-6 select-none z-10">
+          <div className="w-full flex justify-center mb-6 lg:mt-14 select-none z-10">
             <p
               className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#d955a4] font-bold text-center"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
@@ -189,7 +190,7 @@ export default function OurJourney() {
           </div>
 
           {/* Horizontal sliding track */}
-          <div className="w-full overflow-hidden">
+          <div className="w-full overflow-hidden lg:-translate-y-14">
             <motion.div style={{ x }} className="flex w-[600vw] select-none">
 
               {/* Slides 1–5: Milestone cards */}
@@ -216,7 +217,7 @@ export default function OurJourney() {
                       </div>
 
                       {/* Date */}
-                      <div className="mt-4 md:mt-5">
+                      <div className="mt-4 md:mt-0">
                         <h2 className="text-gray-900 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-tight leading-none font-sans">
                           {card.date}
                         </h2>
@@ -277,7 +278,7 @@ export default function OurJourney() {
           </div>
 
           {/* Navigation controls — sits below the track, within the centered content area */}
-          <div className="flex flex-col items-center gap-3 mt-6 md:mt-8 lg:mt-2 z-20 select-none">
+          <div className="flex flex-col items-center gap-3 mt-6 md:mt-8 lg:mt-2 lg:-translate-y-14 z-20 select-none">
 
             {/* Arrows */}
             <div className="flex items-center gap-4 md:gap-6">
