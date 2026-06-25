@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { team, mentors, speakers, contributors, volunteers } from "@/data/community";
+import { useMemo, useState, useRef } from "react";
+import { team, mentors, speakers, contributors, volunteers, testimonials } from "@/data/community";
 import { cn } from "@/lib/utils";
-import { Linkedin, MapPin, Building2, Search, X, Users, Mic, GraduationCap, Star, Heart } from "lucide-react";
+import { Linkedin, MapPin, Building2, Search, X, Users, Mic, GraduationCap, Star, Heart, Briefcase, Layers, Network, Sparkles } from "lucide-react";
 import TeamShowcase from "@/components/site/TeamShowcase";
 import MemberProfileCard from "@/components/site/MemberProfileCard";
 import DotBackground from "@/components/shared/DotBackground";
@@ -12,6 +12,7 @@ import starSticker from "@/assets/stickers/star.png";
 import washiTapeSticker from "@/assets/stickers/washi-tape.png";
 import smileySticker from "@/assets/stickers/smiley.png";
 import paperPlaneSticker from "@/assets/stickers/paper-plane.png";
+
 
 function SideGlow() {
   return (
@@ -80,6 +81,45 @@ function matches(q: string, ...fields: (string | undefined)[]) {
   return fields.some((f) => f && f.toLowerCase().includes(needle));
 }
 
+const companyDomains: Record<string, string> = {
+  "google": "google.com",
+  "microsoft": "microsoft.com",
+  "amazon": "amazon.com",
+  "uber": "uber.com",
+  "adobe": "adobe.com",
+  "salesforce": "salesforce.com",
+  "paypal": "paypal.com",
+  "morgan stanley": "morganstanley.com",
+  "flipkart": "flipkart.com",
+  "jio": "jio.com",
+};
+
+const sortedCompanies = [
+  "Google",
+  "Microsoft",
+  "Amazon",
+  "Uber",
+  "Adobe",
+  "Salesforce",
+  "PayPal",
+  "Morgan Stanley",
+  "Flipkart",
+  "Jio",
+  "Startups",
+];
+
+function getCompanyLogoUrl(companyName: string): string | null {
+  if (!companyName) return null;
+  const clean = companyName.trim().toLowerCase();
+  let domain = companyDomains[clean];
+  if (!domain) {
+    const slug = clean.replace(/[^a-z0-9]/g, "");
+    domain = `${slug}.com`;
+  }
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+}
+
+
 function HumansPage() {
   const [tab, setTab] = useState<Tab>("team");
   const [query, setQuery] = useState("");
@@ -130,11 +170,98 @@ function HumansPage() {
 
   const showCompanyFilter = tab === "speakers" || tab === "mentors";
 
+  const searchBarRef = useRef<HTMLDivElement>(null);
+  const scrollToSearch = () => {
+    searchBarRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  // Speakers Showcase helper computations
+  const totalSpeakers = speakers.length;
+  const totalCompaniesCount = "30+";
+
+  const domainBreakdown = useMemo(() => {
+    const domainsConfig = [
+      {
+        name: "Software Engineering",
+        icon: Briefcase,
+        keywords: ["swe", "sde", "software", "developer", "engineering", "frontend", "backend", "full stack", "fullstack", "web", "graphics"],
+        desc: "Full-stack development, mobile apps, core systems, and frontend frameworks."
+      },
+      {
+        name: "AI & Machine Learning",
+        icon: Layers,
+        keywords: ["ml", "machine learning", "ai", "deepmind", "nlp", "computer vision", "data scientist", "data science", "data analyst", "research scientist"],
+        desc: "Neural networks, data analytics, predictive modeling, and large language models."
+      },
+      {
+        name: "Product & Design",
+        icon: Users,
+        keywords: ["product", "ux", "design", "pm", "researcher", "content", "writer"],
+        desc: "User experience, user research, product management, and creative writing."
+      },
+      {
+        name: "Startups & Leadership",
+        icon: Network,
+        keywords: ["founder", "co-founder", "co-founder", "co founder", "cto", "ceo", "director", "manager", "lead", "principle", "president"],
+        desc: "Venture building, technical strategy, engineering leadership, and growth."
+      },
+      {
+        name: "Open Source & Hackathons",
+        icon: GraduationCap,
+        keywords: ["gsoc", "outreachy", "lfx", "ambassador", "community", "volunteers", "mentee", "scholar", "fellow", "winner", "hackathon"],
+        desc: "Global open-source programs, student tech cohorts, and developer relations."
+      }
+    ];
+
+    return domainsConfig.map((d) => {
+      const count = speakers.filter((s) => {
+        const text = `${s.designation || ""} ${s.company || ""}`.toLowerCase();
+        return d.keywords.some((kw) => text.includes(kw));
+      }).length;
+      return { ...d, count };
+    });
+  }, []);
+
+  const engineersCount = useMemo(() => {
+    return speakers.filter((s) => {
+      const text = `${s.designation || ""} ${s.company || ""}`.toLowerCase();
+      return ["engineer", "swe", "sde", "developer"].some((k) => text.includes(k));
+    }).length;
+  }, []);
+  const engineersPct = Math.round((engineersCount / speakers.length) * 100);
+
+  const foundersCount = useMemo(() => {
+    return speakers.filter((s) => {
+      const text = `${s.designation || ""} ${s.company || ""}`.toLowerCase();
+      return ["founder", "co-founder", "co founder", "cto", "ceo", "director", "lead"].some((k) => text.includes(k));
+    }).length;
+  }, []);
+  const foundersPct = Math.round((foundersCount / speakers.length) * 100);
+
+  const googleCount = useMemo(() => {
+    return speakers.filter((s) => {
+      const text = `${s.company || ""}`.toLowerCase();
+      return text.includes("google");
+    }).length;
+  }, []);
+  const googlePct = Math.round((googleCount / speakers.length) * 100);
+
+  const winnersCount = useMemo(() => {
+    return speakers.filter((s) => {
+      const text = `${s.designation || ""} ${s.company || ""}`.toLowerCase();
+      return ["winner", "scholar", "hackathon", "ambassador", "gsoc"].some((k) => text.includes(k));
+    }).length;
+  }, []);
+  const winnersPct = Math.round((winnersCount / speakers.length) * 100);
+
   return (
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
         @import url('https://fonts.cdnfonts.com/css/satoshi');
+        footer {
+          margin-top: 0 !important;
+        }
       `}</style>
       {/* HERO, CATEGORY TABS AND SEARCH SECTION */}
       <section className="relative overflow-hidden bg-[#FFFBF7] pt-16 md:pt-24 pb-16">
@@ -260,53 +387,300 @@ function HumansPage() {
             })}
           </div>
 
-          {/* Search + filter bar */}
-          <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center gap-4 sm:flex-row w-full">
-            <div className="relative flex-1 w-full">
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder={`Search by name${tab === "speakers" || tab === "mentors" ? ", company or designation" : ""}…`}
-                className="w-full rounded-2xl border border-[#d955a4]/15 bg-[#FFFBF7]/80 backdrop-blur pl-5 pr-12 py-3.5 text-sm shadow-sm outline-none transition focus:border-[#d955a4]/40 focus:ring-2 focus:ring-[#d955a4]/10"
-              />
-              {query ? (
-                <button
-                  onClick={() => setQuery("")}
-                  aria-label="Clear search"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-1 text-[#d955a4] hover:bg-muted hover:text-foreground"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              ) : (
+          {/* Search Shortcut Button (ONLY FOR SPEAKERS TAB) */}
+          {tab === "speakers" && (
+            <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center w-full animate-fade-up">
+              <div 
+                onClick={scrollToSearch}
+                className="relative flex-1 w-full cursor-pointer"
+              >
+                <input
+                  readOnly
+                  placeholder="Search by name, company or designation…"
+                  className="w-full cursor-pointer rounded-2xl border border-[#d955a4]/15 bg-[#FFFBF7]/80 backdrop-blur pl-5 pr-12 py-3.5 text-sm shadow-sm outline-none transition focus:border-[#d955a4]/40"
+                />
                 <Search className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#c83d90]" />
+              </div>
+            </div>
+          )}
+
+          {/* Search + filter bar */}
+          {tab !== "speakers" && (
+            <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center gap-4 sm:flex-row w-full">
+              <div className="relative flex-1 w-full">
+                <input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder={`Search by name${tab === "mentors" ? ", company or designation" : ""}…`}
+                  className="w-full rounded-2xl border border-[#d955a4]/15 bg-[#FFFBF7]/80 backdrop-blur pl-5 pr-12 py-3.5 text-sm shadow-sm outline-none transition focus:border-[#d955a4]/40 focus:ring-2 focus:ring-[#d955a4]/10"
+                />
+                {query ? (
+                  <button
+                    onClick={() => setQuery("")}
+                    aria-label="Clear search"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-1 text-[#d955a4] hover:bg-muted hover:text-foreground"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                ) : (
+                  <Search className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#c83d90]" />
+                )}
+              </div>
+              {showCompanyFilter && (
+                <select
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  className="w-full rounded-2xl border border-[#d955a4]/15 bg-[#FFFBF7]/80 backdrop-blur px-5 py-3.5 text-sm shadow-sm outline-none transition focus:border-[#d955a4]/40 focus:ring-2 focus:ring-[#d955a4]/10 sm:w-auto cursor-pointer"
+                >
+                  <option value="all">All companies</option>
+                  {companies.map((c) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </select>
               )}
             </div>
-            {showCompanyFilter && (
-              <select
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                className="w-full rounded-2xl border border-[#d955a4]/15 bg-[#FFFBF7]/80 backdrop-blur px-5 py-3.5 text-sm shadow-sm outline-none transition focus:border-[#d955a4]/40 focus:ring-2 focus:ring-[#d955a4]/10 sm:w-auto cursor-pointer"
-              >
-                <option value="all">All companies</option>
-                {companies.map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </select>
-            )}
-          </div>
+          )}
         </div>
       </section>
 
       {/* MEMBER GRID LISTS */}
-      <section className="relative w-screen left-1/2 right-1/2 -translate-x-1/2 py-16 md:py-24 bg-card/40 border-y border-[#d955a4]/10 overflow-hidden mt-8 animate-fade-up">
-        {/* DOT BACKGROUND */}
-        <DotBackground />
+      {tab === "speakers" ? (
+        <>
+          {/* SPEAKER SHOWCASE OVERVIEW WITH DOT BACKGROUND */}
+          <section className="relative w-screen left-1/2 right-1/2 -translate-x-1/2 py-16 md:py-24 overflow-hidden mt-0 bg-[#FFFBF7] animate-fade-up border-y-0">
+            <DotBackground />
 
-        <div className="relative z-10 container mx-auto max-w-6xl px-6">
-          {tab === "team" ? (
-            <TeamShowcase filteredTeam={filteredTeam} />
-          ) : tab === "speakers" ? (
-            <>
+            <div className="relative z-10 container mx-auto max-w-6xl px-6">
+              {/* SECTION 1 — SPEAKER NETWORK OVERVIEW */}
+              <div className="text-center max-w-3xl mx-auto mb-12 mt-2 animate-fade-up">
+                <p className="text-[10px] md:text-xs uppercase tracking-[0.35em] text-[#d955a4] font-black mb-3.5" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                  ✦ Community Voices ✦
+                </p>
+                <h2 className="text-3xl md:text-5xl font-black text-gray-900 leading-tight mb-5" style={{ fontFamily: "'Satoshi', sans-serif" }}>
+                  A Network of Industry Experts
+                </h2>
+                <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                  Girls Leading Tech has welcomed professionals across engineering, product, design, research, leadership, startups, and emerging technologies. <strong>{totalSpeakers} professionals</strong> have shared their experiences and career journeys with our community.
+                </p>
+              </div>
+
+              {/* SECTION 2 — IMPACT METRICS */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-16 px-2 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+                {[
+                  { value: totalSpeakers, label: "Total Speakers", sub: "industry leaders", bg: "bg-[#ffeef2]" },
+                  { value: totalCompaniesCount, label: "Companies Represented", sub: "global organizations", bg: "bg-[#e3f2fd]" },
+                  { value: 5, label: "Tech Domains", sub: "expert areas", bg: "bg-[#fff9db]" },
+                  { value: "120+", label: "Sessions Hosted", sub: "community workshops", bg: "bg-[#f3e8ff]" }
+                ].map((stat, i) => (
+                  <div key={i} className={cn("border-2 border-black rounded-[20px] p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center flex flex-col justify-center transition-all hover:-translate-y-1", stat.bg)}>
+                    <span className="text-3xl md:text-4xl font-black text-black" style={{ fontFamily: "'Satoshi', sans-serif" }}>{stat.value}</span>
+                    <span className="text-xs font-extrabold text-black mt-2" style={{ fontFamily: "'Montserrat', sans-serif" }}>{stat.label}</span>
+                    <span className="text-[10px] text-black/60 mt-0.5 font-semibold" style={{ fontFamily: "'Montserrat', sans-serif" }}>{stat.sub}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* SECTION 3 — COMPANIES REPRESENTED */}
+              <div className="text-center mb-6 max-w-2xl mx-auto mt-20 animate-fade-up" style={{ animationDelay: "0.15s" }}>
+                <h3 className="text-xl md:text-2xl font-black text-gray-900 mb-2" style={{ fontFamily: "'Satoshi', sans-serif" }}>
+                  Professionals From Leading Organizations
+                </h3>
+                <p className="text-xs text-gray-500 max-w-md mx-auto" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                  Our network includes speakers and mentors building at top tech firms, open source projects, and innovators worldwide.
+                </p>
+              </div>
+              <div className="relative w-screen left-1/2 right-1/2 -translate-x-1/2 overflow-hidden py-6 mb-20 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+                <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#FFFBF7] to-transparent z-10 pointer-events-none" />
+                <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#FFFBF7] to-transparent z-10 pointer-events-none" />
+                
+                <div className="flex gap-4 animate-marquee whitespace-nowrap" style={{ animationDuration: "20s" }}>
+                  {[...sortedCompanies, ...sortedCompanies, ...sortedCompanies, ...sortedCompanies].map((co, i) => {
+                    if (co === "Startups") {
+                      return (
+                        <div
+                          key={i}
+                          className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl border-2 border-black bg-white text-gray-800 font-bold text-xs uppercase tracking-wider shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] select-none"
+                          style={{ fontFamily: "'Montserrat', sans-serif" }}
+                        >
+                          <div className="w-9 h-9 rounded-lg bg-white flex items-center justify-center flex-shrink-0 p-1 border border-gray-100">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="w-5 h-5 text-gray-800"
+                            >
+                              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                              <polyline points="17 6 23 6 23 12" />
+                            </svg>
+                          </div>
+                          <span>{co}</span>
+                        </div>
+                      );
+                    }
+
+                    const clean = co.trim().toLowerCase();
+                    let domain = companyDomains[clean];
+                    if (!domain) {
+                      const slug = clean.replace(/[^a-z0-9]/g, "");
+                      domain = `${slug}.com`;
+                    }
+                    const logoUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+                    
+                    return (
+                      <div
+                        key={i}
+                        className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl border-2 border-black bg-white text-gray-800 font-bold text-xs uppercase tracking-wider shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] select-none"
+                        style={{ fontFamily: "'Montserrat', sans-serif" }}
+                      >
+                        <img
+                          src={logoUrl}
+                          alt={`${co} logo`}
+                          width={36}
+                          height={36}
+                          className="w-9 h-9 rounded-lg bg-white object-contain flex-shrink-0 p-1 border border-gray-100"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).style.display = "none";
+                          }}
+                        />
+                        <span>{co}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* SECTION 4 — EXPERTISE LANDSCAPE */}
+              <div className="text-center mb-12 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: "0.25s" }}>
+                <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-2" style={{ fontFamily: "'Satoshi', sans-serif" }}>
+                  Insights Across Diverse Domains
+                </h3>
+                <p className="text-sm text-gray-500" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                  Find resources, career blueprints, and sessions filtered by our speaker domain landscape.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 max-w-6xl mx-auto mb-20 px-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+                {domainBreakdown.map((domain, i) => {
+                  const Icon = domain.icon;
+                  const colors = [
+                    { bg: "bg-[#ffeef2]" }, // pink
+                    { bg: "bg-[#e3f2fd]" }, // blue
+                    { bg: "bg-[#fff9db]" }, // yellow
+                    { bg: "bg-[#f3e8ff]" }, // purple
+                    { bg: "bg-[#e8f5e9]" }, // green
+                  ];
+                  const color = colors[i % colors.length];
+                  
+                  return (
+                    <div key={i} className="flex flex-col items-center text-center p-2 group hover:-translate-y-1 transition-transform duration-300">
+                      <div className={cn("w-16 h-16 rounded-2xl flex items-center justify-center mb-4 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-transform group-hover:scale-110", color.bg)}>
+                        <Icon className="w-7 h-7 text-black" />
+                      </div>
+                      <h4 
+                        className="font-extrabold text-gray-900 text-base mb-2 font-sans h-12 flex items-center justify-center" 
+                        style={{ fontFamily: "'Montserrat', sans-serif" }}
+                      >
+                        {domain.name}
+                      </h4>
+                      <p className="text-xs text-gray-600 leading-relaxed max-w-[200px]" style={{ fontFamily: "'Satoshi', sans-serif" }}>
+                        {domain.desc}
+                      </p>
+                      <span className="mt-3 text-[11px] font-bold uppercase tracking-wider text-[#d955a4] bg-[#ffeef2] px-2.5 py-0.5 rounded-full border border-[#d955a4]/10">
+                        {domain.count} Speakers
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* SECTION 5 — FEATURED SUMMARY */}
+              <div className="max-w-5xl mx-auto bg-white border-2 border-black rounded-[24px] p-8 md:p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-20 px-6 md:px-16 animate-fade-up" style={{ animationDelay: "0.35s" }}>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+                  <div className="lg:col-span-5 text-left">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#ffeef2] text-[#d955a4] font-bold text-xs uppercase tracking-wider mb-5">
+                      <Sparkles className="w-3.5 h-3.5" /> Network Composition
+                    </span>
+                    <h3 className="text-3xl md:text-4xl font-black text-gray-900 mb-5 leading-tight" style={{ fontFamily: "'Satoshi', sans-serif" }}>
+                      Our Speaker Community
+                    </h3>
+                    <p className="text-base text-gray-700 leading-relaxed font-medium" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                      Our guest speaker roster represents a curated mixture of experienced software engineers, startup operators, Google TalentSprint scholars, and winners of major hackathons. This balanced landscape delivers both deep technical mentorship and actionable career journeys.
+                    </p>
+                  </div>
+
+                  <div className="lg:col-span-7 space-y-7 text-left">
+                    {[
+                      { label: "Software Engineers & Tech Architects", count: engineersCount, pct: engineersPct },
+                      { label: "Startup Founders & Tech Executives", count: foundersCount, pct: foundersPct },
+                      { label: "Googlers & Google Scholars", count: googleCount, pct: googlePct },
+                      { label: "Hackathon Winners & Open Source Contributors", count: winnersCount, pct: winnersPct }
+                    ].map((item, i) => (
+                      <div key={i}>
+                        <div className="flex justify-between text-sm font-bold text-gray-800 mb-2" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                          <span>{item.label}</span>
+                          <span className="text-[#d955a4]">{item.count} ({item.pct}%)</span>
+                        </div>
+                        <div className="w-full h-4 bg-gray-100 border-2 border-black rounded-full overflow-hidden shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                          <div className="h-full bg-gradient-to-r from-[#ff8fab] via-[#d955a4] to-[#8a5bd6] rounded-full" style={{ width: `${item.pct}%` }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* SPEAKER GALLERY GRID SECTION WITHOUT DOT BACKGROUND */}
+          <section className="relative w-screen left-1/2 right-1/2 -translate-x-1/2 pt-16 pb-12 overflow-hidden bg-[#FFFBF7] animate-fade-up border-y-0 mt-0">
+            <div className="relative z-10 container mx-auto max-w-6xl px-6">
+              {/* SECTION 6 — TRANSITION TO GALLERY */}
+              <div ref={searchBarRef} className="pt-2 pb-6 max-w-3xl mx-auto text-center animate-fade-up">
+                <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-3" style={{ fontFamily: "'Satoshi', sans-serif" }}>
+                  Explore Our Speaker Network
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-8" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                  Browse all {totalSpeakers} speakers and discover professionals from different industries, domains, and career journeys. Use the search bar below to filter by name, company, or designation.
+                </p>
+              </div>
+
+              {/* Relocated Search Bar */}
+              <div className="mx-auto mb-16 flex max-w-2xl flex-col items-center gap-4 sm:flex-row w-full z-20 relative px-2 animate-fade-up">
+                <div className="relative flex-1 w-full">
+                  <input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Search by name, company or designation…"
+                    className="w-full rounded-2xl border border-[#d955a4]/15 bg-[#FFFBF7]/80 backdrop-blur pl-5 pr-12 py-3.5 text-sm shadow-sm outline-none transition focus:border-[#d955a4]/40 focus:ring-2 focus:ring-[#d955a4]/10 text-gray-800 placeholder:text-gray-400"
+                  />
+                  {query ? (
+                    <button
+                      onClick={() => setQuery("")}
+                      aria-label="Clear search"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-1 text-[#d955a4] hover:bg-muted hover:text-foreground"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  ) : (
+                    <Search className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#c83d90]" />
+                  )}
+                </div>
+                <select
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  className="w-full rounded-2xl border border-[#d955a4]/15 bg-[#FFFBF7]/80 backdrop-blur px-5 py-3.5 text-sm shadow-sm outline-none transition focus:border-[#d955a4]/40 focus:ring-2 focus:ring-[#d955a4]/10 sm:w-auto cursor-pointer text-gray-800"
+                >
+                  <option value="all">All companies</option>
+                  {companies.map((c) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* GRID */}
               <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {filteredSpeakers.map((s, i) => (
                   <MemberProfileCard
@@ -328,61 +702,71 @@ function HumansPage() {
                   No matches. Try a different search.
                 </p>
               )}
-            </>
-          ) : (
-            <>
-              <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {tab === "mentors" &&
-                  filteredMentors.map((m, i) => (
-                    <MemberProfileCard
-                      key={m.id}
-                      name={m.name}
-                      role={m.designation}
-                      location={m.company}
-                      locationType="company"
-                      delay={i}
-                      linkedin={m.linkedin}
-                      image={m.image}
-                    />
-                  ))}
-                {tab === "contributors" &&
-                  filteredContribs.map((m, i) => (
-                    <MemberProfileCard
-                      key={m.id}
-                      name={m.name}
-                      location={m.city && m.state ? `${m.city}, ${m.state}` : m.city || m.state}
-                      locationType="location"
-                      delay={i}
-                      linkedin={m.linkedin}
-                      image={m.image}
-                    />
-                  ))}
-                {tab === "volunteers" &&
-                  filteredVolunteers.map((m, i) => (
-                    <MemberProfileCard
-                      key={m.id}
-                      name={m.name}
-                      location={m.city && m.state ? `${m.city}, ${m.state}` : m.city || m.state}
-                      locationType="location"
-                      delay={i}
-                      linkedin={m.linkedin}
-                      image={m.image}
-                    />
-                  ))}
-              </div>
+            </div>
+          </section>
+        </>
+      ) : (
+        <section className="relative w-screen left-1/2 right-1/2 -translate-x-1/2 py-16 md:py-24 bg-card/40 border-y border-[#d955a4]/10 overflow-hidden mt-8 animate-fade-up">
+          <DotBackground />
 
-              {/* Empty state */}
-              {((tab === "mentors" && filteredMentors.length === 0) ||
-                (tab === "contributors" && filteredContribs.length === 0) ||
-                (tab === "volunteers" && filteredVolunteers.length === 0)) && (
-                <p className="mt-12 text-center text-sm text-muted-foreground">
-                  No matches. Try a different search.
-                </p>
-              )}
-            </>
-          )}
-        </div>
-      </section>
+          <div className="relative z-10 container mx-auto max-w-6xl px-6">
+            {tab === "team" ? (
+              <TeamShowcase filteredTeam={filteredTeam} />
+            ) : (
+              <>
+                <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                  {tab === "mentors" &&
+                    filteredMentors.map((m, i) => (
+                      <MemberProfileCard
+                        key={m.id}
+                        name={m.name}
+                        role={m.designation}
+                        location={m.company}
+                        locationType="company"
+                        delay={i}
+                        linkedin={m.linkedin}
+                        image={m.image}
+                      />
+                    ))}
+                  {tab === "contributors" &&
+                    filteredContribs.map((m, i) => (
+                      <MemberProfileCard
+                        key={m.id}
+                        name={m.name}
+                        location={m.city && m.state ? `${m.city}, ${m.state}` : m.city || m.state}
+                        locationType="location"
+                        delay={i}
+                        linkedin={m.linkedin}
+                        image={m.image}
+                      />
+                    ))}
+                  {tab === "volunteers" &&
+                    filteredVolunteers.map((m, i) => (
+                      <MemberProfileCard
+                        key={m.id}
+                        name={m.name}
+                        location={m.city && m.state ? `${m.city}, ${m.state}` : m.city || m.state}
+                        locationType="location"
+                        delay={i}
+                        linkedin={m.linkedin}
+                        image={m.image}
+                      />
+                    ))}
+                </div>
+
+                {/* Empty state */}
+                {((tab === "mentors" && filteredMentors.length === 0) ||
+                  (tab === "contributors" && filteredContribs.length === 0) ||
+                  (tab === "volunteers" && filteredVolunteers.length === 0)) && (
+                  <p className="mt-12 text-center text-sm text-muted-foreground">
+                    No matches. Try a different search.
+                  </p>
+                )}
+              </>
+            )}
+          </div>
+        </section>
+      )}
     </>
   );
 }
