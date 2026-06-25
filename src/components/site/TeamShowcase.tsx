@@ -8,9 +8,6 @@ interface TeamShowcaseProps {
   filteredTeam: TeamMember[];
 }
 
-// Fixed viewport height for the scrollable grid — sized to comfortably show 2+ full rows
-const SCROLL_AREA_HEIGHT = "min(72vh, 760px)";
-
 // Sliding-pill tab switcher — matches the gradient pill pattern on the site
 function StatusTabs({
   active,
@@ -104,138 +101,98 @@ export default function TeamShowcase({ filteredTeam }: TeamShowcaseProps) {
   const statusFilteredTeam = statusTab === "current" ? currentMembers : pastMembers;
 
   return (
-    <div className="w-full">
+    <div id="teamshowcase-root" className="w-full flex flex-col items-center">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
         @import url('https://fonts.cdnfonts.com/css/satoshi');
+
+        canvas {
+          display: none !important;
+        }
+
+        section:has(#teamshowcase-root) {
+          margin-top: 0 !important;
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+          border-top: none !important;
+          border-bottom: none !important;
+          background: transparent !important;
+        }
+
+        footer {
+          margin-top: 0 !important;
+        }
       `}</style>
 
-      <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-14">
-
-        {/* LEFT COLUMN — Sticky header */}
-        <div className="w-full lg:w-[35%] lg:sticky lg:top-32 flex flex-col justify-center pt-4">
-
-          {/* MEET THE TEAM header */}
-          <div className="relative min-h-[140px] sm:min-h-[180px] md:min-h-[220px] lg:min-h-[260px] flex items-center justify-center md:justify-start w-full mb-6">
-            <div className="relative inline-block mx-auto md:mx-0">
-              <h2 className="font-['Anton'] uppercase text-black leading-none tracking-[-0.02em] select-none pointer-events-none text-[6.5rem] sm:text-[7rem] md:text-[6rem] lg:text-[10rem] xl:text-[12rem] relative z-0">
-                MEET
-              </h2>
-              <div className="absolute z-10 bottom-[5%] right-[-5%] sm:right-[-6%] md:right-[-10%] lg:right-[-12%] rotate-[-8deg] bg-[#d955a4] px-3 sm:px-4 md:px-5 py-1 shadow-lg whitespace-nowrap">
-                <span className="font-['Anton'] uppercase text-black leading-none text-base sm:text-lg md:text-xl lg:text-2xl">
-                  THE TEAM
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <p className="font-sans text-base md:text-lg text-zinc-400 mt-2 md:mt-3 max-w-xs md:max-w-sm text-center md:text-left mx-auto md:mx-0 leading-relaxed">
-            Meet the core crew building Girls Leading Tech — mentors, organizers, contributors and volunteers united by purpose.
-          </p>
-
-          {/* Hover hint for desktop */}
-          <p className="hidden md:block mt-4 text-xs text-zinc-300 text-center md:text-left">
-            ✦ Hover a card to see their story · scroll for more
-          </p>
-        </div>
-
-        {/* RIGHT COLUMN — Tabs + Grid + Pagination */}
-        <div className="w-full lg:w-[65%] flex flex-col gap-6">
-
-          {/* Tab switcher with counts */}
-          <div className="self-center md:self-start">
-            <StatusTabs
-              active={statusTab}
-              onChange={setStatusTab}
-              currentCount={currentMembers.length}
-              pastCount={pastMembers.length}
-            />
-          </div>
-
-          {/* Alumni appreciation banner */}
-          {statusTab === "past" && pastMembers.length > 0 && (
-            <AlumniBanner />
-          )}
-
-          <div className="relative">
-
-            {/* Cards grid — vertically scrollable, no boxed panel, just a soft fade at the edge */}
-            {statusFilteredTeam.length === 0 ? (
-              <div className="text-center py-16 flex flex-col items-center gap-3">
-                <p className="text-sm text-muted-foreground">
-                  {statusTab === "past"
-                    ? "No alumni to show yet."
-                    : "No matches. Try a different search."}
-                </p>
-              </div>
-            ) : (
-              <>
-                <style>{`
-                  .team-scroll-area::-webkit-scrollbar {
-                    width: 5px;
-                  }
-                  .team-scroll-area::-webkit-scrollbar-track {
-                    background: transparent;
-                  }
-                  .team-scroll-area::-webkit-scrollbar-thumb {
-                    background-color: transparent;
-                    border-radius: 999px;
-                    transition: background-color 0.2s ease;
-                  }
-                  .team-scroll-area:hover::-webkit-scrollbar-thumb {
-                    background-color: #e8c2d8;
-                  }
-                  .team-scroll-area::-webkit-scrollbar-thumb:hover {
-                    background-color: #d955a4;
-                  }
-                  .team-scroll-area {
-                    scrollbar-width: thin;
-                    scrollbar-color: transparent transparent;
-                  }
-                  .team-scroll-area:hover {
-                    scrollbar-color: #e8c2d8 transparent;
-                  }
-                `}</style>
-
-                <motion.div
-                  key={statusTab}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="team-scroll-area overflow-y-auto pr-5 -mr-5"
-                  style={{ maxHeight: SCROLL_AREA_HEIGHT }}
-                >
-                  <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-7 pb-3 pt-1">
-                    {statusFilteredTeam.map((member, index) => (
-                      <MemberProfileCard
-                        key={member.id}
-                        name={member.name}
-                        role={member.role}
-                        location={
-                          member.city && member.state
-                            ? `${member.city}, ${member.state}`
-                            : member.city || member.state
-                        }
-                        locationType="location"
-                        delay={index % 6}
-                        linkedin={member.linkedin}
-                        twitter={member.twitter}
-                        image={member.image}
-                        description={member.description}
-                        isPast={member.status === "past"}
-                      />
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Fade hint — blends into the page's own white background, not a boxed panel */}
-                {statusFilteredTeam.length > 6 && (
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white via-white/70 to-transparent" />
-                )}
-              </>
-            )}
+      {/* MEET THE TEAM header (Centered) */}
+      <div className="relative min-h-[140px] sm:min-h-[180px] md:min-h-[220px] lg:min-h-[260px] flex items-center justify-center w-full mb-4">
+        <div className="relative inline-block mx-auto">
+          <h2 className="font-['Anton'] uppercase text-black leading-none tracking-[-0.02em] select-none pointer-events-none text-[6.5rem] sm:text-[7rem] md:text-[8rem] lg:text-[10rem] xl:text-[12rem] relative z-0">
+            MEET
+          </h2>
+          <div className="absolute z-10 bottom-[5%] right-[-5%] sm:right-[-6%] md:right-[-10%] lg:right-[-12%] rotate-[-8deg] bg-[#d955a4] px-3 sm:px-4 md:px-5 py-1 shadow-lg whitespace-nowrap">
+            <span className="font-['Anton'] uppercase text-black leading-none text-base sm:text-lg md:text-xl lg:text-2xl">
+              THE TEAM
+            </span>
           </div>
         </div>
+      </div>
+
+      {/* Paragraph below header */}
+      <p className="font-sans text-base md:text-lg text-zinc-400 mt-2 md:mt-3 max-w-xl text-center mx-auto leading-relaxed mb-8">
+        Meet the core crew building Girls Leading Tech - mentors, organizers, contributors and volunteers united by purpose.
+      </p>
+
+      {/* Toggle below paragraph */}
+      <div className="mb-8">
+        <StatusTabs
+          active={statusTab}
+          onChange={setStatusTab}
+          currentCount={currentMembers.length}
+          pastCount={pastMembers.length}
+        />
+      </div>
+
+      {/* Alumni appreciation banner */}
+      {statusTab === "past" && pastMembers.length > 0 && (
+        <div className="w-full max-w-2xl mb-8">
+          <AlumniBanner />
+        </div>
+      )}
+
+      {/* Cards grid — no scroll container, responsive 4 columns */}
+      <div className="w-full">
+        {statusFilteredTeam.length === 0 ? (
+          <div className="text-center py-16 flex flex-col items-center gap-3">
+            <p className="text-sm text-zinc-500">
+              {statusTab === "past"
+                ? "No alumni to show yet."
+                : "No matches. Try a different search."}
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-7 pb-12 pt-1 w-full">
+            {statusFilteredTeam.map((member, index) => (
+              <MemberProfileCard
+                key={member.id}
+                name={member.name}
+                role={member.role}
+                location={
+                  member.city && member.state
+                    ? `${member.city}, ${member.state}`
+                    : member.city || member.state
+                }
+                locationType="location"
+                delay={index % 8}
+                linkedin={member.linkedin}
+                twitter={member.twitter}
+                image={member.image}
+                description={member.description}
+                isPast={member.status === "past"}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
