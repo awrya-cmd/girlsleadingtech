@@ -234,7 +234,7 @@ function HumansPage() {
         </div>
 
         {/* Category Cards & Search bar inside the same wrapper */}
-        <div className="relative z-10 container mx-auto max-w-6xl px-6 mt-14 md:mt-16">
+        <div className="relative z-10 container mx-auto max-w-6xl px-6 mt-14  md:mt-16">
           {/* Category Tabs Section */}
           <div className="mx-auto w-full max-w-2xl border border-[#d955a4]/15 bg-white/50 backdrop-blur-md rounded-none p-1 flex flex-row overflow-x-auto items-center justify-between [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
             {tabs.map((t, index) => {
@@ -298,9 +298,8 @@ function HumansPage() {
       </section>
 
       {/* MEMBER GRID LISTS */}
-      <section className="relative w-screen left-1/2 right-1/2 -translate-x-1/2 py-16 md:py-24 bg-card/40 border-y border-[#d955a4]/10 overflow-hidden mt-8 animate-fade-up">
-        {/* DOT BACKGROUND */}
-        <DotBackground />
+      <section className="relative w-screen left-1/2 right-1/2 -translate-x-1/2 pt-8 pb-10 md:pb-12 md:pt-24 md:pb-12 bg-card/40 border-y border-[#d955a4]/10 overflow-hidden animate-fade-up">
+      
 
         <div className="relative z-10 container mx-auto max-w-6xl px-6">
           {tab === "team" ? (
